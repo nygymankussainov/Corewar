@@ -1,21 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   asm.h                                              :+:      :+:    :+:   */
+/*   putstrerr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: vhazelnu <vhazelnu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/10/30 14:36:26 by vhazelnu          #+#    #+#             */
-/*   Updated: 2019/10/30 17:41:03 by vhazelnu         ###   ########.fr       */
+/*   Created: 2019/04/02 16:27:49 by vhazelnu          #+#    #+#             */
+/*   Updated: 2019/10/30 20:15:09 by vhazelnu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef ASM_H
-# define ASM_H
+#include "libft.h"
 
-# include "op.h"
-# include "ft_printf.h"
-
-int		validate_file(char *file);
-
-#endif
+void	putstrerr(char const *s)
+{
+	if (!s)
+		return ;
+	write(2, s, ft_strlen(s));
+}

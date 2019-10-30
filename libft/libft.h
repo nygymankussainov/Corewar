@@ -6,7 +6,7 @@
 /*   By: vhazelnu <vhazelnu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/11 20:06:51 by vhazelnu          #+#    #+#             */
-/*   Updated: 2019/10/30 14:42:22 by vhazelnu         ###   ########.fr       */
+/*   Updated: 2019/10/30 20:13:28 by vhazelnu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,6 +96,7 @@ char					*ft_itoa_base(long long nb, int base);
 char					*ft_uitoa_base(unsigned long long nb, int base, char c);
 void					ft_putchar(char c);
 void					ft_putstr(char const *s);
+void					putstrerr(char const *s);
 void					ft_putendl(char const *s);
 void					ft_putnbr(int n);
 void					ft_putchar_fd(char c, int fd);
