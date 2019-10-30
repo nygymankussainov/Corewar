@@ -6,51 +6,61 @@
 #    By: vhazelnu <vhazelnu@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/05/16 11:34:51 by vhazelnu          #+#    #+#              #
-#    Updated: 2019/10/30 17:42:37 by vhazelnu         ###   ########.fr        #
+#    Updated: 2019/10/30 17:51:09 by vhazelnu         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 LOG_NOCOLOR = \033[0m
 LOG_GREEN = \033[32m
 
-NAME = libftprintf.a
+ARCHIVE = asm.a
 
-LIBFT = ../
+NAME = asm
 
-INCLUDES = -I ../
+LIB = libft/ft_printf
+LIB_A = libft/libft.a $(LIB)/libftprintf.a
 
-SRCS = ft_symbol.c ft_printf.c ft_number.c ft_conv_f.c ft_conv_x.c ft_conv_d.c ft_conv_p.c ft_conv_o.c ft_conv_u.c width_for_f.c ft_conv_b.c \
-		longadd.c longmulti.c decimal_part.c longdiv.c integer_part.c rounding_and_print.c calculate_decimal.c width.c find_conv_or_whitesp.c \
+INCLUDES = -I ./ -I libft/ft_printf -I libft
 
-OBJ = $(addprefix $(OBJDIR)/,$(SRCS:.c=.o))
+SOURCES = asm.c validate_file.c \
+
+SRCDIR = src_asm
 OBJDIR = obj
+
+SRC = $(addprefix $(SRCDIR)/, $(SOURCES))
+
+OBJ = $(addprefix $(OBJDIR)/, $(SOURCES:.c=.o))
 
 CCFL = -Wall -Wextra -Werror
 
-.PHONY: all clean fclean re obj_dir library
+.PHONY: all clean fclean re library obj_dir
 
-all: obj_dir library $(NAME)
+all: obj_dir library $(ARCHIVE) $(NAME)
 
 obj_dir:
 	@mkdir -p $(OBJDIR)
 
 library:
-	@make -sC $(LIBFT)
+	@make -sC $(LIB)
 
-$(NAME): $(OBJ)
-	@ar rc $(NAME) $(OBJ)
-	@echo "$(LOG_GREEN)Ft_printf has compiled successfully!$(LOG_NOCOLOR)"
-	@ranlib $(NAME)
-
-$(OBJDIR)/%.o: %.c
+$(OBJDIR)/%.o: $(SRCDIR)/%.c
 	@gcc $(CCFL) -o $@ -c $< $(INCLUDES)
 
+$(ARCHIVE): $(OBJ)
+	@ar rc $(ARCHIVE) $(OBJ)
+	@ranlib $(ARCHIVE)
+
+$(NAME): $(OBJ)
+	@gcc $(CCFL) -o $(NAME) $(ARCHIVE) $(LIB_A)
+	@echo "$(LOG_GREEN)Asm has compiled successfully!$(LOG_NOCOLOR)"
+
 clean:
-	@make clean -C $(LIBFT)
+	@make clean -sC $(LIB)
 	@/bin/rm -rf $(OBJDIR)
 
 fclean: clean
-	@make fclean -C $(LIBFT)
+	@/bin/rm -f $(ARCHIVE)
 	@/bin/rm -f $(NAME)
+	@make fclean -sC $(LIB)
 
 re: fclean all

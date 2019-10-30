@@ -1,21 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   asm.h                                              :+:      :+:    :+:   */
+/*   asm.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: vhazelnu <vhazelnu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/10/30 14:36:26 by vhazelnu          #+#    #+#             */
-/*   Updated: 2019/10/30 17:41:03 by vhazelnu         ###   ########.fr       */
+/*   Created: 2019/10/30 14:35:30 by vhazelnu          #+#    #+#             */
+/*   Updated: 2019/10/30 17:51:32 by vhazelnu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef ASM_H
-# define ASM_H
+#include "asm.h"
 
-# include "op.h"
-# include "ft_printf.h"
+void	print_usage(void)
+{
+	ft_printf("Usage: ./asm <file.s>\n");
+}
 
-int		validate_file(char *file);
+int		main(int argc, char **argv)
+{
+	int		fd;
 
-#endif
+	if (argc < 2)
+		print_usage();
+	else if (!(fd = validate_file(argv[argc - 1])))
+		exit(0);
+	return (0);
+}
