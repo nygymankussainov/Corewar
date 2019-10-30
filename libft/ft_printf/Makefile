@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: vhazelnu <vhazelnu@student.42.fr>          +#+  +:+       +#+         #
+#    By: hfrankly <hfrankly@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/05/16 11:34:51 by vhazelnu          #+#    #+#              #
-#    Updated: 2019/10/18 15:47:36 by vhazelnu         ###   ########.fr        #
+#    Updated: 2019/10/30 19:50:10 by hfrankly         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,6 +16,8 @@ LOG_GREEN = \033[32m
 NAME = libftprintf.a
 
 LIBFT = ../
+
+INCLUDES = -I ../
 
 SRCS = ft_symbol.c ft_printf.c ft_number.c ft_conv_f.c ft_conv_x.c ft_conv_d.c ft_conv_p.c ft_conv_o.c ft_conv_u.c width_for_f.c ft_conv_b.c \
 		longadd.c longmulti.c decimal_part.c longdiv.c integer_part.c rounding_and_print.c calculate_decimal.c width.c find_conv_or_whitesp.c \
@@ -41,7 +43,7 @@ $(NAME): $(OBJ)
 	@ranlib $(NAME)
 
 $(OBJDIR)/%.o: %.c
-	@gcc $(CCFL) -o $@ -c $<
+	@gcc $(CCFL) -o $@ -c $< $(INCLUDES)
 
 clean:
 	@make clean -C $(LIBFT)
