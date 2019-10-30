@@ -1,0 +1,11 @@
+**.swp
+**.o
+**.a
+**.DS_Store
+**.idea
+**.dSYM
+.vscode
+**.gch
+a.out
+obj
+vm_champs
