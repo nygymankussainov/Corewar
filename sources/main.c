@@ -56,15 +56,10 @@ void read_magic_header(char *player_name)
 	uint8_t	buff[4];
 	uint32_t header;
 
-//uint8 arr[4] = {0xDD, 0xFF, 0xCC, 0xBB};
-//uint32 ret = *(uint32*)arr;
-
-
 	file_name = ft_strjoin(player_name, ".cor");
 	fd = open(file_name, O_RDONLY);
 	int r = read(fd, &buff, 4);
-	//ft_printf("%x\n", );
-	//if (COREWAR_EXEC_MAGIC == buff)
+
 	header = *(uint32_t*)buff;
 	ft_printf("%x", buff[0]);
 	ft_printf("%x", buff[1]);
