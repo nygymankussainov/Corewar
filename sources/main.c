@@ -49,15 +49,13 @@ void		get_players(t_vm *vm, int argc, char **data)
 	}
 }
 
-void read_magic_header(char *player_name)
+void read_magic_header(int fd)
 {
-	int		fd;
-	char	*file_name;
 	uint8_t	buff[4];
 	uint32_t header;
 
-	file_name = ft_strjoin(player_name, ".cor");
-	fd = open(file_name, O_RDONLY);
+	//file_name = ft_strjoin(player_name, ".cor");
+	//fd = open(file_name, O_RDONLY);
 	int r = read(fd, &buff, 4);
 
 	header = *(uint32_t*)buff;
@@ -72,14 +70,51 @@ void read_magic_header(char *player_name)
 		printf("it's a success\n");
 }
 
+void read_champion_name(char *name, int fd)
+{
+	char buff[PROG_NAME_LENGTH];
+	int r = read(fd, &buff, PROG_NAME_LENGTH);
+
+	//сравни с записанным в струтуру именем игрока
+	ft_printf("%s\n", buff);
+
+}	
+
+void read_null_octet(int fd)
+{
+	uint32_t buff;
+	int r = read(fd, &buff, 4);
+
+	if (buff == 0)
+		ft_printf("%x!\n", buff);
+}
+
+void read_exec_code_size(int fd)
+{
+	//CHAMP_MAX_SIZE
+	uint32_t buff;
+	int r = read(fd, &buff, 4);
+	char *answer;
+
+	ft_printf("%d\n", buff);
+	answer = ft_change_system_over_ten(buff, 16, 0);
+}
+
 void read_byte_code(t_vm *vm)
 {
 	int n;
+	int		fd;
+	char	*file_name;
 
 	n = 0;
 	//while (vm->players[n])
 	//{
-		read_magic_header(vm->players[n]->name);
+		file_name = ft_strjoin(vm->players[n]->name, ".cor");
+		fd = open(file_name, O_RDONLY);
+		read_magic_header(fd);
+		read_champion_name(vm->players[n]->name, fd);
+		read_null_octet(fd);
+		read_exec_code_size(fd);
 	//}
 }
 
