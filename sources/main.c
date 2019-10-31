@@ -6,127 +6,22 @@
 /*   By: egiant <egiant@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/30 13:41:19 by egiant            #+#    #+#             */
-/*   Updated: 2019/10/30 17:50:42 by egiant           ###   ########.fr       */
+/*   Updated: 2019/10/31 18:28:46 by egiant           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "vm.h"
 
-#define B_SIZE 4
-
-void		get_players(t_vm *vm, int argc, char **data)
+int				main(int argc, char *argv[])
 {
-	short	n;
-	char	**name;
-
-	n = 0;
-	while (++n < argc)
-	{
-		if (ft_strcmp(data[n], "-n") == 0)	
-		{
-			if (!data[n + 1])
-				return ;
-			name = ft_strsplit(data[n + 2], '.');
-			vm->players[ft_atoi(data[n + 1]) - 1] = (t_player *)malloc(sizeof(t_player));
-			vm->players[ft_atoi(data[n + 1]) - 1]->name = ft_strdup(name[0]);
-			n += 2;
-		}
-	}
-	n = 0;
-	int i = 0;
-	while (++n < argc)
-	{
-		if (ft_strcmp(data[n], "-n") == 0)
-			n += 3;
-		if (data[n])
-		{
-			name = ft_strsplit(data[n], '.');
-			while (vm->players[i] != NULL)
-				++i;
-			vm->players[i] = (t_player *)malloc(sizeof(t_player));
-			vm->players[i]->name = ft_strdup(name[0]);
-		}
-	}
-}
-
-void read_magic_header(int fd)
-{
-	uint8_t	buff[4];
-	uint32_t header;
-
-	//file_name = ft_strjoin(player_name, ".cor");
-	//fd = open(file_name, O_RDONLY);
-	int r = read(fd, &buff, 4);
-
-	header = *(uint32_t*)buff;
-	ft_printf("%x", buff[0]);
-	ft_printf("%x", buff[1]);
-	ft_printf("%x", buff[2]);
-	ft_printf("%x", buff[3]);
-	ft_printf("%x\n", header);
-	header = buff[3]|(buff[2] << 8)|(buff[1] << 16)|(buff[0] << 24);
-	ft_printf("%x\n", header);
-	if (header == COREWAR_EXEC_MAGIC)
-		printf("it's a success\n");
-}
-
-void read_champion_name(char *name, int fd)
-{
-	char buff[PROG_NAME_LENGTH];
-	int r = read(fd, &buff, PROG_NAME_LENGTH);
-
-	//сравни с записанным в струтуру именем игрока
-	ft_printf("%s\n", buff);
-
-}	
-
-void read_null_octet(int fd)
-{
-	uint32_t buff;
-	int r = read(fd, &buff, 4);
-
-	if (buff == 0)
-		ft_printf("%x!\n", buff);
-}
-
-void read_exec_code_size(int fd)
-{
-	//CHAMP_MAX_SIZE
-	uint32_t buff;
-	int r = read(fd, &buff, 4);
-	char *answer;
-
-	ft_printf("%d\n", buff);
-	answer = ft_change_system_over_ten(buff, 16, 0);
-}
-
-void read_byte_code(t_vm *vm)
-{
-	int n;
-	int		fd;
-	char	*file_name;
-
-	n = 0;
-	//while (vm->players[n])
-	//{
-		file_name = ft_strjoin(vm->players[n]->name, ".cor");
-		fd = open(file_name, O_RDONLY);
-		read_magic_header(fd);
-		read_champion_name(vm->players[n]->name, fd);
-		read_null_octet(fd);
-		read_exec_code_size(fd);
-	//}
-}
-
-int			main(int argc, char *argv[])
-{
-	t_vm	*vm;
+	t_vm		*vm;
 
 	//if (argc > 2)
 	//{
 		vm = init_vm();
-		get_players(vm, argc, argv);
+		parse_arguments(vm, argc, argv);
 		read_byte_code(vm);
+		//init_arena(vm);
 	/*}
 	else
 	{
@@ -135,3 +30,14 @@ int			main(int argc, char *argv[])
 	}*/
 	return (0);
 }
+
+/*typedef struct		s_cursor
+{
+	current_place;
+	carry;
+	parent_number;
+	register[16];
+	live;
+	command;
+	cycle_to_die; ?
+}					t_cursor;*/

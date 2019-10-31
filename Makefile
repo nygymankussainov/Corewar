@@ -6,7 +6,7 @@
 #    By: egiant <egiant@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/08/26 21:15:02 by egiant            #+#    #+#              #
-#    Updated: 2019/10/30 16:36:49 by egiant           ###   ########.fr        #
+#    Updated: 2019/10/31 18:20:55 by egiant           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -22,7 +22,8 @@ HEADER = -I headers/ -I $(LIBPRDIR)/headers -I $(LIBDIR)/headers
 OBJ_DIR = objectives/
 SRC_DIR = sources/
 
-SRCS =	main.c initialization.c
+SRCS =	main.c initialization.c parse_arguments.c exit.c read_byte_code.c \
+
 
 OBJS 	= $(addprefix $(OBJ_DIR), $(SRCS:.c=.o))
 
