@@ -6,18 +6,18 @@
 /*   By: egiant <egiant@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/31 16:49:05 by egiant            #+#    #+#             */
-/*   Updated: 2019/10/31 18:22:21 by egiant           ###   ########.fr       */
+/*   Updated: 2019/11/01 16:32:47 by egiant           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "vm.h"
+#include "virtual_machine.h"
 
-void 			parse_dump_flag(t_vm *vm, char *argv[], int *n)
+void 			parse_dump_flag(t_corewar *vm, char *argv[], int *n)
 {
 	return ;
 }
 
-int 			is_name(t_vm *vm, char *str)
+int 			is_name(t_corewar *vm, char *str)
 {
 	//каких символов не может быть в имени игрока?
 	char 		*ptr;
@@ -28,11 +28,11 @@ int 			is_name(t_vm *vm, char *str)
 	return (1);
 }
 
-void 			parse_player(t_vm *vm, char *argv[], int *n)
+void 			parse_player(t_corewar *vm, char *argv[], int *n)
 {
 	int			num;
 	char		**name;
-	t_player	*p_ptr;
+	t_core		*p_ptr;
 
 	if (!ft_strcmp(argv[*n], "-n"))
 	{
@@ -45,12 +45,13 @@ void 			parse_player(t_vm *vm, char *argv[], int *n)
 		is_name(vm, argv[*n + 2]);
 		name = ft_strsplit(argv[*n + 2], '.');
 		--num;
-		if (vm->players[num])
+		if (vm->cores[num])
 			terminate_with_error(vm);
-		vm->players[num] = (t_player *)malloc(sizeof(t_player));
-		init_player(vm->players[num]);
-		vm->players[num]->name = ft_strdup(name[0]);
-		vm->players[num]->number = num + 1;
+		vm->cores[num] = (t_core *)malloc(sizeof(t_core));
+		init_core(vm->cores[num]);
+		ft_strcpy(vm->cores[num]->name, name[0]);
+		vm->cores[num]->id = num + 1;
+		free(name);
 		*n += 3;
 	}
 	else
@@ -58,7 +59,7 @@ void 			parse_player(t_vm *vm, char *argv[], int *n)
 		name = ft_strsplit(argv[*n], '.');
 		if (!vm->line_of_players)
 		{
-			vm->line_of_players = (t_player *)malloc(sizeof(t_player));
+			vm->line_of_players = (t_core *)malloc(sizeof(t_core));
 			p_ptr = vm->line_of_players;
 		}
 		else
@@ -66,17 +67,18 @@ void 			parse_player(t_vm *vm, char *argv[], int *n)
 			p_ptr = vm->line_of_players;
 			while (p_ptr->next)
 				p_ptr = p_ptr->next;
-			p_ptr->next = (t_player *)malloc(sizeof(t_player));
+			p_ptr->next = (t_core *)malloc(sizeof(t_core));
 			p_ptr = p_ptr->next;
 		}
-		init_player(p_ptr);
-		p_ptr->name = ft_strdup(name[0]);
+		init_core(p_ptr);
+		ft_strcpy(p_ptr->name , name[0]);
+		free(name);
 		*n += 1;
 	}
-	vm->number_of_players++;	
+	vm->number_of_players++;
 }
 
-void 			add_remaining_players(t_vm *vm)
+void 			add_remaining_players(t_corewar *vm)
 {
 	int			n;
 	int			num;
@@ -85,20 +87,20 @@ void 			add_remaining_players(t_vm *vm)
 	num = vm->number_of_players;
 	while (n < 4 && vm->line_of_players)
 	{
-		if (!vm->players[n])
+		if (!vm->cores[n])
 		{
-			vm->players[n] = vm->line_of_players; //проверить не потеряю ли я выделенную память
-			vm->players[n]->number = n + 1;
+			vm->cores[n] = vm->line_of_players; //проверить не потеряю ли я выделенную память
+			vm->cores[n]->id = n + 1;
 			vm->line_of_players = vm->line_of_players->next;
 		}
 		++n;
 		--num;
 	}
-	if (!vm->players[n] && num != 0)
+	if (!vm->cores[n] && num != 0)
 		terminate_with_error(vm);
 }
 
-void			parse_arguments(t_vm *vm, int argc, char *argv[]) //+ флаг визуализации
+void			parse_arguments(t_corewar *vm, int argc, char *argv[]) //+ флаг визуализации
 {
 	int 		n;
 

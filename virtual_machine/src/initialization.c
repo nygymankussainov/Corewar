@@ -6,7 +6,7 @@
 /*   By: egiant <egiant@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/30 13:41:08 by egiant            #+#    #+#             */
-/*   Updated: 2019/11/01 15:53:19 by egiant           ###   ########.fr       */
+/*   Updated: 2019/11/01 16:15:10 by egiant           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,15 +17,14 @@
 
 }*/
 
-void			init_player(t_core *player)
+void			init_core(t_core *player)
 {
 	player->id = 0;
 	player->exec_code_size = 0;
-	player->exec_code = 0;
 	player->next = NULL;
 }
 
-t_corewar		*init_corewar(void)
+t_corewar		*init_vm(void)
 {
 	int			n;
 	t_corewar	*vm;

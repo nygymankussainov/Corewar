@@ -6,13 +6,13 @@
 /*   By: egiant <egiant@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/31 18:20:43 by egiant            #+#    #+#             */
-/*   Updated: 2019/10/31 18:21:31 by egiant           ###   ########.fr       */
+/*   Updated: 2019/11/01 16:44:33 by egiant           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "vm.h"
+#include "virtual_machine.h"
 
-void			read_magic_header(t_vm *vm, int fd)
+void			read_magic_header(t_corewar *vm, int fd)
 {
 	uint8_t		buff[4];
 	uint32_t	header;
@@ -29,7 +29,7 @@ void			read_magic_header(t_vm *vm, int fd)
 		printf("it's a success\n"); //для проверки, потом удалить
 }
 
-void			read_champion_name(t_vm *vm, t_player *player, int fd)
+void			read_champion_name(t_corewar *vm, t_core *player, int fd)
 {
 	char		buff[PROG_NAME_LENGTH];
 	int			ret;
@@ -42,7 +42,7 @@ void			read_champion_name(t_vm *vm, t_player *player, int fd)
 	ft_printf("%s\n", buff); //для проверки, потом удалить
 }	
 
-void			read_null_octet(t_vm *vm, int fd)
+void			read_null_octet(t_corewar *vm, int fd)
 {
 	uint32_t	buff;
 	int			ret;
@@ -56,7 +56,7 @@ void			read_null_octet(t_vm *vm, int fd)
 		ft_printf("%x!\n", buff); //для проверки, потом удалить
 }
 
-void			read_exec_code_size(t_vm *vm, t_player *player, int fd)
+void			read_exec_code_size(t_corewar *vm, t_core *player, int fd)
 {
 	uint32_t	rev_buff;
 	uint8_t		buff[4];
@@ -74,7 +74,7 @@ void			read_exec_code_size(t_vm *vm, t_player *player, int fd)
 	player->exec_code_size = ft_atoi(code_size);
 }
 
-void			read_champion_comment(t_vm *vm, t_player *player, int fd)
+void			read_champion_comment(t_corewar *vm, t_core *player, int fd)
 {
 	char		buff[COMMENT_LENGTH];
 	int			ret;
@@ -82,17 +82,15 @@ void			read_champion_comment(t_vm *vm, t_player *player, int fd)
 	ret = read(fd, &buff, COMMENT_LENGTH);
 	if (ret < 0)
 		ft_printf("error\n");
-	player->comment = ft_strdup(buff);
+	ft_strcpy(player->comment, buff);
 	ft_printf("%s\n", buff);
 }
 
-void 			read_exec_code(t_vm *vm, t_player *player, int fd)
+void 			read_exec_code(t_corewar *vm, t_core *player, int fd)
 {
 	int			ret;
 	uint8_t		check;
 
-
-	player->exec_code = (uint8_t *)malloc(sizeof(uint8_t) * player->exec_code_size);
 	ret = read(fd, player->exec_code, player->exec_code_size);
 	if (ret < 0)
 		terminate_with_error(vm);
@@ -100,24 +98,25 @@ void 			read_exec_code(t_vm *vm, t_player *player, int fd)
 
 }
 
-void			read_byte_code(t_vm *vm)
+void			read_byte_code(t_corewar *vm)
 {
 	int 		n;
 	int			fd;
 	char		*file_name;
 
 	n = 0;
-	while (vm->players[n])
+	while (vm->cores[n])
 	{
-		file_name = ft_strjoin(vm->players[n]->name, ".cor");
+		file_name = ft_strjoin(vm->cores[n]->name, ".cor", 0, 0);
+		//fd = open("/Users/egiant/Desktop/corewar_git/virtual_machine/batman.cor", O_RDONLY);
 		fd = open(file_name, O_RDONLY);
 		read_magic_header(vm, fd);
-		read_champion_name(vm, vm->players[n], fd);
+		read_champion_name(vm, vm->cores[n], fd);
 		read_null_octet(vm, fd);
-		read_exec_code_size(vm, vm->players[n], fd);
-		read_champion_comment(vm, vm->players[n], fd);
+		read_exec_code_size(vm, vm->cores[n], fd);
+		read_champion_comment(vm, vm->cores[n], fd);
 		read_null_octet(vm, fd);
-		read_exec_code(vm, vm->players[n], fd);
+		read_exec_code(vm, vm->cores[n], fd);
 		free(file_name);
 		++n;
 	}

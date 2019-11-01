@@ -1,19 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   exit.c                                             :+:      :+:    :+:   */
+/*   termination.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: egiant <egiant@student.42.fr>              +#+  +:+       +#+        */
+/*   By: hfrankly <hfrankly@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/10/31 17:09:10 by egiant            #+#    #+#             */
-/*   Updated: 2019/11/01 16:05:29 by egiant           ###   ########.fr       */
+/*   Created: 2019/11/01 13:02:44 by hfrankly          #+#    #+#             */
+/*   Updated: 2019/11/01 13:13:25 by hfrankly         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "virtual_machine.h"
 
-void	terminate_with_error(t_corewar *vm)
+void	termination_with_error(char	*error_string)
 {
-	write(2, "Error\n", 6);
-	exit (0);
+	write(2, error_string, ft_strlen(error_string));
+	exit(1);
 }
