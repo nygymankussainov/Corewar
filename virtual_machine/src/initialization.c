@@ -1,43 +1,40 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   initialization.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: egiant <egiant@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/10/30 13:41:19 by egiant            #+#    #+#             */
-/*   Updated: 2019/11/01 15:43:49 by egiant           ###   ########.fr       */
+/*   Created: 2019/10/30 13:41:08 by egiant            #+#    #+#             */
+/*   Updated: 2019/11/01 15:53:19 by egiant           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "virtual_machine.h"
 
-int				main(int argc, char *argv[])
+/*void		init_arena(t_corewar *vm)
 {
-	t_corewar	*vm;
 
-	//if (argc > 2)
-	//{
-		vm = init_vm();
-		parse_arguments(vm, argc, argv);
-		read_byte_code(vm);
-		//init_arena(vm);
-	/*}
-	else
-	{
-		return (0);
-		//нет аргументов или один аргумент
-	}*/
-	return (0);
+}*/
+
+void			init_player(t_core *player)
+{
+	player->id = 0;
+	player->exec_code_size = 0;
+	player->exec_code = 0;
+	player->next = NULL;
 }
 
-/*typedef struct		s_cursor
+t_corewar		*init_corewar(void)
 {
-	current_place;
-	carry;
-	parent_number;
-	register[16];
-	live;
-	command;
-	cycle_to_die; ?
-}					t_cursor;*/
+	int			n;
+	t_corewar	*vm;
+
+	n = -1;
+	vm = (t_corewar *)malloc(sizeof(t_corewar));
+	vm->line_of_players = NULL;
+	while (++n < 4)
+		vm->cores[n] = NULL;
+	vm->number_of_players = 0;
+	return(vm);
+}

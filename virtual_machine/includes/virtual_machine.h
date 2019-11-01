@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   virtual_machine.h                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hfrankly <hfrankly@student.42.fr>          +#+  +:+       +#+        */
+/*   By: egiant <egiant@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/30 16:29:38 by hfrankly          #+#    #+#             */
-/*   Updated: 2019/10/30 19:59:16 by hfrankly         ###   ########.fr       */
+/*   Updated: 2019/11/01 15:57:47 by egiant           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,9 @@ typedef struct s_core		t_core;
 typedef struct s_carriage	t_carriage;
 
 struct t_corewar {
-	t_core		*cores;
+	t_core		*cores[MAX_PLAYERS];
+	t_core		*line_of_players;
+	uint8_t		number_of_players;
 	uint8_t		arena[MEM_SIZE];
 	t_carriage	*start_carriage;
 	uint8_t		winner_id;
@@ -38,6 +40,7 @@ struct t_core {
 	char		comment[COMMENT_LENGTH];
 	uint16_t	exec_code_size;
 	uint8_t		exec_code[CHAMP_MAX_SIZE];
+	t_core		*next;
 };
 
 struct t_carriage {
@@ -48,7 +51,7 @@ struct t_carriage {
 	uint32_t	cycles_before_operation;
 	uint32_t	current_position;
 	uint32_t	offset_next_operation;
-	int8_t		registers[REG_NUMBER];
+	int32_t		registers[REG_NUMBER];
 };
 
 #endif
