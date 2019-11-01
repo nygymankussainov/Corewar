@@ -6,7 +6,7 @@
 /*   By: vhazelnu <vhazelnu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/30 18:07:38 by vhazelnu          #+#    #+#             */
-/*   Updated: 2019/11/01 16:14:46 by vhazelnu         ###   ########.fr       */
+/*   Updated: 2019/11/01 17:07:25 by vhazelnu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,11 +46,10 @@ int		check_format(char *line, int i)
 		return (print_error(line, 2, i, j));
 	while (line[j] && line[j] != '"')
 		j++;
-	if (len - 1 - j++ == 0)
+	if ((ft_isascii(line[j - 1]) && !iswhitesp(line[j - 1])) ||
+		len - 1 - j++ == 0)
 	{
-		j = 0;
-		while (!iswhitesp(line[j]))
-			j++;
+		j = !ft_strncmp(line, ".name", 5) ? 5 : 8;
 		while (!ft_isalnum(line[j]))
 			j++;
 		return (print_error(line, 2, i, j));
