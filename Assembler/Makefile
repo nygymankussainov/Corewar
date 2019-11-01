@@ -6,7 +6,7 @@
 #    By: vhazelnu <vhazelnu@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/05/16 11:34:51 by vhazelnu          #+#    #+#              #
-#    Updated: 2019/11/01 15:41:42 by vhazelnu         ###   ########.fr        #
+#    Updated: 2019/11/01 17:55:56 by vhazelnu         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -31,9 +31,12 @@ OBJ = $(addprefix $(OBJDIR)/, $(SOURCES:.c=.o))
 
 CCFL = -Wall -Wextra -Werror
 
-.PHONY: all clean fclean re library obj_dir
+.PHONY: all clean fclean re library obj_dir debug
 
 all: obj_dir library $(NAME)
+
+debug: all
+	@gcc $(CCFL) -o $(NAME) $(SRC) $(LIB_A) $(INCLUDES) -g
 
 obj_dir:
 	@mkdir -p $(OBJDIR)
