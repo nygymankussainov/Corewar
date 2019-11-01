@@ -6,14 +6,12 @@
 #    By: vhazelnu <vhazelnu@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/05/16 11:34:51 by vhazelnu          #+#    #+#              #
-#    Updated: 2019/10/30 21:48:35 by vhazelnu         ###   ########.fr        #
+#    Updated: 2019/11/01 15:41:42 by vhazelnu         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 LOG_NOCOLOR = \033[0m
 LOG_GREEN = \033[32m
-
-ARCHIVE = asm.a
 
 NAME = asm
 
@@ -35,7 +33,7 @@ CCFL = -Wall -Wextra -Werror
 
 .PHONY: all clean fclean re library obj_dir
 
-all: obj_dir library $(ARCHIVE) $(NAME)
+all: obj_dir library $(NAME)
 
 obj_dir:
 	@mkdir -p $(OBJDIR)
@@ -46,12 +44,8 @@ library:
 $(OBJDIR)/%.o: $(SRCDIR)/%.c
 	@gcc $(CCFL) -o $@ -c $< $(INCLUDES)
 
-$(ARCHIVE): $(OBJ)
-	@ar rc $(ARCHIVE) $(OBJ)
-	@ranlib $(ARCHIVE)
-
 $(NAME): $(OBJ)
-	@gcc $(CCFL) -o $(NAME) $(ARCHIVE) $(LIB_A)
+	@gcc $(CCFL) -o $(NAME) $(OBJ) $(LIB_A)
 	@echo "$(LOG_GREEN)Asm has compiled successfully!$(LOG_NOCOLOR)"
 
 clean:
@@ -59,7 +53,6 @@ clean:
 	@/bin/rm -rf $(OBJDIR)
 
 fclean: clean
-	@/bin/rm -f $(ARCHIVE)
 	@/bin/rm -f $(NAME)
 	@make fclean -sC $(LIB)
 
