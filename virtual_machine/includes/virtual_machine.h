@@ -6,7 +6,7 @@
 /*   By: hfrankly <hfrankly@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/30 16:29:38 by hfrankly          #+#    #+#             */
-/*   Updated: 2019/10/30 19:59:16 by hfrankly         ###   ########.fr       */
+/*   Updated: 2019/10/31 17:44:47 by hfrankly         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,8 @@
 #include <stdint.h>
 #include <stdbool.h>
 #include "op.h"
+#include "libft.h"
+#include "ft_printf.h"
 
 typedef struct s_corewar	t_corewar;
 typedef struct s_core		t_core;

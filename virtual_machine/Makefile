@@ -6,44 +6,60 @@
 #    By: hfrankly <hfrankly@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/10/30 17:56:58 by hfrankly          #+#    #+#              #
-#    Updated: 2019/10/30 20:06:08 by hfrankly         ###   ########.fr        #
+#    Updated: 2019/11/01 11:32:35 by hfrankly         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
+ARCHIVE = corewar.a
+
 NAME = corewar
 
-INCLUDES = -I ./includes -I ../includes -I ../libft -I ../libft/ft_printf
+LIB = ../libft/ft_printf
+LIB_A = ../libft/libft.a $(LIB)/libftprintf.a
+
+INCLUDES = -I ./includes  -I ../includes -I $(LIB) -I ../libft
+
 LIBS = -L ../libft -lft -L ../libft/ft_printf -lftprintf
 
-SRC_DIR = src
-OBJ_DIR = obj
+SRCDIR = src
+OBJDIR = obj
 
-SRCS = $(wildcard $(SRC_DIR)/*.c)
-OBJS = $(SRCS:%.c=%)
+SOURCES = main.c
 
-FLAGS = -Wall -Wextra -Werror
+SRC = $(addprefix $(SRCDIR)/, $(SOURCES))
 
-all: make_libs $(OBJ_DIR) $(OBJS)
+OBJ = $(addprefix $(OBJDIR)/, $(SOURCES:.c=.o))
 
-%: %.o
-	gcc $(FLAGS) $(INCLUDES) $< -c $@ -o $(NAME)
+CCFL = -Wall -Wextra -Werror
 
-%.o: %.c
-	gcc $(FLAGS) $(INCLUDES) -c $<
+all: obj_dir library $(ARCHIVE) $(NAME)
 
-$(OBJ_DIR):
-	mkdir obj
+obj_dir:
+	@mkdir -p $(OBJDIR)
 
-make_libs:
-	make -C ../libft
-	make -C ../libft/ft_printf
+library:
+	@make -sC $(LIB)
+
+$(OBJDIR)/%.o: $(SRCDIR)/%.c
+	@gcc $(CCFL) -o $@ -c $< $(INCLUDES)
+
+$(ARCHIVE): $(OBJ)
+	@ar rc $(ARCHIVE) $(OBJ)
+	@ranlib $(ARCHIVE)
+
+$(NAME): $(OBJ)
+	@gcc $(CCFL) -o $(NAME) $(ARCHIVE) $(LIB_A)
+	@echo "$(LOG_GREEN)Corewar has compiled successfully!$(LOG_NOCOLOR)"
 
 clean:
-	rm -rf $(OBJ_DIR)
+	@make clean -sC $(LIB)
+	@/bin/rm -rf $(OBJDIR)
 
 fclean: clean
-	rm -rf $(NAME)
+	@/bin/rm -f $(ARCHIVE)
+	@/bin/rm -f $(NAME)
+	@make fclean -sC $(LIB)
 
 re: fclean all
 
-.PHONY: all clean fclean re
+.PHONY: all clean fclean re library obj_dir
