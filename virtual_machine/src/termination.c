@@ -1,18 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   termination.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hfrankly <hfrankly@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/10/30 17:27:50 by hfrankly          #+#    #+#             */
-/*   Updated: 2019/11/01 15:27:57 by hfrankly         ###   ########.fr       */
+/*   Created: 2019/11/01 13:02:44 by hfrankly          #+#    #+#             */
+/*   Updated: 2019/11/01 13:13:25 by hfrankly         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "virtual_machine.h"
 
-int main()
+void	termination_with_error(char	*error_string)
 {
-	ft_putstr("hgfhfg");
+	write(2, error_string, ft_strlen(error_string));
+	exit(1);
 }

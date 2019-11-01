@@ -6,7 +6,7 @@
 /*   By: hfrankly <hfrankly@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/30 16:29:38 by hfrankly          #+#    #+#             */
-/*   Updated: 2019/10/31 17:44:47 by hfrankly         ###   ########.fr       */
+/*   Updated: 2019/11/01 15:53:38 by hfrankly         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ struct t_carriage {
 	uint32_t	cycles_before_operation;
 	uint32_t	current_position;
 	uint32_t	offset_next_operation;
-	int8_t		registers[REG_NUMBER];
+	int32_t		registers[REG_NUMBER];
 };
 
 #endif
