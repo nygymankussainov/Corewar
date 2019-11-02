@@ -6,7 +6,7 @@
 /*   By: vhazelnu <vhazelnu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/11 20:06:51 by vhazelnu          #+#    #+#             */
-/*   Updated: 2019/10/30 20:13:28 by vhazelnu         ###   ########.fr       */
+/*   Updated: 2019/11/02 21:28:23 by vhazelnu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@
 # include <stdlib.h>
 # include <sys/types.h>
 # include <sys/uio.h>
+# include <stdbool.h>
 # include <fcntl.h>
 
 typedef struct			s_list
@@ -104,7 +105,7 @@ void					ft_putstr_fd(char const *s, int fd);
 void					ft_putendl_fd(char const *s, int fd);
 void					ft_putnbr_fd(int n, int fd);
 
-int						get_next_line(const int fd, char **line);
+int						get_next_line(const int fd, char **line, bool err);
 
 t_list					*ft_lstnew(void const *content, size_t content_size);
 void					ft_lstdelone(t_list **alst,

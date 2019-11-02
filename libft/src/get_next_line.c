@@ -6,17 +6,27 @@
 /*   By: vhazelnu <vhazelnu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/05 11:50:12 by vhazelnu          #+#    #+#             */
-/*   Updated: 2019/10/14 13:52:35 by vhazelnu         ###   ########.fr       */
+/*   Updated: 2019/11/02 21:40:34 by vhazelnu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int		get_next_line(const int fd, char **line)
+int		error_occured(char **c)
+{
+	if (!c || !*c)
+		return (0);
+	ft_strdel(c);
+	return (0);
+}
+
+int		get_next_line(const int fd, char **line, bool err)
 {
 	static t_gnl	v;
 
 	v.b = 0;
+	if (err)
+		return (error_occured(&v.c));
 	if (fd < 0 || read(fd, v.buff, 0) < 0 || !line)
 		return (-1);
 	while ((!v.c || (v.c && !ft_strchr(v.c, '\n')))

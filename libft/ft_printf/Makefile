@@ -6,7 +6,7 @@
 #    By: vhazelnu <vhazelnu@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/05/16 11:34:51 by vhazelnu          #+#    #+#              #
-#    Updated: 2019/10/30 17:42:37 by vhazelnu         ###   ########.fr        #
+#    Updated: 2019/11/02 17:02:10 by vhazelnu         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -29,7 +29,7 @@ CCFL = -Wall -Wextra -Werror
 
 .PHONY: all clean fclean re obj_dir library
 
-all: obj_dir library $(NAME)
+all: obj_dir $(NAME)
 
 obj_dir:
 	@mkdir -p $(OBJDIR)
@@ -37,7 +37,7 @@ obj_dir:
 library:
 	@make -sC $(LIBFT)
 
-$(NAME): $(OBJ)
+$(NAME): library $(OBJ)
 	@ar rc $(NAME) $(OBJ)
 	@echo "$(LOG_GREEN)Ft_printf has compiled successfully!$(LOG_NOCOLOR)"
 	@ranlib $(NAME)
