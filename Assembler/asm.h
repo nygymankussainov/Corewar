@@ -6,7 +6,7 @@
 /*   By: vhazelnu <vhazelnu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/30 14:36:26 by vhazelnu          #+#    #+#             */
-/*   Updated: 2019/11/02 14:40:45 by vhazelnu         ###   ########.fr       */
+/*   Updated: 2019/11/02 14:45:25 by vhazelnu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,20 +16,21 @@
 # include "op.h"
 # include "ft_printf.h"
 
-typedef	struct 	s_major
+typedef struct	s_major
 {
 	int			fd;
 	int			row;
 	int			col;
 }				t_major;
 
-typedef enum	e_err_type
+enum			e_err_type
 {
 	Syntax = 1,
 	Lexical
-}				t_err_type;
+};
 
-int				print_error(char **line, int type, char *message, t_major *major);
+int				print_error(char **line, int type,
+	char *message, t_major *major);
 int				validation(char *file, t_major *major);
 int				validate_file(char *file);
 int				validate_name_and_comment(char **line, t_major *major);
