@@ -6,7 +6,7 @@
 #    By: vhazelnu <vhazelnu@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/05/16 11:34:51 by vhazelnu          #+#    #+#              #
-#    Updated: 2019/11/02 14:12:19 by vhazelnu         ###   ########.fr        #
+#    Updated: 2019/11/02 17:01:24 by vhazelnu         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,9 +18,9 @@ NAME = asm
 LIB = ../libft/ft_printf
 LIB_A = ../libft/libft.a $(LIB)/libftprintf.a
 
-INCLUDES = -I ./  -I ../ -I $(LIB) -I ../libft
+INCLUDES = -I ./includes  -I ../ -I $(LIB) -I ../libft
 
-SOURCES = 	asm.c print_error.c \
+SOURCES = 	asm.c print_error.c tokenization.c \
 			validate_file.c validation.c validate_name_and_comment.c \
 
 SRCDIR = src
@@ -34,7 +34,7 @@ CCFL = -Wall -Wextra -Werror
 
 .PHONY: all clean fclean re library obj_dir debug
 
-all: obj_dir library $(NAME)
+all: obj_dir $(NAME)
 
 debug: all
 	@gcc $(CCFL) -o $(NAME) $(SRC) $(LIB_A) $(INCLUDES) -g
@@ -48,7 +48,7 @@ library:
 $(OBJDIR)/%.o: $(SRCDIR)/%.c
 	@gcc $(CCFL) -o $@ -c $< $(INCLUDES)
 
-$(NAME): $(OBJ)
+$(NAME): library $(OBJ)
 	@gcc $(CCFL) -o $(NAME) $(OBJ) $(LIB_A)
 	@echo "$(LOG_GREEN)Asm has compiled successfully!$(LOG_NOCOLOR)"
 

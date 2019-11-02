@@ -6,33 +6,66 @@
 /*   By: vhazelnu <vhazelnu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/30 14:36:26 by vhazelnu          #+#    #+#             */
-/*   Updated: 2019/11/02 14:45:25 by vhazelnu         ###   ########.fr       */
+/*   Updated: 2019/11/02 21:09:42 by vhazelnu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef ASM_H
 # define ASM_H
 
-# include "op.h"
+# include "stdbool.h"
 # include "ft_printf.h"
+# include "op.h"
+# include "operations.h"
 
-typedef struct	s_major
+typedef struct		s_major
 {
-	int			fd;
-	int			row;
-	int			col;
-}				t_major;
+	int				fd;
+	int				row;
+	int				col;
+	char			*file;
+	bool			carry;
+	char			name[PROG_NAME_LENGTH + 1];
+	char			comment[COMMENT_LENGTH + 1];
+}					t_major;
 
-enum			e_err_type
+enum				e_err_type
 {
 	Syntax = 1,
-	Lexical
+	Lexical,
+	Name,
+	Comment
 };
 
-int				print_error(char **line, int type,
+typedef enum		e_type
+{
+	Register = 1,
+	Operation,
+	Separator,
+	Label,
+	Indirect,
+	Direct,
+	Dir_label,
+	Ind_label,
+	Line_feed,
+	End
+}					t_type;
+
+typedef struct		s_token
+{
+	char			*name;
+	int				bytes;
+	t_type			type;
+	struct s_token	*next;
+	struct s_token	*prev;
+	struct s_token	*last;
+}					t_token;
+
+int					print_error(char **line, int type,
 	char *message, t_major *major);
-int				validation(char *file, t_major *major);
-int				validate_file(char *file);
-int				validate_name_and_comment(char **line, t_major *major);
+int					validation(char *file, t_major *major);
+int					validate_file(char *file);
+int					validate_name_and_comment(char **line, t_major *major);
+void				tokenization(char **line, t_major *major);
 
 #endif

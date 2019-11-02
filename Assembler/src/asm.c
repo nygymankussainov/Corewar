@@ -6,7 +6,7 @@
 /*   By: vhazelnu <vhazelnu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/30 14:35:30 by vhazelnu          #+#    #+#             */
-/*   Updated: 2019/11/02 14:50:16 by vhazelnu         ###   ########.fr       */
+/*   Updated: 2019/11/02 21:31:23 by vhazelnu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,7 @@ int		main(int argc, char **argv)
 	if (!(major = (t_major *)ft_memalloc(sizeof(t_major))))
 		ft_printf("%s\n", strerror(12));
 	else if (!validation(argv[argc - 1], major))
-		exit(0);
+		exit(1);
+	free(major);
 	return (0);
 }

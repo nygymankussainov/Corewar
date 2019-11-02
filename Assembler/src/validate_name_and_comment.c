@@ -6,13 +6,13 @@
 /*   By: vhazelnu <vhazelnu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/30 18:07:38 by vhazelnu          #+#    #+#             */
-/*   Updated: 2019/11/02 14:41:00 by vhazelnu         ###   ########.fr       */
+/*   Updated: 2019/11/02 22:02:13 by vhazelnu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "asm.h"
 
-int		check_line(char *line, t_major *major)
+int		check_line_after_quote(char *line, t_major *major)
 {
 	major->col++;
 	while (line[major->col])
@@ -45,7 +45,7 @@ int		find_second_quote(char **line, t_major *major)
 		major->col++;
 	if (line && *line && (*line)[major->col] == '"')
 	{
-		if (check_line(*line, major))
+		if (check_line_after_quote(*line, major))
 			return (1);
 		else
 			print_error(line, Lexical, "Invalid symbol after quote at ", major);
@@ -59,7 +59,7 @@ int		check_quotes(char **line, t_major *major)
 	if (!find_second_quote(line, major))
 	{
 		ft_strdel(line);
-		while (get_next_line(major->fd, line))
+		while (get_next_line(major->fd, line, 0))
 		{
 			major->row++;
 			major->col = 0;
@@ -78,7 +78,7 @@ int		validate_name_and_comment(char **line, t_major *major)
 
 	ret = 0;
 	major->row = 1;
-	while (get_next_line(major->fd, line))
+	while (get_next_line(major->fd, line, 0))
 	{
 		major->col = 0;
 		if (line && *line && (*line)[0] != '#' && (*line)[0] != '.' && ret < 2)
