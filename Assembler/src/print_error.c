@@ -1,32 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   validation.c                                       :+:      :+:    :+:   */
+/*   print_error.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: vhazelnu <vhazelnu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/10/30 18:07:38 by vhazelnu          #+#    #+#             */
-/*   Updated: 2019/11/02 14:42:21 by vhazelnu         ###   ########.fr       */
+/*   Created: 2019/11/02 14:10:07 by vhazelnu          #+#    #+#             */
+/*   Updated: 2019/11/02 14:10:14 by vhazelnu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "asm.h"
 
-int		validation(char *file, t_major *major)
+int		print_error(char **line, int type, char *message, t_major *major)
 {
-	char	*line;
-
-	line = NULL;
-	if (!(major->fd = validate_file(file)) ||
-		!validate_name_and_comment(&line, major))
-	{
-		if (major->fd > 0)
-			while (get_next_line(major->fd, &line))
-				ft_strdel(&line);
-		return (0);
-	}
-	ft_strdel(&line);
-	while (get_next_line(major->fd, &line))
-		ft_strdel(&line);
-	return (1);
+	if (type == Syntax)
+		putstrerr("Syntax error. ");
+	else if (type == Lexical)
+		putstrerr("Lexical error. ");
+	putstrerr(message);
+	ft_printf("[%d:%d].\n", major->row, major->col);
+	ft_strdel(line);
+	exit(type);
 }

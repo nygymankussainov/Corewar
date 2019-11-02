@@ -6,7 +6,7 @@
 /*   By: vhazelnu <vhazelnu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/30 14:36:26 by vhazelnu          #+#    #+#             */
-/*   Updated: 2019/11/01 22:23:44 by vhazelnu         ###   ########.fr       */
+/*   Updated: 2019/11/02 14:40:45 by vhazelnu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,9 @@ typedef enum	e_err_type
 	Lexical
 }				t_err_type;
 
+int				print_error(char **line, int type, char *message, t_major *major);
 int				validation(char *file, t_major *major);
 int				validate_file(char *file);
+int				validate_name_and_comment(char **line, t_major *major);
 
 #endif

@@ -6,7 +6,7 @@
 #    By: vhazelnu <vhazelnu@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/05/16 11:34:51 by vhazelnu          #+#    #+#              #
-#    Updated: 2019/11/01 17:55:56 by vhazelnu         ###   ########.fr        #
+#    Updated: 2019/11/02 14:12:19 by vhazelnu         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -20,7 +20,8 @@ LIB_A = ../libft/libft.a $(LIB)/libftprintf.a
 
 INCLUDES = -I ./  -I ../ -I $(LIB) -I ../libft
 
-SOURCES = asm.c validate_file.c validation.c \
+SOURCES = 	asm.c print_error.c \
+			validate_file.c validation.c validate_name_and_comment.c \
 
 SRCDIR = src
 OBJDIR = obj
