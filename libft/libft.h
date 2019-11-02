@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   libft.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vhazelnu <vhazelnu@student.42.fr>          +#+  +:+       +#+        */
+/*   By: egiant <egiant@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/11 20:06:51 by vhazelnu          #+#    #+#             */
-/*   Updated: 2019/10/30 14:42:22 by vhazelnu         ###   ########.fr       */
+/*   Updated: 2019/11/01 16:18:25 by egiant           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -132,5 +132,8 @@ size_t					ft_skip_whitesp(const char *str);
 int						iswhitesp(char c);
 int						ft_istabspace_in_str(char *str);
 void					ft_free_two_dim_arr(char **str);
+
+char					*ft_change_system_over_ten(unsigned long num, int base,
+													int registr);
 
 #endif
