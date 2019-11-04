@@ -6,7 +6,7 @@
 /*   By: vhazelnu <vhazelnu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/02 16:36:10 by vhazelnu          #+#    #+#             */
-/*   Updated: 2019/11/02 16:59:15 by vhazelnu         ###   ########.fr       */
+/*   Updated: 2019/11/04 15:54:24 by vhazelnu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ typedef struct	s_ops
 	int			args_number;
 	int			args_type[3];
 	bool		affect_carry;
-	bool		args_type_code;
+	int			args_type_code;
 	int			t_dir_size;
 	int			cycles;
 }				t_ops;

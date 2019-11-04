@@ -6,7 +6,7 @@
 /*   By: vhazelnu <vhazelnu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/11 20:06:51 by vhazelnu          #+#    #+#             */
-/*   Updated: 2019/11/02 21:28:23 by vhazelnu         ###   ########.fr       */
+/*   Updated: 2019/11/04 17:31:53 by vhazelnu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -130,7 +130,7 @@ void					ft_swap(int *a, int *b);
 void					ft_swap_str(char **s1, char **s2);
 char					*ft_revstr(char *str);
 void					*ft_realloc(void *ptr, size_t size);
-size_t					ft_skip_whitesp(const char *str);
+size_t					ft_skip_whitesp(const char *str, int i);
 int						iswhitesp(char c);
 int						ft_istabspace_in_str(char *str);
 void					ft_free_two_dim_arr(char **str);

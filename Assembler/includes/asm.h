@@ -6,7 +6,7 @@
 /*   By: vhazelnu <vhazelnu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/30 14:36:26 by vhazelnu          #+#    #+#             */
-/*   Updated: 2019/11/02 21:09:42 by vhazelnu         ###   ########.fr       */
+/*   Updated: 2019/11/04 20:51:55 by vhazelnu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,6 +66,11 @@ int					print_error(char **line, int type,
 int					validation(char *file, t_major *major);
 int					validate_file(char *file);
 int					validate_name_and_comment(char **line, t_major *major);
-void				tokenization(char **line, t_major *major);
+t_token				*tokenization(char **line, t_major *major);
+void				create_token(char *line, t_major *major,
+	t_token **token, int type);
+t_token				*check_line(char **line, t_major *major);
+void				find_op_on_line(char *line, t_major *major,
+	t_token **token);
 
 #endif
