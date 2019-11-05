@@ -6,7 +6,7 @@
 /*   By: vhazelnu <vhazelnu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/04 15:01:10 by vhazelnu          #+#    #+#             */
-/*   Updated: 2019/11/05 13:39:09 by vhazelnu         ###   ########.fr       */
+/*   Updated: 2019/11/05 18:08:53 by vhazelnu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,9 @@ t_token	*check_line(char **line, t_major *major)
 	else if ((major->col = islabel(*line)) > 0)
 		create_token(line, major, &token, Label);
 	else
+	{
+		major->col = ft_skip_whitesp(*line, major->col);
 		find_op_on_line(line, major, &token);
+	}
 	return (token);
 }

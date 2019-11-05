@@ -6,14 +6,17 @@
 /*   By: vhazelnu <vhazelnu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/30 18:07:38 by vhazelnu          #+#    #+#             */
-/*   Updated: 2019/11/05 13:57:56 by vhazelnu         ###   ########.fr       */
+/*   Updated: 2019/11/05 18:10:15 by vhazelnu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "asm.h"
 
-void	validate_operation(char **line, t_major *major, t_token **token, int i)
+void	validate_operation(char **line, t_major *major, t_token **token)
 {
+	int		i;
+
+	i = major->col;
 	while ((*line)[major->col] && !iswhitesp((*line)[major->col]) &&
 	(*line)[major->col] != DIRECT_CHAR)
 		major->col++;
@@ -25,17 +28,47 @@ void	validate_operation(char **line, t_major *major, t_token **token, int i)
 	(*token)->last->name = ft_strsub(*line, i, major->col - i);
 }
 
-void	validate_direct(char **line, t_major *major, t_token **token, int i)
+void	validate_number(char **line, t_major *major, t_token **token, char c)
 {
-	while ((*line)[major->col] && !iswhitesp((*line)[major->col]) &&
-	(*line)[major->col] != SEPARATOR_CHAR)
+	int		i;
+
+	if (c != 'i')
+		i = ++major->col;
+	else
+		i = major->col;
+	while ((*line)[major->col] && (*line)[major->col] != SEPARATOR_CHAR)
 	{
-		if (ft_isascii((*line)[major->col]) && (*line)[major->col] != DIRECT_CHAR
-			&& !ft_isdigit((*line)[major->col]))
-			print_error(line, Syntax, "Invalid argument T_DIR at ", major);
+		if ((*line)[major->col] != '-' &&
+			ft_isascii((*line)[major->col]) && !ft_isdigit((*line)[major->col]))
+		{
+			if (c == 'd')
+				print_error(line, Syntax, "Argument T_DIR is not well formated at ", major);
+			else if (c == 'r')
+				print_error(line, Syntax, "Argument T_REG is not well formated at ", major);
+			else
+				print_error(line, Syntax, "Argument T_IND is not well formated at ", major);
+		}
 		major->col++;
 	}
-	(*token)->last->direct = ft_atoi(*line + i + 1);
+	(*token)->last->value = ft_atoi(*line + i);
+}
+
+void	validate_dir_label(char **line, t_major *major, t_token **token)
+{
+	int		i;
+
+	i = major->col;
+	while ((*line)[major->col] && !iswhitesp((*line)[major->col]) &&
+	(*line)[major->col] != SEPARATOR_CHAR)
+		major->col++;
+	(*token)->last->name = ft_strsub(*line, i, major->col - i);
+}
+
+void	validate_separator(char **line, t_major *major)
+{
+	major->col = ft_skip_whitesp(*line, major->col + 1);
+	if (!(*line)[major->col])
+		print_error(line, Syntax, "No argument after separator at ", major);
 }
 
 int		validation(char *file, t_major *major)

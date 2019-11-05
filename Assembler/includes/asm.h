@@ -6,7 +6,7 @@
 /*   By: vhazelnu <vhazelnu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/30 14:36:26 by vhazelnu          #+#    #+#             */
-/*   Updated: 2019/11/05 13:55:53 by vhazelnu         ###   ########.fr       */
+/*   Updated: 2019/11/05 15:37:29 by vhazelnu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,7 @@ typedef enum		e_type
 typedef struct		s_token
 {
 	char			*name;
-	int				direct;
+	int				value;
 	int				bytes;
 	t_type			type;
 	struct s_token	*next;
@@ -74,8 +74,16 @@ t_token				*check_line(char **line, t_major *major);
 void				find_op_on_line(char **line, t_major *major,
 	t_token **token);
 void				validate_operation(char **line, t_major *major,
-	t_token **token, int i);
-void				validate_direct(char **line, t_major *major,
-	t_token **token, int i);
+	t_token **token);
+void	validate_number(char **line, t_major *major,
+	t_token **token, char c);
+
+void				write_label_in_token(char **line, t_major *major,
+	t_token **token);
+void				validate_dir_label(char **line, t_major *major,
+	t_token **token);
+void				write_ind_label_in_token(char **line, t_major *major,
+	t_token **token);
+void				validate_separator(char **line, t_major *major);
 
 #endif
