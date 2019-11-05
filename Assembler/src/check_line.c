@@ -6,11 +6,26 @@
 /*   By: vhazelnu <vhazelnu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/04 15:01:10 by vhazelnu          #+#    #+#             */
-/*   Updated: 2019/11/04 20:53:59 by vhazelnu         ###   ########.fr       */
+/*   Updated: 2019/11/05 13:39:09 by vhazelnu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "asm.h"
+
+int		islabel(char *line)
+{
+	int		i;
+
+	i = 0;
+	while (line[i])
+	{
+		if (i > 0 && line[i] == LABEL_CHAR &&
+			line[i - 1] != DIRECT_CHAR)
+			return (i);
+		i++;
+	}
+	return (0);
+}
 
 t_token	*check_line(char **line, t_major *major)
 {
@@ -20,10 +35,9 @@ t_token	*check_line(char **line, t_major *major)
 	major->col = ft_skip_whitesp(*line, major->col);
 	if ((*line)[major->col] == COMMENT_CHAR)
 		return (token);
-	else if (major->col > 0 && (*line)[major->col] == LABEL_CHAR && 
-		(*line)[major->col - 1] != DIRECT_CHAR)
-		create_token(*line, major, &token, Label);
+	else if ((major->col = islabel(*line)) > 0)
+		create_token(line, major, &token, Label);
 	else
-		find_op_on_line(*line, major, token);
+		find_op_on_line(line, major, &token);
 	return (token);
 }

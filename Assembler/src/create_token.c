@@ -6,58 +6,58 @@
 /*   By: vhazelnu <vhazelnu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/04 15:09:09 by vhazelnu          #+#    #+#             */
-/*   Updated: 2019/11/04 20:49:13 by vhazelnu         ###   ########.fr       */
+/*   Updated: 2019/11/05 14:00:47 by vhazelnu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "asm.h"
 
-void	find_op_on_line(char *line, t_major *major, t_token **token)
+void	find_op_on_line(char **line, t_major *major, t_token **token)
 {
 	int		i;
 
 	i = 3;
-	while (line[major->col])
+	while ((*line)[major->col])
 	{
-		if ((line[major->col] != COMMENT_CHAR || line[major->col] != ALT_COMMENT_CHAR)
-			&& ft_isascii(line[major->col]))
+		if (((*line)[major->col] != COMMENT_CHAR || (*line)[major->col] != ALT_COMMENT_CHAR)
+			&& ft_isascii((*line)[major->col]))
 		{
 			create_token(line, major, token, Operation);
 			while (i--)
 			{
-				major->col = ft_skip_whitesp(line, major->col);
-				if (line[major->col] && line[major->col] == DIRECT_CHAR)
+				major->col = ft_skip_whitesp(*line, major->col);
+				if ((*line)[major->col] && (*line)[major->col] == DIRECT_CHAR)
 				{
-					if (line[major->col + 1] == LABEL_CHAR)
+					if ((*line)[major->col + 1] == LABEL_CHAR)
 						create_token(line, major, token, Dir_label);
 					else
 						create_token(line, major, token, Direct);
 				}
-				else if (line[major->col] && line[major->col] == LABEL_CHAR)
+				else if ((*line)[major->col] && (*line)[major->col] == LABEL_CHAR)
 					create_token(line, major, token, Ind_label);
-				else if (line[major->col] && line[major->col] == 'r')
+				else if ((*line)[major->col] && (*line)[major->col] == 'r')
 					create_token(line, major, token, Register);
-				else if (line[major->col] && line[major->col] == SEPARATOR_CHAR)
+				else if ((*line)[major->col] && (*line)[major->col] == SEPARATOR_CHAR)
 				{
 					if (i == 2)
-						print_error(*line, Syntax, "Extra separator at ", major);
+						print_error(line, Syntax, "Extra separator at ", major);
 					create_token(line, major, token, Separator);
 					i++;
 				}
-				else if (line[major->col] && ft_isdigit(line[major->col]))
+				else if ((*line)[major->col] && ft_isdigit((*line)[major->col]))
 				{
-					while (line[major->col] && (!iswhitesp(line[major->col]) ||
-						line[major->col] != SEPARATOR_CHAR))
+					while ((*line)[major->col] && (!iswhitesp((*line)[major->col]) ||
+						(*line)[major->col] != SEPARATOR_CHAR))
 					{
-						if (line[major->col] != SEPARATOR_CHAR && !iswhitesp(line[major->col])
-							&& !ft_isdigit(line[major->col]))
-							print_error(*line, Syntax, "Invalid symbol at ", major);
+						if ((*line)[major->col] != SEPARATOR_CHAR && !iswhitesp((*line)[major->col])
+							&& !ft_isdigit((*line)[major->col]))
+							print_error(line, Syntax, "Invalid symbol at ", major);
 						major->col++;
 					}
 					create_token(line, major, token, Indirect);
 				}
 				else
-					print_error(*line, Syntax, "Invalid argument at ", major);
+					print_error(line, Syntax, "Invalid argument at ", major);
 			}
 			return ;
 		}
@@ -65,34 +65,28 @@ void	find_op_on_line(char *line, t_major *major, t_token **token)
 	}
 }
 
-void	write_data_in_token(char *line, t_major *major, t_token **token, int type)
+void	write_data_in_token(char **line, t_major *major, t_token **token, int type)
 {
 	int		i;
 
 	i = major->col;
 	if (type == Label)
 	{
-		while (i > 0 && line[i] && !iswhitesp(line[i]))
+		write_label_in_token(line, major, token);
+		while (i > 0 && (*line)[i] && !iswhitesp((*line)[i - 1]))
 			i--;
-		(*token)->last->name = ft_strsub(line, i, major->col + 1);
-		major->col = ft_skip_whitesp(line, ++major->col);
+		(*token)->last->name = ft_strsub(*line, i, major->col - i + 1);
+		major->col = ft_skip_whitesp(*line, ++major->col);
 		find_op_on_line(line, major, token);
 	}
 	else if (type == Operation)
-	{
-		while (line[major->col] && (!iswhitesp(line[major->col]) ||
-		line[major->col] != DIRECT_CHAR || line[major->col] != LABEL_CHAR))
-			major->col++;
-		(*token)->last->name = ft_strsub(line, i, major->col + 1);
-	}
-	else if (type == Dir_label)
-	{
-		while (line[major->col])
-	}
+		validate_operation(line, major, token, i);
+	else if (type == Direct)
+		validate_direct(line, major, token, i);
 	(*token)->last->type = type;
 }
 
-void	create_token(char *line, t_major *major, t_token **token, int type)
+void	create_token(char **line, t_major *major, t_token **token, int type)
 {
 	t_token	*new;
 
