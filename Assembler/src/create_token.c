@@ -6,7 +6,7 @@
 /*   By: vhazelnu <vhazelnu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/04 15:09:09 by vhazelnu          #+#    #+#             */
-/*   Updated: 2019/11/05 16:13:14 by vhazelnu         ###   ########.fr       */
+/*   Updated: 2019/11/05 21:20:12 by vhazelnu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ void	find_op_on_line(char **line, t_major *major, t_token **token)
 			else if ((*line)[major->col] && ft_isdigit((*line)[major->col]))
 				create_token(line, major, token, Indirect);
 			else if (!(*line)[major->col])
-				return ;
+				create_token(line, major, token, Line_feed);
 			else
 				print_error(line, Syntax, "Invalid argument at ", major);
 		}
@@ -55,10 +55,7 @@ void	find_op_on_line(char **line, t_major *major, t_token **token)
 void	write_data_in_token(char **line, t_major *major, t_token **token, int type)
 {
 	if (type == Label)
-	{
-		write_label_in_token(line, major, token);
-		(*token)->last->type = type;
-	}
+		write_label_in_token(line, major, token, type);
 	else if (type == Ind_label)
 		write_ind_label_in_token(line, major, token);
 	else if (type == Dir_label)

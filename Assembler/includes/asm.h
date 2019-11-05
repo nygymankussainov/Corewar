@@ -6,7 +6,7 @@
 /*   By: vhazelnu <vhazelnu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/30 14:36:26 by vhazelnu          #+#    #+#             */
-/*   Updated: 2019/11/05 15:37:29 by vhazelnu         ###   ########.fr       */
+/*   Updated: 2019/11/05 21:20:25 by vhazelnu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,8 +25,8 @@ typedef struct		s_major
 	int				col;
 	char			*file;
 	bool			carry;
-	char			name[PROG_NAME_LENGTH + 1];
-	char			comment[COMMENT_LENGTH + 1];
+	char			name[PROG_NAME_LENGTH];
+	char			comment[COMMENT_LENGTH];
 }					t_major;
 
 enum				e_err_type
@@ -70,7 +70,7 @@ int					validate_name_and_comment(char **line, t_major *major);
 t_token				*tokenization(char **line, t_major *major);
 void				create_token(char **line, t_major *major,
 	t_token **token, int type);
-t_token				*check_line(char **line, t_major *major);
+void				check_line(char **line, t_major *major, t_token **token);
 void				find_op_on_line(char **line, t_major *major,
 	t_token **token);
 void				validate_operation(char **line, t_major *major,
@@ -79,7 +79,7 @@ void	validate_number(char **line, t_major *major,
 	t_token **token, char c);
 
 void				write_label_in_token(char **line, t_major *major,
-	t_token **token);
+	t_token **token, int type);
 void				validate_dir_label(char **line, t_major *major,
 	t_token **token);
 void				write_ind_label_in_token(char **line, t_major *major,

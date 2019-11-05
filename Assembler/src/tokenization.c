@@ -6,7 +6,7 @@
 /*   By: vhazelnu <vhazelnu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/02 15:36:41 by vhazelnu          #+#    #+#             */
-/*   Updated: 2019/11/04 15:20:05 by vhazelnu         ###   ########.fr       */
+/*   Updated: 2019/11/05 21:19:56 by vhazelnu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,9 +32,9 @@ void	write_name_or_comment(char **line, t_major *major, int col)
 		get_another_line(line, major);
 	while ((*line)[major->col] && (*line)[major->col] != '"')
 	{
-		if (col == 5 && i > PROG_NAME_LENGTH)
+		if (col == 5 && i >= PROG_NAME_LENGTH)
 			print_error(line, Name, NULL, major);
-		else if (col == 8 && i > COMMENT_LENGTH)
+		else if (col == 8 && i >= COMMENT_LENGTH)
 			print_error(line, Comment, NULL, major);
 		if (col == 5)
 			major->name[i] = (*line)[major->col];
@@ -63,7 +63,7 @@ t_token	*tokenization(char **line, t_major *major)
 			write_name_or_comment(line, major, major->col);
 		}
 		else if (line && *line)
-			token = check_line(line, major);
+			check_line(line, major, &token);
 		ft_strdel(line);
 		major->row++;
 	}

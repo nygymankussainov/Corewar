@@ -6,7 +6,7 @@
 /*   By: vhazelnu <vhazelnu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/04 15:01:10 by vhazelnu          #+#    #+#             */
-/*   Updated: 2019/11/05 18:08:53 by vhazelnu         ###   ########.fr       */
+/*   Updated: 2019/11/05 21:22:43 by vhazelnu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,20 +27,18 @@ int		islabel(char *line)
 	return (0);
 }
 
-t_token	*check_line(char **line, t_major *major)
+void	check_line(char **line, t_major *major, t_token **token)
 {
-	t_token	*token;
+	int		tmp;
 
-	token = NULL;
 	major->col = ft_skip_whitesp(*line, major->col);
 	if ((*line)[major->col] == COMMENT_CHAR)
-		return (token);
-	else if ((major->col = islabel(*line)) > 0)
-		create_token(line, major, &token, Label);
-	else
+		return ;
+	else if ((tmp = islabel(*line)) > 0)
 	{
-		major->col = ft_skip_whitesp(*line, major->col);
-		find_op_on_line(line, major, &token);
+		major->col = tmp;
+		create_token(line, major, token, Label);
 	}
-	return (token);
+	else
+		find_op_on_line(line, major, token);
 }

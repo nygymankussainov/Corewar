@@ -6,7 +6,7 @@
 /*   By: vhazelnu <vhazelnu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/19 11:37:43 by vhazelnu          #+#    #+#             */
-/*   Updated: 2019/08/03 18:26:26 by vhazelnu         ###   ########.fr       */
+/*   Updated: 2019/11/05 21:21:28 by vhazelnu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ char			*ft_strtrim(char const *s)
 	if (!s)
 		return (NULL);
 	j = ft_strlen(s) - 1;
-	i = ft_skip_whitesp(s);
+	i = ft_skip_whitesp(s, 0);
 	if (!s[i])
 		return (ft_strnew(0));
 	while (s[j] == ' ' || s[j] == '\t' || s[j] == '\n')

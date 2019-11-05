@@ -6,13 +6,13 @@
 /*   By: vhazelnu <vhazelnu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/05 14:00:56 by vhazelnu          #+#    #+#             */
-/*   Updated: 2019/11/05 14:26:39 by vhazelnu         ###   ########.fr       */
+/*   Updated: 2019/11/05 21:20:21 by vhazelnu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "asm.h"
 
-void	write_label_in_token(char **line, t_major *major, t_token **token)
+void	write_label_in_token(char **line, t_major *major, t_token **token, int type)
 {
 	int		i;
 
@@ -21,6 +21,7 @@ void	write_label_in_token(char **line, t_major *major, t_token **token)
 		i--;
 	(*token)->last->name = ft_strsub(*line, i, major->col - i + 1);
 	major->col = ft_skip_whitesp(*line, ++major->col);
+	(*token)->last->type = type;
 	find_op_on_line(line, major, token);
 }
 
