@@ -6,7 +6,7 @@
 /*   By: vhazelnu <vhazelnu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/30 14:36:26 by vhazelnu          #+#    #+#             */
-/*   Updated: 2019/11/05 21:20:25 by vhazelnu         ###   ########.fr       */
+/*   Updated: 2019/11/05 22:09:59 by vhazelnu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,6 +62,7 @@ typedef struct		s_token
 	struct s_token	*last;
 }					t_token;
 
+void				print_token(t_token *token);
 int					print_error(char **line, int type,
 	char *message, t_major *major);
 int					validation(char *file, t_major *major);

@@ -6,7 +6,7 @@
 /*   By: vhazelnu <vhazelnu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/04 15:09:09 by vhazelnu          #+#    #+#             */
-/*   Updated: 2019/11/05 21:20:12 by vhazelnu         ###   ########.fr       */
+/*   Updated: 2019/11/05 22:12:09 by vhazelnu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,12 +44,16 @@ void	find_op_on_line(char **line, t_major *major, t_token **token)
 			}
 			else if ((*line)[major->col] && ft_isdigit((*line)[major->col]))
 				create_token(line, major, token, Indirect);
-			else if (!(*line)[major->col])
-				create_token(line, major, token, Line_feed);
-			else
-				print_error(line, Syntax, "Invalid argument at ", major);
+			else if ((*line)[major->col])
+			{
+				major->col = ft_skip_whitesp(*line, major->col);
+				if ((*line)[major->col] != COMMENT_CHAR &&
+					(*line)[major->col] != ALT_COMMENT_CHAR)
+					print_error(line, Syntax, "Invalid argument at ", major);
+			}
 		}
 	}
+	create_token(line, major, token, Line_feed);
 }
 
 void	write_data_in_token(char **line, t_major *major, t_token **token, int type)

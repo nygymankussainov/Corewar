@@ -6,7 +6,7 @@
 /*   By: vhazelnu <vhazelnu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/04 15:01:10 by vhazelnu          #+#    #+#             */
-/*   Updated: 2019/11/05 21:22:43 by vhazelnu         ###   ########.fr       */
+/*   Updated: 2019/11/05 21:41:57 by vhazelnu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,9 @@ void	check_line(char **line, t_major *major, t_token **token)
 		major->col = tmp;
 		create_token(line, major, token, Label);
 	}
+	else if ((*line)[major->col] == COMMENT_CHAR ||
+		(*line)[major->col] == ALT_COMMENT_CHAR)
+		major->row++;
 	else
 		find_op_on_line(line, major, token);
 }

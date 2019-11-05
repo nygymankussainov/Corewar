@@ -6,7 +6,7 @@
 /*   By: vhazelnu <vhazelnu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/30 18:07:38 by vhazelnu          #+#    #+#             */
-/*   Updated: 2019/11/05 21:20:01 by vhazelnu         ###   ########.fr       */
+/*   Updated: 2019/11/05 22:03:56 by vhazelnu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,19 +36,20 @@ void	validate_number(char **line, t_major *major, t_token **token, char c)
 		i = ++major->col;
 	else
 		i = major->col;
-	while ((*line)[major->col] && (*line)[major->col] != SEPARATOR_CHAR)
-	{
-		if ((*line)[major->col] != '-' &&
-			ft_isascii((*line)[major->col]) && !ft_isdigit((*line)[major->col]))
-		{
-			if (c == 'd')
-				print_error(line, Syntax, "Argument T_DIR is not well formated at ", major);
-			else if (c == 'r')
-				print_error(line, Syntax, "Argument T_REG is not well formated at ", major);
-			else
-				print_error(line, Syntax, "Argument T_IND is not well formated at ", major);
-		}
+	if ((*line)[major->col] == '-')
 		major->col++;
+	while ((*line)[major->col] && ft_isdigit((*line)[major->col]))
+		major->col++;
+	major->col = ft_skip_whitesp(*line, major->col);
+	if ((*line)[major->col] && (*line)[major->col] != SEPARATOR_CHAR &&
+		(*line)[major->col] != COMMENT_CHAR && (*line)[major->col] != ALT_COMMENT_CHAR)
+	{
+		if (c == 'd')
+			print_error(line, Syntax, "Argument T_DIR is not well formated at ", major);
+		else if (c == 'r')
+			print_error(line, Syntax, "Argument T_REG is not well formated at ", major);
+		else
+			print_error(line, Syntax, "Argument T_IND is not well formated at ", major);
 	}
 	(*token)->last->value = ft_atoi(*line + i);
 }
@@ -84,5 +85,6 @@ int		validation(char *file, t_major *major)
 	get_next_line(major->fd, &line, 1);
 	lseek(major->fd, 0, SEEK_SET);
 	token = tokenization(&line, major);
+	print_token(token);
 	return (1);
 }
