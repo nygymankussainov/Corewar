@@ -6,7 +6,7 @@
 /*   By: egiant <egiant@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/30 16:29:38 by hfrankly          #+#    #+#             */
-/*   Updated: 2019/11/06 13:56:16 by egiant           ###   ########.fr       */
+/*   Updated: 2019/11/06 15:18:51 by egiant           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,7 @@ typedef struct 		s_carriage {
 	bool			carry;
 	uint8_t			operation;
 	t_core			*player;
-	uint8_t			registers[REG_NUMBER];
+	int32_t			registers[REG_NUMBER];
 	uint8_t			position;
 
 	uint32_t		cycle_was_live;
