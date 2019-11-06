@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: egiant <egiant@student.42.fr>              +#+  +:+       +#+         #
+#    By: hfrankly <hfrankly@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/10/30 17:56:58 by hfrankly          #+#    #+#              #
-#    Updated: 2019/11/01 16:31:51 by egiant           ###   ########.fr        #
+#    Updated: 2019/11/02 14:51:32 by hfrankly         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -25,10 +25,11 @@ SRCDIR = src
 OBJDIR = obj
 
 SOURCES =	main.c \
-			initialization.c \
-			parse_arguments.c \
+			initialization/initialization.c \
+			parsing/parse_arguments.c \
+			validation/read_byte_code.c \
+			war/start_war.c \
 			exit.c \
-			read_byte_code.c \
 
 
 SRC = $(addprefix $(SRCDIR)/, $(SOURCES))
@@ -58,7 +59,6 @@ $(NAME): $(OBJ)
 
 clean:
 	@make clean -sC $(LIB)
-	@/bin/rm -rf $(OBJDIR)
 
 fclean: clean
 	@/bin/rm -f $(ARCHIVE)

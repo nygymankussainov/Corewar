@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   read_byte_code.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: egiant <egiant@student.42.fr>              +#+  +:+       +#+        */
+/*   By: hfrankly <hfrankly@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/31 18:20:43 by egiant            #+#    #+#             */
-/*   Updated: 2019/11/01 16:44:33 by egiant           ###   ########.fr       */
+/*   Updated: 2019/11/02 12:55:36 by hfrankly         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,6 +95,7 @@ void 			read_exec_code(t_corewar *vm, t_core *player, int fd)
 	if (ret < 0)
 		terminate_with_error(vm);
 	//дальше read возвращает 1, как проверить что код чемпиона кончился?
+	
 
 }
 
@@ -108,7 +109,6 @@ void			read_byte_code(t_corewar *vm)
 	while (vm->cores[n])
 	{
 		file_name = ft_strjoin(vm->cores[n]->name, ".cor", 0, 0);
-		//fd = open("/Users/egiant/Desktop/corewar_git/virtual_machine/batman.cor", O_RDONLY);
 		fd = open(file_name, O_RDONLY);
 		read_magic_header(vm, fd);
 		read_champion_name(vm, vm->cores[n], fd);
