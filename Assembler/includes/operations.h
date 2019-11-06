@@ -6,13 +6,14 @@
 /*   By: vhazelnu <vhazelnu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/02 16:36:10 by vhazelnu          #+#    #+#             */
-/*   Updated: 2019/11/04 15:54:24 by vhazelnu         ###   ########.fr       */
+/*   Updated: 2019/11/06 18:29:25 by vhazelnu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef OPERATIONS_H
 # define OPERATIONS_H
 
+# define OP_NUMBER	17
 # include "asm.h"
 
 typedef struct	s_ops

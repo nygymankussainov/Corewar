@@ -6,7 +6,7 @@
 /*   By: vhazelnu <vhazelnu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/05 22:04:02 by vhazelnu          #+#    #+#             */
-/*   Updated: 2019/11/05 22:15:07 by vhazelnu         ###   ########.fr       */
+/*   Updated: 2019/11/06 21:29:43 by vhazelnu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,8 @@ void	print_token(t_token *token)
 {
 	while (token)
 	{
+		if (token->type == Operation)
+			ft_printf("[%d] ", token->bytes);
 		if (token->name)
 			ft_printf("%s", token->name);
 		if (token->type == Operation || 

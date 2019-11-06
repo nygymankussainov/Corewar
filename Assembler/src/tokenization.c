@@ -6,7 +6,7 @@
 /*   By: vhazelnu <vhazelnu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/02 15:36:41 by vhazelnu          #+#    #+#             */
-/*   Updated: 2019/11/05 21:40:53 by vhazelnu         ###   ########.fr       */
+/*   Updated: 2019/11/06 17:47:31 by vhazelnu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,6 +67,6 @@ t_token	*tokenization(char **line, t_major *major)
 		ft_strdel(line);
 		major->row++;
 	}
-	// validate_tokens(token);
+	validate_tokens(token, major);
 	return (token);
 }

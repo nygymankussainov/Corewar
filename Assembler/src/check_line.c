@@ -6,7 +6,7 @@
 /*   By: vhazelnu <vhazelnu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/04 15:01:10 by vhazelnu          #+#    #+#             */
-/*   Updated: 2019/11/05 21:41:57 by vhazelnu         ###   ########.fr       */
+/*   Updated: 2019/11/06 17:39:52 by vhazelnu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ int		islabel(char *line)
 	int		i;
 
 	i = 0;
-	while (line[i])
+	while (line[i] && !iswhitesp(line[i]))
 	{
 		if (i > 0 && line[i] == LABEL_CHAR &&
 			line[i - 1] != DIRECT_CHAR)
@@ -43,5 +43,5 @@ void	check_line(char **line, t_major *major, t_token **token)
 		(*line)[major->col] == ALT_COMMENT_CHAR)
 		major->row++;
 	else
-		find_op_on_line(line, major, token);
+		create_operation(line, major, token);
 }

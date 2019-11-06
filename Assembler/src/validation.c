@@ -6,11 +6,25 @@
 /*   By: vhazelnu <vhazelnu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/30 18:07:38 by vhazelnu          #+#    #+#             */
-/*   Updated: 2019/11/05 22:03:56 by vhazelnu         ###   ########.fr       */
+/*   Updated: 2019/11/06 21:42:48 by vhazelnu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "asm.h"
+
+int		find_operation(char *name)
+{
+	int		i;
+
+	i = 0;
+	while (i < OP_NUMBER)
+	{
+		if (!ft_strcmp(g_ops[i].name, name))
+			return (i);
+		i++;
+	}
+	return (-1);
+}
 
 void	validate_operation(char **line, t_major *major, t_token **token)
 {
@@ -20,38 +34,12 @@ void	validate_operation(char **line, t_major *major, t_token **token)
 	while ((*line)[major->col] && !iswhitesp((*line)[major->col]) &&
 	(*line)[major->col] != DIRECT_CHAR)
 		major->col++;
-	if (!(*line)[major->col])
-	{
-		major->col = i;
-		print_error(line, Syntax, "Missing separator at ", major);
-	}
 	(*token)->last->name = ft_strsub(*line, i, major->col - i);
-}
-
-void	validate_number(char **line, t_major *major, t_token **token, char c)
-{
-	int		i;
-
-	if (c != 'i')
-		i = ++major->col;
-	else
-		i = major->col;
-	if ((*line)[major->col] == '-')
-		major->col++;
-	while ((*line)[major->col] && ft_isdigit((*line)[major->col]))
-		major->col++;
 	major->col = ft_skip_whitesp(*line, major->col);
-	if ((*line)[major->col] && (*line)[major->col] != SEPARATOR_CHAR &&
-		(*line)[major->col] != COMMENT_CHAR && (*line)[major->col] != ALT_COMMENT_CHAR)
-	{
-		if (c == 'd')
-			print_error(line, Syntax, "Argument T_DIR is not well formated at ", major);
-		else if (c == 'r')
-			print_error(line, Syntax, "Argument T_REG is not well formated at ", major);
-		else
-			print_error(line, Syntax, "Argument T_IND is not well formated at ", major);
-	}
-	(*token)->last->value = ft_atoi(*line + i);
+	if (!(*line)[major->col])
+		print_error(line, Syntax, "Endline at ", major);
+	if (find_operation((*token)->last->name) < 0)
+		print_error(line, Syntax, "Invalid operation at ", major);
 }
 
 void	validate_dir_label(char **line, t_major *major, t_token **token)

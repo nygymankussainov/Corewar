@@ -6,7 +6,7 @@
 /*   By: vhazelnu <vhazelnu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/30 14:36:26 by vhazelnu          #+#    #+#             */
-/*   Updated: 2019/11/05 22:09:59 by vhazelnu         ###   ########.fr       */
+/*   Updated: 2019/11/06 21:39:52 by vhazelnu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,7 @@ typedef struct		s_major
 	int				col;
 	char			*file;
 	bool			carry;
+	int				bytes;
 	char			name[PROG_NAME_LENGTH];
 	char			comment[COMMENT_LENGTH];
 }					t_major;
@@ -40,11 +41,11 @@ enum				e_err_type
 typedef enum		e_type
 {
 	Register = 1,
+	Direct,
 	Operation,
+	Indirect,
 	Separator,
 	Label,
-	Indirect,
-	Direct,
 	Dir_label,
 	Ind_label,
 	Line_feed,
@@ -57,6 +58,9 @@ typedef struct		s_token
 	int				value;
 	int				bytes;
 	t_type			type;
+	bool			label;
+	int				row;
+	int				col;
 	struct s_token	*next;
 	struct s_token	*prev;
 	struct s_token	*last;
@@ -72,7 +76,7 @@ t_token				*tokenization(char **line, t_major *major);
 void				create_token(char **line, t_major *major,
 	t_token **token, int type);
 void				check_line(char **line, t_major *major, t_token **token);
-void				find_op_on_line(char **line, t_major *major,
+void				create_operation(char **line, t_major *major,
 	t_token **token);
 void				validate_operation(char **line, t_major *major,
 	t_token **token);
@@ -86,5 +90,10 @@ void				validate_dir_label(char **line, t_major *major,
 void				write_ind_label_in_token(char **line, t_major *major,
 	t_token **token);
 void				validate_separator(char **line, t_major *major);
+void				validate_tokens(t_token *token, t_major *major);
+void				validate_register(char **line, t_major *major,
+	t_token **token);
+int					find_operation(char *name);
+t_token				*validate_args(t_token *token, t_major *major);
 
 #endif
