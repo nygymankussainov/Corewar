@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   read_byte_code.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hfrankly <hfrankly@student.42.fr>          +#+  +:+       +#+        */
+/*   By: egiant <egiant@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/31 18:20:43 by egiant            #+#    #+#             */
-/*   Updated: 2019/11/02 12:55:36 by hfrankly         ###   ########.fr       */
+/*   Updated: 2019/11/06 12:20:30 by egiant           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,11 +22,10 @@ void			read_magic_header(t_corewar *vm, int fd)
 	if (ret < 0)
 		terminate_with_error(vm);
 	header = buff[3]|(buff[2] << 8)|(buff[1] << 16)|(buff[0] << 24);
-	//ft_printf("%x\n", header);
 	if (header != COREWAR_EXEC_MAGIC)
 		terminate_with_error(vm);
-	else
-		printf("it's a success\n"); //для проверки, потом удалить
+	//else
+	//	printf("it's a success\n"); //для проверки, потом удалить
 }
 
 void			read_champion_name(t_corewar *vm, t_core *player, int fd)
@@ -39,7 +38,7 @@ void			read_champion_name(t_corewar *vm, t_core *player, int fd)
 		terminate_with_error(vm);
 	//if (ft_strcmp(player->name, buff) != 0)
 	//	terminate_with_error(vm);
-	ft_printf("%s\n", buff); //для проверки, потом удалить
+	//ft_printf("%s\n", buff); //для проверки, потом удалить
 }	
 
 void			read_null_octet(t_corewar *vm, int fd)
@@ -52,8 +51,8 @@ void			read_null_octet(t_corewar *vm, int fd)
 		terminate_with_error(vm);
 	if (buff != 0)
 		terminate_with_error(vm);
-	else
-		ft_printf("%x!\n", buff); //для проверки, потом удалить
+	//else
+	//	ft_printf("%x!\n", buff); //для проверки, потом удалить
 }
 
 void			read_exec_code_size(t_corewar *vm, t_core *player, int fd)
@@ -68,7 +67,7 @@ void			read_exec_code_size(t_corewar *vm, t_core *player, int fd)
 		terminate_with_error(vm);
 	rev_buff = buff[3]|(buff[2] << 8)|(buff[1] << 16)|(buff[0] << 24);
 	code_size = ft_change_system_over_ten(rev_buff, 16, 0);
-	ft_printf("%d\n", ft_atoi(code_size));
+	//ft_printf("%d\n", ft_atoi(code_size));
 	if (ft_atoi(code_size) > CHAMP_MAX_SIZE || ft_atoi(code_size) <= 0)
 		terminate_with_error(vm);
 	player->exec_code_size = ft_atoi(code_size);
@@ -83,7 +82,7 @@ void			read_champion_comment(t_corewar *vm, t_core *player, int fd)
 	if (ret < 0)
 		ft_printf("error\n");
 	ft_strcpy(player->comment, buff);
-	ft_printf("%s\n", buff);
+	//ft_printf("%s\n", buff);
 }
 
 void 			read_exec_code(t_corewar *vm, t_core *player, int fd)
@@ -91,7 +90,7 @@ void 			read_exec_code(t_corewar *vm, t_core *player, int fd)
 	int			ret;
 	uint8_t		check;
 
-	ret = read(fd, player->exec_code, player->exec_code_size);
+	ret = read(fd, player->exec_code, COMMENT_LENGTH);
 	if (ret < 0)
 		terminate_with_error(vm);
 	//дальше read возвращает 1, как проверить что код чемпиона кончился?

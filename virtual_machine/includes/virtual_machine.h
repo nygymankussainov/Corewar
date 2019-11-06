@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   virtual_machine.h                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hfrankly <hfrankly@student.42.fr>          +#+  +:+       +#+        */
+/*   By: egiant <egiant@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/30 16:29:38 by hfrankly          #+#    #+#             */
-/*   Updated: 2019/11/02 14:46:43 by hfrankly         ###   ########.fr       */
+/*   Updated: 2019/11/06 13:56:16 by egiant           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,11 +51,13 @@ typedef struct 		s_carriage {
 	uint8_t			id;
 	bool			carry;
 	uint8_t			operation;
+	t_core			*player;
+	uint8_t			registers[REG_NUMBER];
+	uint8_t			position;
+
 	uint32_t		cycle_was_live;
 	uint32_t		cycles_before_operation;
-	uint32_t		current_position;
 	uint32_t		offset_next_operation;
-	uint8_t			registers[REG_NUMBER];
 	t_carriage		*next;
 }					t_carriage;
 
@@ -65,8 +67,11 @@ typedef struct 		s_carriage {
 t_corewar			*init_vm(void);
 void				init_arena(t_corewar *vm);
 void				init_core(t_core *player);
-void				init_carriages(t_corewar *vm);
+t_carriage			*init_carriage(t_corewar *vm, t_core *player);
 
+
+void				set_exec_code(uint8_t *arena, uint16_t position, t_core *core);
+void				set_carriages(t_corewar *vm, uint16_t position_step);
 /*
 // parsing
 */

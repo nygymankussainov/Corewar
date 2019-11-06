@@ -3,12 +3,15 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: hfrankly <hfrankly@student.42.fr>          +#+  +:+       +#+         #
+#    By: egiant <egiant@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/10/30 17:56:58 by hfrankly          #+#    #+#              #
-#    Updated: 2019/11/02 14:51:32 by hfrankly         ###   ########.fr        #
+#    Updated: 2019/11/06 13:49:32 by egiant           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
+
+LOG_NOCOLOR = \033[0m
+LOG_GREEN = \033[32m
 
 ARCHIVE = corewar.a
 
@@ -26,6 +29,7 @@ OBJDIR = obj
 
 SOURCES =	main.c \
 			initialization/initialization.c \
+			initialization/set_params.c\
 			parsing/parse_arguments.c \
 			validation/read_byte_code.c \
 			war/start_war.c \
