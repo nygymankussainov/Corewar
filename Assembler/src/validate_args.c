@@ -6,7 +6,7 @@
 /*   By: vhazelnu <vhazelnu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/06 17:41:35 by vhazelnu          #+#    #+#             */
-/*   Updated: 2019/11/06 22:01:25 by vhazelnu         ###   ########.fr       */
+/*   Updated: 2019/11/07 10:30:42 by vhazelnu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,6 +71,6 @@ t_token	*validate_args(t_token *token, t_major *major)
 		}
 		token = token->next;
 	}
-	major->bytes += g_ops[i].args_type_code + 1 + bytes;
+	major->bytes += g_ops[i].args_type_code + bytes + 1;
 	return (token);
 }

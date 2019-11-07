@@ -6,7 +6,7 @@
 /*   By: vhazelnu <vhazelnu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/30 18:07:38 by vhazelnu          #+#    #+#             */
-/*   Updated: 2019/11/02 22:02:13 by vhazelnu         ###   ########.fr       */
+/*   Updated: 2019/11/07 11:27:57 by vhazelnu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,7 +81,8 @@ int		validate_name_and_comment(char **line, t_major *major)
 	while (get_next_line(major->fd, line, 0))
 	{
 		major->col = 0;
-		if (line && *line && (*line)[0] != '#' && (*line)[0] != '.' && ret < 2)
+		if (line && *line && **line != '#' && **line != '.' &&
+			**line != '\n' && ret < 2)
 			print_error(line, Syntax, "Missing .name or .comment at ", major);
 		else if (line && *line && (!ft_strncmp(*line, ".name", 5) ||
 			!ft_strncmp(*line, ".comment", 8)))

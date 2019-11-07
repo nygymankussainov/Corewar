@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   validate_args.c                                    :+:      :+:    :+:   */
+/*   create_operation.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: vhazelnu <vhazelnu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/06 15:03:33 by vhazelnu          #+#    #+#             */
-/*   Updated: 2019/11/06 17:39:27 by vhazelnu         ###   ########.fr       */
+/*   Updated: 2019/11/07 11:36:24 by vhazelnu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,5 +50,7 @@ void	create_operation(char **line, t_major *major, t_token **token)
 				print_error(line, Syntax, "Invalid argument at ", major);
 		}
 	}
+	if ((*line)[major->col - 1] != '\n')
+		print_error(line, Syntax, "Missing line feed at ", major);
 	create_token(line, major, token, Line_feed);
 }

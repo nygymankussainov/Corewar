@@ -6,7 +6,7 @@
 /*   By: vhazelnu <vhazelnu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/02 15:36:41 by vhazelnu          #+#    #+#             */
-/*   Updated: 2019/11/06 17:47:31 by vhazelnu         ###   ########.fr       */
+/*   Updated: 2019/11/07 11:30:55 by vhazelnu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,7 @@ t_token	*tokenization(char **line, t_major *major)
 			major->col = !ft_strncmp(*line, ".name", 5) ? 5 : 8;
 			write_name_or_comment(line, major, major->col);
 		}
-		else if (line && *line)
+		else if (line && *line && **line != '\n')
 			check_line(line, major, &token);
 		ft_strdel(line);
 		major->row++;
