@@ -6,7 +6,7 @@
 /*   By: vhazelnu <vhazelnu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/05 14:00:56 by vhazelnu          #+#    #+#             */
-/*   Updated: 2019/11/06 18:15:03 by vhazelnu         ###   ########.fr       */
+/*   Updated: 2019/11/07 14:14:09 by vhazelnu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,26 +16,32 @@ void	write_label_in_token(char **line, t_major *major, t_token **token, int type
 {
 	int		i;
 
-	i = major->col;
-	while (i > 0 && (*line)[i] && !iswhitesp((*line)[i - 1]))
+	i = COL;
+	while (i >= 0 && (*line)[i] && !iswhitesp((*line)[i]))
+	{
+		if (!ft_islower((*line)[i]) && !ft_isdigit((*line)[i]) && (*line)[i] != '_')
+		{
+			COL = i;
+			print_error(line, Lexical, "Invalid symbol at ", major);
+		}
 		i--;
-	(*token)->last->name = ft_strsub(*line, i, major->col - i + 1);
-	major->col = ft_skip_whitesp(*line, ++major->col);
+	}
+	i = ft_skip_whitesp(*line, ++i);
+	(*token)->last->name = ft_strsub(*line, i, COL - i + 1);
+	COL = ft_skip_whitesp(*line, ++COL);
 	(*token)->last->type = type;
-	if ((*line)[major->col] && (*line)[major->col] != COMMENT_CHAR &&
-		(*line)[major->col] != ALT_COMMENT_CHAR)
+	if ((*line)[COL] && (*line)[COL] != COMMENT_CHAR &&
+		(*line)[COL] != ALT_COMMENT_CHAR && (*line)[COL] != LABEL_CHAR)
 		create_operation(line, major, token);
-	else if (!(*line)[major->col])
-		create_token(line, major, token, Line_feed);
 }
 
 void	write_ind_label_in_token(char **line, t_major *major, t_token **token)
 {
 	int		i;
 
-	i = major->col;
-	while ((*line)[major->col] && !iswhitesp((*line)[major->col]) &&
-	(*line)[major->col] != SEPARATOR_CHAR)
-		major->col++;
-	(*token)->last->name = ft_strsub(*line, i, major->col - i);
+	i = ++COL;
+	while ((*line)[COL] && !iswhitesp((*line)[COL]) &&
+	(*line)[COL] != SEPARATOR_CHAR)
+		COL++;
+	(*token)->last->name = ft_strsub(*line, i, COL - i);
 }

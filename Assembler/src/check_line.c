@@ -6,7 +6,7 @@
 /*   By: vhazelnu <vhazelnu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/04 15:01:10 by vhazelnu          #+#    #+#             */
-/*   Updated: 2019/11/06 17:39:52 by vhazelnu         ###   ########.fr       */
+/*   Updated: 2019/11/07 14:16:50 by vhazelnu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ int		islabel(char *line)
 	{
 		if (i > 0 && line[i] == LABEL_CHAR &&
 			line[i - 1] != DIRECT_CHAR)
-			return (i);
+			return (i - 1);
 		i++;
 	}
 	return (0);
@@ -31,17 +31,17 @@ void	check_line(char **line, t_major *major, t_token **token)
 {
 	int		tmp;
 
-	major->col = ft_skip_whitesp(*line, major->col);
-	if ((*line)[major->col] == COMMENT_CHAR)
+	COL = ft_skip_whitesp(*line, COL);
+	if ((*line)[COL] == COMMENT_CHAR)
 		return ;
-	else if ((tmp = islabel(*line)) > 0)
+	else if ((tmp = islabel((*line) + COL)) > 0)
 	{
-		major->col = tmp;
+		COL = tmp + COL;
 		create_token(line, major, token, Label);
 	}
-	else if ((*line)[major->col] == COMMENT_CHAR ||
-		(*line)[major->col] == ALT_COMMENT_CHAR)
-		major->row++;
-	else
+	else if ((*line)[COL] == COMMENT_CHAR ||
+		(*line)[COL] == ALT_COMMENT_CHAR)
+		ROW++;
+	else if ((*line)[COL])
 		create_operation(line, major, token);
 }

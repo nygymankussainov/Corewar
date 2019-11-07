@@ -6,7 +6,7 @@
 /*   By: vhazelnu <vhazelnu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/30 18:07:38 by vhazelnu          #+#    #+#             */
-/*   Updated: 2019/11/07 11:27:57 by vhazelnu         ###   ########.fr       */
+/*   Updated: 2019/11/07 12:19:38 by vhazelnu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,36 +14,36 @@
 
 int		check_line_after_quote(char *line, t_major *major)
 {
-	major->col++;
-	while (line[major->col])
+	COL++;
+	while (line[COL])
 	{
-		if (line[major->col] == '#')
+		if (line[COL] == '#')
 			return (1);
-		else if (ft_isascii(line[major->col]) && !iswhitesp(line[major->col]))
+		else if (ft_isascii(line[COL]) && !iswhitesp(line[COL]))
 			return (0);
-		major->col++;
+		COL++;
 	}
 	return (1);
 }
 
 void	find_first_quote(char **line, t_major *major)
 {
-	while (line && *line && (*line)[major->col] && (*line)[major->col] != '"')
+	while (line && *line && (*line)[COL] && (*line)[COL] != '"')
 	{
-		if (ft_isascii((*line)[major->col]) && !iswhitesp((*line)[major->col]))
+		if (ft_isascii((*line)[COL]) && !iswhitesp((*line)[COL]))
 			print_error(line, Lexical, "Missing quote at ", major);
-		major->col++;
+		COL++;
 	}
-	if ((*line)[major->col] == '\0')
+	if ((*line)[COL] == '\0')
 		print_error(line, Lexical, "Missing quote at ", major);
-	major->col++;
+	COL++;
 }
 
 int		find_second_quote(char **line, t_major *major)
 {
-	while (line && *line && (*line)[major->col] && (*line)[major->col] != '"')
-		major->col++;
-	if (line && *line && (*line)[major->col] == '"')
+	while (line && *line && (*line)[COL] && (*line)[COL] != '"')
+		COL++;
+	if (line && *line && (*line)[COL] == '"')
 	{
 		if (check_line_after_quote(*line, major))
 			return (1);
@@ -61,8 +61,8 @@ int		check_quotes(char **line, t_major *major)
 		ft_strdel(line);
 		while (get_next_line(major->fd, line, 0))
 		{
-			major->row++;
-			major->col = 0;
+			ROW++;
+			COL = 0;
 			if (find_second_quote(line, major))
 				return (1);
 			ft_strdel(line);
@@ -77,17 +77,17 @@ int		validate_name_and_comment(char **line, t_major *major)
 	int		ret;
 
 	ret = 0;
-	major->row = 1;
+	ROW = 1;
 	while (get_next_line(major->fd, line, 0))
 	{
-		major->col = 0;
+		COL = 0;
 		if (line && *line && **line != '#' && **line != '.' &&
 			**line != '\n' && ret < 2)
 			print_error(line, Syntax, "Missing .name or .comment at ", major);
 		else if (line && *line && (!ft_strncmp(*line, ".name", 5) ||
 			!ft_strncmp(*line, ".comment", 8)))
 		{
-			major->col = !ft_strncmp(*line, ".name", 5) ? 5 : 8;
+			COL = !ft_strncmp(*line, ".name", 5) ? 5 : 8;
 			if (!check_quotes(line, major))
 				return (0);
 			ret++;
@@ -95,7 +95,7 @@ int		validate_name_and_comment(char **line, t_major *major)
 		if (ret == 2)
 			return (1);
 		ft_strdel(line);
-		major->row++;
+		ROW++;
 	}
 	return (0);
 }

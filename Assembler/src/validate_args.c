@@ -6,7 +6,7 @@
 /*   By: vhazelnu <vhazelnu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/06 17:41:35 by vhazelnu          #+#    #+#             */
-/*   Updated: 2019/11/07 10:30:42 by vhazelnu         ###   ########.fr       */
+/*   Updated: 2019/11/07 12:20:42 by vhazelnu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,8 +61,8 @@ t_token	*validate_args(t_token *token, t_major *major)
 	{
 		if (token->type != Separator && (bytes += is_arg(token, i)))
 		{
-			major->col = token->col;
-			major->row = token->row;
+			COL = token->col;
+			ROW = token->row;
 			if (!(token->type & g_ops[i].args_type[count]))
 				print_error(NULL, Syntax, "Invalid argument at ", major);
 			if (token->next->type != Line_feed && token->next->type != Separator)

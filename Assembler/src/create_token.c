@@ -6,7 +6,7 @@
 /*   By: vhazelnu <vhazelnu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/04 15:09:09 by vhazelnu          #+#    #+#             */
-/*   Updated: 2019/11/06 16:18:33 by vhazelnu         ###   ########.fr       */
+/*   Updated: 2019/11/07 12:21:00 by vhazelnu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,8 +43,8 @@ void	create_token(char **line, t_major *major, t_token **token, int type)
 		ft_printf("%s\n", strerror(12));
 		exit(12);
 	}
-	new->col = major->col;
-	new->row = major->row;
+	new->col = COL;
+	new->row = ROW;
 	if (!*token)
 	{
 		*token = new;
