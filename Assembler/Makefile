@@ -6,7 +6,7 @@
 #    By: vhazelnu <vhazelnu@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/05/16 11:34:51 by vhazelnu          #+#    #+#              #
-#    Updated: 2019/11/07 13:36:30 by vhazelnu         ###   ########.fr        #
+#    Updated: 2019/11/09 14:11:19 by vhazelnu         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -20,9 +20,9 @@ LIB_A = ../libft/libft.a $(LIB)/libftprintf.a
 
 INCLUDES = -I ./includes  -I ../ -I $(LIB) -I ../libft
 
-SOURCES = 	asm.c print_error.c tokenization.c create_token.c check_line.c write_label_in_token.c print_token.c \
+SOURCES = 	asm.c print_error.c tokenization.c create_token.c check_line.c write_label_in_token.c print_token.c convert_in_byte_code.c \
 			validate_file.c validation.c validate_name_and_comment.c create_operation.c validate_number.c validate_args.c \
-			validate_tokens.c validate_labels.c \
+			validate_tokens.c validate_labels.c ft_itoh.c \
 
 SRCDIR = src
 OBJDIR = obj

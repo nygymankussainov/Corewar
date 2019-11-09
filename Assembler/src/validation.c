@@ -6,7 +6,7 @@
 /*   By: vhazelnu <vhazelnu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/30 18:07:38 by vhazelnu          #+#    #+#             */
-/*   Updated: 2019/11/07 14:03:58 by vhazelnu         ###   ########.fr       */
+/*   Updated: 2019/11/07 17:49:05 by vhazelnu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,19 +61,16 @@ void	validate_separator(char **line, t_major *major)
 		print_error(line, Syntax, "No argument after separator at ", major);
 }
 
-int		validation(char *file, t_major *major)
+t_token	*validation(char *file, t_major *major)
 {
 	char	*line;
-	t_token	*token;
 
 	line = NULL;
-	if (!(major->fd = validate_file(file)) ||
-		!validate_name_and_comment(&line, major))
-		return (0);
+	validate_file(file, major);
+	if (!validate_name_and_comment(&line, major))
+		return (NULL);
 	ft_strdel(&line);
-	get_next_line(major->fd, &line, 1);
-	lseek(major->fd, 0, SEEK_SET);
-	token = tokenization(&line, major);
-	print_token(token);
-	return (1);
+	get_next_line(FD, &line, 1);
+	lseek(FD, 0, SEEK_SET);
+	return (tokenization(&line, major));
 }

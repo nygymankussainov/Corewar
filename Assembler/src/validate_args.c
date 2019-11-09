@@ -6,7 +6,7 @@
 /*   By: vhazelnu <vhazelnu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/06 17:41:35 by vhazelnu          #+#    #+#             */
-/*   Updated: 2019/11/07 12:20:42 by vhazelnu         ###   ########.fr       */
+/*   Updated: 2019/11/09 17:58:26 by vhazelnu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,6 +54,7 @@ t_token	*validate_args(t_token *token, t_major *major)
 	int		bytes;
 
 	i = find_operation(token->name);
+	token->index = i;
 	count = 0;
 	token->bytes = major->bytes;
 	bytes = 0;
@@ -72,5 +73,7 @@ t_token	*validate_args(t_token *token, t_major *major)
 		token = token->next;
 	}
 	major->bytes += g_ops[i].args_type_code + bytes + 1;
+	if (major->bytes > CHAMP_MAX_SIZE)
+		print_error(NULL, Syntax, "Your champion is overweighted ", major);
 	return (token);
 }

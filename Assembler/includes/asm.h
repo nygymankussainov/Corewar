@@ -6,7 +6,7 @@
 /*   By: vhazelnu <vhazelnu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/30 14:36:26 by vhazelnu          #+#    #+#             */
-/*   Updated: 2019/11/07 14:52:08 by vhazelnu         ###   ########.fr       */
+/*   Updated: 2019/11/09 17:57:00 by vhazelnu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,8 @@ typedef struct		s_major
 	int				fd;
 	int				row;
 	int				col;
-	char			*file;
+	u_int8_t			*bytecode;
+	char			*filename;
 	bool			carry;
 	int				bytes;
 	char			name[PROG_NAME_LENGTH];
@@ -32,6 +33,8 @@ typedef struct		s_major
 
 # define COL		major->col
 # define ROW		major->row
+# define BYTECODE	major->bytecode
+# define FD			major->fd
 
 enum				e_err_type
 {
@@ -58,6 +61,7 @@ typedef enum		e_type
 typedef struct		s_token
 {
 	char			*name;
+	int				index;
 	int				value;
 	int				bytes;
 	t_type			type;
@@ -80,8 +84,8 @@ typedef struct		s_label
 void				print_token(t_token *token);
 int					print_error(char **line, int type,
 	char *message, t_major *major);
-int					validation(char *file, t_major *major);
-int					validate_file(char *file);
+t_token				*validation(char *file, t_major *major);
+void				validate_file(char *file, t_major *major);
 int					validate_name_and_comment(char **line, t_major *major);
 t_token				*tokenization(char **line, t_major *major);
 void				create_token(char **line, t_major *major,
@@ -108,5 +112,7 @@ int					find_operation(char *name);
 t_token				*validate_args(t_token *token, t_major *major);
 void				validate_labels(t_token *token, t_major *major, t_label *label);
 void				create_label_list(t_label **label, t_token *token, int bytes);
+void				convert_in_byte_code(t_token *token, t_major *major);
+void				ft_itoh(int value, int size, t_major *major);
 
 #endif

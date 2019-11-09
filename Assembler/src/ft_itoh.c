@@ -1,33 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_memcpy.c                                        :+:      :+:    :+:   */
+/*   ft_itoh.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: vhazelnu <vhazelnu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/04/11 10:41:14 by vhazelnu          #+#    #+#             */
-/*   Updated: 2019/11/09 15:23:27 by vhazelnu         ###   ########.fr       */
+/*   Created: 2019/11/09 14:09:17 by vhazelnu          #+#    #+#             */
+/*   Updated: 2019/11/09 17:31:50 by vhazelnu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "asm.h"
 
-void	*ft_memcpy(void *dst, const void *src, size_t n)
+void	ft_itoh(int32_t value, int size, t_major *major)
 {
-	unsigned char		*s1;
-	const unsigned char	*s2;
-	size_t				i;
+	int		step;
+	int		tmp;
 
-	if (!dst && !src)
-		return (NULL);
-	s1 = (unsigned char *)dst;
-	s2 = (unsigned const char *)src;
-	i = 0;
-	while (n > 0)
+	tmp = size;
+	step = 0;
+	while (size)
 	{
-		s1[i] = s2[i];
-		i++;
-		n--;
+		BYTECODE[COL + size - 1] = (u_int8_t)((value >> step) & 0xFF);
+		step += 8;
+		size--;
 	}
-	return (s1);
+	COL += tmp;
 }

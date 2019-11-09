@@ -6,7 +6,7 @@
 /*   By: vhazelnu <vhazelnu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/11 20:06:51 by vhazelnu          #+#    #+#             */
-/*   Updated: 2019/11/06 16:12:19 by vhazelnu         ###   ########.fr       */
+/*   Updated: 2019/11/07 18:18:34 by vhazelnu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,11 +32,10 @@ typedef struct			s_list
 
 typedef struct			s_gnl
 {
-	char				*c;
+	char				*str;
 	char				buff[BUFF_SIZE + 1];
 	char				*tmp;
-	ssize_t				b;
-	int					endl;
+	ssize_t				byte;
 }						t_gnl;
 
 void					*ft_memset(void *b, int c, size_t len);
@@ -93,7 +92,7 @@ char					**ft_strsplit(char const *s, char c);
 char					*ft_itoa_ll(__int128_t n);
 int						ft_count_digit_ll(__int128_t n, int len);
 char					*ft_itoa(int n);
-char					*ft_itoa_base(long long nb, int base);
+char					*ft_itoa_base(long long nb, int base, int j);
 char					*ft_uitoa_base(unsigned long long nb, int base, char c);
 void					ft_putchar(char c);
 void					ft_putstr(char const *s);

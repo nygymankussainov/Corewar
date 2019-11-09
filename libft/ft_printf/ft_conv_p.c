@@ -6,7 +6,7 @@
 /*   By: vhazelnu <vhazelnu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/02 14:50:18 by vhazelnu          #+#    #+#             */
-/*   Updated: 2019/08/04 13:48:55 by vhazelnu         ###   ########.fr       */
+/*   Updated: 2019/11/07 18:19:32 by vhazelnu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ int		ft_conv_p(const char **format, va_list valist, t_flags *s)
 
 	ret = 0;
 	ptr = va_arg(valist, void *);
-	str = ft_itoa_base((long long int)ptr, 16);
+	str = ft_itoa_base((long long int)ptr, 16, 0);
 	str[2] = ptr == 0 && !s->width && s->dot ? '\0' : str[2];
 	ret = ft_strlen(str);
 	if (s->width < ret && s->zero_padd)
