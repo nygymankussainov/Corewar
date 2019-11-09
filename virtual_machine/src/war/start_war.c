@@ -15,9 +15,10 @@
 void				do_op(t_corewar *vm, t_carriage *carriage, t_operation op)
 {
 	static uint8_t	args[3];
-	uint8_t			*cur_position;
+	uint8_t			*args_byte_code;
 
-	cur_position = carriage->adress;
+	args_byte_code = carriage->adress + 1;
+	printf("%hhu\n", *args_byte_code);
 	//перейти на следующий байт в памяти
 	//считать код аргументов, записать их в args /пример: 68 - 01 10 10 00
 	//зная сколько байт занимает значение каждого аргумента получить значения и выполнить операцию
