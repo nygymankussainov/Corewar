@@ -27,9 +27,7 @@ void			set_carriages(t_corewar *vm, uint16_t position_step)
 	{
 		cur_carriage->id = n + 1;
 		cur_carriage->position = (cur_carriage->next)
-			? vm->arena[cur_carriage->next->id * position_step] : vm->arena[0];
-		cur_carriage->adress = (cur_carriage->next)
-					? &(vm->arena[cur_carriage->next->id * position_step]) : &(vm->arena[0]);
+			? cur_carriage->next->id * position_step : 0;
 		if (i != 0)
 		{
 			new_carriage = init_carriage(vm, vm->cores[++n]);

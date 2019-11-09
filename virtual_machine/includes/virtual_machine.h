@@ -56,13 +56,11 @@ typedef struct 		s_carriage {
 	uint8_t			operation;
 	t_core			*player;
 	int32_t			registers[REG_NUMBER];
-	uint8_t			position;
+	uint16_t		position;
 	uint32_t		cycle_was_live;
 	uint32_t		cycles_before_operation;
 	uint32_t		offset_next_operation;
 	t_carriage		*next;
-
-	uint8_t			*adress;
 }					t_carriage;
 
 /*
