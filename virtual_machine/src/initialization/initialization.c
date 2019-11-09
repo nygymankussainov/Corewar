@@ -6,52 +6,36 @@
 /*   By: hfrankly <hfrankly@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/30 13:41:08 by egiant            #+#    #+#             */
-/*   Updated: 2019/11/02 21:45:42 by hfrankly         ###   ########.fr       */
+/*   Updated: 2019/11/09 13:31:06 by hfrankly         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "virtual_machine.h"
 
-void		init_carriage(t_corewar *vm)
+t_carriage		*init_carriage(t_corewar *vm, t_core *player)
 {
-	int8_t		i;
-	t_carriage	*cur_carriage;
-	t_carriage	*new_carriage;
-
-	i = vm->number_of_players - 1;
-	cur_carriage = vm->start_carriage;
-	while (i > -1)
-	{
-		cur_carriage->id = i;
-		cur_carriage->carry = false;
-		cur_carriage->operation = 0;
-		cur_carriage->registers[0] = -i;
-		// add carriage position
-		if (i != 0)
-		{
-			if (!(new_carriage = (t_carriage*)malloc(sizeof(t_carriage))))
-				termination_with_perror("Error", ENOMEM);
-			cur_carriage->next = new_carriage;
-			cur_carriage = cur_carriage->next;
-		}
-		cur_carriage->next = NULL;
-		i--;
-	}
+	short		n;
+	t_carriage	*carriage;
+	
+	n = 15;
+	if (!(carriage = (t_carriage*)malloc(sizeof(t_carriage))))
+		termination_with_perror("Error", ENOMEM);
+	carriage->id = (vm->start_carriage) ? vm->start_carriage->id + 1 : 0;
+	carriage->carry = false;
+	carriage->operation = 0;
+	carriage->position = 0;
+	carriage->cycle_was_live = 0; //цикл, в котором в последний раз была выполнена операция live
+	carriage->cycles_before_operation = 0; //количество циклов, оставшиеся до исполнения операции, на которой стоит каретка
+	carriage->offset_next_operation = 0; // количество байт, которые нужно будет «перешагнуть», чтобы оказаться на следующей операции
+	carriage->next = NULL;
+	while (n != 0)
+		carriage->registers[n--] = 0;
+	carriage->registers[0] = -((int)(player->id));
+	carriage->player = player;
+	return (carriage);
 }
 
-void		set_exec_code(uint8_t *arena, uint16_t position, t_core *core)
-{
-	uint16_t	i;
-
-	i = 0;
-	while (i < core->exec_code_size)
-	{
-		arena[position + i] = core->exec_code[i];
-		i++;
-	}
-}
-
-void		init_arena(t_corewar *vm)
+void			init_arena(t_corewar *vm)
 {
 	uint8_t		i;
 	uint16_t	cur_position;
@@ -66,6 +50,7 @@ void		init_arena(t_corewar *vm)
 		cur_position += position_step;
 		i++;
 	}
+	set_carriages(vm, position_step);
 }
 
 void			init_core(t_core *player)
@@ -87,7 +72,11 @@ t_corewar		*init_vm(void)
 		vm->cores[n] = NULL;
 	vm->line_of_players = NULL;
 	vm->number_of_players = 0;
-	if (!(vm->start_carriage = (t_carriage*)malloc(sizeof(t_carriage))))
-		termination_with_perror("Error", ENOMEM);
+	vm->start_carriage = NULL;
+	vm->winner_id = 0;
+	vm->total_cycles = 0;
+	vm->current_cycles = 0;
+	vm->cycles_to_die = 0;
+	vm->check_count = 0;
 	return(vm);
 }

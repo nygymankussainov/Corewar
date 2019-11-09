@@ -6,7 +6,7 @@
 /*   By: hfrankly <hfrankly@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/30 13:41:19 by egiant            #+#    #+#             */
-/*   Updated: 2019/11/02 15:17:38 by hfrankly         ###   ########.fr       */
+/*   Updated: 2019/11/09 13:35:34 by hfrankly         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,8 @@ int				main(int argc, char *argv[])
 	parse_arguments(vm, argc, argv);
 	read_byte_code(vm);
 	init_arena(vm);
+	display_array(vm->arena, 64, 64);
+	//Introducing
 	// start_war(vm);
 	return (0);
 }

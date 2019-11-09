@@ -6,7 +6,7 @@
 /*   By: hfrankly <hfrankly@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/31 16:49:05 by egiant            #+#    #+#             */
-/*   Updated: 2019/11/02 15:17:07 by hfrankly         ###   ########.fr       */
+/*   Updated: 2019/11/09 13:31:16 by hfrankly         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -112,7 +112,6 @@ void			parse_arguments(t_corewar *vm, int argc, char *argv[]) //+ флаг ви�
 		else if (ft_strequ(argv[n], "-n") || is_name(vm, argv[n]))
 			parse_player(vm, argv, &n);
 	}
-	init_carriages(vm);
 	if (vm->number_of_players < 2)
 		terminate_with_error(vm);
 	if (vm->line_of_players)
