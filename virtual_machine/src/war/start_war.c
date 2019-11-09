@@ -15,9 +15,9 @@
 void				do_op(t_corewar *vm, t_carriage *carriage, t_operation op)
 {
 	static uint8_t	args[3];
-	uint8_t			cur_position;
+	uint8_t			*cur_position;
 
-	cur_position = carriage->position;
+	cur_position = carriage->adress;
 	//перейти на следующий байт в памяти
 	//считать код аргументов, записать их в args /пример: 68 - 01 10 10 00
 	//зная сколько байт занимает значение каждого аргумента получить значения и выполнить операцию
@@ -39,7 +39,6 @@ void				start_war(t_corewar *vm)
 		{
 			op = op_array[*byte_with_command - 1];
 			do_op(vm, tmp, op);
-			printf("11\n");
 		}
 		tmp = tmp->next;
 	}

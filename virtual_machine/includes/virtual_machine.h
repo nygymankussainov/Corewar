@@ -61,6 +61,8 @@ typedef struct 		s_carriage {
 	uint32_t		cycles_before_operation;
 	uint32_t		offset_next_operation;
 	t_carriage		*next;
+
+	uint8_t			*adress;
 }					t_carriage;
 
 /*
