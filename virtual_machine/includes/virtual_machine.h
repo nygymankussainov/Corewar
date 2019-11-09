@@ -6,7 +6,7 @@
 /*   By: hfrankly <hfrankly@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/30 16:29:38 by hfrankly          #+#    #+#             */
-/*   Updated: 2019/11/09 13:35:04 by hfrankly         ###   ########.fr       */
+/*   Updated: 2019/11/09 14:14:46 by hfrankly         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,7 @@ typedef struct 		s_carriage {
 	uint8_t			operation;
 	t_core			*player;
 	int32_t			registers[REG_NUMBER];
-	uint8_t			position;
+	uint16_t		position;
 	uint32_t		cycle_was_live;
 	uint32_t		cycles_before_operation;
 	uint32_t		offset_next_operation;
