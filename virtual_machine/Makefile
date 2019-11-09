@@ -33,6 +33,7 @@ SOURCES =	main.c \
 			parsing/parse_arguments.c \
 			validation/read_byte_code.c \
 			war/start_war.c \
+			war/operations.c \
 			exit.c \
 
 

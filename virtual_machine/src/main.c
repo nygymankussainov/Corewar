@@ -46,6 +46,6 @@ int				main(int argc, char *argv[])
 	init_arena(vm);
 	display_array(vm->arena, 64, 64);
 	//Introducing
-	// start_war(vm);
+	start_war(vm);
 	return (0);
 }

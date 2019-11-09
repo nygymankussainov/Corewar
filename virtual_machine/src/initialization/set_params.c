@@ -36,7 +36,7 @@ void			set_carriages(t_corewar *vm, uint16_t position_step)
 		}
 	}
 	vm->start_carriage = new_carriage; // т.к первой стоит каретка последнего игрока */
-} //если писать cur_carriage не работает (не отображается next)
+} //если писать vm->start_carriage = cur_carriage не работает (не отображается next)
 
 void		set_exec_code(uint8_t *arena, uint16_t position, t_core *core)
 {

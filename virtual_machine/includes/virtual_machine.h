@@ -15,10 +15,13 @@
 
 #include <stdint.h>
 #include <stdbool.h>
-#include "op.h"
+#include <errno.h>
+
 #include "libft.h"
 #include "ft_printf.h"
-#include <errno.h>
+
+#include "op.h"
+#include "operations.h"
 
 
 typedef struct s_corewar		t_corewar;
@@ -54,7 +57,6 @@ typedef struct 		s_carriage {
 	t_core			*player;
 	int32_t			registers[REG_NUMBER];
 	uint8_t			position;
-
 	uint32_t		cycle_was_live;
 	uint32_t		cycles_before_operation;
 	uint32_t		offset_next_operation;
@@ -69,9 +71,9 @@ void				init_arena(t_corewar *vm);
 void				init_core(t_core *player);
 t_carriage			*init_carriage(t_corewar *vm, t_core *player);
 
-
 void				set_exec_code(uint8_t *arena, uint16_t position, t_core *core);
 void				set_carriages(t_corewar *vm, uint16_t position_step);
+
 /*
 // parsing
 */
@@ -82,10 +84,14 @@ void				parse_arguments(t_corewar *vm, int argc, char *argv[]);
 */
 void				read_byte_code(t_corewar *vm);
 
-
 void				terminate_with_error(t_corewar *vm);
 void				termination_with_error(char *error_string);
 void				termination_with_perror(char *error_string, int code);
+
+/*
+// war
+*/
+void				start_war(t_corewar *vm);
 
 #endif
 
