@@ -6,7 +6,7 @@
 /*   By: vhazelnu <vhazelnu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/06 17:41:35 by vhazelnu          #+#    #+#             */
-/*   Updated: 2019/11/09 17:58:26 by vhazelnu         ###   ########.fr       */
+/*   Updated: 2019/11/10 14:57:06 by vhazelnu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,9 +18,9 @@ int		count_bytes(t_token *token, int i)
 
 	bytes = 0;
 	if (token->type == Register)
-		bytes += T_REG;
+		bytes += 1;
 	else if (token->type == Indirect)
-		bytes += T_IND;
+		bytes += IND_SIZE;
 	else if (token->type == Direct)
 		bytes += g_ops[i].t_dir_size;
 	return (bytes);
@@ -72,8 +72,10 @@ t_token	*validate_args(t_token *token, t_major *major)
 		}
 		token = token->next;
 	}
+	if (count != g_ops[i].args_number)
+		print_error(NULL, Syntax, "Invalid number of arguments ", major);
 	major->bytes += g_ops[i].args_type_code + bytes + 1;
-	if (major->bytes > CHAMP_MAX_SIZE)
-		print_error(NULL, Syntax, "Your champion is overweighted ", major);
+	// if (major->bytes > CHAMP_MAX_SIZE)
+	// 	print_error(NULL, Syntax, "Your champion is overweighted ", major);
 	return (token);
 }

@@ -6,7 +6,7 @@
 /*   By: vhazelnu <vhazelnu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/07 17:04:30 by vhazelnu          #+#    #+#             */
-/*   Updated: 2019/11/09 18:53:25 by vhazelnu         ###   ########.fr       */
+/*   Updated: 2019/11/10 16:43:03 by vhazelnu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,7 @@ void	calculate_op_code(t_token *token, t_major *major)
 				ft_itoh(token->value, 1, major);
 			else if (token->type == Direct)
 			{
-				token->value = tmp == T_DIR ?
+				token->value = tmp == DIR_SIZE ?
 					(int32_t)token->value : (int16_t)token->value;
 				if (sign < 0)
 					ft_itoh(token->value * (int64_t)sign, tmp, major);
@@ -67,9 +67,9 @@ void	calculate_op_code(t_token *token, t_major *major)
 			{
 				token->value = (int16_t)token->value;
 				if (sign < 0)
-					ft_itoh(token->value * (int64_t)sign, T_IND, major);
+					ft_itoh(token->value * (int64_t)sign, IND_SIZE, major);
 				else
-					ft_itoh(token->value, tmp, major);
+					ft_itoh(token->value, IND_SIZE, major);
 			}
 			i++;
 		}
@@ -81,7 +81,6 @@ void	convert_in_byte_code(t_token *token, t_major *major)
 {
 	COL = 0;
 	FD = open(major->filename, O_CREAT | O_WRONLY, S_IRUSR | S_IWUSR);
-	ft_strdel(&major->filename);
 	if (!(BYTECODE = (u_int8_t *)ft_memalloc(sizeof(u_int8_t) *
 		(PROG_NAME_LENGTH + COMMENT_LENGTH + major->bytes + 16))))
 	{
@@ -101,6 +100,8 @@ void	convert_in_byte_code(t_token *token, t_major *major)
 		token = token->next;
 	}
 	write(FD, BYTECODE, PROG_NAME_LENGTH + COMMENT_LENGTH + major->bytes + 16);
+	ft_printf("Writing output program to %s\n", major->filename);
+	ft_strdel(&major->filename);
 	free(BYTECODE);
 	BYTECODE = NULL;
 }

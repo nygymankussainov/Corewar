@@ -6,7 +6,7 @@
 /*   By: vhazelnu <vhazelnu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/30 18:07:38 by vhazelnu          #+#    #+#             */
-/*   Updated: 2019/11/07 17:49:05 by vhazelnu         ###   ########.fr       */
+/*   Updated: 2019/11/10 16:35:52 by vhazelnu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ void	validate_operation(char **line, t_major *major, t_token **token)
 
 	i = COL;
 	while ((*line)[COL] && !iswhitesp((*line)[COL]) &&
-	(*line)[COL] != DIRECT_CHAR)
+	(*line)[COL] != DIRECT_CHAR && (*line)[COL] != '-')
 		COL++;
 	(*token)->last->name = ft_strsub(*line, i, COL - i);
 	COL = ft_skip_whitesp(*line, COL);

@@ -6,7 +6,7 @@
 /*   By: vhazelnu <vhazelnu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/30 18:07:38 by vhazelnu          #+#    #+#             */
-/*   Updated: 2019/11/07 12:19:38 by vhazelnu         ###   ########.fr       */
+/*   Updated: 2019/11/10 16:30:51 by vhazelnu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,14 +80,14 @@ int		validate_name_and_comment(char **line, t_major *major)
 	ROW = 1;
 	while (get_next_line(major->fd, line, 0))
 	{
-		COL = 0;
-		if (line && *line && **line != '#' && **line != '.' &&
-			**line != '\n' && ret < 2)
+		COL = **line != '\n' ? ft_skip_whitesp(*line, 0) : 0;
+		if (line && *line && (*line)[COL] != '.' && (*line)[COL] != '\n' && ret < 2
+		&& (*line)[COL] != COMMENT_CHAR && (*line)[COL] != ALT_COMMENT_CHAR)
 			print_error(line, Syntax, "Missing .name or .comment at ", major);
-		else if (line && *line && (!ft_strncmp(*line, ".name", 5) ||
-			!ft_strncmp(*line, ".comment", 8)))
+		else if (line && *line && (!ft_strncmp(*line + COL, ".name", 5) ||
+			!ft_strncmp(*line + COL, ".comment", 8)))
 		{
-			COL = !ft_strncmp(*line, ".name", 5) ? 5 : 8;
+			COL = !ft_strncmp(*line + COL, ".name", 5) ? 5 + COL : 8 + COL;
 			if (!check_quotes(line, major))
 				return (0);
 			ret++;

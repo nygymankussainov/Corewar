@@ -6,7 +6,7 @@
 /*   By: vhazelnu <vhazelnu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/02 14:10:07 by vhazelnu          #+#    #+#             */
-/*   Updated: 2019/11/06 17:49:49 by vhazelnu         ###   ########.fr       */
+/*   Updated: 2019/11/10 17:04:14 by vhazelnu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ int		print_error(char **line, int type, char *message, t_major *major)
 	}
 	if (message)
 		putstrerr(message);
-	ft_printf("[%d:%d]\n", major->row, major->col);
+	ft_printf("[%d:%d]\n", ROW, COL + 1);
 	if (line)
 		ft_strdel(line);
 	get_next_line(major->fd, line, 1);

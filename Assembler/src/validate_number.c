@@ -6,7 +6,7 @@
 /*   By: vhazelnu <vhazelnu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/06 16:05:28 by vhazelnu          #+#    #+#             */
-/*   Updated: 2019/11/07 12:57:47 by vhazelnu         ###   ########.fr       */
+/*   Updated: 2019/11/10 18:32:30 by vhazelnu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,8 +57,8 @@ void	validate_register(char **line, t_major *major, t_token **token)
 		print_error(line, Syntax, "Argument T_REG is not well formated at ", major);
 	i = skip_zeros(*line, i);
 	(*token)->last->value = ft_atoi(*line + i);
-	if ((*token)->last->value > REG_NUMBER)
-		print_error(line, Syntax, "Register overflow at ", major);
+	// if ((*token)->last->value > REG_NUMBER)
+	// 	print_error(line, Syntax, "Register overflow at ", major);
 }
 
 void	validate_number(char **line, t_major *major, t_token **token, char c)
@@ -73,6 +73,8 @@ void	validate_number(char **line, t_major *major, t_token **token, char c)
 	sign = (*line)[COL] == '-' ? -1 : 1;
 	if ((*line)[COL] == '-')
 		COL++;
+	if (!ft_isdigit((*line)[COL]))
+		print_error(line, Lexical, "Argument is not digit at ", major);
 	while ((*line)[COL] && ft_isdigit((*line)[COL]))
 		COL++;
 	COL = ft_skip_whitesp(*line, COL);

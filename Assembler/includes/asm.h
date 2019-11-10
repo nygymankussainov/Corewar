@@ -6,7 +6,7 @@
 /*   By: vhazelnu <vhazelnu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/30 14:36:26 by vhazelnu          #+#    #+#             */
-/*   Updated: 2019/11/09 17:57:00 by vhazelnu         ###   ########.fr       */
+/*   Updated: 2019/11/10 16:50:48 by vhazelnu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,12 +23,12 @@ typedef struct		s_major
 	int				fd;
 	int				row;
 	int				col;
-	u_int8_t			*bytecode;
+	u_int8_t		*bytecode;
 	char			*filename;
 	bool			carry;
 	int				bytes;
-	char			name[PROG_NAME_LENGTH];
-	char			comment[COMMENT_LENGTH];
+	char			name[PROG_NAME_LENGTH + 1];
+	char			comment[COMMENT_LENGTH + 1];
 }					t_major;
 
 # define COL		major->col

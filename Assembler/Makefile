@@ -6,7 +6,7 @@
 #    By: vhazelnu <vhazelnu@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/05/16 11:34:51 by vhazelnu          #+#    #+#              #
-#    Updated: 2019/11/09 14:11:19 by vhazelnu         ###   ########.fr        #
+#    Updated: 2019/11/10 16:29:30 by vhazelnu         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -38,7 +38,7 @@ CCFL = -Wall -Wextra -Werror
 all: obj_dir $(NAME)
 
 debug: all
-	@gcc $(CCFL) -o $(NAME) $(SRC) $(LIB_A) $(INCLUDES) -g
+	@gcc $(CCFL) -o $(NAME) $(SRC) ../libft/src/ft_skip_whitesp.c $(LIB_A) $(INCLUDES) -g
 
 obj_dir:
 	@mkdir -p $(OBJDIR)

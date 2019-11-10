@@ -6,7 +6,7 @@
 /*   By: vhazelnu <vhazelnu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/02 15:36:41 by vhazelnu          #+#    #+#             */
-/*   Updated: 2019/11/07 13:45:22 by vhazelnu         ###   ########.fr       */
+/*   Updated: 2019/11/10 18:06:00 by vhazelnu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,9 +36,9 @@ void	write_name_or_comment(char **line, t_major *major, int col)
 			print_error(line, Name, NULL, major);
 		else if (col == 8 && i >= COMMENT_LENGTH)
 			print_error(line, Comment, NULL, major);
-		if (col == 5)
+		if (col < 8)
 			major->name[i] = (*line)[COL];
-		else if (col == 8)
+		else if (col >= 8)
 			major->comment[i] = (*line)[COL];
 		i++;
 		COL++;
@@ -55,17 +55,22 @@ t_token	*tokenization(char **line, t_major *major)
 	token = NULL;
 	while (get_next_line(major->fd, line, 0))
 	{
-		COL = 0;
-		if (line && *line && (!ft_strncmp(*line, ".name", 5) ||
-			!ft_strncmp(*line, ".comment", 8)))
+		COL = ft_skip_whitesp(*line, 0);
+		if (line && *line && (!ft_strncmp(*line + COL, ".name", 5) ||
+			!ft_strncmp(*line + COL, ".comment", 8)))
 		{
-			COL = !ft_strncmp(*line, ".name", 5) ? 5 : 8;
+			COL = !ft_strncmp(*line + COL, ".name", 5) ? 5 + COL : 8 + COL;
 			write_name_or_comment(line, major, COL);
 		}
 		else if (line && *line && **line != '\n')
 			check_line(line, major, &token);
 		ft_strdel(line);
 		ROW++;
+	}
+	if (!token)
+	{
+		COL = 0;
+		print_error(line, Syntax, "END at ", major);
 	}
 	validate_tokens(token, major);
 	return (token);

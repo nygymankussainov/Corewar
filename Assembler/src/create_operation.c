@@ -6,7 +6,7 @@
 /*   By: vhazelnu <vhazelnu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/06 15:03:33 by vhazelnu          #+#    #+#             */
-/*   Updated: 2019/11/07 12:21:26 by vhazelnu         ###   ########.fr       */
+/*   Updated: 2019/11/10 18:35:46 by vhazelnu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,9 @@ void	create_operation(char **line, t_major *major, t_token **token)
 				print_error(line, Syntax, "Invalid argument at ", major);
 		}
 	}
-	if ((*line)[COL - 1] != '\n')
+	COL = ft_skip_whitesp(*line, COL);
+	if (((*line)[COL] && (*line)[COL] != '\n' && (*line)[COL] != COMMENT_CHAR &&
+		(*line)[COL] != ALT_COMMENT_CHAR) || (!(*line)[COL] && (*line)[COL - 1] != '\n'))
 		print_error(line, Syntax, "Missing line feed at ", major);
 	create_token(line, major, token, Line_feed);
 }

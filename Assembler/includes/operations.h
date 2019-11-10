@@ -6,7 +6,7 @@
 /*   By: vhazelnu <vhazelnu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/02 16:36:10 by vhazelnu          #+#    #+#             */
-/*   Updated: 2019/11/07 10:31:08 by vhazelnu         ###   ########.fr       */
+/*   Updated: 2019/11/10 12:32:26 by vhazelnu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -162,7 +162,7 @@ static t_ops	g_ops[OP_NUMBER - 1] = {
 	{
 		.name = "lldi",
 		.opcode = 0x0e,
-		.args_number = 2,
+		.args_number = 3,
 		.args_type = {T_REG | T_DIR | T_IND, T_REG | T_DIR, T_REG},
 		.affect_carry = 1,
 		.args_type_code = 1,
