@@ -6,7 +6,7 @@
 /*   By: vhazelnu <vhazelnu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/30 18:07:38 by vhazelnu          #+#    #+#             */
-/*   Updated: 2019/11/10 16:30:51 by vhazelnu         ###   ########.fr       */
+/*   Updated: 2019/11/10 21:00:13 by vhazelnu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,25 +74,29 @@ int		check_quotes(char **line, t_major *major)
 
 int		validate_name_and_comment(char **line, t_major *major)
 {
-	int		ret;
+	bool	name;
+	bool	comment;
 
-	ret = 0;
 	ROW = 1;
+	name = 0;
+	comment = 0;
 	while (get_next_line(major->fd, line, 0))
 	{
 		COL = **line != '\n' ? ft_skip_whitesp(*line, 0) : 0;
-		if (line && *line && (*line)[COL] != '.' && (*line)[COL] != '\n' && ret < 2
-		&& (*line)[COL] != COMMENT_CHAR && (*line)[COL] != ALT_COMMENT_CHAR)
+		if (line && *line && (*line)[COL] != '.' && (*line)[COL] != '\n'
+		&& (*line)[COL] != COMMENT_CHAR && (*line)[COL] != ALT_COMMENT_CHAR
+		&& (!name || !comment))
 			print_error(line, Syntax, "Missing .name or .comment at ", major);
 		else if (line && *line && (!ft_strncmp(*line + COL, ".name", 5) ||
 			!ft_strncmp(*line + COL, ".comment", 8)))
 		{
 			COL = !ft_strncmp(*line + COL, ".name", 5) ? 5 + COL : 8 + COL;
+			name = COL < 8 ? 1 : name;
+			comment = COL >= 8 ? 1 : comment;
 			if (!check_quotes(line, major))
 				return (0);
-			ret++;
 		}
-		if (ret == 2)
+		if (name && comment)
 			return (1);
 		ft_strdel(line);
 		ROW++;

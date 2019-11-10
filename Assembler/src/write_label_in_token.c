@@ -6,7 +6,7 @@
 /*   By: vhazelnu <vhazelnu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/05 14:00:56 by vhazelnu          #+#    #+#             */
-/*   Updated: 2019/11/10 18:38:32 by vhazelnu         ###   ########.fr       */
+/*   Updated: 2019/11/10 20:44:30 by vhazelnu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ void	write_label_in_token(char **line, t_major *major, t_token **token, int type
 	COL = ft_skip_whitesp(*line, ++COL);
 	(*token)->last->type = type;
 	if ((*line)[COL] && (*line)[COL] != COMMENT_CHAR &&
-		(*line)[COL] != ALT_COMMENT_CHAR && (*line)[COL] != LABEL_CHAR)
+		(*line)[COL] != ALT_COMMENT_CHAR)
 		create_operation(line, major, token);
 }
 
