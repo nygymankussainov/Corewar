@@ -6,7 +6,7 @@
 /*   By: vhazelnu <vhazelnu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/30 14:36:26 by vhazelnu          #+#    #+#             */
-/*   Updated: 2019/11/11 18:32:30 by vhazelnu         ###   ########.fr       */
+/*   Updated: 2019/11/11 19:08:59 by vhazelnu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -114,7 +114,7 @@ void				validate_labels(t_token *token, t_major *major,
 	t_label *label);
 void				create_label_list(t_label **label, t_token *token,
 	int bytes);
-void				convert_in_byte_code(t_token *token, t_major *major);
+void				compile_into_bytecode(t_token *token, t_major *major);
 void				ft_itoh(int value, int size, t_major *major);
 void				free_structs(t_token *token, t_major *major);
 int					check_quotes(char **line, t_major *major);

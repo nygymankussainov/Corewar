@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   convert_in_byte_code.c                             :+:      :+:    :+:   */
+/*   compile_into_bytecode.c                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: vhazelnu <vhazelnu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/07 17:04:30 by vhazelnu          #+#    #+#             */
-/*   Updated: 2019/11/11 18:30:24 by vhazelnu         ###   ########.fr       */
+/*   Updated: 2019/11/11 19:09:24 by vhazelnu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,7 +81,7 @@ void	calculate_op_code(t_token *token, t_major *major)
 	}
 }
 
-void	convert_in_byte_code(t_token *token, t_major *major)
+void	compile_into_bytecode(t_token *token, t_major *major)
 {
 	COL = 0;
 	FD = open(major->filename, O_CREAT | O_WRONLY, S_IRUSR | S_IWUSR);

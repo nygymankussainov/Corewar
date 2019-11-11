@@ -6,7 +6,7 @@
 /*   By: vhazelnu <vhazelnu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/30 14:35:30 by vhazelnu          #+#    #+#             */
-/*   Updated: 2019/11/11 17:41:28 by vhazelnu         ###   ########.fr       */
+/*   Updated: 2019/11/11 19:10:01 by vhazelnu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ void	assembler(char *filename)
 	}
 	else if (!(token = validation(filename, major)))
 		exit(1);
-	convert_in_byte_code(token, major);
+	compile_into_bytecode(token, major);
 	free_structs(token, major);
 }
 
