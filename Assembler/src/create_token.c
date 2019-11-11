@@ -6,13 +6,14 @@
 /*   By: vhazelnu <vhazelnu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/04 15:09:09 by vhazelnu          #+#    #+#             */
-/*   Updated: 2019/11/07 12:21:00 by vhazelnu         ###   ########.fr       */
+/*   Updated: 2019/11/11 18:03:31 by vhazelnu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "asm.h"
 
-void	write_data_in_token(char **line, t_major *major, t_token **token, int type)
+void	write_data_in_token(char **line, t_major *major,
+	t_token **token, int type)
 {
 	if (type == Label)
 		write_label_in_token(line, major, token, type);

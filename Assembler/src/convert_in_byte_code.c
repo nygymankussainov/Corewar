@@ -6,7 +6,7 @@
 /*   By: vhazelnu <vhazelnu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/07 17:04:30 by vhazelnu          #+#    #+#             */
-/*   Updated: 2019/11/10 16:43:03 by vhazelnu         ###   ########.fr       */
+/*   Updated: 2019/11/11 18:30:24 by vhazelnu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,45 +32,49 @@ void	calculate_args_type_code(t_token *token, t_major *major, int arg_nbr)
 	ft_itoh(res, 1, major);
 }
 
+void	calc_opcode_for_dir_and_ind(t_token *token, t_major *major,
+	int dir_size)
+{
+	if (token->type == Direct)
+	{
+		token->value = dir_size == DIR_SIZE ?
+			(int32_t)token->value : (int16_t)token->value;
+		if (token->sign < 0)
+			ft_itoh(token->value * (int64_t)token->sign, dir_size, major);
+		else
+			ft_itoh(token->value, dir_size, major);
+	}
+	else
+	{
+		token->value = (int16_t)token->value;
+		if (token->sign < 0)
+			ft_itoh(token->value * (int64_t)token->sign, IND_SIZE, major);
+		else
+			ft_itoh(token->value, IND_SIZE, major);
+	}
+}
+
 void	calculate_op_code(t_token *token, t_major *major)
 {
 	int		arg_nbr;
 	int		i;
-	int		tmp;
-	int		sign;
+	int		dir_size;
 
 	arg_nbr = g_ops[token->index].args_number;
-	tmp = g_ops[token->index].t_dir_size;
+	dir_size = g_ops[token->index].t_dir_size;
 	ft_itoh(g_ops[token->index].opcode, 1, major);
 	if (g_ops[token->index].args_type_code)
 		calculate_args_type_code(token, major, arg_nbr);
 	i = 0;
 	while (i < arg_nbr)
 	{
-		sign = token->value < 0 ? -1 : 0;
-		token->value *= token->value < 0 ? -1 : 1;
 		if (token->type == Register || token->type == Direct ||
 			token->type == Indirect)
 		{
 			if (token->type == Register)
 				ft_itoh(token->value, 1, major);
-			else if (token->type == Direct)
-			{
-				token->value = tmp == DIR_SIZE ?
-					(int32_t)token->value : (int16_t)token->value;
-				if (sign < 0)
-					ft_itoh(token->value * (int64_t)sign, tmp, major);
-				else
-					ft_itoh(token->value, tmp, major);
-			}
 			else
-			{
-				token->value = (int16_t)token->value;
-				if (sign < 0)
-					ft_itoh(token->value * (int64_t)sign, IND_SIZE, major);
-				else
-					ft_itoh(token->value, IND_SIZE, major);
-			}
+				calc_opcode_for_dir_and_ind(token, major, dir_size);
 			i++;
 		}
 		token = token->next;

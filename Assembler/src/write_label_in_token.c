@@ -6,20 +6,22 @@
 /*   By: vhazelnu <vhazelnu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/05 14:00:56 by vhazelnu          #+#    #+#             */
-/*   Updated: 2019/11/10 20:44:30 by vhazelnu         ###   ########.fr       */
+/*   Updated: 2019/11/11 18:31:19 by vhazelnu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "asm.h"
 
-void	write_label_in_token(char **line, t_major *major, t_token **token, int type)
+void	write_label_in_token(char **line, t_major *major,
+	t_token **token, int type)
 {
 	int		i;
 
 	i = COL;
 	while (i >= 0 && (*line)[i] && !iswhitesp((*line)[i]))
 	{
-		if (!ft_islower((*line)[i]) && !ft_isdigit((*line)[i]) && (*line)[i] != '_')
+		if (!ft_islower((*line)[i]) && !ft_isdigit((*line)[i]) &&
+			(*line)[i] != '_')
 		{
 			COL = i;
 			print_error(line, Lexical, "Invalid symbol at ", major);
@@ -44,7 +46,8 @@ void	write_ind_label_in_token(char **line, t_major *major, t_token **token)
 	while ((*line)[COL] && !iswhitesp((*line)[COL]) &&
 	(*line)[COL] != SEPARATOR_CHAR)
 	{
-		if (!ft_islower((*line)[COL]) && !ft_isdigit((*line)[COL]) && (*line)[COL] != '_')
+		if (!ft_islower((*line)[COL]) && !ft_isdigit((*line)[COL]) &&
+			(*line)[COL] != '_')
 			print_error(line, Lexical, "Invalid symbol at ", major);
 		COL++;
 	}

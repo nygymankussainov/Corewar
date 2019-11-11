@@ -6,7 +6,7 @@
 /*   By: vhazelnu <vhazelnu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/30 14:36:26 by vhazelnu          #+#    #+#             */
-/*   Updated: 2019/11/10 16:50:48 by vhazelnu         ###   ########.fr       */
+/*   Updated: 2019/11/11 18:32:30 by vhazelnu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,6 +68,7 @@ typedef struct		s_token
 	bool			label;
 	int				row;
 	int				col;
+	int				sign;
 	struct s_token	*next;
 	struct s_token	*prev;
 	struct s_token	*last;
@@ -79,7 +80,6 @@ typedef struct		s_label
 	int				bytes;
 	struct s_label	*next;
 }					t_label;
-
 
 void				print_token(t_token *token);
 int					print_error(char **line, int type,
@@ -95,7 +95,7 @@ void				create_operation(char **line, t_major *major,
 	t_token **token);
 void				validate_operation(char **line, t_major *major,
 	t_token **token);
-void	validate_number(char **line, t_major *major,
+void				validate_number(char **line, t_major *major,
 	t_token **token, char c);
 
 void				write_label_in_token(char **line, t_major *major,
@@ -110,9 +110,13 @@ void				validate_register(char **line, t_major *major,
 	t_token **token);
 int					find_operation(char *name);
 t_token				*validate_args(t_token *token, t_major *major);
-void				validate_labels(t_token *token, t_major *major, t_label *label);
-void				create_label_list(t_label **label, t_token *token, int bytes);
+void				validate_labels(t_token *token, t_major *major,
+	t_label *label);
+void				create_label_list(t_label **label, t_token *token,
+	int bytes);
 void				convert_in_byte_code(t_token *token, t_major *major);
 void				ft_itoh(int value, int size, t_major *major);
+void				free_structs(t_token *token, t_major *major);
+int					check_quotes(char **line, t_major *major);
 
 #endif

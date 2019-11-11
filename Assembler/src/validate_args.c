@@ -6,7 +6,7 @@
 /*   By: vhazelnu <vhazelnu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/06 17:41:35 by vhazelnu          #+#    #+#             */
-/*   Updated: 2019/11/10 14:57:06 by vhazelnu         ###   ########.fr       */
+/*   Updated: 2019/11/11 17:47:58 by vhazelnu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,16 +47,12 @@ int		is_arg(t_token *token, int i)
 	return (0);
 }
 
-t_token	*validate_args(t_token *token, t_major *major)
+int		count_and_validate_args(t_token *token, t_major *major, int i)
 {
-	int		count;
-	int		i;
+	int		args_nb;
 	int		bytes;
 
-	i = find_operation(token->name);
-	token->index = i;
-	count = 0;
-	token->bytes = major->bytes;
+	args_nb = 0;
 	bytes = 0;
 	while (token && token->type != Line_feed)
 	{
@@ -64,18 +60,29 @@ t_token	*validate_args(t_token *token, t_major *major)
 		{
 			COL = token->col;
 			ROW = token->row;
-			if (!(token->type & g_ops[i].args_type[count]))
+			if (!(token->type & g_ops[i].args_type[args_nb]))
 				print_error(NULL, Syntax, "Invalid argument at ", major);
-			if (token->next->type != Line_feed && token->next->type != Separator)
+			if (token->next->type != Line_feed &&
+				token->next->type != Separator)
 				print_error(NULL, Syntax, "Missing separator at ", major);
-			count++;
+			args_nb++;
 		}
 		token = token->next;
 	}
-	if (count != g_ops[i].args_number)
-		print_error(NULL, Syntax, "Invalid number of arguments ", major);
 	major->bytes += g_ops[i].args_type_code + bytes + 1;
-	// if (major->bytes > CHAMP_MAX_SIZE)
-	// 	print_error(NULL, Syntax, "Your champion is overweighted ", major);
+	return (args_nb);
+}
+
+t_token	*validate_args(t_token *token, t_major *major)
+{
+	int		i;
+	int		args_nb;
+
+	i = find_operation(token->name);
+	token->index = i;
+	token->bytes = major->bytes;
+	args_nb = count_and_validate_args(token, major, i);
+	if (args_nb != g_ops[i].args_number)
+		print_error(NULL, Syntax, "Invalid number of arguments ", major);
 	return (token);
 }
