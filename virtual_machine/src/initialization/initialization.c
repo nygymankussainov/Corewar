@@ -6,7 +6,7 @@
 /*   By: egiant <egiant@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/30 13:41:08 by egiant            #+#    #+#             */
-/*   Updated: 2019/11/06 15:43:02 by egiant           ###   ########.fr       */
+/*   Updated: 2019/11/11 17:37:04 by egiant           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ t_carriage		*init_carriage(t_corewar *vm, t_core *player)
 	carriage->next = NULL;
 	while (n != 0)
 		carriage->registers[n--] = 0;
-	carriage->registers[0] = -((int)(player->id));
+	carriage->registers[0] = -(player->id);
 	carriage->player = player;
 	return (carriage);
 }
@@ -75,8 +75,8 @@ t_corewar		*init_vm(void)
 	vm->start_carriage = NULL;
 	vm->winner_id = 0;
 	vm->total_cycles = 0;
-	vm->current_cycles = 0;
-	vm->cycles_to_die = 0;
+	//vm->current_cycles = 0;
+	vm->cycles_to_die = CYCLE_TO_DIE;
 	vm->check_count = 0;
 	return(vm);
 }

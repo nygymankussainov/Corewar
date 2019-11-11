@@ -6,7 +6,7 @@
 /*   By: egiant <egiant@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/06 13:44:29 by egiant            #+#    #+#             */
-/*   Updated: 2019/11/06 15:34:28 by egiant           ###   ########.fr       */
+/*   Updated: 2019/11/11 15:53:35 by egiant           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,9 +27,7 @@ void			set_carriages(t_corewar *vm, uint16_t position_step)
 	{
 		cur_carriage->id = n + 1;
 		cur_carriage->position = (cur_carriage->next)
-			? vm->arena[cur_carriage->next->id * position_step] : vm->arena[0];
-		cur_carriage->adress = (cur_carriage->next)
-					? &(vm->arena[cur_carriage->next->id * position_step]) : &(vm->arena[0]);
+			? cur_carriage->next->id * position_step : 0;
 		if (i != 0)
 		{
 			new_carriage = init_carriage(vm, vm->cores[++n]);

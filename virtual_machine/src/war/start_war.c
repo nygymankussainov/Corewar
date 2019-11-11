@@ -6,42 +6,75 @@
 /*   By: egiant <egiant@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/02 14:50:41 by hfrankly          #+#    #+#             */
-/*   Updated: 2019/11/06 16:56:16 by egiant           ###   ########.fr       */
+/*   Updated: 2019/11/11 18:10:07 by egiant           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "virtual_machine.h"
 
-void				do_op(t_corewar *vm, t_carriage *carriage, t_operation op)
+void				carriage_actions(t_corewar *vm)
 {
-	static uint8_t	args[3];
-	uint8_t			*args_byte_code;
+	t_carriage		*tmp;
+	uint8_t			byte_with_command;
+	t_operation		op;
 
-	args_byte_code = carriage->adress + 1;
-	printf("%hhu\n", *args_byte_code);
-	//перейти на следующий байт в памяти
-	//считать код аргументов, записать их в args /пример: 68 - 01 10 10 00
-	//зная сколько байт занимает значение каждого аргумента получить значения и выполнить операцию
-	
-
+	tmp = vm->start_carriage;
+	while (tmp) //пока не кончатся каретки считываю их команды
+	{
+		if (tmp->cycles_before_operation == 0)
+		{
+			if (tmp->operation != 0)
+			{
+				//выполнить операцию
+				op = op_array[tmp->operation - 1];
+				op_array[tmp->operation - 1].func(vm, tmp->position + 1);
+				tmp->operation = 0;
+				tmp->cycles_before_operation = 0;
+			}
+			else
+			{
+				// записать в каретку новую операцию
+				byte_with_command = vm->arena[tmp->position];
+				if (byte_with_command >= 1 && byte_with_command <= 11)
+				{
+					tmp->operation = byte_with_command;
+					tmp->cycles_before_operation = op_array[byte_with_command - 1].cycles_to_execution;
+				}
+			}
+		}
+		else
+			tmp->cycles_before_operation--;
+		tmp = tmp->next;
+	}
 }
 
 void				start_war(t_corewar *vm)
 {
-	t_carriage		*tmp;
-	uint8_t			*byte_with_command;
-	t_operation		op;
-
-	tmp = vm->start_carriage;
-	while (tmp) //пока не кончатся каретки? считываю их команды
+	while (1)
 	{
-		byte_with_command = &tmp->position;
-		if (*byte_with_command >= 1 && *byte_with_command <= 11)
+		if (vm->cycles_to_die <= 0)
 		{
-			op = op_array[*byte_with_command - 1];
-			do_op(vm, tmp, op);
+			//удалять все каретки и печатать имя победителя?
+			// exit
 		}
-		tmp = tmp->next;
+		else if (vm->total_cycles == vm->cycles_to_die)
+		{
+			vm->check_count++;
+			//ПРОВЕРКА ВСЕХ КАРЕТОК
+			// Мертвой считается каретка, которая выполняла операцию live cycles_to_die циклов назад или более
+			if (vm->live_count >= NBR_LIVE)
+				vm->cycles_to_die -= CYCLE_DELTA;
+			vm->total_cycles = 0;
+			vm->live_count = 0;
+		}
+		else if (vm->check_count >= MAX_CHECKS)
+		{
+			vm->cycles_to_die -= CYCLE_DELTA;
+		}
+		else
+		{
+			carriage_actions(vm);
+		}
 	}
 }
 

@@ -6,7 +6,7 @@
 /*   By: egiant <egiant@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/30 16:29:38 by hfrankly          #+#    #+#             */
-/*   Updated: 2019/11/06 15:18:51 by egiant           ###   ########.fr       */
+/*   Updated: 2019/11/11 17:36:51 by egiant           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,9 +35,10 @@ typedef struct 		s_corewar {
 	uint8_t			arena[MEM_SIZE];
 	t_carriage		*start_carriage;
 	uint8_t			winner_id;
-	uint32_t		total_cycles;
-	uint32_t		current_cycles;
 	uint32_t		cycles_to_die;
+	uint32_t		total_cycles;
+	uint32_t		live_count;
+	//uint32_t		current_cycles;
 	uint32_t		check_count;
 }					t_corewar;
 
@@ -56,13 +57,11 @@ typedef struct 		s_carriage {
 	uint8_t			operation;
 	t_core			*player;
 	int32_t			registers[REG_NUMBER];
-	uint8_t			position;
+	uint16_t		position;
 	uint32_t		cycle_was_live;
 	uint32_t		cycles_before_operation;
 	uint32_t		offset_next_operation;
 	t_carriage		*next;
-
-	uint8_t			*adress;
 }					t_carriage;
 
 /*
