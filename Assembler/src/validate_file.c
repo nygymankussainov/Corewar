@@ -6,7 +6,7 @@
 /*   By: vhazelnu <vhazelnu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/30 17:28:46 by vhazelnu          #+#    #+#             */
-/*   Updated: 2019/11/10 16:33:42 by vhazelnu         ###   ########.fr       */
+/*   Updated: 2019/11/11 13:52:11 by vhazelnu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ void	validate_file(char *file, t_major *major)
 	if (FD < 0 || file[len - 1] != 's' || file[len - 2] != '.')
 	{
 		if (FD < 0)
-			perror("Error");
+			perror("");
 		else
 			putstrerr("Invalid file name. Missing .s extension\n");
 		exit(1);
