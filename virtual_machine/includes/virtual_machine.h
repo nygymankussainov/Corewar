@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   virtual_machine.h                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: egiant <egiant@student.42.fr>              +#+  +:+       +#+        */
+/*   By: hfrankly <hfrankly@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/30 16:29:38 by hfrankly          #+#    #+#             */
-/*   Updated: 2019/11/06 15:18:51 by egiant           ###   ########.fr       */
+/*   Updated: 2019/11/12 19:09:05 by hfrankly         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,10 +16,8 @@
 #include <stdint.h>
 #include <stdbool.h>
 #include <errno.h>
-
 #include "libft.h"
 #include "ft_printf.h"
-
 #include "op.h"
 #include "operations.h"
 
@@ -37,14 +35,15 @@ typedef struct 		s_corewar {
 	uint8_t			winner_id;
 	uint32_t		total_cycles;
 	uint32_t		current_cycles;
-	uint32_t		cycles_to_die;
+	int32_t			cycles_to_die;
+	uint32_t		live_count;
 	uint32_t		check_count;
 }					t_corewar;
 
 typedef struct s_core {
 	uint8_t			id;
-	char			name[PROG_NAME_LENGTH];
-	char			comment[COMMENT_LENGTH];
+	char			name[PROG_NAME_LENGTH + 1];
+	char			comment[COMMENT_LENGTH + 1];
 	uint16_t		exec_code_size;
 	uint8_t			exec_code[CHAMP_MAX_SIZE];
 	struct s_core	*next;
@@ -53,15 +52,14 @@ typedef struct s_core {
 typedef struct 		s_carriage {
 	uint8_t			id;
 	bool			carry;
-	uint8_t			operation;
+	t_operation		*operation;
 	t_core			*player;
-	int32_t			registers[REG_NUMBER];
-	uint8_t			position;
+	uint8_t			registers[REG_NUMBER];
+	uint16_t		position;
 	uint32_t		cycle_was_live;
 	uint32_t		cycles_before_operation;
 	uint32_t		offset_next_operation;
 	t_carriage		*next;
-
 	uint8_t			*adress;
 }					t_carriage;
 
@@ -94,6 +92,11 @@ void				termination_with_perror(char *error_string, int code);
 // war
 */
 void				start_war(t_corewar *vm);
+void				check(t_corewar *vm);
+void				execute_carriages(t_corewar *vm);
+void				set_arg_code(t_corewar *vm, t_carriage *carriage, int8_t **arg_code);
+bool				is_valid_format(t_corewar *vm, t_carriage *carriage, int8_t arg_code[4]);
+void				pass_args_bits(t_corewar *vm, t_carriage *carriage, int8_t arg_code[4]);
 
 #endif
 

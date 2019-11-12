@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   initialization.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: egiant <egiant@student.42.fr>              +#+  +:+       +#+        */
+/*   By: hfrankly <hfrankly@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/30 13:41:08 by egiant            #+#    #+#             */
-/*   Updated: 2019/11/06 15:43:02 by egiant           ###   ########.fr       */
+/*   Updated: 2019/11/10 16:32:34 by hfrankly         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ t_carriage		*init_carriage(t_corewar *vm, t_core *player)
 		termination_with_perror("Error", ENOMEM);
 	carriage->id = (vm->start_carriage) ? vm->start_carriage->id + 1 : 0;
 	carriage->carry = false;
-	carriage->operation = 0;
+	carriage->operation = NULL;
 	carriage->position = 0;
 	carriage->cycle_was_live = 0; //цикл, в котором в последний раз была выполнена операция live
 	carriage->cycles_before_operation = 0; //количество циклов, оставшиеся до исполнения операции, на которой стоит каретка
@@ -76,7 +76,8 @@ t_corewar		*init_vm(void)
 	vm->winner_id = 0;
 	vm->total_cycles = 0;
 	vm->current_cycles = 0;
-	vm->cycles_to_die = 0;
+	vm->cycles_to_die = CYCLE_TO_DIE;
 	vm->check_count = 0;
+	vm->live_count = 0;
 	return(vm);
 }

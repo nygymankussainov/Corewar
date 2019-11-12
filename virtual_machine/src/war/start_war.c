@@ -3,45 +3,28 @@
 /*                                                        :::      ::::::::   */
 /*   start_war.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: egiant <egiant@student.42.fr>              +#+  +:+       +#+        */
+/*   By: hfrankly <hfrankly@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/02 14:50:41 by hfrankly          #+#    #+#             */
-/*   Updated: 2019/11/06 16:56:16 by egiant           ###   ########.fr       */
+/*   Updated: 2019/11/12 20:04:04 by hfrankly         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "virtual_machine.h"
 
-void				do_op(t_corewar *vm, t_carriage *carriage, t_operation op)
-{
-	static uint8_t	args[3];
-	uint8_t			*args_byte_code;
-
-	args_byte_code = carriage->adress + 1;
-	printf("%hhu\n", *args_byte_code);
-	//перейти на следующий байт в памяти
-	//считать код аргументов, записать их в args /пример: 68 - 01 10 10 00
-	//зная сколько байт занимает значение каждого аргумента получить значения и выполнить операцию
-	
-
-}
-
 void				start_war(t_corewar *vm)
 {
 	t_carriage		*tmp;
-	uint8_t			*byte_with_command;
+	uint8_t			byte_with_command;
 	t_operation		op;
 
 	tmp = vm->start_carriage;
-	while (tmp) //пока не кончатся каретки? считываю их команды
+	while (vm->start_carriage)
 	{
-		byte_with_command = &tmp->position;
-		if (*byte_with_command >= 1 && *byte_with_command <= 11)
-		{
-			op = op_array[*byte_with_command - 1];
-			do_op(vm, tmp, op);
-		}
-		tmp = tmp->next;
+		if (vm->current_cycles == vm->cycles_to_die)
+			check(vm);
+		else
+			execute_carriages(vm);
 	}
 }
 

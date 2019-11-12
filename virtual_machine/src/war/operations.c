@@ -58,7 +58,7 @@ void				op_ldi(t_corewar *vm)
 
 void				op_sti(t_corewar *vm)
 {
-
+    ft_printf("HELLO\n");
 }
 
 void				op_fork(t_corewar *vm)

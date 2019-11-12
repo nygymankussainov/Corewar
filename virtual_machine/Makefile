@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: egiant <egiant@student.42.fr>              +#+  +:+       +#+         #
+#    By: hfrankly <hfrankly@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/10/30 17:56:58 by hfrankly          #+#    #+#              #
-#    Updated: 2019/11/06 13:49:32 by egiant           ###   ########.fr        #
+#    Updated: 2019/11/12 14:40:19 by hfrankly         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -34,6 +34,9 @@ SOURCES =	main.c \
 			validation/read_byte_code.c \
 			war/start_war.c \
 			war/operations.c \
+			war/check.c \
+			war/carriage_execution.c \
+			war/execute_op.c \
 			exit.c \
 
 
