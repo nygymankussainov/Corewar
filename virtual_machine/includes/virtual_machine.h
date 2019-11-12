@@ -6,7 +6,7 @@
 /*   By: egiant <egiant@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/30 16:29:38 by hfrankly          #+#    #+#             */
-/*   Updated: 2019/11/11 17:36:51 by egiant           ###   ########.fr       */
+/*   Updated: 2019/11/12 14:23:55 by egiant           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,6 +93,7 @@ void				termination_with_perror(char *error_string, int code);
 // war
 */
 void				start_war(t_corewar *vm);
+void				display_array(uint8_t *array, uint16_t rows, uint16_t cols);
 
 #endif
 

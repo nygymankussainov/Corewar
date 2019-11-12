@@ -6,7 +6,7 @@
 /*   By: egiant <egiant@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/02 14:50:41 by hfrankly          #+#    #+#             */
-/*   Updated: 2019/11/11 18:20:43 by egiant           ###   ########.fr       */
+/*   Updated: 2019/11/12 15:08:51 by egiant           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,9 +27,11 @@ void				carriage_actions(t_corewar *vm)
 			{
 				//выполнить операцию
 				op = op_array[tmp->operation - 1];
-				op_array[tmp->operation - 1].func(vm, tmp->position + 1);
+				op_array[tmp->operation - 1].func(vm, tmp);
 				tmp->operation = 0;
 				tmp->cycles_before_operation = 0;
+				//если после выполнения операции в каретку сразу нужно записать новую - изменить следующее условие
+				//(убрать/модифицировать esle)
 			}
 			else
 			{
@@ -40,6 +42,8 @@ void				carriage_actions(t_corewar *vm)
 					tmp->operation = byte_with_command;
 					tmp->cycles_before_operation = op_array[byte_with_command - 1].cycles_to_execution;
 				}
+				else
+					tmp->position++; //Если же код операции ошибочен, необходимо просто переместить каретку на следующий байт.
 			}
 		}
 		else
@@ -52,7 +56,7 @@ void				start_war(t_corewar *vm)
 {
 	while (1)
 	{
-		if (vm->cycles_to_die <= 0)
+		if (vm->cycles_to_die <= 0) //или нет кареток
 		{
 			//удалять все каретки и печатать имя победителя?
 			// exit
@@ -75,6 +79,7 @@ void				start_war(t_corewar *vm)
 		{
 			carriage_actions(vm);
 		}
+		vm->total_cycles++;
 	}
 }
 
