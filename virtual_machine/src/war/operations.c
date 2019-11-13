@@ -6,7 +6,7 @@
 /*   By: hfrankly <hfrankly@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/13 16:06:18 by hfrankly          #+#    #+#             */
-/*   Updated: 2019/11/13 16:37:46 by hfrankly         ###   ########.fr       */
+/*   Updated: 2019/11/13 17:52:04 by hfrankly         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ void				op_live(t_corewar *vm, t_carriage *carriage, int8_t *arg_code)
 
 	vm->live_count++;
     carriage->cycle_was_live = vm->total_cycles + vm->current_cycles;
-	player_code = 256 - arg_code[0];
+	player_code = return_bytes(vm->arena, carriage->position + 1, 4);
     if (player_code > 0 && player_code <= MAX_PLAYERS)
     {
 		core = vm->cores[player_code];
@@ -99,21 +99,62 @@ void				op_sub(t_corewar *vm, t_carriage *carriage, int8_t *arg_code)
 
 void				op_and(t_corewar *vm, t_carriage *carriage, int8_t *arg_code)
 {
+	int32_t		position;
 	int32_t		arg1;
 	int32_t		arg2;
+	uint8_t		reg;
 
-	if (arg_code[0])
-		arg1 = return_bytes(vm->arena, carriage->position + 2, T_REG);
+	position = carriage->position + 2;
+	arg1 = return_bytes(vm->arena, position, type_sizes[arg_code[0] - 1]);
+	position += type_sizes[arg_code[0] - 1];
+	arg2 = return_bytes(vm->arena, position, type_sizes[arg_code[1] - 1]);
+	position += type_sizes[arg_code[1] - 1];
+	reg = return_bytes(vm->arena, position, T_REG);
+	if (arg_code[0] == 3)
+		arg1 = return_bytes(vm->arena, (carriage->position + arg1 % IDX_MOD) % MEM_SIZE, 4);
+	if (arg_code[1] == 3)
+		arg2 = return_bytes(vm->arena, (carriage->position + arg2 % IDX_MOD) % MEM_SIZE, 4);
+	carriage->registers[reg] = arg1 & arg2;
 }
 
 void				op_or(t_corewar *vm, t_carriage *carriage, int8_t *arg_code)
 {
+	int32_t		position;
+	int32_t		arg1;
+	int32_t		arg2;
+	uint8_t		reg;
 
+	position = carriage->position + 2;
+	arg1 = return_bytes(vm->arena, position, type_sizes[arg_code[0] - 1]);
+	position += type_sizes[arg_code[0] - 1];
+	arg2 = return_bytes(vm->arena, position, type_sizes[arg_code[1] - 1]);
+	position += type_sizes[arg_code[1] - 1];
+	reg = return_bytes(vm->arena, position, T_REG);
+	if (arg_code[0] == 3)
+		arg1 = return_bytes(vm->arena, (carriage->position + arg1 % IDX_MOD) % MEM_SIZE, 4);
+	if (arg_code[1] == 3)
+		arg2 = return_bytes(vm->arena, (carriage->position + arg2 % IDX_MOD) % MEM_SIZE, 4);
+	carriage->registers[reg] = arg1 | arg2;
 }
 
 void				op_xor(t_corewar *vm, t_carriage *carriage, int8_t *arg_code)
 {
+	int32_t		position;
+	int32_t		arg1;
+	int32_t		arg2;
+	uint8_t		reg;
 
+	position = carriage->position + 2;
+	arg1 = return_bytes(vm->arena, position, type_sizes[arg_code[0] - 1]);
+	position += type_sizes[arg_code[0] - 1];
+	arg2 = return_bytes(vm->arena, position, type_sizes[arg_code[1] - 1]);
+	position += type_sizes[arg_code[1] - 1];
+	reg = return_bytes(vm->arena, position, T_REG);
+	if (arg_code[0] == 3)
+		arg1 = return_bytes(vm->arena, (carriage->position + arg1 % IDX_MOD) % MEM_SIZE, 4);
+	if (arg_code[1] == 3)
+		arg2 = return_bytes(vm->arena, (carriage->position + arg2 % IDX_MOD) % MEM_SIZE, 4);
+	carriage->registers[reg] = arg1 ^ arg2;
 }
 
 void				op_zjmp(t_corewar *vm, t_carriage *carriage, int8_t *arg_code)

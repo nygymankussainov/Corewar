@@ -6,7 +6,7 @@
 /*   By: hfrankly <hfrankly@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/13 13:17:43 by hfrankly          #+#    #+#             */
-/*   Updated: 2019/11/13 13:19:35 by hfrankly         ###   ########.fr       */
+/*   Updated: 2019/11/13 16:57:02 by hfrankly         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,7 @@ void				op_lldi(t_corewar *vm, t_carriage *carriage, int8_t *arg_code);
 void				op_lfork(t_corewar *vm, t_carriage *carriage, int8_t *arg_code);
 void				op_aff(t_corewar *vm, t_carriage *carriage, int8_t *arg_code);
 
+static uint8_t			type_sizes[3] = {1, 2, 4};
 
 static t_operation		op_array[16] = {
 	{

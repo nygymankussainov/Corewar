@@ -6,7 +6,7 @@
 /*   By: hfrankly <hfrankly@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/02 14:50:41 by hfrankly          #+#    #+#             */
-/*   Updated: 2019/11/12 20:04:04 by hfrankly         ###   ########.fr       */
+/*   Updated: 2019/11/13 17:59:47 by hfrankly         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@ void				start_war(t_corewar *vm)
 	t_operation		op;
 
 	tmp = vm->start_carriage;
+	ft_printf("%d\n", vm->cycles_to_die);
 	while (vm->start_carriage)
 	{
 		if (vm->current_cycles == vm->cycles_to_die)

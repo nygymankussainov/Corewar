@@ -6,7 +6,7 @@
 #    By: hfrankly <hfrankly@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/10/30 17:56:58 by hfrankly          #+#    #+#              #
-#    Updated: 2019/11/13 16:09:21 by hfrankly         ###   ########.fr        #
+#    Updated: 2019/11/13 17:21:59 by hfrankly         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -45,7 +45,7 @@ SRC = $(addprefix $(SRCDIR)/, $(SOURCES))
 
 OBJ = $(addprefix $(OBJDIR)/, $(SOURCES:.c=.o))
 
-CCFL = -g -Wall -Wextra -Wextra
+CCFL = -g
 
 all: obj_dir library $(ARCHIVE) $(NAME)
 
