@@ -16,25 +16,25 @@ typedef struct		s_operation
 	bool			changes_carry; //1 или 0
 	uint8_t			t_dir_size;
 	uint16_t		cycles_to_execution;
-	void			(*func)(t_corewar *, t_carriage *);
+	void			(*func)(t_corewar *, t_carriage *, int8_t *);
 }					t_operation;
 
-void				op_live(t_corewar *, t_carriage *);
-void				op_ld(t_corewar *, t_carriage *);
-void				op_st(t_corewar *, t_carriage *);
-void				op_add(t_corewar *, t_carriage *);
-void				op_sub(t_corewar *, t_carriage *);
-void				op_and(t_corewar *, t_carriage *);
-void				op_or(t_corewar *, t_carriage *);
-void				op_xor(t_corewar *, t_carriage *);
-void				op_zjmp(t_corewar *, t_carriage *);
-void				op_ldi(t_corewar *, t_carriage *);
-void				op_sti(t_corewar *, t_carriage *);
-void				op_fork(t_corewar *, t_carriage *);
-void				op_lld(t_corewar *, t_carriage *);
-void				op_lldi(t_corewar *, t_carriage *);
-void				op_lfork(t_corewar *, t_carriage *);
-void				op_aff(t_corewar *, t_carriage *);
+void				op_live(t_corewar *, t_carriage *, int8_t *);
+void				op_ld(t_corewar *, t_carriage *, int8_t *);
+void				op_st(t_corewar *, t_carriage *, int8_t *);
+void				op_add(t_corewar *, t_carriage *, int8_t *);
+void				op_sub(t_corewar *, t_carriage *, int8_t *);
+void				op_and(t_corewar *, t_carriage *, int8_t *);
+void				op_or(t_corewar *, t_carriage *, int8_t *);
+void				op_xor(t_corewar *, t_carriage *, int8_t *);
+void				op_zjmp(t_corewar *, t_carriage *, int8_t *);
+void				op_ldi(t_corewar *, t_carriage *, int8_t *);
+void				op_sti(t_corewar *, t_carriage *, int8_t *);
+void				op_fork(t_corewar *, t_carriage *, int8_t *);
+void				op_lld(t_corewar *, t_carriage *, int8_t *);
+void				op_lldi(t_corewar *, t_carriage *, int8_t *);
+void				op_lfork(t_corewar *, t_carriage *, int8_t *);
+void				op_aff(t_corewar *, t_carriage *, int8_t *);
 
 
 static t_operation		op_array[16] = {

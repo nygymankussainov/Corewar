@@ -6,7 +6,7 @@
 /*   By: egiant <egiant@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/30 16:29:38 by hfrankly          #+#    #+#             */
-/*   Updated: 2019/11/13 10:23:01 by egiant           ###   ########.fr       */
+/*   Updated: 2019/11/13 11:03:39 by egiant           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,7 +100,7 @@ void				pass_args_bits(t_corewar *vm, t_carriage *carriage, int8_t arg_code[4]);
 /*
 // display_array
 */
-void			display_array(uint8_t *array, uint16_t rows, uint16_t cols)
+void			display_array(uint8_t *array, uint16_t rows, uint16_t cols);
 
 #endif
 
