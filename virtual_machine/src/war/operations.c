@@ -6,7 +6,7 @@ T_DIR 10   - 2
 T_IND 11   - 3
 
 1:
-ld+, ldi+, lld+, lldi, st+, sti+, and, or, xor
+ld+, ldi+, lld+, lldi+, st+, sti+, and, or, xor
 2:
 live, add, sub, zjmp, fork, lfork, aff
 */
