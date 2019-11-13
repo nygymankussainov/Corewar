@@ -6,7 +6,7 @@
 /*   By: egiant <egiant@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/12 14:38:51 by hfrankly          #+#    #+#             */
-/*   Updated: 2019/11/13 12:55:31 by egiant           ###   ########.fr       */
+/*   Updated: 2019/11/13 16:44:52 by egiant           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,12 +86,6 @@ bool	is_valid_format(t_corewar *vm, t_carriage *carriage, int8_t *arg_code)
 			i++;
 		}
 	}
-	// после операции без кода типов аргументов нужно считать T_DIR (live - 4 байта, остальные случаи - 2)
-
-	//зачем это условие?
-	// /else if (vm->arena[(carriage->position + 1) % MEM_SIZE] < 1 ||
-			// vm->arena[(carriage->position + 1) % MEM_SIZE] > REG_NUMBER)
-		// return (false);
 	return (true);
 }
 

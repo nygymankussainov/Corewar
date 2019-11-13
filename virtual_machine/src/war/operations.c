@@ -1,39 +1,71 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   operations.c                                       :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: egiant <egiant@student.42.fr>              +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2019/11/13 16:06:18 by hfrankly          #+#    #+#             */
+/*   Updated: 2019/11/13 17:28:28 by egiant           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "virtual_machine.h"
 
 /*
-T_REG 01   - 1
-T_DIR 10   - 2
-T_IND 11   - 3
-
-1:
-ld+, ldi+, lld+, lldi+, st+, sti+, and, or, xor
-2:
+T_REG 01
+T_DIR 10
+T_IND 11
 live, add, sub, zjmp, fork, lfork, aff
 */
 
-/*
-На операцию live возложены две функции:
-1. Она засчитывает, что каретка, которая выполняет операцию live, жива.
-2. Если указанный в качестве аргумента операции live номер совпадает с номером игрока, то она засчитывает,
-что это игрок жив. Например, если значение аргумента равно -2, значит игрок с номером 2 жив.
-*/
+int32_t				return_bytes(uint8_t *arena, uint16_t position, uint8_t bytes_nbr)
+{
+	int32_t		res;
+
+	res = 0;
+	if (bytes_nbr == 1)
+		res = arena[position % MEM_SIZE];
+	else if (bytes_nbr == 2)
+		res = arena[position % MEM_SIZE] << 8 |
+				arena[(position + 1) % MEM_SIZE];
+	else if	(bytes_nbr == 4)
+		res = arena[position % MEM_SIZE] << 24 |
+			arena[(position + 1) % MEM_SIZE] << 16 |
+			arena[(position + 2) % MEM_SIZE] << 8 |
+			arena[(position + 3) % MEM_SIZE];
+	else
+		ft_printf("Wrong bytes_nbr");
+	return(res);
+}
+
 void				op_live(t_corewar *vm, t_carriage *carriage, int8_t *arg_code)
 {
-	uint8_t			help;
-	uint8_t			player_id;
-	//uint32_t		player_id;
-	uint16_t		pos = carriage->position + 1;
+	t_core	*core;
+	uint8_t	player_code;
+	uint32_t player_id;
+		uint16_t		pos;
 
-	carriage->cycle_was_live = vm->current_cycles + vm->total_cycles;
 	vm->live_count++;
+    carriage->cycle_was_live = vm->total_cycles + vm->current_cycles;
+	
 	//зачемсчитывать 4 байта, если id игрока не может быть длинне одного? считать один байт?
-	//player_id = vm->arena[pos % MEM_SIZE] << 24 | vm->arena[(pos + 1) % MEM_SIZE] << 16 | vm->arena[(pos + 2) % MEM_SIZE] << 8 | vm->arena[(pos + 3) % MEM_SIZE];
-	player_id = vm->arena[pos % MEM_SIZE];
+	pos = carriage->position + 1;
+	player_id = return_bytes(vm->arena, pos, 4);
 	//help = player_id >> 24;
-	player_id = 256 - player_id;
-	if (player_id > 0 && player_id <= vm->number_of_players)
-		printf("Player %d (%s) is said to be alive\n", player_id, vm->cores[player_id - 1]->name);
+	//player_id = 256 - player_id;
+	//if (player_id > 0 && player_id <= vm->number_of_players)
+	//	printf("Player %d (%s) is said to be alive\n", player_id, vm->cores[player_id - 1]->name);
+	////
 
+
+	player_code = 256 - vm->arena[carriage->position + 4];
+    if (player_code > 0 && player_code <= MAX_PLAYERS)
+    {
+		core = vm->cores[player_code];
+		core->cycle_was_live = vm->total_cycles + vm->current_cycles;
+		vm->winner = core;
+	}
 }
 
 /*
@@ -84,26 +116,22 @@ void				op_sti(t_corewar *vm, t_carriage *carriage, int8_t *arg_code)
 	reg_num = vm->arena[pos++];
 	if (arg_code[1] == 1)
 	{	
-		arg1 = vm->arena[pos % MEM_SIZE]; //T_REG считываю 1 байт
+		arg1 = return_bytes(vm->arena, pos, T_REG); //T_REG считываю 1 байт
 		++pos;
 	}
 	else if (arg_code[1] == 2)
 	{
-		arg1 = vm->arena[pos % MEM_SIZE] << 8 | vm->arena[(pos + 1) % MEM_SIZE]; // T_DIR считываю 2 байта
+		arg1 = return_bytes(vm->arena, pos, T_DIR); // T_DIR считываю 2 байта
 		pos += 2;
 	}
 	else
 	{
-		arg1 = vm->arena[pos % MEM_SIZE] << 8 | vm->arena[(pos + 1) % MEM_SIZE]; //T_IND
+		arg1 = return_bytes(vm->arena, pos, T_IND); //T_IND
 		pos += 2;
 		adress = carriage->position + (arg1 % IDX_MOD);
-		arg1 = vm->arena[adress % MEM_SIZE] << 8 | vm->arena[(adress + 1) % MEM_SIZE];
+		arg1 = return_bytes(vm->arena, adress, carriage->operation->t_dir_size);
 	}
-	if (arg_code[2] == 1)
-		arg1 = vm->arena[pos % MEM_SIZE];
-	else
-		arg2 = vm->arena[pos % MEM_SIZE] << 8 | vm->arena[(pos + 1) % MEM_SIZE];
-
+	arg2 = (arg_code[2] == 1) ? return_bytes(vm->arena, pos, T_REG) : return_bytes(vm->arena, pos, T_DIR);
 	vm->arena[carriage->position + (arg1 + arg2) % IDX_MOD] = carriage->registers[reg_num - 1];
 	display_array(vm->arena, 64, 64);
 }
@@ -277,6 +305,20 @@ void				op_sub(t_corewar *vm, t_carriage *carriage, int8_t *arg_code)
 
 }
 
+void				op_xor(t_corewar *vm, t_carriage *carriage, int8_t *arg_code)
+{
+
+}
+
+void				op_zjmp(t_corewar *vm, t_carriage *carriage, int8_t *arg_code)
+{
+	int32_t		distance;
+
+	distance = return_bytes(vm->arena, carriage->position + 1, T_DIR);
+	if (carriage->carry)
+		carriage->position = (carriage->position + distance % IDX_MOD) % MEM_SIZE;
+}
+
 void				op_and(t_corewar *vm, t_carriage *carriage, int8_t *arg_code)
 {
 
@@ -287,27 +329,32 @@ void				op_or(t_corewar *vm, t_carriage *carriage, int8_t *arg_code)
 
 }
 
-void				op_xor(t_corewar *vm, t_carriage *carriage, int8_t *arg_code)
-{
-
-}
-
-void				op_zjmp(t_corewar *vm, t_carriage *carriage, int8_t *arg_code)
-{
-
-}
-
 void				op_fork(t_corewar *vm, t_carriage *carriage, int8_t *arg_code)
 {
+	int32_t		distance;
+	t_carriage	*new_carriage;
 
+	distance = return_bytes(vm->arena, carriage->position + 1, T_DIR);
+	new_carriage = copy_carriage(vm, carriage);
+	new_carriage->position = (new_carriage->position + distance % IDX_MOD) % MEM_SIZE;
 }
 
 void				op_lfork(t_corewar *vm, t_carriage *carriage, int8_t *arg_code)
 {
+	int32_t		distance;
+	t_carriage	*new_carriage;
 
+	distance = return_bytes(vm->arena, carriage->position + 1, T_DIR);
+	new_carriage = copy_carriage(vm, carriage);
+	new_carriage->position = (new_carriage->position + distance) % MEM_SIZE;
 }
 
 void				op_aff(t_corewar *vm, t_carriage *carriage, int8_t *arg_code)
 {
+	char	output;
+	uint8_t	reg_nbr;
 
+	reg_nbr = vm->arena[(carriage->position + 2) % MEM_SIZE];
+	output = carriage->registers[reg_nbr];
+	ft_putchar(output);
 }

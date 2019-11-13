@@ -6,7 +6,7 @@
 /*   By: egiant <egiant@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/30 13:41:19 by egiant            #+#    #+#             */
-/*   Updated: 2019/11/06 13:13:43 by egiant           ###   ########.fr       */
+/*   Updated: 2019/11/13 17:03:31 by egiant           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,7 @@ int				main(int argc, char *argv[])
 	t_corewar	*vm;
 
 	vm = init_vm();
+	ft_printf("%d\n", vm->cycles_to_die);
 	parse_arguments(vm, argc, argv);
 	read_byte_code(vm);
 	init_arena(vm);

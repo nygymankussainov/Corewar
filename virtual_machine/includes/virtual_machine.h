@@ -6,7 +6,7 @@
 /*   By: egiant <egiant@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/30 16:29:38 by hfrankly          #+#    #+#             */
-/*   Updated: 2019/11/13 11:03:39 by egiant           ###   ########.fr       */
+/*   Updated: 2019/11/13 16:48:10 by egiant           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,8 +32,8 @@ typedef struct 		s_corewar {
 	short			number_of_players;
 	uint8_t			arena[MEM_SIZE];
 	t_carriage		*start_carriage;
-	uint8_t			winner_id;
-	uint32_t		cycles_to_die;
+	t_core			*winner;
+	int32_t			cycles_to_die;
 	uint32_t		total_cycles;
 	uint32_t		live_count;
 	uint32_t		current_cycles;
@@ -46,6 +46,7 @@ typedef struct s_core {
 	char			comment[COMMENT_LENGTH + 1];
 	uint16_t		exec_code_size;
 	uint8_t			exec_code[CHAMP_MAX_SIZE];
+	uint16_t		cycle_was_live; // added recently
 	struct s_core	*next;
 }					t_core;
 
@@ -62,6 +63,8 @@ typedef struct 		s_carriage {
 	t_carriage		*next;
 }					t_carriage;
 
+
+void			display_array(uint8_t *array, uint16_t rows, uint16_t cols);
 /*
 // initialization
 */
@@ -97,10 +100,11 @@ void				set_arg_code(t_corewar *vm, t_carriage *carriage, int8_t **arg_code);
 bool				is_valid_format(t_corewar *vm, t_carriage *carriage, int8_t arg_code[4]);
 void				pass_args_bits(t_corewar *vm, t_carriage *carriage, int8_t arg_code[4]);
 
-/*
-// display_array
-*/
+
 void			display_array(uint8_t *array, uint16_t rows, uint16_t cols);
+
+void				kill_carriage(t_corewar *vm, t_carriage *to_delete);
+t_carriage			*copy_carriage(t_corewar *vm, t_carriage *to_copy); // need to be done
 
 #endif
 

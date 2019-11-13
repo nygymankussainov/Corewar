@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse_arguments.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: egiant <egiant@student.42.fr>              +#+  +:+       +#+        */
+/*   By: hfrankly <hfrankly@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/31 16:49:05 by egiant            #+#    #+#             */
-/*   Updated: 2019/11/06 12:42:57 by egiant           ###   ########.fr       */
+/*   Updated: 2019/11/13 14:12:19 by hfrankly         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -116,6 +116,7 @@ void			parse_arguments(t_corewar *vm, int argc, char *argv[]) //+ флаг ви�
 		terminate_with_error(vm);
 	if (vm->line_of_players)
 		add_remaining_players(vm);
+	vm->winner = vm->cores[vm->number_of_players - 1];
 }
 
 //проверить валидность игроков:

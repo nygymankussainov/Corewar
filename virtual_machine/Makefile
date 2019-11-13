@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: hfrankly <hfrankly@student.42.fr>          +#+  +:+       +#+         #
+#    By: egiant <egiant@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/10/30 17:56:58 by hfrankly          #+#    #+#              #
-#    Updated: 2019/11/12 14:40:19 by hfrankly         ###   ########.fr        #
+#    Updated: 2019/11/13 16:59:00 by egiant           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -36,6 +36,7 @@ SOURCES =	main.c \
 			war/operations.c \
 			war/check.c \
 			war/carriage_execution.c \
+			war/carriage_interaction.c \
 			war/execute_op.c \
 			exit.c \
 
