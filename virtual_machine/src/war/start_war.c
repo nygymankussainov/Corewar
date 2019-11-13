@@ -6,13 +6,30 @@
 /*   By: egiant <egiant@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/02 14:50:41 by hfrankly          #+#    #+#             */
-/*   Updated: 2019/11/12 15:08:51 by egiant           ###   ########.fr       */
+/*   Updated: 2019/11/13 10:25:11 by egiant           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "virtual_machine.h"
 
-void				carriage_actions(t_corewar *vm)
+
+void				start_war(t_corewar *vm)
+{
+	t_carriage		*tmp;
+	uint8_t			byte_with_command;
+	t_operation		op;
+
+	tmp = vm->start_carriage;
+	while (vm->start_carriage)
+	{
+		if (vm->current_cycles == vm->cycles_to_die)
+			check(vm);
+		else
+			execute_carriages(vm);
+	}
+}
+
+/*void				carriage_actions(t_corewar *vm)
 {
 	t_carriage		*tmp;
 	uint8_t			byte_with_command;
@@ -81,7 +98,7 @@ void				start_war(t_corewar *vm)
 		}
 		vm->total_cycles++;
 	}
-}
+}*/
 
 
 /*

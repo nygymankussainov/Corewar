@@ -117,7 +117,7 @@ void				op_zjmp(t_corewar *vm, t_carriage *carriage)
 
 void				op_ldi(t_corewar *vm, t_carriage *carriage)
 {
-
+    ft_printf("HELLO\n");
 }
 
 void				op_fork(t_corewar *vm, t_carriage *carriage)
