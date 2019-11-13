@@ -6,7 +6,7 @@
 /*   By: hfrankly <hfrankly@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/09 15:37:50 by hfrankly          #+#    #+#             */
-/*   Updated: 2019/11/12 20:02:43 by hfrankly         ###   ########.fr       */
+/*   Updated: 2019/11/13 13:01:51 by hfrankly         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ void	execute_carriage_op(t_corewar *vm, t_carriage *carriage)
 	{
 		set_arg_code(vm, carriage, &arg_code);
 		if (is_valid_format(vm, carriage, arg_code))
-			carriage->operation->func(vm);
+			carriage->operation->func(vm, carriage, arg_code);
 		pass_args_bits(vm, carriage, arg_code);
 	}
 	else

@@ -1,9 +1,22 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   operations.h                                       :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: hfrankly <hfrankly@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2019/11/13 13:17:43 by hfrankly          #+#    #+#             */
+/*   Updated: 2019/11/13 13:19:35 by hfrankly         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #ifndef OPERATIONS_H
 # define OPERATIONS_H
 
 #include "virtual_machine.h"
 
 typedef struct s_corewar		t_corewar;
+typedef struct s_carriage		t_carriage;
 
 typedef struct		s_operation
 {
@@ -15,25 +28,25 @@ typedef struct		s_operation
 	uint8_t			changes_carry; //1 или 0
 	uint8_t			t_dir_size;
 	uint16_t		cycles_to_execution;
-	void			(*func)(t_corewar *);
+	void			(*func)(t_corewar *vm, t_carriage *carriage, int8_t *arg_code);
 }					t_operation;
 
-void				op_live(t_corewar *);
-void				op_ld(t_corewar *);
-void				op_st(t_corewar *);
-void				op_add(t_corewar *);
-void				op_sub(t_corewar *);
-void				op_and(t_corewar *);
-void				op_or(t_corewar *);
-void				op_xor(t_corewar *);
-void				op_zjmp(t_corewar *);
-void				op_ldi(t_corewar *);
-void				op_sti(t_corewar *);
-void				op_fork(t_corewar *);
-void				op_lld(t_corewar *);
-void				op_lldi(t_corewar *);
-void				op_lfork(t_corewar *);
-void				op_aff(t_corewar *);
+void				op_live(t_corewar *vm, t_carriage *carriage, int8_t *arg_code);
+void				op_ld(t_corewar *vm, t_carriage *carriage, int8_t *arg_code);
+void				op_st(t_corewar *vm, t_carriage *carriage, int8_t *arg_code);
+void				op_add(t_corewar *vm, t_carriage *carriage, int8_t *arg_code);
+void				op_sub(t_corewar *vm, t_carriage *carriage, int8_t *arg_code);
+void				op_and(t_corewar *vm, t_carriage *carriage, int8_t *arg_code);
+void				op_or(t_corewar *vm, t_carriage *carriage, int8_t *arg_code);
+void				op_xor(t_corewar *vm, t_carriage *carriage, int8_t *arg_code);
+void				op_zjmp(t_corewar *vm, t_carriage *carriage, int8_t *arg_code);
+void				op_ldi(t_corewar *vm, t_carriage *carriage, int8_t *arg_code);
+void				op_sti(t_corewar *vm, t_carriage *carriage, int8_t *arg_code);
+void				op_fork(t_corewar *vm, t_carriage *carriage, int8_t *arg_code);
+void				op_lld(t_corewar *vm, t_carriage *carriage, int8_t *arg_code);
+void				op_lldi(t_corewar *vm, t_carriage *carriage, int8_t *arg_code);
+void				op_lfork(t_corewar *vm, t_carriage *carriage, int8_t *arg_code);
+void				op_aff(t_corewar *vm, t_carriage *carriage, int8_t *arg_code);
 
 
 static t_operation		op_array[16] = {

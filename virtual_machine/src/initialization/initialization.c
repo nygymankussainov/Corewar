@@ -6,7 +6,7 @@
 /*   By: hfrankly <hfrankly@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/30 13:41:08 by egiant            #+#    #+#             */
-/*   Updated: 2019/11/10 16:32:34 by hfrankly         ###   ########.fr       */
+/*   Updated: 2019/11/13 14:10:30 by hfrankly         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,6 +58,7 @@ void			init_core(t_core *player)
 	player->id = 0;
 	player->exec_code_size = 0;
 	player->next = NULL;
+	player->cycle_was_live = 0;
 }
 
 t_corewar		*init_vm(void)
@@ -73,7 +74,7 @@ t_corewar		*init_vm(void)
 	vm->line_of_players = NULL;
 	vm->number_of_players = 0;
 	vm->start_carriage = NULL;
-	vm->winner_id = 0;
+	vm->winner = NULL;
 	vm->total_cycles = 0;
 	vm->current_cycles = 0;
 	vm->cycles_to_die = CYCLE_TO_DIE;

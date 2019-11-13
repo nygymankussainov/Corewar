@@ -6,7 +6,7 @@
 /*   By: hfrankly <hfrankly@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/30 16:29:38 by hfrankly          #+#    #+#             */
-/*   Updated: 2019/11/12 19:09:05 by hfrankly         ###   ########.fr       */
+/*   Updated: 2019/11/13 16:02:43 by hfrankly         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ typedef struct 		s_corewar {
 	short			number_of_players;
 	uint8_t			arena[MEM_SIZE];
 	t_carriage		*start_carriage;
-	uint8_t			winner_id;
+	t_core			*winner;
 	uint32_t		total_cycles;
 	uint32_t		current_cycles;
 	int32_t			cycles_to_die;
@@ -46,6 +46,7 @@ typedef struct s_core {
 	char			comment[COMMENT_LENGTH + 1];
 	uint16_t		exec_code_size;
 	uint8_t			exec_code[CHAMP_MAX_SIZE];
+	uint16_t		cycle_was_live; // added recently
 	struct s_core	*next;
 }					t_core;
 
@@ -54,7 +55,7 @@ typedef struct 		s_carriage {
 	bool			carry;
 	t_operation		*operation;
 	t_core			*player;
-	uint8_t			registers[REG_NUMBER];
+	int32_t			registers[REG_NUMBER];
 	uint16_t		position;
 	uint32_t		cycle_was_live;
 	uint32_t		cycles_before_operation;
@@ -63,6 +64,8 @@ typedef struct 		s_carriage {
 	uint8_t			*adress;
 }					t_carriage;
 
+
+void			display_array(uint8_t *array, uint16_t rows, uint16_t cols);
 /*
 // initialization
 */
@@ -97,6 +100,9 @@ void				execute_carriages(t_corewar *vm);
 void				set_arg_code(t_corewar *vm, t_carriage *carriage, int8_t **arg_code);
 bool				is_valid_format(t_corewar *vm, t_carriage *carriage, int8_t arg_code[4]);
 void				pass_args_bits(t_corewar *vm, t_carriage *carriage, int8_t arg_code[4]);
+
+void				kill_carriage(t_corewar *vm, t_carriage *to_delete);
+t_carriage			*copy_carriage(t_corewar *vm, t_carriage *to_copy); // need to be done
 
 #endif
 
