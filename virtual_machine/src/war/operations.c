@@ -6,7 +6,7 @@
 /*   By: egiant <egiant@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/13 16:06:18 by hfrankly          #+#    #+#             */
-/*   Updated: 2019/11/14 14:53:23 by egiant           ###   ########.fr       */
+/*   Updated: 2019/11/14 15:33:07 by egiant           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -329,13 +329,11 @@ void				op_xor(t_corewar *vm, t_carriage *carriage, int8_t *arg_code)
 
 void				op_zjmp(t_corewar *vm, t_carriage *carriage, int8_t *arg_code)
 {
-	int16_t			help;
-	int32_t 		distance;
+	int16_t 		distance;
 
-	help = return_bytes(vm->arena, carriage->position + 1, carriage->operation->t_dir_size); //заменила T_DIR на carriage->operation->t_dir_size
-	distance = help << 8 | help;
+	distance = return_bytes(vm->arena, carriage->position + 1, carriage->operation->t_dir_size); //заменила T_DIR на carriage->operation->t_dir_size
 	if (carriage->carry)
-		carriage->position = (carriage->position + distance % IDX_MOD) % MEM_SIZE;
+		carriage->position = (carriage->position + (int32_t)distance % IDX_MOD) % MEM_SIZE;
 }
 
 void				op_fork(t_corewar *vm, t_carriage *carriage, int8_t *arg_code)
