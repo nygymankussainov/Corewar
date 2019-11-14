@@ -6,7 +6,7 @@
 /*   By: egiant <egiant@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/06 13:44:29 by egiant            #+#    #+#             */
-/*   Updated: 2019/11/13 10:22:21 by egiant           ###   ########.fr       */
+/*   Updated: 2019/11/14 10:54:33 by egiant           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ void			set_carriages(t_corewar *vm, uint16_t position_step)
 			cur_carriage = new_carriage;
 		}
 	}
-	vm->start_carriage = new_carriage; // т.к первой стоит каретка последнего игрока */
+	vm->start_carriage = new_carriage; // т.к первой стоит каретка последнего игрока
 } //если писать vm->start_carriage = cur_carriage не работает (не отображается next)
 
 void		set_exec_code(uint8_t *arena, uint16_t position, t_core *core)
