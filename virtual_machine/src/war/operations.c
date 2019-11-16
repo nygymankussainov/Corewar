@@ -6,7 +6,7 @@
 /*   By: hfrankly <hfrankly@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/13 16:06:18 by hfrankly          #+#    #+#             */
-/*   Updated: 2019/11/13 17:52:04 by hfrankly         ###   ########.fr       */
+/*   Updated: 2019/11/16 13:05:37 by hfrankly         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -201,7 +201,7 @@ void				op_lfork(t_corewar *vm, t_carriage *carriage, int8_t *arg_code)
 	int32_t		distance;
 	t_carriage	*new_carriage;
 
-	distance = return_bytes(vm->arena, carriage->position + 1, T_DIR);
+	distance = return_bytes(vm->arena, carriage->position + 1, carriage->operation->t_dir_size);
 	new_carriage = copy_carriage(vm, carriage);
 	new_carriage->position = (new_carriage->position + distance) % MEM_SIZE;
 }
