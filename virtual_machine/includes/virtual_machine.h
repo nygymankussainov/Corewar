@@ -6,7 +6,7 @@
 /*   By: hfrankly <hfrankly@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/30 16:29:38 by hfrankly          #+#    #+#             */
-/*   Updated: 2019/11/17 13:33:20 by hfrankly         ###   ########.fr       */
+/*   Updated: 2019/11/17 14:40:44 by hfrankly         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,6 @@
 #include "operations.h"
 #include "visual.h"
 
-typedef struct s_corewar		t_corewar;
 typedef struct s_core			t_core;
 typedef struct s_carriage		t_carriage;
 typedef struct s_point			t_point;
@@ -93,12 +92,12 @@ void				set_carriages(t_corewar *vm, uint16_t position_step);
 /*
 // parsing
 */
-void				parse_arguments(t_corewar *vm, int argc, char *argv[]);
+void				parse_arguments(t_corewar **vm, int argc, char *argv[]);
 
 /*
 // validation
 */
-void				read_byte_code(t_corewar *vm);
+void				read_byte_code(t_corewar **vm);
 
 void				terminate_with_error(t_corewar *vm);
 void				termination_with_error(char *error_string);

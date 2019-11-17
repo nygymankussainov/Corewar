@@ -6,7 +6,7 @@
 /*   By: hfrankly <hfrankly@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/31 18:20:43 by egiant            #+#    #+#             */
-/*   Updated: 2019/11/16 13:49:28 by hfrankly         ###   ########.fr       */
+/*   Updated: 2019/11/17 14:40:37 by hfrankly         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,24 +98,24 @@ void 			read_exec_code(t_corewar *vm, t_core *player, int fd)
 	}
 }
 
-void			read_byte_code(t_corewar *vm)
+void			read_byte_code(t_corewar **vm)
 {
 	int 		n;
 	int			fd;
 	char		*file_name;
 
 	n = 0;
-	while (vm->cores[n])
+	while ((*vm)->cores[n])
 	{
-		file_name = ft_strjoin(vm->cores[n]->name, ".cor", 0, 0);
+		file_name = ft_strjoin((*vm)->cores[n]->name, ".cor", 0, 0);
 		fd = open(file_name, O_RDONLY);
-		read_magic_header(vm, fd);
-		read_champion_name(vm, vm->cores[n], fd);
-		read_null_octet(vm, fd);
-		read_exec_code_size(vm, vm->cores[n], fd);
-		read_champion_comment(vm, vm->cores[n], fd);
-		read_null_octet(vm, fd);
-		read_exec_code(vm, vm->cores[n], fd);
+		read_magic_header((*vm), fd);
+		read_champion_name((*vm), (*vm)->cores[n], fd);
+		read_null_octet((*vm), fd);
+		read_exec_code_size((*vm), (*vm)->cores[n], fd);
+		read_champion_comment((*vm), (*vm)->cores[n], fd);
+		read_null_octet((*vm), fd);
+		read_exec_code((*vm), (*vm)->cores[n], fd);
 		free(file_name);
 		++n;
 	}

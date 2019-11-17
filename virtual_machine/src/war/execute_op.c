@@ -6,7 +6,7 @@
 /*   By: hfrankly <hfrankly@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/12 14:38:51 by hfrankly          #+#    #+#             */
-/*   Updated: 2019/11/13 12:45:21 by hfrankly         ###   ########.fr       */
+/*   Updated: 2019/11/17 15:12:29 by hfrankly         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,8 +28,8 @@ bool	is_valid_reg(t_corewar *vm, t_carriage *carriage,
 			offset += 2;
 		i++;
 	}
-	if (vm->arena[(carriage->position + offset) % MEM_SIZE] < 1 ||
-			vm->arena[(carriage->position + offset) % MEM_SIZE] > REG_NUMBER)
+	if (vm->arena[(carriage->position + offset) % MEM_SIZE].value < 1 ||
+			vm->arena[(carriage->position + offset) % MEM_SIZE].value > REG_NUMBER)
 		return (false);
 	else
 		return (true);
@@ -44,7 +44,7 @@ void	set_arg_code(t_corewar *vm, t_carriage *carriage, int8_t **arg_code)
 		i = 0;
 		while (i < 4)
 		{
-			(*arg_code)[i] = vm->arena[(carriage->position + 1) % MEM_SIZE]
+			(*arg_code)[i] = vm->arena[(carriage->position + 1) % MEM_SIZE].value
 			<< (2 * i) >> 6 & 3;
 			i++;
 		}

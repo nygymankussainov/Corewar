@@ -10,7 +10,7 @@
             "request": "launch",
             "program": "/Users/hfrankly/workdir/Corewar/virtual_machine/corewar",
             "args": ["/Users/hfrankly/workdir/Corewar/virtual_machine/champs/jumper.cor", "/Users/hfrankly/workdir/Corewar/virtual_machine/champs/jumper.cor"],
-            "stopAtEntry": false,
+            "stopAtEntry": true,
             "cwd": "/Users/hfrankly/workdir/Corewar/virtual_machine",
             "environment": [],
             "externalConsole": false,

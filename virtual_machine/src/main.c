@@ -6,7 +6,7 @@
 /*   By: hfrankly <hfrankly@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/30 13:41:19 by egiant            #+#    #+#             */
-/*   Updated: 2019/11/17 13:34:31 by hfrankly         ###   ########.fr       */
+/*   Updated: 2019/11/17 14:57:04 by hfrankly         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,10 +43,10 @@ int				main(int argc, char *argv[])
 
 	quit = false;
 	vm = init_vm();
-	parse_arguments(vm, argc, argv);
+	parse_arguments(&vm, argc, argv);
 	if (vm->visual)
 		vm->sdl = sdl_init();
-	read_byte_code(vm);
+	read_byte_code(&vm);
 	init_arena(vm);
 	display_array(vm->arena, 64, 64);
 	//Introducing

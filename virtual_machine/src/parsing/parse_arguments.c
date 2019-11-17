@@ -6,7 +6,7 @@
 /*   By: hfrankly <hfrankly@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/31 16:49:05 by egiant            #+#    #+#             */
-/*   Updated: 2019/11/17 13:30:43 by hfrankly         ###   ########.fr       */
+/*   Updated: 2019/11/17 14:30:20 by hfrankly         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -107,7 +107,7 @@ void 			add_remaining_players(t_corewar *vm)
 		terminate_with_error(vm);
 }
 
-void			parse_arguments(t_corewar *vm, int argc, char *argv[]) //+ флаг визуализации
+void			parse_arguments(t_corewar **vm, int argc, char *argv[]) //+ флаг визуализации
 {
 	int 		n;
 
@@ -115,20 +115,20 @@ void			parse_arguments(t_corewar *vm, int argc, char *argv[]) //+ флаг ви�
 	while (n < argc)
 	{
 		if (ft_strstr(argv[n], "-dump"))
-			parse_dump_flag(vm, argv, &n);
+			parse_dump_flag((*vm), argv, &n);
 		else if (ft_strcmp(argv[n], "-v") == 0)
 		{
-			vm->visual = true;
+			(*vm)->visual = true;
 			n++;
 		}
-		else if (ft_strcmp(argv[n], "-n") || is_name(vm, argv[n]))
-			parse_player(vm, argv, &n);
+		else if (ft_strcmp(argv[n], "-n") || is_name(*vm, argv[n]))
+			parse_player(*vm, argv, &n);
 	}
-	if (vm->number_of_players < 2)
-		terminate_with_error(vm);
-	if (vm->line_of_players)
-		add_remaining_players(vm);
-	vm->winner = vm->cores[vm->number_of_players - 1];
+	if ((*vm)->number_of_players < 2)
+		terminate_with_error((*vm));
+	if ((*vm)->line_of_players)
+		add_remaining_players((*vm));
+	(*vm)->winner = (*vm)->cores[(*vm)->number_of_players - 1];
 }
 
 //проверить валидность игроков:

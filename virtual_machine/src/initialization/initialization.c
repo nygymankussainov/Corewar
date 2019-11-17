@@ -6,7 +6,7 @@
 /*   By: hfrankly <hfrankly@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/30 13:41:08 by egiant            #+#    #+#             */
-/*   Updated: 2019/11/17 13:14:05 by hfrankly         ###   ########.fr       */
+/*   Updated: 2019/11/17 14:49:38 by hfrankly         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,6 +58,7 @@ void			init_core(t_core *player)
 {
 	player->id = 0;
 	player->exec_code_size = 0;
+	ft_bzero(player->exec_code, CHAMP_MAX_SIZE);
 	player->next = NULL;
 	player->cycle_was_live = 0;
 }
