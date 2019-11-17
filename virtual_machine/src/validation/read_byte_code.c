@@ -6,7 +6,7 @@
 /*   By: hfrankly <hfrankly@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/31 18:20:43 by egiant            #+#    #+#             */
-/*   Updated: 2019/11/17 14:40:37 by hfrankly         ###   ########.fr       */
+/*   Updated: 2019/11/17 16:29:06 by hfrankly         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -116,6 +116,7 @@ void			read_byte_code(t_corewar **vm)
 		read_champion_comment((*vm), (*vm)->cores[n], fd);
 		read_null_octet((*vm), fd);
 		read_exec_code((*vm), (*vm)->cores[n], fd);
+		(*vm)->cores[n]->color = (n + 1) * 0xFFAAEE;
 		free(file_name);
 		++n;
 	}

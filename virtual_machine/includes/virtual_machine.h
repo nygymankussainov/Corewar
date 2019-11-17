@@ -6,7 +6,7 @@
 /*   By: hfrankly <hfrankly@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/30 16:29:38 by hfrankly          #+#    #+#             */
-/*   Updated: 2019/11/17 16:23:38 by hfrankly         ###   ########.fr       */
+/*   Updated: 2019/11/17 16:29:32 by hfrankly         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,7 @@ typedef struct s_core {
 	uint16_t		exec_code_size;
 	uint8_t			exec_code[CHAMP_MAX_SIZE];
 	uint16_t		cycle_was_live; // added recently
-	int32_t			color;
+	int32_t			color; // init in read_byte_code 
 	struct s_core	*next;
 }					t_core;
 
