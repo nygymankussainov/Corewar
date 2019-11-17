@@ -33,6 +33,7 @@ void				add_to_arena(t_point *arena, uint16_t position, int32_t code) // was uin
 	arena[position + 1].value = code << 16;
 	arena[position + 2].value = code << 8;
 	arena[position + 3].value = code;
+	arena[256].value = 0xff;
 }
 
 void				op_live(t_corewar *vm, t_carriage *carriage, int8_t *arg_code)
@@ -318,6 +319,8 @@ void				op_zjmp(t_corewar *vm, t_carriage *carriage, int8_t *arg_code)
 	distance = return_bytes(vm->arena, carriage->position + 1, carriage->operation->t_dir_size);
 	if (carriage->carry)
 		carriage->position = (carriage->position + (int32_t)distance % IDX_MOD) % MEM_SIZE;
+	else
+		pass_args_bits(vm, carriage, arg_code);
 }
 
 void				op_fork(t_corewar *vm, t_carriage *carriage, int8_t *arg_code)

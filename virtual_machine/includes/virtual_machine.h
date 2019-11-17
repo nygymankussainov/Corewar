@@ -6,7 +6,7 @@
 /*   By: hfrankly <hfrankly@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/30 16:29:38 by hfrankly          #+#    #+#             */
-/*   Updated: 2019/11/17 14:40:44 by hfrankly         ###   ########.fr       */
+/*   Updated: 2019/11/17 16:23:38 by hfrankly         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -107,13 +107,13 @@ void				termination_with_perror(char *error_string, int code);
 // war
 */
 void				start_war(t_corewar *vm);
-void				check(t_corewar *vm);
-void				execute_carriages(t_corewar *vm);
+void				check(t_corewar **vm);
+void				execute_carriages(t_corewar **vm);
 void				set_arg_code(t_corewar *vm, t_carriage *carriage, int8_t **arg_code);
 bool				is_valid_format(t_corewar *vm, t_carriage *carriage, int8_t arg_code[4]);
 void				pass_args_bits(t_corewar *vm, t_carriage *carriage, int8_t arg_code[4]);
 
-void				kill_carriage(t_corewar *vm, t_carriage *to_delete);
+void				kill_carriage(t_corewar **vm, t_carriage *to_delete);
 t_carriage			*copy_carriage(t_corewar *vm, t_carriage *to_copy); // need to be done
 
 #endif
