@@ -108,7 +108,7 @@ void				op_sti(t_corewar *vm, t_carriage *carriage, int8_t *arg_code)
 		arg1 = return_bytes(vm->arena, adress, carriage->operation->t_dir_size);
 	}
 	arg2 = (arg_code[2] == 1) ? return_bytes(vm->arena, pos, T_REG) : return_bytes(vm->arena, pos, T_DIR);
-	add_to_arena(vm->arena, carriage->position + (arg1 + arg2) % IDX_MOD, carriage->registers[reg_num - 1], carriage->color);
+	add_to_arena(vm->arena, carriage->position + (arg1 + arg2) % IDX_MOD, carriage->registers[reg_num - 1], carriage);
 }
 
 void				op_ld(t_corewar *vm, t_carriage *carriage, int8_t *arg_code)
@@ -234,9 +234,9 @@ void				op_add(t_corewar *vm, t_carriage *carriage, int8_t *arg_code)
 	int8_t	reg2;
 	int8_t	res_reg;
 
-	reg1 = return_bytes(vm->arena, carriage->position + 2, T_REG);
-	reg2 = return_bytes(vm->arena, carriage->position + 3, T_REG);
-	res_reg = return_bytes(vm->arena, carriage->position + 4, T_REG);
+	reg1 = return_bytes(vm->arena, carriage->position + 2, T_REG) - 1;
+	reg2 = return_bytes(vm->arena, carriage->position + 3, T_REG) - 1;
+	res_reg = return_bytes(vm->arena, carriage->position + 4, T_REG) - 1;
 	carriage->registers[res_reg] = carriage->registers[reg1] + carriage->registers[reg2];
 	if (carriage->registers[res_reg] == 0)
 		carriage->carry = 1;
@@ -250,9 +250,9 @@ void				op_sub(t_corewar *vm, t_carriage *carriage, int8_t *arg_code)
 	int8_t	reg2;
 	int8_t	res_reg;
 
-	reg1 = return_bytes(vm->arena, carriage->position + 2, T_REG);
-	reg2 = return_bytes(vm->arena, carriage->position + 3, T_REG);
-	res_reg = return_bytes(vm->arena, carriage->position + 4, T_REG);
+	reg1 = return_bytes(vm->arena, carriage->position + 2, T_REG) - 1;
+	reg2 = return_bytes(vm->arena, carriage->position + 3, T_REG) - 1;
+	res_reg = return_bytes(vm->arena, carriage->position + 4, T_REG) - 1;
 	carriage->registers[res_reg] = carriage->registers[reg1] - carriage->registers[reg2];
 	if (carriage->registers[res_reg] == 0)
 		carriage->carry = 1;
@@ -272,7 +272,7 @@ void				op_and(t_corewar *vm, t_carriage *carriage, int8_t *arg_code)
 	position += type_sizes[arg_code[0] - 1];
 	arg2 = return_bytes(vm->arena, position, type_sizes[arg_code[1] - 1]);
 	position += type_sizes[arg_code[1] - 1];
-	reg = return_bytes(vm->arena, position, T_REG);
+	reg = return_bytes(vm->arena, position, T_REG) - 1;
 	if (arg_code[0] == 3)
 		arg1 = return_bytes(vm->arena, (carriage->position + arg1 % IDX_MOD) % MEM_SIZE, 4);
 	if (arg_code[1] == 3)
@@ -292,7 +292,7 @@ void				op_or(t_corewar *vm, t_carriage *carriage, int8_t *arg_code)
 	position += type_sizes[arg_code[0] - 1];
 	arg2 = return_bytes(vm->arena, position, type_sizes[arg_code[1] - 1]);
 	position += type_sizes[arg_code[1] - 1];
-	reg = return_bytes(vm->arena, position, T_REG);
+	reg = return_bytes(vm->arena, position, T_REG) - 1;
 	if (arg_code[0] == 3)
 		arg1 = return_bytes(vm->arena, (carriage->position + arg1 % IDX_MOD) % MEM_SIZE, 4);
 	if (arg_code[1] == 3)
@@ -312,7 +312,7 @@ void				op_xor(t_corewar *vm, t_carriage *carriage, int8_t *arg_code)
 	position += type_sizes[arg_code[0] - 1];
 	arg2 = return_bytes(vm->arena, position, type_sizes[arg_code[1] - 1]);
 	position += type_sizes[arg_code[1] - 1];
-	reg = return_bytes(vm->arena, position, T_REG);
+	reg = return_bytes(vm->arena, position, T_REG) - 1;
 	if (arg_code[0] == 3)
 		arg1 = return_bytes(vm->arena, (carriage->position + arg1 % IDX_MOD) % MEM_SIZE, 4);
 	if (arg_code[1] == 3)
