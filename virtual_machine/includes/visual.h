@@ -6,7 +6,7 @@
 /*   By: hfrankly <hfrankly@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/17 13:06:28 by hfrankly          #+#    #+#             */
-/*   Updated: 2019/11/17 13:37:06 by hfrankly         ###   ########.fr       */
+/*   Updated: 2019/11/17 13:45:34 by hfrankly         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ t_sdl		*sdl_init(void);
 void		ft_close_sdl(t_sdl *sdl);
 
 /*
-** sdl_init
+** display_arena
 */
 void		display_arena_state(t_corewar *vm);
 
