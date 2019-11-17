@@ -27,16 +27,20 @@ int32_t				return_bytes(t_point *arena, uint16_t position, uint8_t bytes_nbr)
 	return(res);
 }
 
-void				add_to_arena(t_point *arena, uint16_t position, int32_t code, int32_t color) // was uint32_t code
+void				add_to_arena(t_point *arena, uint16_t position, int32_t code, t_carriage *carriage) // was uint32_t code
 {
 	arena[position].value = code << 24;
 	arena[position + 1].value = code << 16;
 	arena[position + 2].value = code << 8;
 	arena[position + 3].value = code;
-	arena[position].color = color;
-	arena[position + 1].color = color;
-	arena[position + 2].color = color;
-	arena[position + 3].color = color;
+	arena[position].color = carriage->color;
+	arena[position + 1].color = carriage->color;
+	arena[position + 2].color = carriage->color;
+	arena[position + 3].color = carriage->color;
+	carriage->last_operation[0] = position;
+	carriage->last_operation[1] = position + 1;
+	carriage->last_operation[2] = position + 2;
+	carriage->last_operation[3] = position + 3;
 }
 
 void				op_live(t_corewar *vm, t_carriage *carriage, int8_t *arg_code)
@@ -71,7 +75,8 @@ void				op_st(t_corewar *vm, t_carriage *carriage, int8_t *arg_code)
 	else
 	{
 		arg1 = vm->arena[pos % MEM_SIZE].value << 8 | vm->arena[(pos + 1) % MEM_SIZE].value; //T_IND
-		add_to_arena(vm->arena, (carriage->position + arg1 % IDX_MOD) % MEM_SIZE, carriage->registers[reg_num - 1], carriage->color);
+		add_to_arena(vm->arena, (carriage->position + arg1 % IDX_MOD) % MEM_SIZE,
+			carriage->registers[reg_num - 1], carriage);
 	}
 }
 
