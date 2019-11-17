@@ -6,7 +6,7 @@
 /*   By: hfrankly <hfrankly@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/30 16:29:38 by hfrankly          #+#    #+#             */
-/*   Updated: 2019/11/09 14:14:46 by hfrankly         ###   ########.fr       */
+/*   Updated: 2019/11/17 13:33:20 by hfrankly         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,41 +16,55 @@
 #include <stdint.h>
 #include <stdbool.h>
 #include <errno.h>
-#include "op.h"
+#include <unistd.h>
 #include "libft.h"
 #include "ft_printf.h"
+#include "op.h"
 #include "operations.h"
+#include "visual.h"
 
 typedef struct s_corewar		t_corewar;
 typedef struct s_core			t_core;
 typedef struct s_carriage		t_carriage;
+typedef struct s_point			t_point;
+
+typedef struct 		s_point {
+	int32_t			color;
+	uint8_t			value;
+}					t_point;
 
 typedef struct 		s_corewar {
+	t_sdl			*sdl;
 	t_core			*cores[MAX_PLAYERS];
 	t_core			*line_of_players;
 	short			number_of_players;
-	uint8_t			arena[MEM_SIZE];
+	t_point			arena[MEM_SIZE];
 	t_carriage		*start_carriage;
-	uint8_t			winner_id;
+	t_core			*winner;
+	bool			visual;
 	uint32_t		total_cycles;
 	uint32_t		current_cycles;
-	uint32_t		cycles_to_die;
+	int32_t			cycles_to_die;
+	int32_t			dumps;
+	uint32_t		live_count;
 	uint32_t		check_count;
 }					t_corewar;
 
 typedef struct s_core {
 	uint8_t			id;
-	char			name[PROG_NAME_LENGTH];
-	char			comment[COMMENT_LENGTH];
+	char			name[PROG_NAME_LENGTH + 1];
+	char			comment[COMMENT_LENGTH + 1];
 	uint16_t		exec_code_size;
 	uint8_t			exec_code[CHAMP_MAX_SIZE];
+	uint16_t		cycle_was_live; // added recently
+	int32_t			color;
 	struct s_core	*next;
 }					t_core;
 
 typedef struct 		s_carriage {
 	uint8_t			id;
 	bool			carry;
-	uint8_t			operation;
+	t_operation		*operation;
 	t_core			*player;
 	int32_t			registers[REG_NUMBER];
 	uint16_t		position;
@@ -58,10 +72,13 @@ typedef struct 		s_carriage {
 	uint32_t		cycles_before_operation;
 	uint32_t		offset_next_operation;
 	t_carriage		*next;
-
+	uint16_t		last_operation[4];
+	int32_t			color;
 	uint8_t			*adress;
 }					t_carriage;
 
+
+void			display_array(t_point *array, uint16_t rows, uint16_t cols);
 /*
 // initialization
 */
@@ -70,7 +87,7 @@ void				init_arena(t_corewar *vm);
 void				init_core(t_core *player);
 t_carriage			*init_carriage(t_corewar *vm, t_core *player);
 
-void				set_exec_code(uint8_t *arena, uint16_t position, t_core *core);
+void				set_exec_code(t_point *arena, uint16_t position, t_core *core);
 void				set_carriages(t_corewar *vm, uint16_t position_step);
 
 /*
@@ -91,6 +108,14 @@ void				termination_with_perror(char *error_string, int code);
 // war
 */
 void				start_war(t_corewar *vm);
+void				check(t_corewar *vm);
+void				execute_carriages(t_corewar *vm);
+void				set_arg_code(t_corewar *vm, t_carriage *carriage, int8_t **arg_code);
+bool				is_valid_format(t_corewar *vm, t_carriage *carriage, int8_t arg_code[4]);
+void				pass_args_bits(t_corewar *vm, t_carriage *carriage, int8_t arg_code[4]);
+
+void				kill_carriage(t_corewar *vm, t_carriage *to_delete);
+t_carriage			*copy_carriage(t_corewar *vm, t_carriage *to_copy); // need to be done
 
 #endif
 
