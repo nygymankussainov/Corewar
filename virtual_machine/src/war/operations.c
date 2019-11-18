@@ -29,10 +29,10 @@ int32_t				return_bytes(t_point *arena, uint16_t position, uint8_t bytes_nbr)
 
 void				add_to_arena(t_point *arena, uint16_t position, int32_t code, t_carriage *carriage) // was uint32_t code
 {
-	arena[position].value = code << 24;
-	arena[position + 1].value = code << 16;
-	arena[position + 2].value = code << 8;
-	arena[position + 3].value = code;
+	arena[position].value = code >> 24;
+	arena[position + 1].value = code >> 16 & 0x00FF;
+	arena[position + 2].value = code >> 8 & 0x0000FF;
+	arena[position + 3].value = code & 0x000000FF;
 	arena[position].color = carriage->color;
 	arena[position + 1].color = carriage->color;
 	arena[position + 2].color = carriage->color;

@@ -6,7 +6,7 @@
 /*   By: hfrankly <hfrankly@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/31 18:20:43 by egiant            #+#    #+#             */
-/*   Updated: 2019/11/17 16:29:06 by hfrankly         ###   ########.fr       */
+/*   Updated: 2019/11/18 20:07:13 by hfrankly         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,12 +65,7 @@ void			read_exec_code_size(t_corewar *vm, t_core *player, int fd)
 	ret = read(fd, &buff, 4);
 	if (ret < 0)
 		terminate_with_error(vm);
-	rev_buff = buff[3]|(buff[2] << 8)|(buff[1] << 16)|(buff[0] << 24);
-	code_size = ft_change_system_over_ten(rev_buff, 16, 0);
-	//ft_printf("%d\n", ft_atoi(code_size));
-	if (ft_atoi(code_size) > CHAMP_MAX_SIZE || ft_atoi(code_size) <= 0)
-		terminate_with_error(vm);
-	player->exec_code_size = ft_atoi(code_size);
+	player->exec_code_size = buff[3]|(buff[2] << 8)|(buff[1] << 16)|(buff[0] << 24);
 }
 
 void			read_champion_comment(t_corewar *vm, t_core *player, int fd)
@@ -91,7 +86,7 @@ void 			read_exec_code(t_corewar *vm, t_core *player, int fd)
 	uint16_t	i;
 
 	i = 0;
-	while (read(fd, &c, 1))
+	while (read(fd, &c, 1) && i < player->exec_code_size)
 	{
 		player->exec_code[i] = c;
 		i++;
