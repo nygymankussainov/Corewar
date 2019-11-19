@@ -6,7 +6,7 @@
 /*   By: hfrankly <hfrankly@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/30 13:41:19 by egiant            #+#    #+#             */
-/*   Updated: 2019/11/17 16:01:16 by hfrankly         ###   ########.fr       */
+/*   Updated: 2019/11/19 18:19:08 by hfrankly         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,10 @@ void			display_array(t_point *array, uint16_t rows, uint16_t cols)
 	{
 		j = 0;
 		offset = i * cols;
+		if (offset == 0)
+			ft_printf("0x0000 : ");
+		else
+			ft_printf("%#06x : ", offset);
 		while (j < cols)
 		{
 			if (array[offset + j].value != 0)
@@ -32,6 +36,22 @@ void			display_array(t_point *array, uint16_t rows, uint16_t cols)
 			j++;
 		}
 		ft_putchar('\n');
+		i++;
+	}
+}
+
+void			introduce_players(t_corewar *vm)
+{
+	uint8_t		i;
+	t_core		*core;
+
+	i = 0;
+	ft_printf("Introducing contestants...\n");
+	while (i < vm->number_of_players)
+	{
+		core = vm->cores[i];
+		ft_printf("* Player %d, weiging %d bytes, \"%s\" (\"%s\") !\n",
+					core->id, core->exec_code_size, core->name, core->comment);
 		i++;
 	}
 }
@@ -48,7 +68,7 @@ int				main(int argc, char *argv[])
 		vm->sdl = sdl_init();
 	read_byte_code(&vm);
 	init_arena(vm);
-	//Introducing
+	introduce_players(vm);
 	start_war(vm);
 	if (vm->visual)
 		while (!quit)

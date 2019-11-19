@@ -1,1 +1,2 @@
-Value of reg[0] in st operation is added wrong 
+On cycle 850 value in 2075 cell still doesn't changed
+And new carriage changes value in 6 cell after cycle 870
