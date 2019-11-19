@@ -6,7 +6,7 @@
 #    By: egiant <egiant@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/10/30 17:56:58 by hfrankly          #+#    #+#              #
-#    Updated: 2019/11/13 16:59:00 by egiant           ###   ########.fr        #
+#    Updated: 2019/11/17 13:36:59 by hfrankly         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -20,7 +20,7 @@ NAME = corewar
 LIB = ../libft/ft_printf
 LIB_A = ../libft/libft.a $(LIB)/libftprintf.a
 
-INCLUDES = -I ./includes  -I ../includes -I $(LIB) -I ../libft
+INCLUDES = -I ./includes  -I ../includes -I $(LIB) -I ../libft \
 
 LIBS = -L ../libft -lft -L ../libft/ft_printf -lftprintf
 

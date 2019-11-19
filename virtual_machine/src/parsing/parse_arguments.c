@@ -6,7 +6,7 @@
 /*   By: hfrankly <hfrankly@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/31 16:49:05 by egiant            #+#    #+#             */
-/*   Updated: 2019/11/13 14:12:19 by hfrankly         ###   ########.fr       */
+/*   Updated: 2019/11/17 14:30:20 by hfrankly         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,8 @@
 
 void 			parse_dump_flag(t_corewar *vm, char *argv[], int *n)
 {
-	return ;
+	vm->dumps = ft_atoi(argv[*n] + 6);
+	(*n)++;
 }
 
 int 			is_name(t_corewar *vm, char *str)
@@ -22,6 +23,7 @@ int 			is_name(t_corewar *vm, char *str)
 	//каких символов не может быть в имени игрока?
 	char 		*ptr;
 
+	ft_putstr(str);
 	if (!(ptr = ft_strstr(str, ".cor")))
 		terminate_with_error(vm);
 	//проверить что после .cor нет символов
@@ -34,6 +36,8 @@ void 			parse_player(t_corewar *vm, char *argv[], int *n)
 	char		**name;
 	t_core		*p_ptr;
 
+	p_ptr = NULL;
+	name = NULL;
 	if (!ft_strcmp(argv[*n], "-n"))
 	{
 		if (!argv[*n + 1] || !argv[*n + 2])
@@ -47,7 +51,8 @@ void 			parse_player(t_corewar *vm, char *argv[], int *n)
 		--num;
 		if (vm->cores[num])
 			terminate_with_error(vm);
-		vm->cores[num] = (t_core *)malloc(sizeof(t_core));
+		if (!(vm->cores[num] = (t_core *)malloc(sizeof(t_core))))
+			termination_with_perror("Parse player error", ENOMEM);
 		init_core(vm->cores[num]);
 		ft_strcpy(vm->cores[num]->name, name[0]);
 		vm->cores[num]->id = num + 1;
@@ -59,7 +64,8 @@ void 			parse_player(t_corewar *vm, char *argv[], int *n)
 		name = ft_strsplit(argv[*n], '.');
 		if (!vm->line_of_players)
 		{
-			vm->line_of_players = (t_core *)malloc(sizeof(t_core));
+			if (!(vm->line_of_players = (t_core*)malloc(sizeof(t_core) * MAX_PLAYERS))) // !!
+				termination_with_perror("Parse player error", ENOMEM);
 			p_ptr = vm->line_of_players;
 		}
 		else
@@ -67,7 +73,8 @@ void 			parse_player(t_corewar *vm, char *argv[], int *n)
 			p_ptr = vm->line_of_players;
 			while (p_ptr->next)
 				p_ptr = p_ptr->next;
-			p_ptr->next = (t_core *)malloc(sizeof(t_core));
+			if (!(p_ptr->next = (t_core*)malloc(sizeof(t_core))))
+				termination_with_perror("Parse player error", ENOMEM);
 			p_ptr = p_ptr->next;
 		}
 		init_core(p_ptr);
@@ -100,23 +107,28 @@ void 			add_remaining_players(t_corewar *vm)
 		terminate_with_error(vm);
 }
 
-void			parse_arguments(t_corewar *vm, int argc, char *argv[]) //+ флаг визуализации
+void			parse_arguments(t_corewar **vm, int argc, char *argv[]) //+ флаг визуализации
 {
 	int 		n;
 
 	n = 1;
 	while (n < argc)
 	{
-		if (ft_strequ(argv[n], "-dump"))
-			parse_dump_flag(vm, argv, &n);
-		else if (ft_strequ(argv[n], "-n") || is_name(vm, argv[n]))
-			parse_player(vm, argv, &n);
+		if (ft_strstr(argv[n], "-dump"))
+			parse_dump_flag((*vm), argv, &n);
+		else if (ft_strcmp(argv[n], "-v") == 0)
+		{
+			(*vm)->visual = true;
+			n++;
+		}
+		else if (ft_strcmp(argv[n], "-n") || is_name(*vm, argv[n]))
+			parse_player(*vm, argv, &n);
 	}
-	if (vm->number_of_players < 2)
-		terminate_with_error(vm);
-	if (vm->line_of_players)
-		add_remaining_players(vm);
-	vm->winner = vm->cores[vm->number_of_players - 1];
+	if ((*vm)->number_of_players < 2)
+		terminate_with_error((*vm));
+	if ((*vm)->line_of_players)
+		add_remaining_players((*vm));
+	(*vm)->winner = (*vm)->cores[(*vm)->number_of_players - 1];
 }
 
 //проверить валидность игроков:

@@ -1,0 +1,19 @@
+corewar_original [-d N -s N -v N | -b --stealth | -n --stealth] [-a] <champion1.cor> <...>
+     : Prints output from "aff" (Default is to hide it)
+ OUTPUT MODE ##########################################################
+     : Dumps memory after N cycles then exits
+     : Runs N cycles, dumps memory, pauses, then repeats
+     : Verbosity levels, can be added together to enable several
+       - 0 : Show only essentials
+       - 1 : Show lives
+       - 2 : Show cycles
+       - 4 : Show operations (Params are NOT litteral ...)
+       - 8 : Show deaths
+       - 16 : Show PC movements (Except for jumps)
+RY OUTPUT MODE ########################################################
+     : Binary output mode for corewar.42.fr
+alth : Hides the real contents of the memory
+SES OUTPUT MODE #######################################################
+     : Ncurses output mode
+alth : Hides the real contents of the memory
+#######################################################################
