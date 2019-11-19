@@ -50,7 +50,7 @@ void				op_live(t_corewar *vm, t_carriage *carriage, int8_t *arg_code)
 
 	vm->live_count++;
     carriage->cycle_was_live = vm->total_cycles + vm->current_cycles;
-	player_code = 256 - return_bytes(vm->arena, carriage->position + 1, carriage->operation->t_dir_size);
+	player_code = -return_bytes(vm->arena, carriage->position + 1, carriage->operation->t_dir_size);
 	if (player_code > 0 && player_code <= vm->number_of_players)
     {
 		vm->winner = vm->cores[player_code - 1]; //player_code - 1 т.к. обращаемся к массиву, который начинается с 0 индекса
@@ -114,6 +114,7 @@ void				op_sti(t_corewar *vm, t_carriage *carriage, int8_t *arg_code)
 void				op_ld(t_corewar *vm, t_carriage *carriage, int8_t *arg_code)
 {
 	uint8_t			reg_num;
+	int16_t			ind;
 	int32_t			arg1;
 	uint16_t		pos;
 
@@ -125,9 +126,9 @@ void				op_ld(t_corewar *vm, t_carriage *carriage, int8_t *arg_code)
 	}
 	else
 	{
-		arg1 = return_bytes(vm->arena, pos, T_IND);
+		ind = return_bytes(vm->arena, pos, 2);
 		pos += 2;
-		arg1 = return_bytes(vm->arena, (carriage->position + arg1 % IDX_MOD) % MEM_SIZE, 4);
+		arg1 = return_bytes(vm->arena, (carriage->position + ind % IDX_MOD) % MEM_SIZE, 4);
 	}
 	reg_num = vm->arena[pos % MEM_SIZE].value;
 	carriage->registers[reg_num - 1] = arg1;
@@ -137,7 +138,8 @@ void				op_ld(t_corewar *vm, t_carriage *carriage, int8_t *arg_code)
 void				op_lld(t_corewar *vm, t_carriage *carriage, int8_t *arg_code)
 {
 	uint8_t			reg_num;
-	uint32_t		arg1;
+	int16_t			ind;
+	int32_t			arg1;
 	uint16_t		pos;
 	uint16_t		adress;
 
@@ -149,9 +151,9 @@ void				op_lld(t_corewar *vm, t_carriage *carriage, int8_t *arg_code)
 	}
 	else
 	{
-		arg1 = return_bytes(vm->arena, pos, T_IND);
+		ind = return_bytes(vm->arena, pos, 2);
 		pos += 2;
-		arg1 = return_bytes(vm->arena, carriage->position + arg1, 4);
+		arg1 = return_bytes(vm->arena, (carriage->position + ind) % MEM_SIZE, 4);
 		//Не применяя усечение по модулю
 	}
 	reg_num = vm->arena[pos % MEM_SIZE].value;
@@ -176,7 +178,8 @@ void				op_ldi(t_corewar *vm, t_carriage *carriage, int8_t *arg_code)
 		if (arg_code[0] == 3)
 		{
 			//сколько байт тут считывать 4 или 2??
-			arg1 = return_bytes(vm->arena, carriage->position + arg1 % IDX_MOD, carriage->operation->t_dir_size);
+			arg1 = return_bytes(vm->arena, (carriage->position + arg1 % IDX_MOD) % MEM_SIZE,
+			carriage->operation->t_dir_size);
 		}
 	}
 	if (arg_code[1] == 1)
@@ -190,8 +193,8 @@ void				op_ldi(t_corewar *vm, t_carriage *carriage, int8_t *arg_code)
 		pos += 2;
 	}
 	reg_num = vm->arena[pos % MEM_SIZE].value;
-	adress = carriage->position + (arg1 + arg2) % IDX_MOD;
-	carriage->registers[reg_num] = return_bytes(vm->arena, carriage->position + (arg1 + arg2) % IDX_MOD, REG_SIZE);
+	adress = (carriage->position + (arg1 + arg2) % IDX_MOD) % MEM_SIZE;
+	carriage->registers[reg_num] = return_bytes(vm->arena, adress, REG_SIZE);
 }
 
 void				op_lldi(t_corewar *vm, t_carriage *carriage, int8_t *arg_code)
@@ -322,11 +325,11 @@ void				op_xor(t_corewar *vm, t_carriage *carriage, int8_t *arg_code)
 
 void				op_zjmp(t_corewar *vm, t_carriage *carriage, int8_t *arg_code)
 {
-	int32_t 		distance;
+	int16_t 		distance;
 
 	distance = return_bytes(vm->arena, carriage->position + 1, carriage->operation->t_dir_size);
 	if (carriage->carry)
-		carriage->position = (carriage->position + (int32_t)distance % IDX_MOD) % MEM_SIZE;
+		carriage->position = (carriage->position + distance % IDX_MOD) % MEM_SIZE;
 	else
 		pass_args_bits(vm, carriage, arg_code);
 }
@@ -336,7 +339,7 @@ void				op_fork(t_corewar *vm, t_carriage *carriage, int8_t *arg_code)
 	int32_t		distance;
 	t_carriage	*new_carriage;
 
-	distance = return_bytes(vm->arena, carriage->position + 1, T_DIR);
+	distance = return_bytes(vm->arena, carriage->position + 1, carriage->operation->t_dir_size);
 	new_carriage = copy_carriage(vm, carriage);
 	new_carriage->position = (new_carriage->position + distance % IDX_MOD) % MEM_SIZE;
 }
@@ -346,7 +349,7 @@ void				op_lfork(t_corewar *vm, t_carriage *carriage, int8_t *arg_code)
 	int32_t		distance;
 	t_carriage	*new_carriage;
 
-	distance = return_bytes(vm->arena, carriage->position + 1, T_DIR);
+	distance = return_bytes(vm->arena, carriage->position + 1, carriage->operation->t_dir_size);
 	new_carriage = copy_carriage(vm, carriage);
 	new_carriage->position = (new_carriage->position + distance) % MEM_SIZE;
 }

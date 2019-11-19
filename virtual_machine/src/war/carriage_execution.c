@@ -6,7 +6,7 @@
 /*   By: hfrankly <hfrankly@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/09 15:37:50 by hfrankly          #+#    #+#             */
-/*   Updated: 2019/11/17 16:30:09 by hfrankly         ###   ########.fr       */
+/*   Updated: 2019/11/19 15:35:32 by hfrankly         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,12 +68,12 @@ void    execute_carriages(t_corewar **vm)
 				display_arena_state(*vm);
 			carriage = carriage->next;
 		}
-		// if ((*vm)->dumps == (*vm)->current_cycles + (*vm)->total_cycles)
-		// {
-		// 	ft_printf("%d %d %d\n", (*vm)->dumps, (*vm)->current_cycles, (*vm)->total_cycles);
-		// 	display_array((*vm)->arena, 128, 32);
-		// 	exit (0);
-		// }
+		if ((*vm)->dumps == (*vm)->current_cycles + (*vm)->total_cycles)
+		{
+			ft_printf("%d %d %d\n", (*vm)->dumps, (*vm)->current_cycles, (*vm)->total_cycles);
+			display_array((*vm)->arena, 128, 32);
+			exit (0);
+		}
 		(*vm)->current_cycles++;
 	}
 }
