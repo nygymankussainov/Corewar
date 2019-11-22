@@ -6,7 +6,7 @@
 /*   By: hfrankly <hfrankly@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/30 13:41:08 by egiant            #+#    #+#             */
-/*   Updated: 2019/11/17 14:49:38 by hfrankly         ###   ########.fr       */
+/*   Updated: 2019/11/22 14:47:41 by hfrankly         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@ t_carriage		*init_carriage(t_corewar *vm, t_core *player)
 	if (!(carriage = (t_carriage*)malloc(sizeof(t_carriage))))
 		termination_with_perror("Error", ENOMEM);
 	carriage->id = (vm->start_carriage) ? vm->start_carriage->id + 1 : 0;
+	vm->carriage_count++;
 	carriage->carry = false;
 	carriage->operation = NULL;
 	carriage->position = 0;
@@ -77,6 +78,7 @@ t_corewar		*init_vm(void)
 	vm->number_of_players = 0;
 	vm->start_carriage = NULL;
 	vm->winner = NULL;
+	vm->carriage_count = 0;
 	vm->dumps = -1;
 	vm->total_cycles = 0;
 	vm->current_cycles = 0;

@@ -6,7 +6,7 @@
 /*   By: hfrankly <hfrankly@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/30 16:29:38 by hfrankly          #+#    #+#             */
-/*   Updated: 2019/11/17 16:29:32 by hfrankly         ###   ########.fr       */
+/*   Updated: 2019/11/22 16:57:32 by hfrankly         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,7 @@ typedef struct 		s_corewar {
 	t_point			arena[MEM_SIZE];
 	t_carriage		*start_carriage;
 	t_core			*winner;
+	int16_t			carriage_count;
 	bool			visual;
 	uint32_t		total_cycles;
 	uint32_t		current_cycles;
