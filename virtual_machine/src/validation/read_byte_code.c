@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   read_byte_code.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: egiant <egiant@student.42.fr>              +#+  +:+       +#+        */
+/*   By: screight <screight@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/31 18:20:43 by egiant            #+#    #+#             */
-/*   Updated: 2019/11/06 12:20:30 by egiant           ###   ########.fr       */
+/*   Updated: 2019/11/20 04:58:42 by screight         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,12 +65,7 @@ void			read_exec_code_size(t_corewar *vm, t_core *player, int fd)
 	ret = read(fd, &buff, 4);
 	if (ret < 0)
 		terminate_with_error(vm);
-	rev_buff = buff[3]|(buff[2] << 8)|(buff[1] << 16)|(buff[0] << 24);
-	code_size = ft_change_system_over_ten(rev_buff, 16, 0);
-	//ft_printf("%d\n", ft_atoi(code_size));
-	if (ft_atoi(code_size) > CHAMP_MAX_SIZE || ft_atoi(code_size) <= 0)
-		terminate_with_error(vm);
-	player->exec_code_size = ft_atoi(code_size);
+	player->exec_code_size = buff[3]|(buff[2] << 8)|(buff[1] << 16)|(buff[0] << 24);
 }
 
 void			read_champion_comment(t_corewar *vm, t_core *player, int fd)
@@ -87,35 +82,37 @@ void			read_champion_comment(t_corewar *vm, t_core *player, int fd)
 
 void 			read_exec_code(t_corewar *vm, t_core *player, int fd)
 {
-	int			ret;
-	uint8_t		check;
+	char		c;
+	uint16_t	i;
 
-	ret = read(fd, player->exec_code, COMMENT_LENGTH);
-	if (ret < 0)
-		terminate_with_error(vm);
-	//дальше read возвращает 1, как проверить что код чемпиона кончился?
-	
-
+	i = 0;
+	while (read(fd, &c, 1) && i < player->exec_code_size)
+	{
+		player->exec_code[i] = c;
+		i++;
+	}
 }
 
-void			read_byte_code(t_corewar *vm)
+void			read_byte_code(t_corewar **vm)
 {
 	int 		n;
 	int			fd;
 	char		*file_name;
 
 	n = 0;
-	while (vm->cores[n])
+	while ((*vm)->cores[n])
 	{
-		file_name = ft_strjoin(vm->cores[n]->name, ".cor", 0, 0);
+		file_name = ft_strjoin((*vm)->cores[n]->name, ".cor");
 		fd = open(file_name, O_RDONLY);
-		read_magic_header(vm, fd);
-		read_champion_name(vm, vm->cores[n], fd);
-		read_null_octet(vm, fd);
-		read_exec_code_size(vm, vm->cores[n], fd);
-		read_champion_comment(vm, vm->cores[n], fd);
-		read_null_octet(vm, fd);
-		read_exec_code(vm, vm->cores[n], fd);
+		read_magic_header((*vm), fd);
+		read_champion_name((*vm), (*vm)->cores[n], fd);
+		read_null_octet((*vm), fd);
+		read_exec_code_size((*vm), (*vm)->cores[n], fd);
+		read_champion_comment((*vm), (*vm)->cores[n], fd);
+		read_null_octet((*vm), fd);
+		read_exec_code((*vm), (*vm)->cores[n], fd);
+		//(*vm)->cores[n]->color = (n + 1) * 0xFFAAEE;//doesn't work, alpha blending was needed
+		set_player_color((*vm), n); // **added by screight**
 		free(file_name);
 		++n;
 	}

@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: egiant <egiant@student.42.fr>              +#+  +:+       +#+         #
+#    By: screight <screight@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/10/30 17:56:58 by hfrankly          #+#    #+#              #
-#    Updated: 2019/11/13 16:59:00 by egiant           ###   ########.fr        #
+#    Updated: 2019/11/19 23:28:31 by screight         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -17,12 +17,14 @@ ARCHIVE = corewar.a
 
 NAME = corewar
 
-LIB = ../libft/ft_printf
-LIB_A = ../libft/libft.a $(LIB)/libftprintf.a
+SDL = -lSDL2_gfx -lSDL2_mixer -lSDL2_ttf -lSDL2
 
-INCLUDES = -I ./includes  -I ../includes -I $(LIB) -I ../libft
+LIB = ../libftprintf
+LIB_A = $(LIB)/libftprintf.a
 
-LIBS = -L ../libft -lft -L ../libft/ft_printf -lftprintf
+INCLUDES = -I ./includes  -I ../includes -I $(LIB) -I ../libftprintf/headers -I ../libftprintf/libft/headers
+
+LIBS = -L ../libftprintf -lftprintf
 
 SRCDIR = src
 OBJDIR = obj
@@ -32,6 +34,8 @@ SOURCES =	main.c \
 			initialization/set_params.c\
 			parsing/parse_arguments.c \
 			validation/read_byte_code.c \
+			sdl/sdl_init.c \
+			sdl/display_arena.c \
 			war/start_war.c \
 			war/operations.c \
 			war/check.c \
@@ -63,7 +67,7 @@ $(ARCHIVE): $(OBJ)
 	@ranlib $(ARCHIVE)
 
 $(NAME): $(OBJ)
-	@gcc $(CCFL) -o $(NAME) $(ARCHIVE) $(LIB_A)
+	@gcc $(CCFL) -o $(NAME) $(ARCHIVE) $(LIB_A) $(SDL)
 	@echo "$(LOG_GREEN)Corewar has compiled successfully!$(LOG_NOCOLOR)"
 
 clean:

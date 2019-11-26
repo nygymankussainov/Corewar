@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   operations.h                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: egiant <egiant@student.42.fr>              +#+  +:+       +#+        */
+/*   By: hfrankly <hfrankly@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/13 13:17:43 by hfrankly          #+#    #+#             */
-/*   Updated: 2019/11/14 12:38:00 by egiant           ###   ########.fr       */
+/*   Updated: 2019/11/19 15:43:25 by hfrankly         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,38 +18,37 @@
 typedef struct s_corewar		t_corewar;
 typedef struct s_carriage		t_carriage;
 
-typedef struct			s_operation
+typedef struct		s_operation
 {
-	char				*name;
-	uint8_t				code;
-	uint8_t				number_of_arguments;
-	bool				args_types_code;
-	uint8_t				args_types[3];
-	bool				changes_carry; //1 или 0
-	uint8_t				t_dir_size;
-	uint16_t			cycles_to_execution;
-	void				(*func)(t_corewar *, t_carriage *, int8_t *);
-}						t_operation;
+	char			*name;
+	uint8_t			code;
+	uint8_t			number_of_arguments;
+	bool			args_types_code;
+	uint8_t			args_types[3];
+	uint8_t			changes_carry; //1 или 0
+	uint8_t			t_dir_size;
+	uint16_t		cycles_to_execution;
+	void			(*func)(t_corewar *vm, t_carriage *carriage, int8_t *arg_code);
+}					t_operation;
 
-static uint8_t			type_sizes[3] = {1, 2, 4};
+void				op_live(t_corewar *vm, t_carriage *carriage, int8_t *arg_code);
+void				op_ld(t_corewar *vm, t_carriage *carriage, int8_t *arg_code);
+void				op_st(t_corewar *vm, t_carriage *carriage, int8_t *arg_code);
+void				op_add(t_corewar *vm, t_carriage *carriage, int8_t *arg_code);
+void				op_sub(t_corewar *vm, t_carriage *carriage, int8_t *arg_code);
+void				op_and(t_corewar *vm, t_carriage *carriage, int8_t *arg_code);
+void				op_or(t_corewar *vm, t_carriage *carriage, int8_t *arg_code);
+void				op_xor(t_corewar *vm, t_carriage *carriage, int8_t *arg_code);
+void				op_zjmp(t_corewar *vm, t_carriage *carriage, int8_t *arg_code);
+void				op_ldi(t_corewar *vm, t_carriage *carriage, int8_t *arg_code);
+void				op_sti(t_corewar *vm, t_carriage *carriage, int8_t *arg_code);
+void				op_fork(t_corewar *vm, t_carriage *carriage, int8_t *arg_code);
+void				op_lld(t_corewar *vm, t_carriage *carriage, int8_t *arg_code);
+void				op_lldi(t_corewar *vm, t_carriage *carriage, int8_t *arg_code);
+void				op_lfork(t_corewar *vm, t_carriage *carriage, int8_t *arg_code);
+void				op_aff(t_corewar *vm, t_carriage *carriage, int8_t *arg_code);
 
-void					op_live(t_corewar *, t_carriage *, int8_t *);
-void					op_ld(t_corewar *, t_carriage *, int8_t *);
-void					op_st(t_corewar *, t_carriage *, int8_t *);
-void					op_add(t_corewar *, t_carriage *, int8_t *);
-void					op_sub(t_corewar *, t_carriage *, int8_t *);
-void					op_and(t_corewar *, t_carriage *, int8_t *);
-void					op_or(t_corewar *, t_carriage *, int8_t *);
-void					op_xor(t_corewar *, t_carriage *, int8_t *);
-void					op_zjmp(t_corewar *, t_carriage *, int8_t *);
-void					op_ldi(t_corewar *, t_carriage *, int8_t *);
-void					op_sti(t_corewar *, t_carriage *, int8_t *);
-void					op_fork(t_corewar *, t_carriage *, int8_t *);
-void					op_lld(t_corewar *, t_carriage *, int8_t *);
-void					op_lldi(t_corewar *, t_carriage *, int8_t *);
-void					op_lfork(t_corewar *, t_carriage *, int8_t *);
-void					op_aff(t_corewar *, t_carriage *, int8_t *);
-
+static uint8_t			type_sizes[3] = {1, 4, 2};
 
 static t_operation		op_array[16] = {
 	{

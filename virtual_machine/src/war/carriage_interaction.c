@@ -3,24 +3,24 @@
 /*                                                        :::      ::::::::   */
 /*   carriage_interaction.c                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hfrankly <hfrankly@student.42.fr>          +#+  +:+       +#+        */
+/*   By: screight <screight@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/13 13:13:54 by hfrankly          #+#    #+#             */
-/*   Updated: 2019/11/13 16:16:49 by hfrankly         ###   ########.fr       */
+/*   Updated: 2019/11/25 23:40:21 by screight         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "virtual_machine.h"
 
-void		kill_carriage(t_corewar *vm, t_carriage *to_delete)
+void		kill_carriage(t_corewar **vm, t_carriage *to_delete)
 {
 	t_carriage	*cur_carriage;
 	t_carriage	*next_carriage;
 	
-	cur_carriage = vm->start_carriage;
-	if (vm->start_carriage == to_delete)
+	cur_carriage = (*vm)->start_carriage;
+	if ((*vm)->start_carriage == to_delete)
 	{
-		vm->start_carriage = to_delete->next;
+		(*vm)->start_carriage = to_delete->next;
 		free(to_delete);
 		to_delete = NULL;
 		return ;
@@ -44,6 +44,7 @@ t_carriage		*copy_carriage(t_corewar *vm, t_carriage *to_copy)
 	new_carriage->cycle_was_live = to_copy->cycle_was_live;
 	new_carriage->cycles_before_operation = 0; //
 	new_carriage->player = to_copy->player; //
+	new_carriage->color = to_copy->color; //<<added by screight>>
 	while (i < REG_NUMBER)
 	{
 		new_carriage->registers[i] = to_copy->registers[i];

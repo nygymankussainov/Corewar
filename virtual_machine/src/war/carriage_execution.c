@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   carriage_execution.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: egiant <egiant@student.42.fr>              +#+  +:+       +#+        */
+/*   By: screight <screight@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/09 15:37:50 by hfrankly          #+#    #+#             */
-/*   Updated: 2019/11/14 12:51:35 by egiant           ###   ########.fr       */
+/*   Updated: 2019/11/20 04:13:06 by screight         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,9 +17,9 @@
 */
 void	set_carriage_op(t_corewar *vm, t_carriage *carriage)
 {
-	if (vm->arena[carriage->position] > 0 && vm->arena[carriage->position] < 17)
+	if (vm->arena[carriage->position].value > 0 && vm->arena[carriage->position].value < 17)
 	{
-		carriage->operation = &op_array[vm->arena[carriage->position] - 1];
+		carriage->operation = &op_array[vm->arena[carriage->position].value - 1];
 		carriage->cycles_before_operation = carriage->operation->cycles_to_execution;
 	}
 	else
@@ -40,36 +40,39 @@ void	execute_carriage_op(t_corewar *vm, t_carriage *carriage)
 		set_arg_code(vm, carriage, &arg_code);
 		if (is_valid_format(vm, carriage, arg_code))
 			carriage->operation->func(vm, carriage, arg_code);
-		pass_args_bits(vm, carriage, arg_code);
+		if (carriage->operation->code != 0x09)
+			pass_args_bits(vm, carriage, arg_code);
 	}
-	else
-		carriage->position = (carriage->position + 1) % MEM_SIZE;
 	if (arg_code)
 		free(arg_code);
 }
 
-void    execute_carriages(t_corewar *vm)
+void    execute_carriages(t_corewar **vm)
 {
 	t_carriage	*carriage;
 
-    while (vm->current_cycles != vm->cycles_to_die)
+    while ((*vm)->current_cycles != (*vm)->cycles_to_die)
 	{
-		carriage = vm->start_carriage;
+		carriage = (*vm)->start_carriage;
 		while (carriage)
 		{
 			if (carriage->cycles_before_operation == 0)
-				set_carriage_op(vm, carriage);
+				set_carriage_op((*vm), carriage);
 			if (carriage->cycles_before_operation > 0)
 				carriage->cycles_before_operation--;
-			if (carriage->cycles_before_operation == 0)
-			{
-				execute_carriage_op(vm, carriage);
-
-				printf("\n");
-				display_array(vm->arena, 64, 64);
-			}
+			if (carriage->cycles_before_operation == 0 && carriage->operation != NULL)
+				execute_carriage_op(*vm, carriage);
+			else if (carriage->cycles_before_operation == 0)
+				carriage->position = (carriage->position + 1) % MEM_SIZE;			
+			if (carriage->cycles_before_operation == 0 && (*vm)->visual == true)
+				display_arena_state(*vm);
 			carriage = carriage->next;
 		}
-		vm->current_cycles++;
+		if ((*vm)->dumps == (*vm)->current_cycles + (*vm)->total_cycles)
+		{
+			display_array((*vm)->arena, 64, 64);
+			exit (0);
+		}
+		(*vm)->current_cycles++;
 	}
 }
