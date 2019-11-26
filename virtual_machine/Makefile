@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: screight <screight@student.42.fr>          +#+  +:+       +#+         #
+#    By: hfrankly <hfrankly@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/10/30 17:56:58 by hfrankly          #+#    #+#              #
-#    Updated: 2019/11/19 23:28:31 by screight         ###   ########.fr        #
+#    Updated: 2019/11/17 13:36:59 by hfrankly         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -17,14 +17,16 @@ ARCHIVE = corewar.a
 
 NAME = corewar
 
-SDL = -lSDL2_gfx -lSDL2_mixer -lSDL2_ttf -lSDL2
+SDL = -L ~/.brew/Cellar/sdl2/2.0.10/lib -l SDL2-2.0.0 \
+		`sdl2-config --libs` -lSDL2_gfx -lSDL2_mixer -lSDL2_ttf -lm
 
-LIB = ../libftprintf
-LIB_A = $(LIB)/libftprintf.a
+LIB = ../libft/ft_printf
+LIB_A = ../libft/libft.a $(LIB)/libftprintf.a
 
-INCLUDES = -I ./includes  -I ../includes -I $(LIB) -I ../libftprintf/headers -I ../libftprintf/libft/headers
+INCLUDES = -I ./includes  -I ../includes -I $(LIB) -I ../libft \
+			-I./includes/sdl/SDL2 -I./includes/sdl/SDL2_GFX -I./includes/sdl/SDL2_MIX `sdl2-config --cflags`
 
-LIBS = -L ../libftprintf -lftprintf
+LIBS = -L ../libft -lft -L ../libft/ft_printf -lftprintf
 
 SRCDIR = src
 OBJDIR = obj

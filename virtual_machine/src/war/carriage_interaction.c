@@ -6,7 +6,7 @@
 /*   By: screight <screight@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/13 13:13:54 by hfrankly          #+#    #+#             */
-/*   Updated: 2019/11/25 23:40:21 by screight         ###   ########.fr       */
+/*   Updated: 2019/11/26 15:41:14 by screight         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@ void		kill_carriage(t_corewar **vm, t_carriage *to_delete)
 	t_carriage	*cur_carriage;
 	t_carriage	*next_carriage;
 	
+	(*vm)->carriage_count--;
 	cur_carriage = (*vm)->start_carriage;
 	if ((*vm)->start_carriage == to_delete)
 	{
@@ -38,13 +39,15 @@ t_carriage		*copy_carriage(t_corewar *vm, t_carriage *to_copy)
 	uint8_t		i;
 
 	i = 0;
+	vm->carriage_count++;
 	if (!(new_carriage = (t_carriage*)malloc(sizeof(t_carriage))))
 		termination_with_perror("Carriage memory allocation error", ENOMEM);
+	new_carriage->id = vm->carriage_count;
 	new_carriage->carry = to_copy->carry;
 	new_carriage->cycle_was_live = to_copy->cycle_was_live;
 	new_carriage->cycles_before_operation = 0; //
 	new_carriage->player = to_copy->player; //
-	new_carriage->color = to_copy->color; //<<added by screight>>
+	new_carriage->color = to_copy->color; //
 	while (i < REG_NUMBER)
 	{
 		new_carriage->registers[i] = to_copy->registers[i];

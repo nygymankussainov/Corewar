@@ -6,7 +6,7 @@
 /*   By: screight <screight@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/30 13:41:19 by egiant            #+#    #+#             */
-/*   Updated: 2019/11/25 04:01:37 by screight         ###   ########.fr       */
+/*   Updated: 2019/11/26 16:20:57 by screight         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,9 +60,7 @@ int				main(int argc, char *argv[])
 {
 	t_corewar	*vm;
 	bool		quit;
-	int			i;
 
-	i = 0;
 	quit = false;
 	vm = init_vm();
 	parse_arguments(&vm, argc, argv);
@@ -71,9 +69,6 @@ int				main(int argc, char *argv[])
 	read_byte_code(&vm);
 	init_arena(vm);
 	introduce_players(vm);
-	vm->vis_arena = (t_vis_arena*)malloc(sizeof(t_vis_arena) * 4096);
-	while (i < 4096)
-		vm->vis_arena[i++].is_new = false;
 	start_war(vm);
 	if (vm->visual)
 	{

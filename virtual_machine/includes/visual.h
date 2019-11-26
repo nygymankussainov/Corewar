@@ -6,7 +6,7 @@
 /*   By: screight <screight@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/17 13:06:28 by hfrankly          #+#    #+#             */
-/*   Updated: 2019/11/26 17:17:05 by screight         ###   ########.fr       */
+/*   Updated: 2019/11/26 15:48:24 by screight         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 # define VISUAL_H
 
 # define SIZEX 1600
-# define SIZEY 920
+# define SIZEY 900
 
 #define RX (SIZEX - 510) / 64
 #define RY (SIZEY - 20 - 64) / 64
@@ -23,6 +23,8 @@
 #include "SDL.h"
 #include "SDL2_gfxPrimitives.h"
 #include "SDL_mixer.h"
+
+typedef struct s_sdl			t_sdl;
 
 typedef struct s_sdl			t_sdl;
 typedef struct s_vis_arena		t_vis_arena;

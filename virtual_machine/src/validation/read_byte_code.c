@@ -6,7 +6,7 @@
 /*   By: screight <screight@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/31 18:20:43 by egiant            #+#    #+#             */
-/*   Updated: 2019/11/20 04:58:42 by screight         ###   ########.fr       */
+/*   Updated: 2019/11/26 15:44:02 by screight         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,7 +102,7 @@ void			read_byte_code(t_corewar **vm)
 	n = 0;
 	while ((*vm)->cores[n])
 	{
-		file_name = ft_strjoin((*vm)->cores[n]->name, ".cor");
+		file_name = ft_strjoin((*vm)->cores[n]->name, ".cor", 0, 0);
 		fd = open(file_name, O_RDONLY);
 		read_magic_header((*vm), fd);
 		read_champion_name((*vm), (*vm)->cores[n], fd);

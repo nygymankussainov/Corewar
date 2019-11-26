@@ -6,7 +6,7 @@
 /*   By: screight <screight@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/17 13:36:16 by hfrankly          #+#    #+#             */
-/*   Updated: 2019/11/26 03:41:59 by screight         ###   ########.fr       */
+/*   Updated: 2019/11/26 15:49:43 by screight         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -133,7 +133,7 @@ void		display_arena_state(t_corewar *vm)
 	boxColor(vm->sdl->ren, SIZEX - x + 2, 625 + 2, SIZEX - 290, 675 - 2, 0xff424242);
 	boxColor(vm->sdl->ren, SIZEX - 287, 625 + 2, SIZEX - 40 - 2, 675 - 2, 0xff424242);
 	stringColor(vm->sdl->ren, SIZEX - x + 15, 647, "THE WINNER", 0xff698234);
-	if (vm->winner && vm->winner->name && !vm->start_carriage)
+	if (vm->winner && !vm->start_carriage)
 		stringColor(vm->sdl->ren, SIZEX - 270, 647, vm->winner->name, vm->winner->color);
 	SDL_RenderPresent(vm->sdl->ren);
 	while (start)

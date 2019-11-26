@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   carriage_execution.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: screight <screight@student.42.fr>          +#+  +:+       +#+        */
+/*   By: hfrankly <hfrankly@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/09 15:37:50 by hfrankly          #+#    #+#             */
-/*   Updated: 2019/11/20 04:13:06 by screight         ###   ########.fr       */
+/*   Updated: 2019/11/22 16:23:26 by hfrankly         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,8 @@ void	execute_carriage_op(t_corewar *vm, t_carriage *carriage)
 		termination_with_perror("Error", ENOMEM);
 	if (carriage->operation != NULL)
 	{
+		if (vm->total_cycles + vm->current_cycles == 1649)
+			ft_printf("");
 		set_arg_code(vm, carriage, &arg_code);
 		if (is_valid_format(vm, carriage, arg_code))
 			carriage->operation->func(vm, carriage, arg_code);
@@ -68,11 +70,11 @@ void    execute_carriages(t_corewar **vm)
 				display_arena_state(*vm);
 			carriage = carriage->next;
 		}
+		(*vm)->current_cycles++;
 		if ((*vm)->dumps == (*vm)->current_cycles + (*vm)->total_cycles)
 		{
 			display_array((*vm)->arena, 64, 64);
 			exit (0);
 		}
-		(*vm)->current_cycles++;
 	}
 }

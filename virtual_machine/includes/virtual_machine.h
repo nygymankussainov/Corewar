@@ -6,7 +6,7 @@
 /*   By: screight <screight@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/30 16:29:38 by hfrankly          #+#    #+#             */
-/*   Updated: 2019/11/26 03:32:44 by screight         ###   ########.fr       */
+/*   Updated: 2019/11/26 15:47:15 by screight         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@
 #include <errno.h>
 #include <unistd.h>
 #include "libft.h"
-#include "libftprintf.h"
+#include "ft_printf.h"
 #include "op.h"
 #include "operations.h"
 #include "visual.h"
@@ -40,6 +40,7 @@ typedef struct 		s_corewar {
 	t_point			arena[MEM_SIZE];
 	t_carriage		*start_carriage;
 	t_core			*winner;
+	int16_t			carriage_count;
 	bool			visual;
 	uint32_t		total_cycles;
 	uint32_t		current_cycles;
@@ -48,7 +49,7 @@ typedef struct 		s_corewar {
 	uint32_t		live_count;
 	uint32_t		check_count;
 
-	t_vis_arena		*vis_arena;
+	t_vis_arena		*vis_arena; //**temporary
 }					t_corewar;
 
 typedef struct s_core {
