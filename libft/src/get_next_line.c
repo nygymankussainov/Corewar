@@ -6,7 +6,7 @@
 /*   By: vhazelnu <vhazelnu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/05 11:50:12 by vhazelnu          #+#    #+#             */
-/*   Updated: 2019/11/07 11:25:56 by vhazelnu         ###   ########.fr       */
+/*   Updated: 2019/11/26 16:39:16 by vhazelnu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ int		get_next_line(const int fd, char **line, bool err)
 	}
 	if (gnl.byte == -1 || !gnl.str)
 		return (gnl.byte == -1 ? -1 : 0);
-	if (ft_strchr(gnl.str, '\n') > 0)
+	if (ft_strchr(gnl.str, '\n') != NULL)
 		*line = ft_strsub(gnl.str, 0, ft_strchr(gnl.str, '\n') - gnl.str + 1);
 	else
 		*line = ft_strdup(gnl.str);
