@@ -6,7 +6,7 @@
 /*   By: vhazelnu <vhazelnu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/27 14:26:22 by vhazelnu          #+#    #+#             */
-/*   Updated: 2019/11/27 17:08:20 by vhazelnu         ###   ########.fr       */
+/*   Updated: 2019/11/27 20:49:58 by vhazelnu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,5 +58,7 @@ void	vm(t_player *player, t_major *major)
 {
 	vm_init(player, major);
 	announce_players(player, major->pl_nb);
+	int fd = open("test", O_CREAT | O_WRONLY, S_IRUSR | S_IWUSR);
+	write(fd, major->arena, MEM_SIZE);
 	battle(player, major);
 }
