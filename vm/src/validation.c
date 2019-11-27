@@ -6,7 +6,7 @@
 /*   By: vhazelnu <vhazelnu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/26 13:08:05 by vhazelnu          #+#    #+#             */
-/*   Updated: 2019/11/26 21:52:32 by vhazelnu         ###   ########.fr       */
+/*   Updated: 2019/11/27 13:02:19 by vhazelnu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,8 +86,7 @@ int		validation(int argc, char **argv, int nb)
 	if (!validate_players(argc, argv, player, nb))
 		return (0);
 	if (argc - 1 != nb)
-		if (!find_flag(player, argv, argc, nb))
-			return (0);
+		modify_players_id(player, argv, argc, nb);
 	delete_player(player, nb);
 	return (1);
 }
