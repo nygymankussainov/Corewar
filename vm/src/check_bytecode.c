@@ -6,7 +6,7 @@
 /*   By: vhazelnu <vhazelnu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/26 14:35:10 by vhazelnu          #+#    #+#             */
-/*   Updated: 2019/11/26 21:52:39 by vhazelnu         ###   ########.fr       */
+/*   Updated: 2019/11/27 16:53:00 by vhazelnu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,7 +72,7 @@ int		check_magic_header(int fd, char *argv)
 	if (!(str = read_from_fd(fd, 4, Magic_header, argv)))
 		return (0);
 	magic_header = rev_bytes(str, 4);
-	if (*((int*)magic_header) != COREWAR_EXEC_MAGIC)
+	if (*((int *)magic_header) != COREWAR_EXEC_MAGIC)
 	{
 		putstrerr("Missing magic header in ");
 		putstrerr(argv);

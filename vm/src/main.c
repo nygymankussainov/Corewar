@@ -6,7 +6,7 @@
 /*   By: vhazelnu <vhazelnu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/26 13:03:34 by vhazelnu          #+#    #+#             */
-/*   Updated: 2019/11/27 14:42:05 by vhazelnu         ###   ########.fr       */
+/*   Updated: 2019/11/27 17:00:27 by vhazelnu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ int		print_usage(void)
 	return (0);
 }
 
-t_major	*init_major(char **argv, int argc, int nb)
+t_major	*init_major(char **argv, int argc, int nb, t_player *player)
 {
 	t_major	*major;
 
@@ -51,6 +51,8 @@ t_major	*init_major(char **argv, int argc, int nb)
 		exit(12);
 	}
 	major->pl_nb = nb;
+	major->lastlive = &player[nb - 1];
+	major->cycles_to_die = CYCLE_TO_DIE;
 	while (argc--)
 	{
 		if (!ft_strcmp(argv[argc], "-dump"))
@@ -76,7 +78,7 @@ int		main(int argc, char **argv)
 		putstrerr("Too many champions\n");
 	else if ((player = validation(argc, argv, nb)) != NULL)
 	{
-		major = init_major(argv, argc, nb);
+		major = init_major(argv, argc, nb, player);
 		vm(player, major);
 		delete_player(player, nb);
 		return (1);
