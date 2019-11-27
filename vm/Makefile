@@ -6,7 +6,7 @@
 #    By: vhazelnu <vhazelnu@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/05/16 11:34:51 by vhazelnu          #+#    #+#              #
-#    Updated: 2019/11/26 20:55:03 by vhazelnu         ###   ########.fr        #
+#    Updated: 2019/11/27 14:26:10 by vhazelnu         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -20,7 +20,7 @@ LIB_A = ../libft/libft.a $(LIB)/libftprintf.a
 
 INCLUDES = -I ./includes  -I ../ -I $(LIB) -I ../libft
 
-SOURCES = vm.c validation.c check_bytecode.c rev_bytes.c read_from_fd.c modify_players_id.c \
+SOURCES = main.c vm.c validation.c check_bytecode.c rev_bytes.c read_from_fd.c modify_players_id.c \
 
 SRCDIR = src
 OBJDIR = obj

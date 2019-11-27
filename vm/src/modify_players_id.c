@@ -6,7 +6,7 @@
 /*   By: vhazelnu <vhazelnu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/26 18:29:45 by vhazelnu          #+#    #+#             */
-/*   Updated: 2019/11/27 14:48:17 by vhazelnu         ###   ########.fr       */
+/*   Updated: 2019/11/27 15:00:08 by vhazelnu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,13 +16,29 @@ void	swap_players(t_player *a, t_player *b)
 {
 	t_player c;
 
-	ft_swap(&a->id, &b->id);
 	c = *a;
 	*a = *b;
 	*b = c;
 }
 
-void	sort_players(t_player *player, int nb, int reserve)
+void	sort_players(t_player *player, int nb)
+{
+	int		i;
+
+	while (nb)
+	{
+		i = 0;
+		while (i < nb)
+		{
+			if (i + 1 < nb && player[i].id > player[i + 1].id)
+				swap_players(&player[i], &player[i + 1]);
+			++i;
+			i >= nb - 1 ? --nb : nb;
+		}
+	}
+}
+
+void	sort_players_id(t_player *player, int nb, int reserve)
 {
 	int		i;
 
@@ -36,11 +52,11 @@ void	sort_players(t_player *player, int nb, int reserve)
 				if (i + 1 < nb && player[i + 1].id != reserve)
 				{
 					if (i + 1 < nb && player[i].id > player[i + 1].id)
-						swap_players(&player[i], &player[i + 1]);
+						ft_swap(&player[i].id, &player[i + 1].id);
 				}
 				else if (i + 2 < nb && player[i].id > player[i + 2].id)
 				{
-					swap_players(&player[i], &player[i + 2]);
+					ft_swap(&player[i].id, &player[i + 2].id);
 					++i;
 				}
 			}
@@ -83,15 +99,10 @@ void	modify_players_id(t_player *player, char **argv, int argc, int nb)
 			if (reserve <= 0 || reserve > nb)
 				return ;
 			tmp = find_player(player, reserve, nb);
-			swap_players(&player[j], &player[tmp]);
-			sort_players(player, nb, reserve);
+			ft_swap(&player[j].id, &player[tmp].id);
+			sort_players_id(player, nb, reserve);
 		}
 		i++;
 	}
-	i = 0;
-	while (i < nb)
-	{
-		ft_printf("%d)%s ", player[i].id, player[i].name);
-		i++;
-	}
+	sort_players(player, nb);
 }
