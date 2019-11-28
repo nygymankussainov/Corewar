@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   execute_op.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: egiant <egiant@student.42.fr>              +#+  +:+       +#+        */
+/*   By: hfrankly <hfrankly@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/12 14:38:51 by hfrankly          #+#    #+#             */
-/*   Updated: 2019/11/17 16:07:00 by hfrankly         ###   ########.fr       */
+/*   Updated: 2019/11/19 20:25:05 by hfrankly         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,8 @@ bool	is_valid_reg(t_corewar *vm, t_carriage *carriage,
 			offset += carriage->operation->t_dir_size;
 		else if (arg_code[i] == 3)
 			offset += 2;
+		else
+			offset++;
 		i++;
 	}
 	if (vm->arena[(carriage->position + offset) % MEM_SIZE].value < 1 ||
@@ -60,9 +62,8 @@ bool	if_valid_format(t_corewar *vm, t_carriage *carriage,
 						int8_t *arg_code, uint8_t i)
 {
 	if (i < carriage->operation->number_of_arguments && arg_code[i] == 1 &&
-		is_valid_reg(vm, carriage, arg_code, i) == false &&
-		(arg_code[i] & carriage->operation->args_types[i]) == false)
-		return(false);
+		(arg_code[i] & carriage->operation->args_types[i]) == true)
+		return (is_valid_reg(vm, carriage, arg_code, i));
 	else if (i < carriage->operation->number_of_arguments &&
 		(arg_code[i] & carriage->operation->args_types[i]) == false)
 		return (false);

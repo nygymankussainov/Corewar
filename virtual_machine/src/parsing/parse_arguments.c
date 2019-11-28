@@ -1,15 +1,3 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   parse_arguments.c                                  :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: hfrankly <hfrankly@student.42.fr>          +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/10/31 16:49:05 by egiant            #+#    #+#             */
-/*   Updated: 2019/11/17 14:30:20 by hfrankly         ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
-
 #include "virtual_machine.h"
 
 void 			parse_dump_flag(t_corewar *vm, char *argv[], int *n)
@@ -20,94 +8,57 @@ void 			parse_dump_flag(t_corewar *vm, char *argv[], int *n)
 
 int 			is_name(t_corewar *vm, char *str)
 {
-	//каких символов не может быть в имени игрока?
 	char 		*ptr;
 
-	ft_putstr(str);
 	if (!(ptr = ft_strstr(str, ".cor")))
 		terminate_with_error(vm);
-	//проверить что после .cor нет символов
 	return (1);
 }
 
-void 			parse_player(t_corewar *vm, char *argv[], int *n)
+void			parse_player(t_corewar *vm, char *argv[], int *n, int player_id)
 {
-	int			num;
-	char		**name;
-	t_core		*p_ptr;
+	t_core		*new_player;
+	t_core		*core_tmp;
 
-	p_ptr = NULL;
-	name = NULL;
-	if (!ft_strcmp(argv[*n], "-n"))
-	{
-		if (!argv[*n + 1] || !argv[*n + 2])
-			terminate_with_error(vm);
-		//проверить что это именно число
-		num = ft_atoi(argv[*n + 1]);
-		if (num > 4)
-			terminate_with_error(vm);
-		is_name(vm, argv[*n + 2]);
-		name = ft_strsplit(argv[*n + 2], '.');
-		--num;
-		if (vm->cores[num])
-			terminate_with_error(vm);
-		if (!(vm->cores[num] = (t_core *)malloc(sizeof(t_core))))
-			termination_with_perror("Parse player error", ENOMEM);
-		init_core(vm->cores[num]);
-		ft_strcpy(vm->cores[num]->name, name[0]);
-		vm->cores[num]->id = num + 1;
-		free(name);
-		*n += 3;
-	}
+	if (!(new_player = (t_core*)malloc(sizeof(t_core))))
+		termination_with_perror("Parse player error", ENOMEM);
+	init_core(new_player);
+	new_player->executable_file_name = ft_strdup(argv[*n]);
+	new_player->id = player_id;
+	if (!vm->line_of_players)
+		vm->line_of_players = new_player;
 	else
 	{
-		name = ft_strsplit(argv[*n], '.');
-		if (!vm->line_of_players)
+		if (new_player->id == 0)
 		{
-			if (!(vm->line_of_players = (t_core*)malloc(sizeof(t_core) * MAX_PLAYERS))) // !!
-				termination_with_perror("Parse player error", ENOMEM);
-			p_ptr = vm->line_of_players;
+			core_tmp = vm->line_of_players;
+			while (core_tmp->next)
+				core_tmp = core_tmp->next;
+			core_tmp->next = new_player;
 		}
 		else
 		{
-			p_ptr = vm->line_of_players;
-			while (p_ptr->next)
-				p_ptr = p_ptr->next;
-			if (!(p_ptr->next = (t_core*)malloc(sizeof(t_core))))
-				termination_with_perror("Parse player error", ENOMEM);
-			p_ptr = p_ptr->next;
+			new_player->next = vm->line_of_players;
+			vm->line_of_players = new_player;
 		}
-		init_core(p_ptr);
-		ft_strcpy(p_ptr->name , name[0]);
-		free(name);
-		*n += 1;
 	}
+	*n += 1;
 	vm->number_of_players++;
 }
 
-void 			add_remaining_players(t_corewar *vm)
+void			parse_n_flag(t_corewar *vm, char *argv[], int *n)
 {
-	int			n;
-	int			num;
+	int player_id;
 
-	n = 0;
-	num = vm->number_of_players;
-	while (n < 4 && vm->line_of_players)
-	{
-		if (!vm->cores[n])
-		{
-			vm->cores[n] = vm->line_of_players; //проверить не потеряю ли я выделенную память
-			vm->cores[n]->id = n + 1;
-			vm->line_of_players = vm->line_of_players->next;
-		}
-		++n;
-		--num;
-	}
-	if (!vm->cores[n] && num != 0)
+	*n += 1;
+	if (!argv[*n] || ft_atoi(argv[*n]) < 1 || ft_atoi(argv[*n]) > 4 || !argv[*n + 1])
 		terminate_with_error(vm);
+	player_id = ft_atoi(argv[*n]);
+	*n += 1;
+	parse_player(vm, argv, n, player_id);
 }
 
-void			parse_arguments(t_corewar **vm, int argc, char *argv[]) //+ флаг визуализации
+void			parse_arguments(t_corewar **vm, int argc, char *argv[])
 {
 	int 		n;
 
@@ -121,15 +72,14 @@ void			parse_arguments(t_corewar **vm, int argc, char *argv[]) //+ флаг ви
 			(*vm)->visual = true;
 			n++;
 		}
-		else if (ft_strcmp(argv[n], "-n") || is_name(*vm, argv[n]))
-			parse_player(*vm, argv, &n);
+		else if (!(ft_strcmp(argv[n], "-n")))
+			parse_n_flag(*vm, argv, &n);
+		else if (is_name(*vm, argv[n]))
+			parse_player(*vm, argv, &n, 0);
+		else
+			terminate_with_error((*vm));
 	}
-	if ((*vm)->number_of_players < 2)
+	if ((*vm)->number_of_players < 2 || (*vm)->number_of_players > 4)
 		terminate_with_error((*vm));
-	if ((*vm)->line_of_players)
-		add_remaining_players((*vm));
 	(*vm)->winner = (*vm)->cores[(*vm)->number_of_players - 1];
 }
-
-//проверить валидность игроков:
-//номера идут подрят, номера не повторяются, номер после -n < 4

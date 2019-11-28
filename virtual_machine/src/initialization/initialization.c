@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   initialization.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: egiant <egiant@student.42.fr>              +#+  +:+       +#+        */
+/*   By: hfrankly <hfrankly@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/30 13:41:08 by egiant            #+#    #+#             */
-/*   Updated: 2019/11/17 14:49:38 by hfrankly         ###   ########.fr       */
+/*   Updated: 2019/11/22 14:47:41 by hfrankly         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@ t_carriage		*init_carriage(t_corewar *vm, t_core *player)
 	if (!(carriage = (t_carriage*)malloc(sizeof(t_carriage))))
 		termination_with_perror("Error", ENOMEM);
 	carriage->id = (vm->start_carriage) ? vm->start_carriage->id + 1 : 0;
+	vm->carriage_count++;
 	carriage->carry = false;
 	carriage->operation = NULL;
 	carriage->position = 0;
@@ -30,7 +31,7 @@ t_carriage		*init_carriage(t_corewar *vm, t_core *player)
 	carriage->next = NULL;
 	while (n != 0)
 		carriage->registers[n--] = 0;
-	carriage->registers[0] = -(player->id);
+	carriage->registers[0] = -((int)(player->id));
 	carriage->player = player;
 	carriage->color = player->color;
 	return (carriage);
@@ -57,6 +58,7 @@ void			init_arena(t_corewar *vm)
 void			init_core(t_core *player)
 {
 	player->id = 0;
+	player->executable_file_name = NULL;
 	player->exec_code_size = 0;
 	ft_bzero(player->exec_code, CHAMP_MAX_SIZE);
 	player->next = NULL;
@@ -77,6 +79,7 @@ t_corewar		*init_vm(void)
 	vm->number_of_players = 0;
 	vm->start_carriage = NULL;
 	vm->winner = NULL;
+	vm->carriage_count = 0;
 	vm->dumps = -1;
 	vm->total_cycles = 0;
 	vm->current_cycles = 0;

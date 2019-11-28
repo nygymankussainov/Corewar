@@ -3,7 +3,7 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: egiant <egiant@student.42.fr>              +#+  +:+       +#+         #
+#    By: hfrankly <hfrankly@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/10/30 17:56:58 by hfrankly          #+#    #+#              #
 #    Updated: 2019/11/17 13:36:59 by hfrankly         ###   ########.fr        #
@@ -32,6 +32,8 @@ SOURCES =	main.c \
 			initialization/set_params.c\
 			parsing/parse_arguments.c \
 			validation/read_byte_code.c \
+			sdl/sdl_init.c \
+			sdl/display_arena.c \
 			war/start_war.c \
 			war/operations.c \
 			war/check.c \
@@ -63,7 +65,7 @@ $(ARCHIVE): $(OBJ)
 	@ranlib $(ARCHIVE)
 
 $(NAME): $(OBJ)
-	@gcc $(CCFL) -o $(NAME) $(ARCHIVE) $(LIB_A)
+	@gcc $(CCFL) -o $(NAME) $(ARCHIVE) $(LIB_A) $(SDL)
 	@echo "$(LOG_GREEN)Corewar has compiled successfully!$(LOG_NOCOLOR)"
 
 clean:
