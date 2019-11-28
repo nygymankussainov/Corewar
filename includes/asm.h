@@ -6,16 +6,14 @@
 /*   By: vhazelnu <vhazelnu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/30 14:36:26 by vhazelnu          #+#    #+#             */
-/*   Updated: 2019/11/11 19:08:59 by vhazelnu         ###   ########.fr       */
+/*   Updated: 2019/11/27 18:04:40 by vhazelnu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef ASM_H
 # define ASM_H
 
-# include "stdbool.h"
 # include "ft_printf.h"
-# include "op.h"
 # include "operations.h"
 
 typedef struct		s_major
