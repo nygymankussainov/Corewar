@@ -6,7 +6,7 @@
 /*   By: hfrankly <hfrankly@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/30 13:41:08 by egiant            #+#    #+#             */
-/*   Updated: 2019/11/22 14:47:41 by hfrankly         ###   ########.fr       */
+/*   Updated: 2019/11/28 16:54:31 by hfrankly         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ t_carriage		*init_carriage(t_corewar *vm, t_core *player)
 	t_carriage	*carriage;
 	
 	n = 15;
-	if (!(carriage = (t_carriage*)malloc(sizeof(t_carriage))))
+	if (!(carriage = (t_carriage*)ft_memalloc(sizeof(t_carriage))))
 		termination_with_perror("Error", ENOMEM);
 	carriage->id = (vm->start_carriage) ? vm->start_carriage->id + 1 : 0;
 	vm->carriage_count++;
@@ -37,22 +37,22 @@ t_carriage		*init_carriage(t_corewar *vm, t_core *player)
 	return (carriage);
 }
 
-void			init_arena(t_corewar *vm)
+void			init_arena(t_corewar **vm)
 {
-	uint8_t		i;
+	uint16_t		i;
 	uint16_t	cur_position;
 	uint16_t	position_step;
 
-	i = 0;
 	cur_position = 0;
-	position_step = MEM_SIZE / vm->number_of_players;
-	while (i < vm->number_of_players)
+	position_step = MEM_SIZE / (*vm)->number_of_players;
+	i = 0;
+	while (i < (*vm)->number_of_players)
 	{
-		set_exec_code(vm->arena, cur_position, vm->cores[i]);
+		set_exec_code((*vm)->arena, cur_position, (*vm)->cores[i]);
 		cur_position += position_step;
 		i++;
 	}
-	set_carriages(vm, position_step);
+	set_carriages((*vm), position_step);
 }
 
 void			init_core(t_core *player)
@@ -70,10 +70,9 @@ t_corewar		*init_vm(void)
 	t_corewar	*vm;
 
 	n = MAX_PLAYERS;
-	if (!(vm = (t_corewar *)malloc(sizeof(t_corewar))))
+	ft_printf("%d\n", sizeof(t_corewar));
+	if (!(vm = (t_corewar *)ft_memalloc(sizeof(t_corewar))))
 		termination_with_perror("Error", ENOMEM);
-	while (--n > -1)
-		vm->cores[n] = NULL;
 	vm->line_of_players = NULL;
 	vm->number_of_players = 0;
 	vm->start_carriage = NULL;

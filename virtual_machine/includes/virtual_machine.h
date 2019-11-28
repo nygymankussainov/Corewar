@@ -6,7 +6,7 @@
 /*   By: hfrankly <hfrankly@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/30 16:29:38 by hfrankly          #+#    #+#             */
-/*   Updated: 2019/11/22 16:57:32 by hfrankly         ###   ########.fr       */
+/*   Updated: 2019/11/28 16:53:29 by hfrankly         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,8 @@
 
 #include <stdint.h>
 #include <stdbool.h>
+#include <stdlib.h>
+#include <fcntl.h>
 #include <errno.h>
 #include <unistd.h>
 #include "libft.h"
@@ -34,7 +36,7 @@ typedef struct 		s_point {
 
 typedef struct 		s_corewar {
 	t_sdl			*sdl;
-	t_core			*cores[MAX_PLAYERS];
+	t_core			*(cores[MAX_PLAYERS]);
 	t_core			*line_of_players;
 	short			number_of_players;
 	t_point			arena[MEM_SIZE];
@@ -54,6 +56,7 @@ typedef struct s_core {
 	uint8_t			id;
 	char			name[PROG_NAME_LENGTH + 1];
 	char			comment[COMMENT_LENGTH + 1];
+	char			file_path[PROG_NAME_LENGTH + 1];
 	uint16_t		exec_code_size;
 	uint8_t			exec_code[CHAMP_MAX_SIZE];
 	uint16_t		cycle_was_live; // added recently
@@ -83,11 +86,11 @@ void			display_array(t_point *array, uint16_t rows, uint16_t cols);
 // initialization
 */
 t_corewar			*init_vm(void);
-void				init_arena(t_corewar *vm);
+void				init_arena(t_corewar **vm);
 void				init_core(t_core *player);
 t_carriage			*init_carriage(t_corewar *vm, t_core *player);
 
-void				set_exec_code(t_point *arena, uint16_t position, t_core *core);
+void				set_exec_code(t_point *arena, uint16_t position, t_core core);
 void				set_carriages(t_corewar *vm, uint16_t position_step);
 
 /*

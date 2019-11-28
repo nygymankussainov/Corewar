@@ -6,7 +6,7 @@
 /*   By: hfrankly <hfrankly@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/06 13:44:29 by egiant            #+#    #+#             */
-/*   Updated: 2019/11/17 14:56:35 by hfrankly         ###   ########.fr       */
+/*   Updated: 2019/11/28 17:53:31 by hfrankly         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,15 +38,15 @@ void			set_carriages(t_corewar *vm, uint16_t position_step)
 	vm->start_carriage = new_carriage; // т.к первой стоит каретка последнего игрока */
 } //если писать vm->start_carriage = cur_carriage не работает (не отображается next)
 
-void		set_exec_code(t_point *arena, uint16_t position, t_core *core)
+void		set_exec_code(t_point *arena, uint16_t position, t_core core)
 {
 	uint16_t	i;
 
 	i = 0;
-	while (i < core->exec_code_size) //(i < core->exec_code_size) ??? р-р 16, но код займет 22 байта (8 нулевых)
+	while (i < core.exec_code_size) //(i < core->exec_code_size) ??? р-р 16, но код займет 22 байта (8 нулевых)
 	{
-		arena[position + i].value = core->exec_code[i];
-		arena[position + i].color = core->color;
+		arena[position + i].value = core.exec_code[i];
+		arena[position + i].color = core.color;
 		i++;
 	}
 }

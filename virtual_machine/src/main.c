@@ -6,7 +6,7 @@
 /*   By: hfrankly <hfrankly@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/30 13:41:19 by egiant            #+#    #+#             */
-/*   Updated: 2019/11/19 18:19:08 by hfrankly         ###   ########.fr       */
+/*   Updated: 2019/11/28 16:42:11 by hfrankly         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,9 +67,9 @@ int				main(int argc, char *argv[])
 	if (vm->visual)
 		vm->sdl = sdl_init();
 	read_byte_code(&vm);
-	init_arena(vm);
+	init_arena(&vm);
 	introduce_players(vm);
-	start_war(vm);
+	// start_war(vm);
 	if (vm->visual)
 		while (!quit)
 		{
