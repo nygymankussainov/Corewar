@@ -6,18 +6,16 @@
 /*   By: vhazelnu <vhazelnu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/27 17:51:28 by vhazelnu          #+#    #+#             */
-/*   Updated: 2019/11/27 21:37:55 by vhazelnu         ###   ########.fr       */
+/*   Updated: 2019/11/28 18:44:21 by vhazelnu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "vm.h"
 
-void	set_opcode_in_carr(t_major *major)
+void	set_opcode_in_carr(t_major *major, t_carr *carr)
 {
-	t_carr	*carr;
 	int		i;
 
-	carr = major->carr;
 	while (carr)
 	{
 		i = 0;
@@ -25,7 +23,7 @@ void	set_opcode_in_carr(t_major *major)
 		{
 			while (i < OP_NUMBER)
 			{
-				if (major->arena[carr->pos] == g_ops[i].opcode_char)
+				if (major->arena[carr->pos] == g_ops[i].opcode)
 				{
 					carr->op = &g_ops[i];
 					carr->cycles_to_exec = g_ops[i].cycles;
@@ -37,13 +35,36 @@ void	set_opcode_in_carr(t_major *major)
 				++i;
 			}
 		}
-		else
+		else if (carr->cycles_to_exec > 0)
 			--carr->cycles_to_exec;
 		carr = carr->next;
 	}
 }
 
-void	battle(t_player *player, t_major *major)
+void	battle(t_carr *carr, t_player *player, t_major *major)
 {
-	set_opcode_in_carr(major);
+	t_carr	*tmp;
+	int		cycles_tmp;
+
+	player += 0;
+	set_opcode_in_carr(major, carr);
+	major->cycles_to_die = CYCLE_TO_DIE;
+	cycles_tmp = CYCLE_TO_DIE;
+	while (carr)
+	{
+		tmp = carr;
+		while (tmp)
+		{
+			if (!tmp->cycles_to_exec)
+			{
+				run_operation(tmp, major);
+				set_opcode_in_carr(major, carr);
+			}
+			--tmp->cycles_to_exec;
+			tmp = tmp->next;
+		}
+		++major->cycles_from_start;
+		--cycles_tmp;
+		if (major->cycles_to_die <= 0)
+	}
 }

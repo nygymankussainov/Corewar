@@ -6,7 +6,7 @@
 /*   By: vhazelnu <vhazelnu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/07 17:04:30 by vhazelnu          #+#    #+#             */
-/*   Updated: 2019/11/11 19:09:24 by vhazelnu         ###   ########.fr       */
+/*   Updated: 2019/11/28 16:49:32 by vhazelnu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,7 @@ void	calculate_op_code(t_token *token, t_major *major)
 
 	arg_nbr = g_ops[token->index].args_number;
 	dir_size = g_ops[token->index].t_dir_size;
-	ft_itoh(g_ops[token->index].opcode, 1, major);
+	BYTECODE[COL++] = g_ops[token->index].opcode;
 	if (g_ops[token->index].args_type_code)
 		calculate_args_type_code(token, major, arg_nbr);
 	i = 0;

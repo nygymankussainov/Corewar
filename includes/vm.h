@@ -6,7 +6,7 @@
 /*   By: vhazelnu <vhazelnu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/26 13:01:09 by vhazelnu          #+#    #+#             */
-/*   Updated: 2019/11/27 21:31:04 by vhazelnu         ###   ########.fr       */
+/*   Updated: 2019/11/28 18:43:45 by vhazelnu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ typedef struct		s_carr
 	int				player_id;
 	bool			carry;
 	t_ops			*op;
-	uint8_t			opcode;
+	u_int8_t		opcode;
 	int				lastlive_cycle;
 	int				cycles_to_exec;
 	int				pos;
@@ -39,7 +39,6 @@ typedef struct		s_player
 	char			*comment;
 	int				code_size;
 	char			*bytecode;
-	t_carr			*carr;
 }					t_player;
 
 typedef struct		s_major
@@ -52,7 +51,6 @@ typedef struct		s_major
 	int				live_count;
 	int				cycles_to_die;
 	int				check_count;
-	t_carr			*carr;
 }					t_major;
 
 typedef enum		e_type
@@ -74,6 +72,6 @@ void				modify_players_id(t_player *player, char **argv, int argc, int nb);
 void				delete_player(t_player *player, int nb);
 void				vm(t_player *player, t_major *major);
 void				announce_players(t_player *player, int nb);
-void				battle(t_player *player, t_major *major);
+void				battle(t_carr *carr, t_player *player, t_major *major);
 
 #endif
