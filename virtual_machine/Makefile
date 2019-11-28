@@ -10,72 +10,90 @@
 #                                                                              #
 # **************************************************************************** #
 
+.PHONY: clean fclean re all
+
 LOG_NOCOLOR = \033[0m
 LOG_GREEN = \033[32m
 
-ARCHIVE = corewar.a
-
 NAME = corewar
 
-LIB = ../libft/ft_printf
-LIB_A = ../libft/libft.a $(LIB)/libftprintf.a
+LIBPRDIR = ../libftprintf
+LIBDIR = ../libftprintf/libft
+FLAGS = -g
+HEADER = -I ../includes/ -I includes/ -I $(LIBPRDIR)/headers -I $(LIBDIR)/headers
 
-INCLUDES = -I ./includes  -I ../includes -I $(LIB) -I ../libft \
+OBJ_DIR = obj/
+SRC_DIR = src/
+FREE_DIR = src/free/
+INIT_DIR = src/initialization/
+PARSING_DIR = src/parsing/
+VALID_DIR = src/validation/
+WAR_DIR = src/war/
 
-LIBS = -L ../libft -lft -L ../libft/ft_printf -lftprintf
-
-SRCDIR = src
-OBJDIR = obj
-
-SOURCES =	main.c \
+SRCS =	    main.c \
 			initialization/initialization.c \
 			initialization/set_params.c\
 			parsing/parse_arguments.c \
 			validation/read_byte_code.c \
-			sdl/sdl_init.c \
-			sdl/display_arena.c \
 			war/start_war.c \
 			war/operations.c \
 			war/check.c \
 			war/carriage_execution.c \
 			war/carriage_interaction.c \
 			war/execute_op.c \
+			free/free_corewar.c \
 			exit.c \
 
+MAIN_OBJS 	= $(addprefix $(OBJ_DIR), $(SRC_DIR:.c=.o))
+FREE_OBJS 	= $(addprefix $(OBJ_DIR), $(FREE_DIR:.c=.o))
+INIT_OBJS 	= $(addprefix $(OBJ_DIR), $(INIT_DIR:.c=.o))
+PARSING_OBJS = $(addprefix $(OBJ_DIR), $(PARSING_DIR:.c=.o))
+VALID_OBJS 	= $(addprefix $(OBJ_DIR), $(VALID_DIR:.c=.o))
+WAR_OBJS 	= $(addprefix $(OBJ_DIR), $(WAR_DIR:.c=.o))
 
-SRC = $(addprefix $(SRCDIR)/, $(SOURCES))
+all: $(NAME)
 
-OBJ = $(addprefix $(OBJDIR)/, $(SOURCES:.c=.o))
-
-CCFL = -g
-
-all: obj_dir library $(ARCHIVE) $(NAME)
-
-obj_dir:
-	@mkdir -p $(OBJDIR)
-
-library:
-	@make -sC $(LIB)
-
-$(OBJDIR)/%.o: $(SRCDIR)/%.c
-	@gcc $(CCFL) -o $@ -c $< $(INCLUDES)
-
-$(ARCHIVE): $(OBJ)
-	@ar rc $(ARCHIVE) $(OBJ)
-	@ranlib $(ARCHIVE)
-
-$(NAME): $(OBJ)
-	@gcc $(CCFL) -o $(NAME) $(ARCHIVE) $(LIB_A) $(SDL)
+$(NAME): $(OBJS) | mklibpr
+	gcc $(FLAGS) $(OBJS) -L $(LIBPRDIR) -lftprintf $(HEADER) -o $(NAME)
 	@echo "$(LOG_GREEN)Corewar has compiled successfully!$(LOG_NOCOLOR)"
 
+$(MAIN_OBJS) :	$(OBJ_DIR)%.o: $(SRC_DIR)%.c
+	@mkdir -p $(OBJ_DIR)
+	gcc $(FLAGS) -c $< -o $@ $(HEADER)
+
+$(FREE_OBJS) :	$(OBJ_DIR)%.o: $(FREE_DIR)%.c
+	@mkdir -p $(OBJ_DIR)
+	gcc $(FLAGS) -c $< -o $@ $(HEADER)
+
+$(INIT_OBJS) :	$(OBJ_DIR)%.o: $(INIT_DIR)%.c
+	@mkdir -p $(OBJ_DIR)
+	gcc $(FLAGS) -c $< -o $@ $(HEADER)
+
+$(PARSING_OBJS) :	$(OBJ_DIR)%.o: $(PARSING_DIR)%.c
+	@mkdir -p $(OBJ_DIR)
+	gcc $(FLAGS) -c $< -o $@ $(HEADER)
+
+$(VALID_OBJS) :	$(OBJ_DIR)%.o: $(VALID_DIR)%.c
+	@mkdir -p $(OBJ_DIR)
+	gcc $(FLAGS) -c $< -o $@ $(HEADER)
+
+$(WAR_OBJS) :	$(OBJ_DIR)%.o: $(WAR_DIR)%.c
+	@mkdir -p $(OBJ_DIR)
+	gcc $(FLAGS) -c $< -o $@ $(HEADER)
+
+
+
+
+mklibpr:
+		@make -C $(LIBPRDIR) --no-print-directory
+
 clean:
-	@make clean -sC $(LIB)
+			@/bin/rm -f $(OBJS)
+			@rm -rf $(OBJ_DIR)
+			@make clean -C $(LIBPRDIR) --no-print-directory
 
-fclean: clean
-	@/bin/rm -f $(ARCHIVE)
-	@/bin/rm -f $(NAME)
-	@make fclean -sC $(LIB)
+fclean: 	clean
+			@/bin/rm -f $(NAME)
+			@make fclean -C $(LIBPRDIR) --no-print-directory
 
-re: fclean all
-
-.PHONY: all clean fclean re library obj_dir
+re: 		fclean all

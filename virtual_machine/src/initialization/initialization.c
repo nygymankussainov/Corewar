@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   initialization.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hfrankly <hfrankly@student.42.fr>          +#+  +:+       +#+        */
+/*   By: egiant <egiant@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/30 13:41:08 by egiant            #+#    #+#             */
-/*   Updated: 2019/11/22 14:47:41 by hfrankly         ###   ########.fr       */
+/*   Updated: 2019/11/28 13:09:28 by egiant           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ t_carriage		*init_carriage(t_corewar *vm, t_core *player)
 	t_carriage	*carriage;
 	
 	n = 15;
-	if (!(carriage = (t_carriage*)malloc(sizeof(t_carriage))))
+	if (!(carriage = (t_carriage *)malloc(sizeof(t_carriage))))
 		termination_with_perror("Error", ENOMEM);
 	carriage->id = (vm->start_carriage) ? vm->start_carriage->id + 1 : 0;
 	vm->carriage_count++;
@@ -42,8 +42,16 @@ void			init_arena(t_corewar *vm)
 	uint8_t		i;
 	uint16_t	cur_position;
 	uint16_t	position_step;
+	int 		n;
 
 	i = 0;
+	n = MEM_SIZE - 1;
+	while (n >= 0)
+	{
+		vm->arena[n].value = 0;
+		vm->arena[n].color = 0;
+		n--;
+	}
 	cur_position = 0;
 	position_step = MEM_SIZE / vm->number_of_players;
 	while (i < vm->number_of_players)

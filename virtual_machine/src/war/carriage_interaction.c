@@ -26,6 +26,7 @@ void		kill_carriage(t_corewar **vm, t_carriage *to_delete)
 		to_delete = NULL;
 		return ;
 	}
+   // ft_printf("2: %d\n",  (*vm)->total_cycles);
 	while (cur_carriage->next != to_delete)
 		cur_carriage = cur_carriage->next;
 	next_carriage = cur_carriage->next->next;

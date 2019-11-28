@@ -19,8 +19,6 @@ void				start_war(t_corewar *vm)
 	t_operation		op;
 
 	tmp = vm->start_carriage;
-	// display_array(vm->arena, 64, 64);
-	// ft_putstr("\n\n");
 	while (vm->start_carriage)
 	{
 		if (vm->current_cycles == vm->cycles_to_die)
@@ -28,6 +26,6 @@ void				start_war(t_corewar *vm)
 		else
 			execute_carriages(&vm);
 	}
-	display_array(vm->arena, 64, 64);
-	ft_printf("\nWinner is %d with name %s total_cycles %d\n", vm->winner->id, vm->winner->name, vm->total_cycles);
+//	display_array(vm->arena, 64, 64);
+	ft_printf("Contestant %d, \"%s\", has won !\n", vm->winner->id, vm->winner->name, vm->total_cycles);
 }

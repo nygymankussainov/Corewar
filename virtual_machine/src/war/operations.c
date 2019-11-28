@@ -94,16 +94,16 @@ uint16_t			get_position(uint16_t cur_pos, int64_t arg, bool idx) // check!
 	return (res % MEM_SIZE);
 }
 
-void				add_to_arena(t_point *arena, uint16_t position, int32_t code, t_carriage *carriage) // was uint32_t code
+void				add_to_arena(t_corewar *vm, uint16_t position, int32_t code, t_carriage *carriage) // was uint32_t code
 {
-	arena[position].value = code >> 24;
-	arena[position + 1].value = code >> 16 & 0x00FF;
-	arena[position + 2].value = code >> 8 & 0x0000FF;
-	arena[position + 3].value = code & 0x000000FF;
-	arena[position].color = carriage->color;
-	arena[position + 1].color = carriage->color;
-	arena[position + 2].color = carriage->color;
-	arena[position + 3].color = carriage->color;
+	vm->arena[position].value = code >> 24;
+	vm->arena[position + 1].value = code >> 16 & 0x00FF;
+	vm->arena[position + 2].value = code >> 8 & 0x0000FF;
+	vm->arena[position + 3].value = code & 0x000000FF;
+	vm->arena[position].color = carriage->color;
+	vm->arena[position + 1].color = carriage->color;
+	vm->arena[position + 2].color = carriage->color;
+	vm->arena[position + 3].color = carriage->color;
 	carriage->last_operation[0] = position;
 	carriage->last_operation[1] = position + 1;
 	carriage->last_operation[2] = position + 2;
@@ -120,7 +120,7 @@ void				op_live(t_corewar *vm, t_carriage *carriage, int8_t *arg_code)
 	player_code = -return_bytes(vm->arena, carriage->position + 1, carriage->operation->t_dir_size);
 	if (player_code > 0 && player_code <= vm->number_of_players)
     {
-		vm->winner = vm->cores[player_code - 1]; //player_code - 1 т.к. обращаемся к массиву, который начинается с 0 индекса
+		vm->winner = vm->cores[player_code - 1];
 		vm->winner->cycle_was_live = vm->total_cycles + vm->current_cycles;
 		// ft_printf("Player %d (%s) is said to be alive\n", vm->winner->id, vm->winner->name);
 	}
@@ -138,7 +138,7 @@ void				op_st(t_corewar *vm, t_carriage *carriage, int8_t *arg_code)
 	if (arg_code[1] == 1)
 		carriage->registers[arg2] = carriage->registers[arg1];
 	else
-		add_to_arena(vm->arena, get_position(carriage->position, arg2, true),
+		add_to_arena(vm, get_position(carriage->position, arg2, true),
 		carriage->registers[arg1], carriage);
 }
 
@@ -159,7 +159,7 @@ void				op_sti(t_corewar *vm, t_carriage *carriage, int8_t *arg_code)
 		arg2 = carriage->registers[arg2];
 	if (arg_code[2] == 1)
 		arg3 = carriage->registers[arg3];
-	add_to_arena(vm->arena, get_position(carriage->position, arg2 + arg3, true),
+	add_to_arena(vm, get_position(carriage->position, arg2 + arg3, true),
 		carriage->registers[arg1], carriage);
 }
 

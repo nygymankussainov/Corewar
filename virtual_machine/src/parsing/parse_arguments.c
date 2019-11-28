@@ -2,8 +2,14 @@
 
 void 			parse_dump_flag(t_corewar *vm, char *argv[], int *n)
 {
-	vm->dumps = ft_atoi(argv[*n] + 6);
-	(*n)++;
+	int d;
+
+	if (argv[*n + 1])
+		d = ft_atoi(argv[*n + 1]);
+	else
+		terminate_with_error(vm);
+	vm->dumps = d;
+	*n += 2;
 }
 
 int 			is_name(t_corewar *vm, char *str)
@@ -33,6 +39,7 @@ void			parse_player(t_corewar *vm, char *argv[], int *n, int player_id)
 		{
 			core_tmp = vm->line_of_players;
 			while (core_tmp->next)
+
 				core_tmp = core_tmp->next;
 			core_tmp->next = new_player;
 		}
@@ -65,7 +72,7 @@ void			parse_arguments(t_corewar **vm, int argc, char *argv[])
 	n = 1;
 	while (n < argc)
 	{
-		if (ft_strstr(argv[n], "-dump"))
+		if (!(ft_strcmp(argv[n], "-dump")))
 			parse_dump_flag((*vm), argv, &n);
 		else if (ft_strcmp(argv[n], "-v") == 0)
 		{
@@ -79,7 +86,6 @@ void			parse_arguments(t_corewar **vm, int argc, char *argv[])
 		else
 			terminate_with_error((*vm));
 	}
-	if ((*vm)->number_of_players < 2 || (*vm)->number_of_players > 4)
+	if ((*vm)->number_of_players < 1 || (*vm)->number_of_players > 4)
 		terminate_with_error((*vm));
-	(*vm)->winner = (*vm)->cores[(*vm)->number_of_players - 1];
 }

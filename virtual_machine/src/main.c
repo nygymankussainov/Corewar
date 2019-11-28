@@ -50,7 +50,7 @@ void			introduce_players(t_corewar *vm)
 	while (i < vm->number_of_players)
 	{
 		core = vm->cores[i];
-		ft_printf("* Player %d, weiging %d bytes, \"%s\" (\"%s\") !\n",
+		ft_printf("* Player %d, weighing %d bytes, \"%s\" (\"%s\") !\n",
 					core->id, core->exec_code_size, core->name, core->comment);
 		i++;
 	}

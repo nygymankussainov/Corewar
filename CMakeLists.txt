@@ -1,14 +1,14 @@
-cmake_minimum_required(VERSION 3.15)
-project(corewar_v1)
+cmake_minimum_required(VERSION 3.14)
+project(corewar_git C)
 
-set(CMAKE_CXX_STANDARD 14)
+set(CMAKE_C_STANDARD 11)
 
 include_directories(includes)
 include_directories(libft)
 include_directories(libft/ft_printf)
 include_directories(virtual_machine/includes)
 
-add_executable(corewar_v1
+add_executable(corewar_git
         includes/asm.h
         includes/op.h
         libft/ft_printf/calculate_decimal.c
@@ -116,95 +116,7 @@ add_executable(corewar_v1
         libft/src/ft_uitoa_base.c
         libft/src/get_next_line.c
         libft/src/iswhitesp.c
-        libft/libft.a
         libft/libft.h
-        libft/Makefile
-        virtual_machine/ch/_.cor
-        virtual_machine/ch/_honeybadger.cor
-        virtual_machine/ch/Asombra.cor
-        virtual_machine/ch/Bazou.cor
-        virtual_machine/ch/bee_gees.cor
-        virtual_machine/ch/big_feet.cor
-        virtual_machine/ch/bigzork.cor
-        virtual_machine/ch/Car.cor
-        virtual_machine/ch/casimir.cor
-        virtual_machine/ch/champ.cor
-        virtual_machine/ch/Code_eater.cor
-        virtual_machine/ch/corelol.cor
-        virtual_machine/ch/darksasuke.cor
-        virtual_machine/ch/doge.cor
-        virtual_machine/ch/Douceur_power.cor
-        virtual_machine/ch/dubo.cor
-        virtual_machine/ch/echo.cor
-        virtual_machine/ch/Eraser.cor
-        virtual_machine/ch/ex.cor
-        virtual_machine/ch/Explosive_Kitty.cor
-        virtual_machine/ch/fast.cor
-        virtual_machine/ch/fluttershy.cor
-        virtual_machine/ch/ForgottenOne.cor
-        virtual_machine/ch/Gagnant.cor
-        virtual_machine/ch/gateau.cor
-        virtual_machine/ch/gedeon.cor
-        virtual_machine/ch/helltrain.cor
-        virtual_machine/ch/Hidden.cor
-        virtual_machine/ch/Horace.cor
-        virtual_machine/ch/Izi_Miaou.cor
-        virtual_machine/ch/jinx.cor
-        virtual_machine/ch/jumper.cor
-        virtual_machine/ch/justin_bee.cor
-        virtual_machine/ch/kamelkaze.cor
-        virtual_machine/ch/Kappa.cor
-        virtual_machine/ch/katchup.cor
-        virtual_machine/ch/Kitty_Miaou.cor
-        virtual_machine/ch/Kittystrophic.cor
-        virtual_machine/ch/lapsang.cor
-        virtual_machine/ch/le_pet_de_nonne.cor
-        virtual_machine/ch/littlepuppy.cor
-        virtual_machine/ch/live.cor
-        virtual_machine/ch/loose.cor
-        virtual_machine/ch/lou_forktologue.cor
-        virtual_machine/ch/Machine-gun.cor
-        virtual_machine/ch/mandragore.cor
-        virtual_machine/ch/MarineKing.cor
-        virtual_machine/ch/master_of_puppets.cor
-        virtual_machine/ch/maxidef.cor
-        virtual_machine/ch/meowluigi.cor
-        virtual_machine/ch/Misaka_Mikoto.cor
-        virtual_machine/ch/mise_a_jour_windows95.cor
-        virtual_machine/ch/mortel.cor
-        virtual_machine/ch/NoIdea.cor
-        virtual_machine/ch/O-Maley_Miaou.cor
-        virtual_machine/ch/Octobre_Rouge_V4.2.cor
-        virtual_machine/ch/overwatch.cor
-        virtual_machine/ch/pai_mu_tan.cor
-        virtual_machine/ch/petr.cor
-        virtual_machine/ch/Rainbow_dash.cor
-        virtual_machine/ch/run_Kitty_RUN.cor
-        virtual_machine/ch/salamahenagalabadoun.cor
-        virtual_machine/ch/sam_2.0.cor
-        virtual_machine/ch/sencha.cor
-        virtual_machine/ch/skynet.cor
-        virtual_machine/ch/slider2.cor
-        virtual_machine/ch/st_next.cor
-        virtual_machine/ch/st_next.s
-        virtual_machine/ch/Stargate0_1.cor
-        virtual_machine/ch/tchupka.cor
-        virtual_machine/ch/terminator.cor
-        virtual_machine/ch/TheHarvester.cor
-        virtual_machine/ch/THUNDER.cor
-        virtual_machine/ch/toto.cor
-        virtual_machine/ch/turtle.cor
-        virtual_machine/ch/ultima.cor
-        virtual_machine/ch/ultimate-surrender.cor
-        virtual_machine/ch/Varimathras.cor
-        virtual_machine/ch/Wall.cor
-        virtual_machine/ch/wave.cor
-        virtual_machine/ch/youforkmytralala.cor
-        virtual_machine/ch/zork.cor
-        virtual_machine/champs/42.cor
-        virtual_machine/champs/batman.cor
-        virtual_machine/champs/jumper.cor
-        virtual_machine/champs/Survivor.cor
         virtual_machine/includes/operations.h
         virtual_machine/includes/virtual_machine.h
         virtual_machine/includes/visual.h
@@ -220,6 +132,4 @@ add_executable(corewar_v1
         virtual_machine/src/war/operations.c
         virtual_machine/src/war/start_war.c
         virtual_machine/src/exit.c
-        virtual_machine/src/main.c
-        virtual_machine/corewar
-        virtual_machine/Makefile)
+        virtual_machine/src/main.c virtual_machine/src/free/free_corewar.c)

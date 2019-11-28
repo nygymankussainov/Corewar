@@ -14,11 +14,12 @@
 # define VIRTUAL_MACHINE_H
 
 #include <stdint.h>
+#include <stdlib.h>
 #include <stdbool.h>
 #include <errno.h>
 #include <unistd.h>
 #include "libft.h"
-#include "ft_printf.h"
+#include "libftprintf.h"
 #include "op.h"
 #include "operations.h"
 
@@ -57,7 +58,7 @@ typedef struct s_core {
 	uint16_t		exec_code_size;
 	uint8_t			exec_code[CHAMP_MAX_SIZE];
 	uint16_t		cycle_was_live; // added recently
-	int32_t			color; // init in read_byte_code 
+	int32_t			color; // init in read_byte_code
 	struct s_core	*next;
 }					t_core;
 
@@ -116,6 +117,11 @@ void				pass_args_bits(t_corewar *vm, t_carriage *carriage, int8_t arg_code[4]);
 
 void				kill_carriage(t_corewar **vm, t_carriage *to_delete);
 t_carriage			*copy_carriage(t_corewar *vm, t_carriage *to_copy); // need to be done
+
+/*
+ *  free
+ */
+void    free_corewar(t_corewar *vm);
 
 #endif
 

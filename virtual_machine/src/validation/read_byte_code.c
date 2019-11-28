@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   read_byte_code.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hfrankly <hfrankly@student.42.fr>          +#+  +:+       +#+        */
+/*   By: egiant <egiant@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/31 18:20:43 by egiant            #+#    #+#             */
-/*   Updated: 2019/11/18 20:07:13 by hfrankly         ###   ########.fr       */
+/*   Updated: 2019/11/28 13:01:28 by egiant           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ int			read_champion_name(t_corewar *vm, t_core *player, int fd)
 	vm->cores[number] = (t_core*)malloc(sizeof(t_core));
 	core = vm->cores[number];
 	init_core(core);
-	core->id = number;
+	core->id = number + 1;
 	ft_strcpy(core->name, buff);
 	return (number);
 }	
@@ -102,13 +102,26 @@ void 			read_exec_code(t_corewar *vm, t_core *core, int fd)
 	}
 }
 
+void check_cores(t_corewar *vm)
+{
+    int n;
+
+    n = 0;
+    while (vm->cores[n])
+        ++n;
+    if (n != vm->number_of_players)
+        terminate_with_error(vm);
+}
+
 void			read_byte_code(t_corewar **vm)
 {
 	int 		id;
 	int			fd;
 	char		*file_name;
 	t_core		*core_tmp;
+	int n;
 
+	n = 0;
 	core_tmp = (*vm)->line_of_players;
 	while (core_tmp)
 	{
@@ -121,9 +134,12 @@ void			read_byte_code(t_corewar **vm)
 		read_champion_comment((*vm), (*vm)->cores[id], fd);
 		read_null_octet((*vm), fd);
 		read_exec_code((*vm), (*vm)->cores[id], fd);
-		//(*vm)->cores[id]->color = (n + 1) * 0xFFAAEE;
+		(*vm)->cores[id]->color = (n + 1) * 0xFFAAEE;
 		free(file_name);
 		core_tmp = core_tmp->next;
+		++n;
 	}
-	//free (*vm)->line_of_players
+	//free_list((*vm)->line_of_players);
+	check_cores(*vm);
+	(*vm)->winner = (*vm)->cores[(*vm)->number_of_players - 1];
 }
