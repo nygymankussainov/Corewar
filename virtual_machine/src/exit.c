@@ -28,6 +28,6 @@ void	termination_with_error(char *error_string)
 void	termination_with_perror(char *error_string, int code)
 {
 	errno = code;
-	perror(error_string);
+	//perror(error_string);
 	exit(0);
 }

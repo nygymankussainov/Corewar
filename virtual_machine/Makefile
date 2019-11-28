@@ -30,31 +30,31 @@ PARSING_DIR = src/parsing/
 VALID_DIR = src/validation/
 WAR_DIR = src/war/
 
-SRCS =	    main.c \
-			initialization/initialization.c \
-			initialization/set_params.c\
-			parsing/parse_arguments.c \
-			validation/read_byte_code.c \
-			war/start_war.c \
-			war/operations.c \
-			war/check.c \
-			war/carriage_execution.c \
-			war/carriage_interaction.c \
-			war/execute_op.c \
-			free/free_corewar.c \
-			exit.c \
+SRC =	    main.c \
+			exit.c
+FREE_SRC = free_corewar.c
+INIT_SRC = initialization.c \
+            set_params.c
+PARSING_SRC = parse_arguments.c
+VALID_SRC = read_byte_code.c
+WAR_SRC = 	start_war.c \
+          	operations.c \
+          	check.c \
+          	carriage_execution.c \
+          	carriage_interaction.c \
+          	execute_op.c
 
-MAIN_OBJS 	= $(addprefix $(OBJ_DIR), $(SRC_DIR:.c=.o))
-FREE_OBJS 	= $(addprefix $(OBJ_DIR), $(FREE_DIR:.c=.o))
-INIT_OBJS 	= $(addprefix $(OBJ_DIR), $(INIT_DIR:.c=.o))
-PARSING_OBJS = $(addprefix $(OBJ_DIR), $(PARSING_DIR:.c=.o))
-VALID_OBJS 	= $(addprefix $(OBJ_DIR), $(VALID_DIR:.c=.o))
-WAR_OBJS 	= $(addprefix $(OBJ_DIR), $(WAR_DIR:.c=.o))
+MAIN_OBJS 	= $(addprefix $(OBJ_DIR), $(SRC:.c=.o))
+FREE_OBJS 	= $(addprefix $(OBJ_DIR), $(FREE_SRC:.c=.o))
+INIT_OBJS 	= $(addprefix $(OBJ_DIR), $(INIT_SRC:.c=.o))
+PARSING_OBJS = $(addprefix $(OBJ_DIR), $(PARSING_SRC:.c=.o))
+VALID_OBJS 	= $(addprefix $(OBJ_DIR), $(VALID_SRC:.c=.o))
+WAR_OBJS 	= $(addprefix $(OBJ_DIR), $(WAR_SRC:.c=.o))
 
 all: $(NAME)
 
-$(NAME): $(OBJS) | mklibpr
-	gcc $(FLAGS) $(OBJS) -L $(LIBPRDIR) -lftprintf $(HEADER) -o $(NAME)
+$(NAME): $(MAIN_OBJS) $(FREE_OBJS) $(INIT_OBJS) $(PARSING_OBJS) $(VALID_OBJS) $(WAR_OBJS) | mklibpr
+	gcc $(FLAGS) $(MAIN_OBJS) $(FREE_OBJS) $(INIT_OBJS) $(PARSING_OBJS) $(VALID_OBJS) $(WAR_OBJS) -L $(LIBPRDIR) -lftprintf $(HEADER) -o $(NAME)
 	@echo "$(LOG_GREEN)Corewar has compiled successfully!$(LOG_NOCOLOR)"
 
 $(MAIN_OBJS) :	$(OBJ_DIR)%.o: $(SRC_DIR)%.c
@@ -80,9 +80,6 @@ $(VALID_OBJS) :	$(OBJ_DIR)%.o: $(VALID_DIR)%.c
 $(WAR_OBJS) :	$(OBJ_DIR)%.o: $(WAR_DIR)%.c
 	@mkdir -p $(OBJ_DIR)
 	gcc $(FLAGS) -c $< -o $@ $(HEADER)
-
-
-
 
 mklibpr:
 		@make -C $(LIBPRDIR) --no-print-directory
