@@ -6,11 +6,16 @@
 /*   By: vhazelnu <vhazelnu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/27 14:26:22 by vhazelnu          #+#    #+#             */
-/*   Updated: 2019/11/29 16:31:30 by vhazelnu         ###   ########.fr       */
+/*   Updated: 2019/11/29 22:07:23 by vhazelnu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "vm.h"
+
+void	carr_move(t_carr *carr, int step)
+{
+	carr->pos = (carr->pos + step) % MEM_SIZE;
+}
 
 void	create_carriage(t_player *player, t_carr **carr, int pos)
 {
@@ -35,7 +40,7 @@ void	create_carriage(t_player *player, t_carr **carr, int pos)
 	}
 	(*carr)->player_id = player->id;
 	(*carr)->reg[0] = -player->id;
-	(*carr)->pos = pos;
+	carr_move(*carr, pos);
 }
 
 t_carr	*vm_init(t_player *player, t_major *major)

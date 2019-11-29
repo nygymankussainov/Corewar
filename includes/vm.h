@@ -6,7 +6,7 @@
 /*   By: vhazelnu <vhazelnu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/26 13:01:09 by vhazelnu          #+#    #+#             */
-/*   Updated: 2019/11/29 18:01:03 by vhazelnu         ###   ########.fr       */
+/*   Updated: 2019/11/29 22:00:33 by vhazelnu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,6 +53,7 @@ typedef struct		s_major
 	int				cycles_to_die_curr;
 	int				cycles_to_die;
 	int				check_count;
+	char			arg_types[3];
 }					t_major;
 
 typedef enum		e_type
@@ -78,5 +79,6 @@ void				battle(t_carr *carr, t_player *player, t_major *major);
 void				set_opcode(t_major *major, t_carr *carr);
 void				set_opcode(t_major *major, t_carr *carr);
 void				verify_operation(t_major *major, t_carr *carr);
+void				carr_move(t_carr *carr, int step);
 
 #endif
