@@ -1,126 +1,138 @@
-cmake_minimum_required(VERSION 3.14)
-project(corewar_git C)
+cmake_minimum_required(VERSION 3.15)
+project(corewar C)
 
 set(CMAKE_C_STANDARD 11)
 
 include_directories(includes)
-include_directories(libft)
-include_directories(libft/ft_printf)
+include_directories(libftprintf/headers)
+include_directories(libftprintf/libft/headers)
 include_directories(virtual_machine/includes)
+include_directories(virtual_machine/includes/sdl)
+include_directories(virtual_machine/includes/sdl/SDL2)
+include_directories(virtual_machine/includes/sdl/SDL2_GFX)
+include_directories(virtual_machine/includes/sdl/SDL2_IMG)
+include_directories(virtual_machine/includes/sdl/SDL2_MIX)
 
-add_executable(corewar_git
+add_executable(corewar
         includes/asm.h
         includes/op.h
-        libft/ft_printf/calculate_decimal.c
-        libft/ft_printf/decimal_part.c
-        libft/ft_printf/find_conv_or_whitesp.c
-        libft/ft_printf/ft_conv_b.c
-        libft/ft_printf/ft_conv_d.c
-        libft/ft_printf/ft_conv_f.c
-        libft/ft_printf/ft_conv_o.c
-        libft/ft_printf/ft_conv_p.c
-        libft/ft_printf/ft_conv_u.c
-        libft/ft_printf/ft_conv_x.c
-        libft/ft_printf/ft_number.c
-        libft/ft_printf/ft_printf.c
-        libft/ft_printf/ft_printf.h
-        libft/ft_printf/ft_symbol.c
-        libft/ft_printf/integer_part.c
-        libft/ft_printf/longadd.c
-        libft/ft_printf/longdiv.c
-        libft/ft_printf/longmulti.c
-        libft/ft_printf/rounding_and_print.c
-        libft/ft_printf/width.c
-        libft/ft_printf/width_for_f.c
-        libft/src/ft_atoi.c
-        libft/src/ft_atoi_base.c
-        libft/src/ft_bzero.c
-        libft/src/ft_bzero_null.c
-        libft/src/ft_change_system_over_ten.c
-        libft/src/ft_free_two_dim_arr.c
-        libft/src/ft_is_negative.c
-        libft/src/ft_isalnum.c
-        libft/src/ft_isalpha.c
-        libft/src/ft_isascii.c
-        libft/src/ft_isdigit.c
-        libft/src/ft_islower.c
-        libft/src/ft_isprint.c
-        libft/src/ft_istabspace_in_str.c
-        libft/src/ft_isupper.c
-        libft/src/ft_iterative_factorial.c
-        libft/src/ft_iterative_power.c
-        libft/src/ft_itoa.c
-        libft/src/ft_itoa_base.c
-        libft/src/ft_itoa_ll.c
-        libft/src/ft_lstadd.c
-        libft/src/ft_lstdel.c
-        libft/src/ft_lstdelone.c
-        libft/src/ft_lstiter.c
-        libft/src/ft_lstmap.c
-        libft/src/ft_lstnew.c
-        libft/src/ft_memalloc.c
-        libft/src/ft_memccpy.c
-        libft/src/ft_memchr.c
-        libft/src/ft_memcmp.c
-        libft/src/ft_memcpy.c
-        libft/src/ft_memdel.c
-        libft/src/ft_memmove.c
-        libft/src/ft_memset.c
-        libft/src/ft_power.c
-        libft/src/ft_power_db.c
-        libft/src/ft_putchar.c
-        libft/src/ft_putchar_fd.c
-        libft/src/ft_putendl.c
-        libft/src/ft_putendl_fd.c
-        libft/src/ft_putnbr.c
-        libft/src/ft_putnbr_fd.c
-        libft/src/ft_putstr.c
-        libft/src/ft_putstr_fd.c
-        libft/src/ft_range.c
-        libft/src/ft_realloc.c
-        libft/src/ft_revstr.c
-        libft/src/ft_skip_whitesp.c
-        libft/src/ft_sqrt.c
-        libft/src/ft_strcat.c
-        libft/src/ft_strchr.c
-        libft/src/ft_strclr.c
-        libft/src/ft_strcmp.c
-        libft/src/ft_strcpy.c
-        libft/src/ft_strdel.c
-        libft/src/ft_strdup.c
-        libft/src/ft_strequ.c
-        libft/src/ft_striter.c
-        libft/src/ft_striteri.c
-        libft/src/ft_strjoin.c
-        libft/src/ft_strlcat.c
-        libft/src/ft_strlen.c
-        libft/src/ft_strmap.c
-        libft/src/ft_strmapi.c
-        libft/src/ft_strncat.c
-        libft/src/ft_strncmp.c
-        libft/src/ft_strncpy.c
-        libft/src/ft_strndup.c
-        libft/src/ft_strnequ.c
-        libft/src/ft_strnew.c
-        libft/src/ft_strnlen.c
-        libft/src/ft_strnstr.c
-        libft/src/ft_strrchr.c
-        libft/src/ft_strsplit.c
-        libft/src/ft_strstr.c
-        libft/src/ft_strsub.c
-        libft/src/ft_strtrim.c
-        libft/src/ft_swap.c
-        libft/src/ft_swap_str.c
-        libft/src/ft_tolower.c
-        libft/src/ft_toupper.c
-        libft/src/ft_uitoa_base.c
-        libft/src/get_next_line.c
-        libft/src/iswhitesp.c
-        libft/libft.h
+        libftprintf/headers/libftprintf.h
+        libftprintf/libft/headers/libft.h
+        libftprintf/libft/sources/del_matrix.c
+        libftprintf/libft/sources/ft_atoi.c
+        libftprintf/libft/sources/ft_atoi_long.c
+        libftprintf/libft/sources/ft_bit_count.c
+        libftprintf/libft/sources/ft_bzero.c
+        libftprintf/libft/sources/ft_change_system.c
+        libftprintf/libft/sources/ft_change_system_over_ten.c
+        libftprintf/libft/sources/ft_count_digits.c
+        libftprintf/libft/sources/ft_fill_zero.c
+        libftprintf/libft/sources/ft_isalnum.c
+        libftprintf/libft/sources/ft_isalpha.c
+        libftprintf/libft/sources/ft_isascii.c
+        libftprintf/libft/sources/ft_isdigit.c
+        libftprintf/libft/sources/ft_isprint.c
+        libftprintf/libft/sources/ft_istrstr.c
+        libftprintf/libft/sources/ft_itoa.c
+        libftprintf/libft/sources/ft_itoa_long.c
+        libftprintf/libft/sources/ft_itoa_un_long.c
+        libftprintf/libft/sources/ft_lstadd.c
+        libftprintf/libft/sources/ft_lstdel.c
+        libftprintf/libft/sources/ft_lstdelone.c
+        libftprintf/libft/sources/ft_lstiter.c
+        libftprintf/libft/sources/ft_lstmap.c
+        libftprintf/libft/sources/ft_lstnew.c
+        libftprintf/libft/sources/ft_memalloc.c
+        libftprintf/libft/sources/ft_memccpy.c
+        libftprintf/libft/sources/ft_memchr.c
+        libftprintf/libft/sources/ft_memcmp.c
+        libftprintf/libft/sources/ft_memcpy.c
+        libftprintf/libft/sources/ft_memdel.c
+        libftprintf/libft/sources/ft_memmove.c
+        libftprintf/libft/sources/ft_memset.c
+        libftprintf/libft/sources/ft_putchar.c
+        libftprintf/libft/sources/ft_putchar_fd.c
+        libftprintf/libft/sources/ft_putendl.c
+        libftprintf/libft/sources/ft_putendl_fd.c
+        libftprintf/libft/sources/ft_putnbr.c
+        libftprintf/libft/sources/ft_putnbr_fd.c
+        libftprintf/libft/sources/ft_putstr.c
+        libftprintf/libft/sources/ft_putstr_fd.c
+        libftprintf/libft/sources/ft_sjoin_and_free.c
+        libftprintf/libft/sources/ft_strcat.c
+        libftprintf/libft/sources/ft_strchr.c
+        libftprintf/libft/sources/ft_strcjoin.c
+        libftprintf/libft/sources/ft_strclr.c
+        libftprintf/libft/sources/ft_strcmp.c
+        libftprintf/libft/sources/ft_strcpy.c
+        libftprintf/libft/sources/ft_strdel.c
+        libftprintf/libft/sources/ft_strdup.c
+        libftprintf/libft/sources/ft_strequ.c
+        libftprintf/libft/sources/ft_striter.c
+        libftprintf/libft/sources/ft_striteri.c
+        libftprintf/libft/sources/ft_strjoin.c
+        libftprintf/libft/sources/ft_strlcat.c
+        libftprintf/libft/sources/ft_strlen.c
+        libftprintf/libft/sources/ft_strmap.c
+        libftprintf/libft/sources/ft_strmapi.c
+        libftprintf/libft/sources/ft_strncat.c
+        libftprintf/libft/sources/ft_strncmp.c
+        libftprintf/libft/sources/ft_strncpy.c
+        libftprintf/libft/sources/ft_strnequ.c
+        libftprintf/libft/sources/ft_strnew.c
+        libftprintf/libft/sources/ft_strnstr.c
+        libftprintf/libft/sources/ft_strrchr.c
+        libftprintf/libft/sources/ft_strsplit.c
+        libftprintf/libft/sources/ft_strstr.c
+        libftprintf/libft/sources/ft_strsub.c
+        libftprintf/libft/sources/ft_strtrim.c
+        libftprintf/libft/sources/ft_tolower.c
+        libftprintf/libft/sources/ft_toupper.c
+        libftprintf/libft/sources/ft_wchar_len.c
+        libftprintf/libft/sources/ft_wordcount.c
+        libftprintf/libft/sources/get_next_line.c
+        libftprintf/sources/ft_bigc_width.c
+        libftprintf/sources/ft_count_valid.c
+        libftprintf/sources/ft_edit_flags.c
+        libftprintf/sources/ft_fract_to_dec_f.c
+        libftprintf/sources/ft_get_binary.c
+        libftprintf/sources/ft_get_flags.c
+        libftprintf/sources/ft_get_precision.c
+        libftprintf/sources/ft_get_type.c
+        libftprintf/sources/ft_get_type_size.c
+        libftprintf/sources/ft_get_width.c
+        libftprintf/sources/ft_handle_binary_f.c
+        libftprintf/sources/ft_handle_doubles.c
+        libftprintf/sources/ft_handle_output_f.c
+        libftprintf/sources/ft_handle_special_f.c
+        libftprintf/sources/ft_ignored_space.c
+        libftprintf/sources/ft_ignored_zero.c
+        libftprintf/sources/ft_ints_to_dec_f.c
+        libftprintf/sources/ft_printf.c
+        libftprintf/sources/ft_solve_c.c
+        libftprintf/sources/ft_solve_d.c
+        libftprintf/sources/ft_solve_f.c
+        libftprintf/sources/ft_solve_ox.c
+        libftprintf/sources/ft_solve_p.c
+        libftprintf/sources/ft_solve_percent.c
+        libftprintf/sources/ft_solve_s.c
+        libftprintf/sources/ft_solve_u.c
+        libftprintf/sources/ft_valid_flags.c
+        libftprintf/sources/ft_valid_flags_c_s_p.c
+        libftprintf/sources/ft_write_d_case1.c
+        libftprintf/sources/ft_write_d_case2.c
+        libftprintf/sources/ft_write_d_case3.c
+        libftprintf/sources/ft_write_f.c
+        libftprintf/sources/ft_write_ox_case1.c
+        libftprintf/sources/ft_write_ox_case2.c
+        libftprintf/sources/ft_write_ox_case3.c
+        libftprintf/sources/ft_write_u_case1.c
+        libftprintf/sources/ft_write_u_case2.c
+        libftprintf/sources/ft_write_utf.c
         virtual_machine/includes/operations.h
         virtual_machine/includes/virtual_machine.h
-        virtual_machine/includes/visual.h
         virtual_machine/includes/vm_enums.h
+        virtual_machine/src/free/free_corewar.c
         virtual_machine/src/initialization/initialization.c
         virtual_machine/src/initialization/set_params.c
         virtual_machine/src/parsing/parse_arguments.c
@@ -132,4 +144,4 @@ add_executable(corewar_git
         virtual_machine/src/war/operations.c
         virtual_machine/src/war/start_war.c
         virtual_machine/src/exit.c
-        virtual_machine/src/main.c virtual_machine/src/free/free_corewar.c)
+        virtual_machine/src/main.c)

@@ -97,17 +97,17 @@ uint16_t			get_position(uint16_t cur_pos, int64_t arg, bool idx) // check!
 void				add_to_arena(t_corewar *vm, uint16_t position, int32_t code, t_carriage *carriage) // was uint32_t code
 {
 	vm->arena[position].value = code >> 24;
-	vm->arena[position + 1].value = code >> 16 & 0x00FF;
-	vm->arena[position + 2].value = code >> 8 & 0x0000FF;
-	vm->arena[position + 3].value = code & 0x000000FF;
+	vm->arena[(position + 1) % MEM_SIZE].value = code >> 16 & 0x00FF;
+	vm->arena[(position + 2) % MEM_SIZE].value = code >> 8 & 0x0000FF;
+	vm->arena[(position + 3) % MEM_SIZE].value = code & 0x000000FF;
 	vm->arena[position].color = carriage->color;
-	vm->arena[position + 1].color = carriage->color;
-	vm->arena[position + 2].color = carriage->color;
-	vm->arena[position + 3].color = carriage->color;
+	vm->arena[(position + 1) % MEM_SIZE].color = carriage->color;
+	vm->arena[(position + 2) % MEM_SIZE].color = carriage->color;
+	vm->arena[(position + 3) % MEM_SIZE].color = carriage->color;
 	carriage->last_operation[0] = position;
-	carriage->last_operation[1] = position + 1;
-	carriage->last_operation[2] = position + 2;
-	carriage->last_operation[3] = position + 3;
+	carriage->last_operation[1] = (position + 1) % MEM_SIZE;
+	carriage->last_operation[2] = (position + 2) % MEM_SIZE;
+	carriage->last_operation[3] = (position + 3) % MEM_SIZE;
 }
 
 void				op_live(t_corewar *vm, t_carriage *carriage, int8_t *arg_code)

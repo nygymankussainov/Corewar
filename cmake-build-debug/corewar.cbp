@@ -1,0 +1,496 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CodeBlocks_project_file>
+	<FileVersion major="1" minor="6"/>
+	<Project>
+		<Option title="corewar"/>
+		<Option makefile_is_custom="1"/>
+		<Option compiler="gcc"/>
+		<Option virtualFolders="CMake Files\;"/>
+		<Build>
+			<Target title="all">
+				<Option working_dir="/Users/Arina/Desktop/corewar/cmake-build-debug"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j4 -f &quot;/Users/Arina/Desktop/corewar/cmake-build-debug/Makefile&quot;  VERBOSE=1 all"/>
+					<CompileFile command="/usr/bin/make -j4 -f &quot;/Users/Arina/Desktop/corewar/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j4 -f &quot;/Users/Arina/Desktop/corewar/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j4 -f &quot;/Users/Arina/Desktop/corewar/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="rebuild_cache">
+				<Option working_dir="/Users/Arina/Desktop/corewar/cmake-build-debug"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j4 -f &quot;/Users/Arina/Desktop/corewar/cmake-build-debug/Makefile&quot;  VERBOSE=1 rebuild_cache"/>
+					<CompileFile command="/usr/bin/make -j4 -f &quot;/Users/Arina/Desktop/corewar/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j4 -f &quot;/Users/Arina/Desktop/corewar/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j4 -f &quot;/Users/Arina/Desktop/corewar/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="edit_cache">
+				<Option working_dir="/Users/Arina/Desktop/corewar/cmake-build-debug"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j4 -f &quot;/Users/Arina/Desktop/corewar/cmake-build-debug/Makefile&quot;  VERBOSE=1 edit_cache"/>
+					<CompileFile command="/usr/bin/make -j4 -f &quot;/Users/Arina/Desktop/corewar/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j4 -f &quot;/Users/Arina/Desktop/corewar/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j4 -f &quot;/Users/Arina/Desktop/corewar/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="corewar">
+				<Option output="/Users/Arina/Desktop/corewar/cmake-build-debug/corewar" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/Users/Arina/Desktop/corewar/cmake-build-debug"/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="/Users/Arina/Desktop/corewar/includes"/>
+					<Add directory="/Users/Arina/Desktop/corewar/libftprintf/headers"/>
+					<Add directory="/Users/Arina/Desktop/corewar/libftprintf/libft/headers"/>
+					<Add directory="/Users/Arina/Desktop/corewar/virtual_machine/includes"/>
+					<Add directory="/Users/Arina/Desktop/corewar/virtual_machine/includes/sdl"/>
+					<Add directory="/Users/Arina/Desktop/corewar/virtual_machine/includes/sdl/SDL2"/>
+					<Add directory="/Users/Arina/Desktop/corewar/virtual_machine/includes/sdl/SDL2_GFX"/>
+					<Add directory="/Users/Arina/Desktop/corewar/virtual_machine/includes/sdl/SDL2_IMG"/>
+					<Add directory="/Users/Arina/Desktop/corewar/virtual_machine/includes/sdl/SDL2_MIX"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/11.0.0/include"/>
+					<Add directory="/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include"/>
+					<Add directory="/System/Library/Frameworks"/>
+					<Add directory="/Library/Frameworks"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j4 -f &quot;/Users/Arina/Desktop/corewar/cmake-build-debug/Makefile&quot;  VERBOSE=1 corewar"/>
+					<CompileFile command="/usr/bin/make -j4 -f &quot;/Users/Arina/Desktop/corewar/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j4 -f &quot;/Users/Arina/Desktop/corewar/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j4 -f &quot;/Users/Arina/Desktop/corewar/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="corewar/fast">
+				<Option output="/Users/Arina/Desktop/corewar/cmake-build-debug/corewar" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/Users/Arina/Desktop/corewar/cmake-build-debug"/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="/Users/Arina/Desktop/corewar/includes"/>
+					<Add directory="/Users/Arina/Desktop/corewar/libftprintf/headers"/>
+					<Add directory="/Users/Arina/Desktop/corewar/libftprintf/libft/headers"/>
+					<Add directory="/Users/Arina/Desktop/corewar/virtual_machine/includes"/>
+					<Add directory="/Users/Arina/Desktop/corewar/virtual_machine/includes/sdl"/>
+					<Add directory="/Users/Arina/Desktop/corewar/virtual_machine/includes/sdl/SDL2"/>
+					<Add directory="/Users/Arina/Desktop/corewar/virtual_machine/includes/sdl/SDL2_GFX"/>
+					<Add directory="/Users/Arina/Desktop/corewar/virtual_machine/includes/sdl/SDL2_IMG"/>
+					<Add directory="/Users/Arina/Desktop/corewar/virtual_machine/includes/sdl/SDL2_MIX"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/11.0.0/include"/>
+					<Add directory="/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include"/>
+					<Add directory="/System/Library/Frameworks"/>
+					<Add directory="/Library/Frameworks"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j4 -f &quot;/Users/Arina/Desktop/corewar/cmake-build-debug/Makefile&quot;  VERBOSE=1 corewar/fast"/>
+					<CompileFile command="/usr/bin/make -j4 -f &quot;/Users/Arina/Desktop/corewar/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j4 -f &quot;/Users/Arina/Desktop/corewar/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j4 -f &quot;/Users/Arina/Desktop/corewar/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+		</Build>
+		<Unit filename="/Users/Arina/Desktop/corewar/includes/asm.h">
+			<Option target="corewar"/>
+		</Unit>
+		<Unit filename="/Users/Arina/Desktop/corewar/includes/op.h">
+			<Option target="corewar"/>
+		</Unit>
+		<Unit filename="/Users/Arina/Desktop/corewar/libftprintf/headers/libftprintf.h">
+			<Option target="corewar"/>
+		</Unit>
+		<Unit filename="/Users/Arina/Desktop/corewar/libftprintf/libft/headers/libft.h">
+			<Option target="corewar"/>
+		</Unit>
+		<Unit filename="/Users/Arina/Desktop/corewar/libftprintf/libft/sources/del_matrix.c">
+			<Option target="corewar"/>
+		</Unit>
+		<Unit filename="/Users/Arina/Desktop/corewar/libftprintf/libft/sources/ft_atoi.c">
+			<Option target="corewar"/>
+		</Unit>
+		<Unit filename="/Users/Arina/Desktop/corewar/libftprintf/libft/sources/ft_atoi_long.c">
+			<Option target="corewar"/>
+		</Unit>
+		<Unit filename="/Users/Arina/Desktop/corewar/libftprintf/libft/sources/ft_bit_count.c">
+			<Option target="corewar"/>
+		</Unit>
+		<Unit filename="/Users/Arina/Desktop/corewar/libftprintf/libft/sources/ft_bzero.c">
+			<Option target="corewar"/>
+		</Unit>
+		<Unit filename="/Users/Arina/Desktop/corewar/libftprintf/libft/sources/ft_change_system.c">
+			<Option target="corewar"/>
+		</Unit>
+		<Unit filename="/Users/Arina/Desktop/corewar/libftprintf/libft/sources/ft_change_system_over_ten.c">
+			<Option target="corewar"/>
+		</Unit>
+		<Unit filename="/Users/Arina/Desktop/corewar/libftprintf/libft/sources/ft_count_digits.c">
+			<Option target="corewar"/>
+		</Unit>
+		<Unit filename="/Users/Arina/Desktop/corewar/libftprintf/libft/sources/ft_fill_zero.c">
+			<Option target="corewar"/>
+		</Unit>
+		<Unit filename="/Users/Arina/Desktop/corewar/libftprintf/libft/sources/ft_isalnum.c">
+			<Option target="corewar"/>
+		</Unit>
+		<Unit filename="/Users/Arina/Desktop/corewar/libftprintf/libft/sources/ft_isalpha.c">
+			<Option target="corewar"/>
+		</Unit>
+		<Unit filename="/Users/Arina/Desktop/corewar/libftprintf/libft/sources/ft_isascii.c">
+			<Option target="corewar"/>
+		</Unit>
+		<Unit filename="/Users/Arina/Desktop/corewar/libftprintf/libft/sources/ft_isdigit.c">
+			<Option target="corewar"/>
+		</Unit>
+		<Unit filename="/Users/Arina/Desktop/corewar/libftprintf/libft/sources/ft_isprint.c">
+			<Option target="corewar"/>
+		</Unit>
+		<Unit filename="/Users/Arina/Desktop/corewar/libftprintf/libft/sources/ft_istrstr.c">
+			<Option target="corewar"/>
+		</Unit>
+		<Unit filename="/Users/Arina/Desktop/corewar/libftprintf/libft/sources/ft_itoa.c">
+			<Option target="corewar"/>
+		</Unit>
+		<Unit filename="/Users/Arina/Desktop/corewar/libftprintf/libft/sources/ft_itoa_long.c">
+			<Option target="corewar"/>
+		</Unit>
+		<Unit filename="/Users/Arina/Desktop/corewar/libftprintf/libft/sources/ft_itoa_un_long.c">
+			<Option target="corewar"/>
+		</Unit>
+		<Unit filename="/Users/Arina/Desktop/corewar/libftprintf/libft/sources/ft_lstadd.c">
+			<Option target="corewar"/>
+		</Unit>
+		<Unit filename="/Users/Arina/Desktop/corewar/libftprintf/libft/sources/ft_lstdel.c">
+			<Option target="corewar"/>
+		</Unit>
+		<Unit filename="/Users/Arina/Desktop/corewar/libftprintf/libft/sources/ft_lstdelone.c">
+			<Option target="corewar"/>
+		</Unit>
+		<Unit filename="/Users/Arina/Desktop/corewar/libftprintf/libft/sources/ft_lstiter.c">
+			<Option target="corewar"/>
+		</Unit>
+		<Unit filename="/Users/Arina/Desktop/corewar/libftprintf/libft/sources/ft_lstmap.c">
+			<Option target="corewar"/>
+		</Unit>
+		<Unit filename="/Users/Arina/Desktop/corewar/libftprintf/libft/sources/ft_lstnew.c">
+			<Option target="corewar"/>
+		</Unit>
+		<Unit filename="/Users/Arina/Desktop/corewar/libftprintf/libft/sources/ft_memalloc.c">
+			<Option target="corewar"/>
+		</Unit>
+		<Unit filename="/Users/Arina/Desktop/corewar/libftprintf/libft/sources/ft_memccpy.c">
+			<Option target="corewar"/>
+		</Unit>
+		<Unit filename="/Users/Arina/Desktop/corewar/libftprintf/libft/sources/ft_memchr.c">
+			<Option target="corewar"/>
+		</Unit>
+		<Unit filename="/Users/Arina/Desktop/corewar/libftprintf/libft/sources/ft_memcmp.c">
+			<Option target="corewar"/>
+		</Unit>
+		<Unit filename="/Users/Arina/Desktop/corewar/libftprintf/libft/sources/ft_memcpy.c">
+			<Option target="corewar"/>
+		</Unit>
+		<Unit filename="/Users/Arina/Desktop/corewar/libftprintf/libft/sources/ft_memdel.c">
+			<Option target="corewar"/>
+		</Unit>
+		<Unit filename="/Users/Arina/Desktop/corewar/libftprintf/libft/sources/ft_memmove.c">
+			<Option target="corewar"/>
+		</Unit>
+		<Unit filename="/Users/Arina/Desktop/corewar/libftprintf/libft/sources/ft_memset.c">
+			<Option target="corewar"/>
+		</Unit>
+		<Unit filename="/Users/Arina/Desktop/corewar/libftprintf/libft/sources/ft_putchar.c">
+			<Option target="corewar"/>
+		</Unit>
+		<Unit filename="/Users/Arina/Desktop/corewar/libftprintf/libft/sources/ft_putchar_fd.c">
+			<Option target="corewar"/>
+		</Unit>
+		<Unit filename="/Users/Arina/Desktop/corewar/libftprintf/libft/sources/ft_putendl.c">
+			<Option target="corewar"/>
+		</Unit>
+		<Unit filename="/Users/Arina/Desktop/corewar/libftprintf/libft/sources/ft_putendl_fd.c">
+			<Option target="corewar"/>
+		</Unit>
+		<Unit filename="/Users/Arina/Desktop/corewar/libftprintf/libft/sources/ft_putnbr.c">
+			<Option target="corewar"/>
+		</Unit>
+		<Unit filename="/Users/Arina/Desktop/corewar/libftprintf/libft/sources/ft_putnbr_fd.c">
+			<Option target="corewar"/>
+		</Unit>
+		<Unit filename="/Users/Arina/Desktop/corewar/libftprintf/libft/sources/ft_putstr.c">
+			<Option target="corewar"/>
+		</Unit>
+		<Unit filename="/Users/Arina/Desktop/corewar/libftprintf/libft/sources/ft_putstr_fd.c">
+			<Option target="corewar"/>
+		</Unit>
+		<Unit filename="/Users/Arina/Desktop/corewar/libftprintf/libft/sources/ft_sjoin_and_free.c">
+			<Option target="corewar"/>
+		</Unit>
+		<Unit filename="/Users/Arina/Desktop/corewar/libftprintf/libft/sources/ft_strcat.c">
+			<Option target="corewar"/>
+		</Unit>
+		<Unit filename="/Users/Arina/Desktop/corewar/libftprintf/libft/sources/ft_strchr.c">
+			<Option target="corewar"/>
+		</Unit>
+		<Unit filename="/Users/Arina/Desktop/corewar/libftprintf/libft/sources/ft_strcjoin.c">
+			<Option target="corewar"/>
+		</Unit>
+		<Unit filename="/Users/Arina/Desktop/corewar/libftprintf/libft/sources/ft_strclr.c">
+			<Option target="corewar"/>
+		</Unit>
+		<Unit filename="/Users/Arina/Desktop/corewar/libftprintf/libft/sources/ft_strcmp.c">
+			<Option target="corewar"/>
+		</Unit>
+		<Unit filename="/Users/Arina/Desktop/corewar/libftprintf/libft/sources/ft_strcpy.c">
+			<Option target="corewar"/>
+		</Unit>
+		<Unit filename="/Users/Arina/Desktop/corewar/libftprintf/libft/sources/ft_strdel.c">
+			<Option target="corewar"/>
+		</Unit>
+		<Unit filename="/Users/Arina/Desktop/corewar/libftprintf/libft/sources/ft_strdup.c">
+			<Option target="corewar"/>
+		</Unit>
+		<Unit filename="/Users/Arina/Desktop/corewar/libftprintf/libft/sources/ft_strequ.c">
+			<Option target="corewar"/>
+		</Unit>
+		<Unit filename="/Users/Arina/Desktop/corewar/libftprintf/libft/sources/ft_striter.c">
+			<Option target="corewar"/>
+		</Unit>
+		<Unit filename="/Users/Arina/Desktop/corewar/libftprintf/libft/sources/ft_striteri.c">
+			<Option target="corewar"/>
+		</Unit>
+		<Unit filename="/Users/Arina/Desktop/corewar/libftprintf/libft/sources/ft_strjoin.c">
+			<Option target="corewar"/>
+		</Unit>
+		<Unit filename="/Users/Arina/Desktop/corewar/libftprintf/libft/sources/ft_strlcat.c">
+			<Option target="corewar"/>
+		</Unit>
+		<Unit filename="/Users/Arina/Desktop/corewar/libftprintf/libft/sources/ft_strlen.c">
+			<Option target="corewar"/>
+		</Unit>
+		<Unit filename="/Users/Arina/Desktop/corewar/libftprintf/libft/sources/ft_strmap.c">
+			<Option target="corewar"/>
+		</Unit>
+		<Unit filename="/Users/Arina/Desktop/corewar/libftprintf/libft/sources/ft_strmapi.c">
+			<Option target="corewar"/>
+		</Unit>
+		<Unit filename="/Users/Arina/Desktop/corewar/libftprintf/libft/sources/ft_strncat.c">
+			<Option target="corewar"/>
+		</Unit>
+		<Unit filename="/Users/Arina/Desktop/corewar/libftprintf/libft/sources/ft_strncmp.c">
+			<Option target="corewar"/>
+		</Unit>
+		<Unit filename="/Users/Arina/Desktop/corewar/libftprintf/libft/sources/ft_strncpy.c">
+			<Option target="corewar"/>
+		</Unit>
+		<Unit filename="/Users/Arina/Desktop/corewar/libftprintf/libft/sources/ft_strnequ.c">
+			<Option target="corewar"/>
+		</Unit>
+		<Unit filename="/Users/Arina/Desktop/corewar/libftprintf/libft/sources/ft_strnew.c">
+			<Option target="corewar"/>
+		</Unit>
+		<Unit filename="/Users/Arina/Desktop/corewar/libftprintf/libft/sources/ft_strnstr.c">
+			<Option target="corewar"/>
+		</Unit>
+		<Unit filename="/Users/Arina/Desktop/corewar/libftprintf/libft/sources/ft_strrchr.c">
+			<Option target="corewar"/>
+		</Unit>
+		<Unit filename="/Users/Arina/Desktop/corewar/libftprintf/libft/sources/ft_strsplit.c">
+			<Option target="corewar"/>
+		</Unit>
+		<Unit filename="/Users/Arina/Desktop/corewar/libftprintf/libft/sources/ft_strstr.c">
+			<Option target="corewar"/>
+		</Unit>
+		<Unit filename="/Users/Arina/Desktop/corewar/libftprintf/libft/sources/ft_strsub.c">
+			<Option target="corewar"/>
+		</Unit>
+		<Unit filename="/Users/Arina/Desktop/corewar/libftprintf/libft/sources/ft_strtrim.c">
+			<Option target="corewar"/>
+		</Unit>
+		<Unit filename="/Users/Arina/Desktop/corewar/libftprintf/libft/sources/ft_tolower.c">
+			<Option target="corewar"/>
+		</Unit>
+		<Unit filename="/Users/Arina/Desktop/corewar/libftprintf/libft/sources/ft_toupper.c">
+			<Option target="corewar"/>
+		</Unit>
+		<Unit filename="/Users/Arina/Desktop/corewar/libftprintf/libft/sources/ft_wchar_len.c">
+			<Option target="corewar"/>
+		</Unit>
+		<Unit filename="/Users/Arina/Desktop/corewar/libftprintf/libft/sources/ft_wordcount.c">
+			<Option target="corewar"/>
+		</Unit>
+		<Unit filename="/Users/Arina/Desktop/corewar/libftprintf/libft/sources/get_next_line.c">
+			<Option target="corewar"/>
+		</Unit>
+		<Unit filename="/Users/Arina/Desktop/corewar/libftprintf/sources/ft_bigc_width.c">
+			<Option target="corewar"/>
+		</Unit>
+		<Unit filename="/Users/Arina/Desktop/corewar/libftprintf/sources/ft_count_valid.c">
+			<Option target="corewar"/>
+		</Unit>
+		<Unit filename="/Users/Arina/Desktop/corewar/libftprintf/sources/ft_edit_flags.c">
+			<Option target="corewar"/>
+		</Unit>
+		<Unit filename="/Users/Arina/Desktop/corewar/libftprintf/sources/ft_fract_to_dec_f.c">
+			<Option target="corewar"/>
+		</Unit>
+		<Unit filename="/Users/Arina/Desktop/corewar/libftprintf/sources/ft_get_binary.c">
+			<Option target="corewar"/>
+		</Unit>
+		<Unit filename="/Users/Arina/Desktop/corewar/libftprintf/sources/ft_get_flags.c">
+			<Option target="corewar"/>
+		</Unit>
+		<Unit filename="/Users/Arina/Desktop/corewar/libftprintf/sources/ft_get_precision.c">
+			<Option target="corewar"/>
+		</Unit>
+		<Unit filename="/Users/Arina/Desktop/corewar/libftprintf/sources/ft_get_type.c">
+			<Option target="corewar"/>
+		</Unit>
+		<Unit filename="/Users/Arina/Desktop/corewar/libftprintf/sources/ft_get_type_size.c">
+			<Option target="corewar"/>
+		</Unit>
+		<Unit filename="/Users/Arina/Desktop/corewar/libftprintf/sources/ft_get_width.c">
+			<Option target="corewar"/>
+		</Unit>
+		<Unit filename="/Users/Arina/Desktop/corewar/libftprintf/sources/ft_handle_binary_f.c">
+			<Option target="corewar"/>
+		</Unit>
+		<Unit filename="/Users/Arina/Desktop/corewar/libftprintf/sources/ft_handle_doubles.c">
+			<Option target="corewar"/>
+		</Unit>
+		<Unit filename="/Users/Arina/Desktop/corewar/libftprintf/sources/ft_handle_output_f.c">
+			<Option target="corewar"/>
+		</Unit>
+		<Unit filename="/Users/Arina/Desktop/corewar/libftprintf/sources/ft_handle_special_f.c">
+			<Option target="corewar"/>
+		</Unit>
+		<Unit filename="/Users/Arina/Desktop/corewar/libftprintf/sources/ft_ignored_space.c">
+			<Option target="corewar"/>
+		</Unit>
+		<Unit filename="/Users/Arina/Desktop/corewar/libftprintf/sources/ft_ignored_zero.c">
+			<Option target="corewar"/>
+		</Unit>
+		<Unit filename="/Users/Arina/Desktop/corewar/libftprintf/sources/ft_ints_to_dec_f.c">
+			<Option target="corewar"/>
+		</Unit>
+		<Unit filename="/Users/Arina/Desktop/corewar/libftprintf/sources/ft_printf.c">
+			<Option target="corewar"/>
+		</Unit>
+		<Unit filename="/Users/Arina/Desktop/corewar/libftprintf/sources/ft_solve_c.c">
+			<Option target="corewar"/>
+		</Unit>
+		<Unit filename="/Users/Arina/Desktop/corewar/libftprintf/sources/ft_solve_d.c">
+			<Option target="corewar"/>
+		</Unit>
+		<Unit filename="/Users/Arina/Desktop/corewar/libftprintf/sources/ft_solve_f.c">
+			<Option target="corewar"/>
+		</Unit>
+		<Unit filename="/Users/Arina/Desktop/corewar/libftprintf/sources/ft_solve_ox.c">
+			<Option target="corewar"/>
+		</Unit>
+		<Unit filename="/Users/Arina/Desktop/corewar/libftprintf/sources/ft_solve_p.c">
+			<Option target="corewar"/>
+		</Unit>
+		<Unit filename="/Users/Arina/Desktop/corewar/libftprintf/sources/ft_solve_percent.c">
+			<Option target="corewar"/>
+		</Unit>
+		<Unit filename="/Users/Arina/Desktop/corewar/libftprintf/sources/ft_solve_s.c">
+			<Option target="corewar"/>
+		</Unit>
+		<Unit filename="/Users/Arina/Desktop/corewar/libftprintf/sources/ft_solve_u.c">
+			<Option target="corewar"/>
+		</Unit>
+		<Unit filename="/Users/Arina/Desktop/corewar/libftprintf/sources/ft_valid_flags.c">
+			<Option target="corewar"/>
+		</Unit>
+		<Unit filename="/Users/Arina/Desktop/corewar/libftprintf/sources/ft_valid_flags_c_s_p.c">
+			<Option target="corewar"/>
+		</Unit>
+		<Unit filename="/Users/Arina/Desktop/corewar/libftprintf/sources/ft_write_d_case1.c">
+			<Option target="corewar"/>
+		</Unit>
+		<Unit filename="/Users/Arina/Desktop/corewar/libftprintf/sources/ft_write_d_case2.c">
+			<Option target="corewar"/>
+		</Unit>
+		<Unit filename="/Users/Arina/Desktop/corewar/libftprintf/sources/ft_write_d_case3.c">
+			<Option target="corewar"/>
+		</Unit>
+		<Unit filename="/Users/Arina/Desktop/corewar/libftprintf/sources/ft_write_f.c">
+			<Option target="corewar"/>
+		</Unit>
+		<Unit filename="/Users/Arina/Desktop/corewar/libftprintf/sources/ft_write_ox_case1.c">
+			<Option target="corewar"/>
+		</Unit>
+		<Unit filename="/Users/Arina/Desktop/corewar/libftprintf/sources/ft_write_ox_case2.c">
+			<Option target="corewar"/>
+		</Unit>
+		<Unit filename="/Users/Arina/Desktop/corewar/libftprintf/sources/ft_write_ox_case3.c">
+			<Option target="corewar"/>
+		</Unit>
+		<Unit filename="/Users/Arina/Desktop/corewar/libftprintf/sources/ft_write_u_case1.c">
+			<Option target="corewar"/>
+		</Unit>
+		<Unit filename="/Users/Arina/Desktop/corewar/libftprintf/sources/ft_write_u_case2.c">
+			<Option target="corewar"/>
+		</Unit>
+		<Unit filename="/Users/Arina/Desktop/corewar/libftprintf/sources/ft_write_utf.c">
+			<Option target="corewar"/>
+		</Unit>
+		<Unit filename="/Users/Arina/Desktop/corewar/virtual_machine/includes/operations.h">
+			<Option target="corewar"/>
+		</Unit>
+		<Unit filename="/Users/Arina/Desktop/corewar/virtual_machine/includes/virtual_machine.h">
+			<Option target="corewar"/>
+		</Unit>
+		<Unit filename="/Users/Arina/Desktop/corewar/virtual_machine/includes/vm_enums.h">
+			<Option target="corewar"/>
+		</Unit>
+		<Unit filename="/Users/Arina/Desktop/corewar/virtual_machine/src/exit.c">
+			<Option target="corewar"/>
+		</Unit>
+		<Unit filename="/Users/Arina/Desktop/corewar/virtual_machine/src/free/free_corewar.c">
+			<Option target="corewar"/>
+		</Unit>
+		<Unit filename="/Users/Arina/Desktop/corewar/virtual_machine/src/initialization/initialization.c">
+			<Option target="corewar"/>
+		</Unit>
+		<Unit filename="/Users/Arina/Desktop/corewar/virtual_machine/src/initialization/set_params.c">
+			<Option target="corewar"/>
+		</Unit>
+		<Unit filename="/Users/Arina/Desktop/corewar/virtual_machine/src/main.c">
+			<Option target="corewar"/>
+		</Unit>
+		<Unit filename="/Users/Arina/Desktop/corewar/virtual_machine/src/parsing/parse_arguments.c">
+			<Option target="corewar"/>
+		</Unit>
+		<Unit filename="/Users/Arina/Desktop/corewar/virtual_machine/src/validation/read_byte_code.c">
+			<Option target="corewar"/>
+		</Unit>
+		<Unit filename="/Users/Arina/Desktop/corewar/virtual_machine/src/war/carriage_execution.c">
+			<Option target="corewar"/>
+		</Unit>
+		<Unit filename="/Users/Arina/Desktop/corewar/virtual_machine/src/war/carriage_interaction.c">
+			<Option target="corewar"/>
+		</Unit>
+		<Unit filename="/Users/Arina/Desktop/corewar/virtual_machine/src/war/check.c">
+			<Option target="corewar"/>
+		</Unit>
+		<Unit filename="/Users/Arina/Desktop/corewar/virtual_machine/src/war/execute_op.c">
+			<Option target="corewar"/>
+		</Unit>
+		<Unit filename="/Users/Arina/Desktop/corewar/virtual_machine/src/war/operations.c">
+			<Option target="corewar"/>
+		</Unit>
+		<Unit filename="/Users/Arina/Desktop/corewar/virtual_machine/src/war/start_war.c">
+			<Option target="corewar"/>
+		</Unit>
+		<Unit filename="/Users/Arina/Desktop/corewar/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\"/>
+		</Unit>
+	</Project>
+</CodeBlocks_project_file>

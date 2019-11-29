@@ -26,8 +26,8 @@ bool	is_valid_reg(t_corewar *vm, t_carriage *carriage,
 			offset += carriage->operation->t_dir_size;
 		else if (arg_code[i] == 3)
 			offset += 2;
-		else
-			offset++;
+		else//
+			offset++;//
 		i++;
 	}
 	if (vm->arena[(carriage->position + offset) % MEM_SIZE].value < 1 ||
