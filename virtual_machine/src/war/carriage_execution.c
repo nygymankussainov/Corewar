@@ -71,7 +71,7 @@ void    execute_carriages(t_corewar **vm)
 			carriage = carriage->next;
 		}
 		(*vm)->current_cycles++;
-		if ((*vm)->dumps == (*vm)->current_cycles + (*vm)->total_cycles)
+		if ((*vm)->dumps != (*vm)->cycles_to_die && (*vm)->dumps == (*vm)->current_cycles + (*vm)->total_cycles)
 		{
 			display_array((*vm)->arena, 64, 64);
 			exit (0);

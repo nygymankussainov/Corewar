@@ -27,5 +27,6 @@ void				start_war(t_corewar *vm)
 			execute_carriages(&vm);
 	}
 //	display_array(vm->arena, 64, 64);
+	ft_printf("%d\n", vm->total_cycles);
 	ft_printf("Contestant %d, \"%s\", has won !\n", vm->winner->id, vm->winner->name, vm->total_cycles);
 }
