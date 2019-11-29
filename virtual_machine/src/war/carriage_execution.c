@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   carriage_execution.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: egiant <egiant@student.42.fr>              +#+  +:+       +#+        */
+/*   By: hfrankly <hfrankly@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/09 15:37:50 by hfrankly          #+#    #+#             */
-/*   Updated: 2019/11/28 13:30:21 by egiant           ###   ########.fr       */
+/*   Updated: 2019/11/29 20:59:30 by hfrankly         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ void	execute_carriage_op(t_corewar *vm, t_carriage *carriage)
 		termination_with_perror("Error", ENOMEM);
 	if (carriage->operation != NULL)
 	{
-		if (vm->total_cycles + vm->current_cycles == 1649)
+		if (vm->total_cycles + vm->current_cycles >= 4700)
 			ft_printf("");
 		set_arg_code(vm, carriage, &arg_code);
 		if (is_valid_format(vm, carriage, arg_code))
@@ -58,6 +58,8 @@ void    execute_carriages(t_corewar **vm)
 		carriage = (*vm)->start_carriage;
 		while (carriage)
 		{
+			if ((*vm)->current_cycles + (*vm)->total_cycles == 4795)
+				ft_putstr("");
 			if (carriage->cycles_before_operation == 0)
 				set_carriage_op((*vm), carriage);
 			if (carriage->cycles_before_operation > 0)
@@ -65,7 +67,7 @@ void    execute_carriages(t_corewar **vm)
 			if (carriage->cycles_before_operation == 0 && carriage->operation != NULL)
 				execute_carriage_op(*vm, carriage);
 			else if (carriage->cycles_before_operation == 0)
-				carriage->position = (carriage->position + 1) % MEM_SIZE;			
+				carriage->position = (carriage->position + 1) % MEM_SIZE;
 			 //if (carriage->cycles_before_operation == 0 && (*vm)->visual == true)
 				//display_arena_state(*vm);
 			carriage = carriage->next;

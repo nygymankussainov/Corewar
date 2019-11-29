@@ -6,7 +6,7 @@
 /*   By: hfrankly <hfrankly@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/02 14:50:41 by hfrankly          #+#    #+#             */
-/*   Updated: 2019/11/22 17:50:12 by hfrankly         ###   ########.fr       */
+/*   Updated: 2019/11/29 20:14:33 by hfrankly         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,5 @@ void				start_war(t_corewar *vm)
 			execute_carriages(&vm);
 	}
 //	display_array(vm->arena, 64, 64);
-	ft_printf("%d\n", vm->total_cycles);
 	ft_printf("Contestant %d, \"%s\", has won !\n", vm->winner->id, vm->winner->name, vm->total_cycles);
 }

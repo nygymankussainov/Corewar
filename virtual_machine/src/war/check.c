@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   check.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: egiant <egiant@student.42.fr>              +#+  +:+       +#+        */
+/*   By: hfrankly <hfrankly@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/09 15:37:50 by hfrankly          #+#    #+#             */
-/*   Updated: 2019/11/28 13:32:41 by egiant           ###   ########.fr       */
+/*   Updated: 2019/11/29 20:29:17 by hfrankly         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,6 +52,6 @@ void			check(t_corewar **vm)
 	(*vm)->total_cycles += (*vm)->current_cycles;
 	(*vm)->current_cycles = 0;
 	(*vm)->check_count++;
-    check_carriages((*vm)->start_carriage, (*vm));
 	check_cycle_to_die((*vm));
+    check_carriages((*vm)->start_carriage, (*vm));
 }
