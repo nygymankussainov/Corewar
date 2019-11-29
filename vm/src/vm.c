@@ -6,7 +6,7 @@
 /*   By: vhazelnu <vhazelnu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/27 14:26:22 by vhazelnu          #+#    #+#             */
-/*   Updated: 2019/11/28 17:35:47 by vhazelnu         ###   ########.fr       */
+/*   Updated: 2019/11/29 16:31:30 by vhazelnu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,7 @@ void	create_carriage(t_player *player, t_carr **carr, int pos)
 	else
 	{
 		new->next = *carr;
+		(*carr)->prev = new;
 		*carr = new;
 		(*carr)->id = (*carr)->next->id + 1;
 	}
@@ -61,8 +62,9 @@ void	vm(t_player *player, t_major *major)
 	t_carr	*carr;
 
 	carr = vm_init(player, major);
+	major->lastlive = &player[major->pl_nb - 1];
 	announce_players(player, major->pl_nb);
-	int fd = open("test", O_CREAT | O_WRONLY, S_IRUSR | S_IWUSR);
-	write(fd, major->arena, MEM_SIZE);
+	// int fd = open("test", O_CREAT | O_WRONLY, S_IRUSR | S_IWUSR);
+	// write(fd, major->arena, MEM_SIZE);
 	battle(carr, player, major);
 }

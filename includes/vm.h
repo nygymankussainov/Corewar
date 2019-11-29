@@ -6,7 +6,7 @@
 /*   By: vhazelnu <vhazelnu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/26 13:01:09 by vhazelnu          #+#    #+#             */
-/*   Updated: 2019/11/28 18:43:45 by vhazelnu         ###   ########.fr       */
+/*   Updated: 2019/11/29 18:01:03 by vhazelnu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,7 @@ typedef struct		s_carr
 	int				reg[REG_NUMBER];
 	bool			dead;
 	struct s_carr	*next;
+	struct s_carr	*prev;
 }					t_carr;
 
 typedef struct		s_player
@@ -49,6 +50,7 @@ typedef struct		s_major
 	t_player		*lastlive;
 	int				cycles_from_start;
 	int				live_count;
+	int				cycles_to_die_curr;
 	int				cycles_to_die;
 	int				check_count;
 }					t_major;
@@ -73,5 +75,8 @@ void				delete_player(t_player *player, int nb);
 void				vm(t_player *player, t_major *major);
 void				announce_players(t_player *player, int nb);
 void				battle(t_carr *carr, t_player *player, t_major *major);
+void				set_opcode(t_major *major, t_carr *carr);
+void				set_opcode(t_major *major, t_carr *carr);
+void				verify_operation(t_major *major, t_carr *carr);
 
 #endif

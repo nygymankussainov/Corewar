@@ -6,14 +6,14 @@
 /*   By: vhazelnu <vhazelnu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/02 16:36:10 by vhazelnu          #+#    #+#             */
-/*   Updated: 2019/11/28 16:56:46 by vhazelnu         ###   ########.fr       */
+/*   Updated: 2019/11/29 17:01:46 by vhazelnu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef OPERATIONS_H
 # define OPERATIONS_H
 
-# define OP_NUMBER	17
+# define OP_NUMBER	16
 
 # include "op.h"
 # include <stdbool.h>
@@ -31,7 +31,7 @@ typedef struct	s_ops
 	int			cycles;
 }				t_ops;
 
-static t_ops	g_ops[OP_NUMBER - 1] = {
+static t_ops	g_ops[OP_NUMBER] = {
 	{
 		.name = "live",
 		.opcode = 0x01,
