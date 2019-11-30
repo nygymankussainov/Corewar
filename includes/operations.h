@@ -6,7 +6,7 @@
 /*   By: vhazelnu <vhazelnu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/02 16:36:10 by vhazelnu          #+#    #+#             */
-/*   Updated: 2019/11/29 17:01:46 by vhazelnu         ###   ########.fr       */
+/*   Updated: 2019/11/30 17:07:40 by vhazelnu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,7 @@ typedef struct	s_ops
 	int			args_type_code;
 	int			t_dir_size;
 	int			cycles;
+	int			(*f)(t_major *, t_carr *, t_player *);
 }				t_ops;
 
 static t_ops	g_ops[OP_NUMBER] = {
@@ -40,7 +41,8 @@ static t_ops	g_ops[OP_NUMBER] = {
 		.affect_carry = 0,
 		.args_type_code = 0,
 		.t_dir_size = DIR_SIZE,
-		.cycles = 10
+		.cycles = 10,
+		.f = live
 	},
 	{
 		.name = "ld",
@@ -50,7 +52,8 @@ static t_ops	g_ops[OP_NUMBER] = {
 		.affect_carry = 1,
 		.args_type_code = 1,
 		.t_dir_size = DIR_SIZE,
-		.cycles = 5
+		.cycles = 5,
+		.f = ld
 	},
 	{
 		.name = "st",

@@ -6,7 +6,7 @@
 /*   By: vhazelnu <vhazelnu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/29 17:13:10 by vhazelnu          #+#    #+#             */
-/*   Updated: 2019/11/30 14:50:40 by vhazelnu         ###   ########.fr       */
+/*   Updated: 2019/11/30 16:37:45 by vhazelnu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,7 @@ void	skip_args(t_major *major, t_carr *carr)
 		else
 			bytes += IND_SIZE;
 		major->args_type[i] = '\0';
+		major->args[i] = 0;
 		++i;
 	}
 	carr_move(carr, bytes);
@@ -74,17 +75,12 @@ int		check_args_type_code(t_major *major, t_carr *carr)
 
 void	verify_operation(t_major *major, t_carr *carr, t_player *player)
 {
-	player += 0;
 	carr_move(carr, 1);
 	if (carr->opcode >= major->first_op &&
 		carr->opcode <= major->last_op)
 	{
 		if (check_args_type_code(major, carr))
-		{
-			// execute_operation(major, carr, player);
-			carr->pos += carr->step_to_next_op;
-		}
-		else
-			skip_args(major, carr);
+			carr->op->f(major, carr, player);
+		skip_args(major, carr);
 	}
 }

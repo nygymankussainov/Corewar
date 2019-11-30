@@ -6,7 +6,7 @@
 /*   By: vhazelnu <vhazelnu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/26 13:01:09 by vhazelnu          #+#    #+#             */
-/*   Updated: 2019/11/30 14:42:36 by vhazelnu         ###   ########.fr       */
+/*   Updated: 2019/11/30 17:07:49 by vhazelnu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,9 +24,9 @@ typedef struct		s_carr
 	t_ops			*op;
 	u_int8_t		opcode;
 	int				lastlive_cycle;
+	int				live_count;
 	int				cycles_to_exec;
 	int				pos;
-	int				step_to_next_op;
 	int				reg[REG_NUMBER];
 	bool			dead;
 	struct s_carr	*next;
@@ -54,6 +54,7 @@ typedef struct		s_major
 	int				cycles_to_die;
 	int				check_count;
 	char			args_type[3];
+	int				args[3];
 	u_int8_t 		first_op;
 	u_int8_t 		last_op;
 }					t_major;
@@ -84,6 +85,7 @@ void				verify_operation(t_major *major, t_carr *carr, t_player *player);
 void				carr_move(t_carr *carr, int step);
 void				skip_args(t_major *major, t_carr *carr);
 void				get_arg_types(t_major *major, t_carr *carr);
-// void				execute_operation(t_major *major, t_carr *carr, t_player *player);
+int					live(t_major *major, t_carr *carr, t_player *player);
+int					ld(t_major *major, t_carr *carr, t_player *player);
 
 #endif

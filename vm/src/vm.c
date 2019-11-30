@@ -6,7 +6,7 @@
 /*   By: vhazelnu <vhazelnu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/27 14:26:22 by vhazelnu          #+#    #+#             */
-/*   Updated: 2019/11/30 14:40:42 by vhazelnu         ###   ########.fr       */
+/*   Updated: 2019/11/30 16:36:52 by vhazelnu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,17 @@
 
 void	get_arg_types(t_major *major, t_carr *carr)
 {
+	int		i;
+
+	i = 0;
 	major->args_type[0] = (major->arena[carr->pos] & 0b11000000) >> 6;
 	major->args_type[1] = (major->arena[carr->pos] & 0b00110000) >> 4;
 	major->args_type[2] = (major->arena[carr->pos] & 0b00001100) >> 2;
+	while (i < carr->op->args_number)
+	{
+		major->args[i] = (int)major->arena[(carr->pos + i) % MEM_SIZE];
+		++i;
+	}
 }
 
 void	carr_move(t_carr *carr, int step)
