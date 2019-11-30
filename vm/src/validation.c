@@ -6,7 +6,7 @@
 /*   By: vhazelnu <vhazelnu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/26 13:08:05 by vhazelnu          #+#    #+#             */
-/*   Updated: 2019/11/27 13:57:38 by vhazelnu         ###   ########.fr       */
+/*   Updated: 2019/11/30 13:56:13 by vhazelnu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,7 +69,7 @@ int		validate_players(int argc, char **argv, t_player *player, int nb)
 			putstrerr("Wrong flag format\n");
 			return (0);
 		}
-		i++;
+		++i;
 	}
 	return (1);
 }

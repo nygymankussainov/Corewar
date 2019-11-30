@@ -1,20 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   corewar.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: vhazelnu <vhazelnu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/26 13:03:34 by vhazelnu          #+#    #+#             */
-/*   Updated: 2019/11/27 17:00:27 by vhazelnu         ###   ########.fr       */
+/*   Updated: 2019/11/30 14:30:06 by vhazelnu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "vm.h"
 
+int		print_usage(void)
+{
+	ft_printf("%s\n", "Usage: ./corewar [-dump nbr_cycles] [[-n number] champion1.cor]");
+	return (0);
+}
+
 int		isplayer(char *str)
 {
-	if (ft_strstr(str, ".cor"))
+	int		len;
+
+	len = ft_strlen(str) - 4;
+	if (!ft_strcmp(str + len, ".cor"))
 		return (1);
 	return (0);
 }
@@ -35,12 +44,6 @@ int		count_players(int argc, char **argv)
 	return (count);
 }
 
-int		print_usage(void)
-{
-	ft_printf("%s\n", "Usage: ./corewar [-dump nbr_cycles] [[-n number] champion1.cor]");
-	return (0);
-}
-
 t_major	*init_major(char **argv, int argc, int nb, t_player *player)
 {
 	t_major	*major;
@@ -53,6 +56,8 @@ t_major	*init_major(char **argv, int argc, int nb, t_player *player)
 	major->pl_nb = nb;
 	major->lastlive = &player[nb - 1];
 	major->cycles_to_die = CYCLE_TO_DIE;
+	major->first_op = g_ops[0].opcode;
+	major->last_op = g_ops[OP_NUMBER - 1].opcode;
 	while (argc--)
 	{
 		if (!ft_strcmp(argv[argc], "-dump"))

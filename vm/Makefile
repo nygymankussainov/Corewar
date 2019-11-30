@@ -6,7 +6,7 @@
 #    By: vhazelnu <vhazelnu@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/05/16 11:34:51 by vhazelnu          #+#    #+#              #
-#    Updated: 2019/11/29 17:19:46 by vhazelnu         ###   ########.fr        #
+#    Updated: 2019/11/30 14:42:34 by vhazelnu         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -20,8 +20,9 @@ LIB_A = ../libft/libft.a $(LIB)/libftprintf.a
 
 INCLUDES = -I ../includes  -I ../ -I $(LIB) -I ../libft
 
-SOURCES = main.c vm.c validation.c check_bytecode.c rev_bytes.c read_from_fd.c \
+SOURCES = corewar.c vm.c validation.c check_bytecode.c rev_bytes.c read_from_fd.c \
 			modify_players_id.c announce_players.c battle.c set_opcode.c verify_operation.c \
+			# execute_operation.c
 
 SRCDIR = src
 OBJDIR = obj
@@ -32,7 +33,7 @@ OBJ = $(addprefix $(OBJDIR)/, $(SOURCES:.c=.o))
 
 CCFL = -Wall -Wextra -Werror
 
-.PHONY: all clean fclean re library obj_dir debug
+.PHONY: all clean fclean re obj_dir debug
 
 all: obj_dir $(NAME)
 
@@ -42,22 +43,17 @@ debug: all
 obj_dir:
 	@mkdir -p $(OBJDIR)
 
-library:
-	@make -sC $(LIB)
-
 $(OBJDIR)/%.o: $(SRCDIR)/%.c
 	@gcc $(CCFL) -o $@ -c $< $(INCLUDES)
 
-$(NAME): library $(OBJ)
+$(NAME): $(OBJ)
 	@gcc $(CCFL) -o $(NAME) $(OBJ) $(LIB_A)
 	@echo "$(LOG_GREEN)VM has compiled successfully!$(LOG_NOCOLOR)"
 
 clean:
-	@make clean -sC $(LIB)
 	@/bin/rm -rf $(OBJDIR)
 
 fclean: clean
 	@/bin/rm -f $(NAME)
-	@make fclean -sC $(LIB)
 
 re: fclean all

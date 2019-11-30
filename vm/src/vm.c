@@ -6,11 +6,18 @@
 /*   By: vhazelnu <vhazelnu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/27 14:26:22 by vhazelnu          #+#    #+#             */
-/*   Updated: 2019/11/29 22:07:23 by vhazelnu         ###   ########.fr       */
+/*   Updated: 2019/11/30 14:40:42 by vhazelnu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "vm.h"
+
+void	get_arg_types(t_major *major, t_carr *carr)
+{
+	major->args_type[0] = (major->arena[carr->pos] & 0b11000000) >> 6;
+	major->args_type[1] = (major->arena[carr->pos] & 0b00110000) >> 4;
+	major->args_type[2] = (major->arena[carr->pos] & 0b00001100) >> 2;
+}
 
 void	carr_move(t_carr *carr, int step)
 {
@@ -67,7 +74,6 @@ void	vm(t_player *player, t_major *major)
 	t_carr	*carr;
 
 	carr = vm_init(player, major);
-	major->lastlive = &player[major->pl_nb - 1];
 	announce_players(player, major->pl_nb);
 	// int fd = open("test", O_CREAT | O_WRONLY, S_IRUSR | S_IWUSR);
 	// write(fd, major->arena, MEM_SIZE);
