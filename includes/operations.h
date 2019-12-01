@@ -6,7 +6,7 @@
 /*   By: vhazelnu <vhazelnu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/02 16:36:10 by vhazelnu          #+#    #+#             */
-/*   Updated: 2019/12/01 18:07:22 by vhazelnu         ###   ########.fr       */
+/*   Updated: 2019/12/01 19:51:22 by vhazelnu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,6 +83,7 @@ struct						s_vm
 
 int							live(t_vm *vm, t_carr *carr, t_player *player);
 int							ld(t_vm *vm, t_carr *carr, t_player *player);
+int							st(t_vm *vm, t_carr *carr, t_player *player);
 
 typedef struct				s_op_funcs
 {
@@ -95,6 +96,9 @@ static t_op_funcs			g_op_funcs[OP_NUMBER] = {
 	},
 	{
 		.f = ld
+	},
+	{
+		.f = st
 	}
 };
 

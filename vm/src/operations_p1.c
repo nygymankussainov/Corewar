@@ -6,11 +6,25 @@
 /*   By: vhazelnu <vhazelnu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/29 21:43:01 by vhazelnu          #+#    #+#             */
-/*   Updated: 2019/12/01 19:12:34 by vhazelnu         ###   ########.fr       */
+/*   Updated: 2019/12/01 20:07:52 by vhazelnu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "vm.h"
+
+int		st(t_vm *vm, t_carr *carr, t_player *player)
+{
+	player += 0;
+	if (vm->args_type[1] == REG_CODE)
+		carr->reg[vm->args[1] - 1] = carr->reg[vm->args[0] - 1];
+	else
+	{
+		vm->args[1] %= IDX_MOD;
+		vm->arena[(carr->pos + vm->args[1]) % MEM_SIZE] = carr->reg[vm->args[0] - 1];
+		// ft_itoh_vm(carr->reg[vm->args[0] - 1], 1, vm, (carr->pos + vm->args[1]) % MEM_SIZE);
+	}
+	return (0);
+}
 
 int		ld(t_vm *vm, t_carr *carr, t_player *player)
 {

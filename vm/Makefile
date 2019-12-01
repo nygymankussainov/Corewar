@@ -6,7 +6,7 @@
 #    By: vhazelnu <vhazelnu@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/05/16 11:34:51 by vhazelnu          #+#    #+#              #
-#    Updated: 2019/12/01 18:23:31 by vhazelnu         ###   ########.fr        #
+#    Updated: 2019/12/01 19:57:38 by vhazelnu         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -22,7 +22,7 @@ INCLUDES = -I ../includes  -I ../ -I $(LIB) -I ../libft
 
 SOURCES = corewar.c vm.c validation.c check_bytecode.c rev_bytes.c read_from_fd.c \
 			modify_players_id.c announce_players.c battle.c verify_operation.c \
-			operations_p1.c verify_args.c \
+			operations_p1.c verify_args.c ft_itoh_vm.c \
 
 SRCDIR = src
 OBJDIR = obj

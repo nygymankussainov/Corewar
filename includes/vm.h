@@ -6,7 +6,7 @@
 /*   By: vhazelnu <vhazelnu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/26 13:01:09 by vhazelnu          #+#    #+#             */
-/*   Updated: 2019/12/01 18:23:16 by vhazelnu         ###   ########.fr       */
+/*   Updated: 2019/12/01 19:58:11 by vhazelnu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,5 +47,6 @@ int					verify_args(t_vm *vm, t_carr *carr);
 int					get_arg_size(t_carr *carr, int i);
 int					check_arg(t_vm *vm, t_carr *carr, int i, int size);
 int					check_reg(t_vm *vm, t_carr *carr, int size);
+void				ft_itoh_vm(int32_t value, int size, t_vm *vm, int pos);
 
 #endif
