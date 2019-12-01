@@ -6,7 +6,7 @@
 /*   By: vhazelnu <vhazelnu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/26 13:03:34 by vhazelnu          #+#    #+#             */
-/*   Updated: 2019/11/30 14:30:06 by vhazelnu         ###   ########.fr       */
+/*   Updated: 2019/12/01 14:24:24 by vhazelnu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,37 +44,37 @@ int		count_players(int argc, char **argv)
 	return (count);
 }
 
-t_major	*init_major(char **argv, int argc, int nb, t_player *player)
+t_vm	*init_vm(char **argv, int argc, int nb, t_player *player)
 {
-	t_major	*major;
+	t_vm	*vm;
 
-	if (!(major = (t_major *)ft_memalloc(sizeof(t_major))))
+	if (!(vm = (t_vm *)ft_memalloc(sizeof(t_vm))))
 	{
 		ft_printf("%s\n", strerror(12));
 		exit(12);
 	}
-	major->pl_nb = nb;
-	major->lastlive = &player[nb - 1];
-	major->cycles_to_die = CYCLE_TO_DIE;
-	major->first_op = g_ops[0].opcode;
-	major->last_op = g_ops[OP_NUMBER - 1].opcode;
+	vm->pl_nb = nb;
+	vm->lastlive = &player[nb - 1];
+	vm->cycles_to_die = CYCLE_TO_DIE;
+	vm->first_op = g_ops[0].opcode;
+	vm->last_op = g_ops[OP_NUMBER - 1].opcode;
 	while (argc--)
 	{
 		if (!ft_strcmp(argv[argc], "-dump"))
 		{
-			major->dump = ft_atoi(argv[argc + 1]);
-			major->dump = major->dump < 0 ? 0 : major->dump;
-			return (major);
+			vm->dump = ft_atoi(argv[argc + 1]);
+			vm->dump = vm->dump < 0 ? 0 : vm->dump;
+			return (vm);
 		}
 	}
-	return (major);
+	return (vm);
 }
 
 int		main(int argc, char **argv)
 {
 	int			nb;
 	t_player	*player;
-	t_major		*major;
+	t_vm		*vm;
 
 	if (argc < 2)
 		return (print_usage());
@@ -83,8 +83,8 @@ int		main(int argc, char **argv)
 		putstrerr("Too many champions\n");
 	else if ((player = validation(argc, argv, nb)) != NULL)
 	{
-		major = init_major(argv, argc, nb, player);
-		vm(player, major);
+		vm = init_vm(argv, argc, nb, player);
+		virtual_machine(player, vm);
 		delete_player(player, nb);
 		return (1);
 	}

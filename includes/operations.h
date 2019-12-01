@@ -6,7 +6,7 @@
 /*   By: vhazelnu <vhazelnu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/02 16:36:10 by vhazelnu          #+#    #+#             */
-/*   Updated: 2019/11/30 17:07:40 by vhazelnu         ###   ########.fr       */
+/*   Updated: 2019/12/01 18:07:22 by vhazelnu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,20 +19,86 @@
 # include <stdbool.h>
 # include <sys/types.h>
 
-typedef struct	s_ops
-{
-	char		*name;
-	u_int8_t	opcode;
-	int			args_number;
-	int			args_type[3];
-	bool		affect_carry;
-	int			args_type_code;
-	int			t_dir_size;
-	int			cycles;
-	int			(*f)(t_major *, t_carr *, t_player *);
-}				t_ops;
+typedef struct	s_carr		t_carr;
+typedef struct	s_player	t_player;
+typedef struct	s_vm		t_vm;
 
-static t_ops	g_ops[OP_NUMBER] = {
+
+typedef struct				s_ops
+{
+	char					*name;
+	u_int8_t				opcode;
+	int						args_number;
+	int						args_type[3];
+	bool					affect_carry;
+	int						args_type_code;
+	int						t_dir_size;
+	int						cycles;
+	int						(*f)(t_vm *, t_carr *, t_player *);
+}							t_ops;
+
+struct						s_carr
+{
+	int						id;
+	int						player_id;
+	bool					carry;
+	t_ops					*op;
+	u_int8_t				opcode;
+	int						lastlive_cycle;
+	int						live_count;
+	int						cycles_to_exec;
+	int						pos;
+	int						reg[REG_NUMBER];
+	bool					dead;
+	struct s_carr			*next;
+	struct s_carr			*prev;
+};
+
+struct						s_player
+{
+	int						id;
+	char					*name;
+	char					*comment;
+	int						code_size;
+	char					*bytecode;
+	int						live_count;
+};
+
+struct						s_vm
+{
+	int						pl_nb;
+	int						dump;
+	char					arena[MEM_SIZE];
+	t_player				*lastlive;
+	int						cycles_from_start;
+	int						live_count;
+	int						cycles_to_die_curr;
+	int						cycles_to_die;
+	int						check_count;
+	char					args_type[3];
+	int						args[3];
+	u_int8_t 				first_op;
+	u_int8_t 				last_op;
+};
+
+int							live(t_vm *vm, t_carr *carr, t_player *player);
+int							ld(t_vm *vm, t_carr *carr, t_player *player);
+
+typedef struct				s_op_funcs
+{
+	int						(*f)(t_vm *, t_carr *, t_player *);	
+}							t_op_funcs;
+
+static t_op_funcs			g_op_funcs[OP_NUMBER] = {
+	{
+		.f = live
+	},
+	{
+		.f = ld
+	}
+};
+
+static t_ops				g_ops[OP_NUMBER] = {
 	{
 		.name = "live",
 		.opcode = 0x01,
@@ -41,8 +107,7 @@ static t_ops	g_ops[OP_NUMBER] = {
 		.affect_carry = 0,
 		.args_type_code = 0,
 		.t_dir_size = DIR_SIZE,
-		.cycles = 10,
-		.f = live
+		.cycles = 10
 	},
 	{
 		.name = "ld",
@@ -52,8 +117,7 @@ static t_ops	g_ops[OP_NUMBER] = {
 		.affect_carry = 1,
 		.args_type_code = 1,
 		.t_dir_size = DIR_SIZE,
-		.cycles = 5,
-		.f = ld
+		.cycles = 5
 	},
 	{
 		.name = "st",

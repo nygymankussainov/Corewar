@@ -6,42 +6,54 @@
 /*   By: vhazelnu <vhazelnu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/29 21:43:01 by vhazelnu          #+#    #+#             */
-/*   Updated: 2019/11/30 17:06:54 by vhazelnu         ###   ########.fr       */
+/*   Updated: 2019/12/01 19:12:34 by vhazelnu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "vm.h"
 
-int		ld(t_major *major, t_carr *carr, t_player *player)
+int		ld(t_vm *vm, t_carr *carr, t_player *player)
 {
 	int		i;
-	int		value;
-	char	address[carr->op->t_dir_size + 1];
+	char	*address;
 
-	value = major->args[0];
+	player += 0;
 	i = 0;
-	if (major->args_type[0] == IND_CODE)
+	if (vm->args_type[0] == IND_CODE)
 	{
-		value %= IDX_MOD;
+		vm->args[0] %= IDX_MOD;
+		if (!(address = (char *)ft_memalloc(sizeof(char) * carr->op->t_dir_size + 1)))
+		{
+			ft_printf("%s\n", strerror(12));
+			exit(12);
+		}
 		while (i < carr->op->t_dir_size)
 		{
-			address[i] = major->arena[value % MEM_SIZE];
+			address[i] = vm->arena[(carr->pos + vm->args[0] + i) % MEM_SIZE];
 			++i;
 		}
-		address[i] = '\0';
-		value = *((int *)address);
+		address = rev_bytes(address, carr->op->t_dir_size);
+		i = 0;
+		while (!address[i])
+			++i;
+		vm->args[0] = *((int *)(address + i));
+		ft_strdel(&address);
 	}
-	carr->reg[major->args[1] - 1] = value;
-	carr->carry = value == 0 ? 1 : 0;
+	carr->reg[vm->args[1] - 1] = vm->args[0];
+	carr->carry = vm->args[0] == 0 ? 1 : 0;
+	return (0);
 }
 
-int		live(t_major *major, t_carr *carr, t_player *player)
+int		live(t_vm *vm, t_carr *carr, t_player *player)
 {
 	++carr->live_count;
-	++major->live_count;
-	carr->lastlive_cycle = major->cycles_from_start;
-	major->args[0] *= -1;
-	if (major->args[0] >= 1 && major->args[0] <= major->pl_nb)
-		major->lastlive = &player[major->args[0] - 1];
+	++vm->live_count;
+	carr->lastlive_cycle = vm->cycles_from_start;
+	vm->args[0] *= -1;
+	if (vm->args[0] >= 1 && vm->args[0] <= vm->pl_nb)
+	{
+		vm->lastlive = &player[vm->args[0] - 1];
+		++player[vm->args[0] - 1].live_count;
+	}
 	return (0);
 }
