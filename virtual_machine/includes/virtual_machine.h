@@ -6,7 +6,7 @@
 /*   By: hfrankly <hfrankly@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/30 16:29:38 by hfrankly          #+#    #+#             */
-/*   Updated: 2019/11/22 16:57:32 by hfrankly         ###   ########.fr       */
+/*   Updated: 2019/12/01 16:13:49 by hfrankly         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,7 +79,8 @@ typedef struct 		s_carriage {
 }					t_carriage;
 
 
-void			display_array(t_point *array, uint16_t rows, uint16_t cols);
+void				display_array(t_point *array, uint16_t rows, uint16_t cols);
+void				introduce_players(t_corewar *vm);
 /*
 // initialization
 */

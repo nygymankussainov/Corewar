@@ -6,7 +6,7 @@
 /*   By: hfrankly <hfrankly@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/09 15:37:50 by hfrankly          #+#    #+#             */
-/*   Updated: 2019/11/29 20:59:30 by hfrankly         ###   ########.fr       */
+/*   Updated: 2019/12/01 20:54:55 by hfrankly         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,8 +37,6 @@ void	execute_carriage_op(t_corewar *vm, t_carriage *carriage)
 		termination_with_perror("Error", ENOMEM);
 	if (carriage->operation != NULL)
 	{
-		if (vm->total_cycles + vm->current_cycles >= 4700)
-			ft_printf("");
 		set_arg_code(vm, carriage, &arg_code);
 		if (is_valid_format(vm, carriage, arg_code))
 			carriage->operation->func(vm, carriage, arg_code);
@@ -58,8 +56,6 @@ void    execute_carriages(t_corewar **vm)
 		carriage = (*vm)->start_carriage;
 		while (carriage)
 		{
-			if ((*vm)->current_cycles + (*vm)->total_cycles == 4795)
-				ft_putstr("");
 			if (carriage->cycles_before_operation == 0)
 				set_carriage_op((*vm), carriage);
 			if (carriage->cycles_before_operation > 0)

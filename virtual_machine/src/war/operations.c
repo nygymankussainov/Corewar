@@ -6,7 +6,7 @@
 /*   By: hfrankly <hfrankly@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/19 15:57:01 by hfrankly          #+#    #+#             */
-/*   Updated: 2019/11/29 21:59:11 by hfrankly         ###   ########.fr       */
+/*   Updated: 2019/12/01 20:56:16 by hfrankly         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,7 +90,10 @@ uint16_t			get_position(uint16_t cur_pos, int64_t arg, bool idx) // check!
 	else
 		res = cur_pos + sign * arg;
 	if (res < 0)
-		res = MEM_SIZE + res;
+	{
+		res = -res;
+		res = MEM_SIZE - (res % MEM_SIZE);
+	}
 	return (res % MEM_SIZE);
 }
 
@@ -141,6 +144,8 @@ void				op_st(t_corewar *vm, t_carriage *carriage, int8_t *arg_code)
 		carriage->registers[arg1], carriage);
 }
 
+// 0f 10
+// 4294967295
 void				op_sti(t_corewar *vm, t_carriage *carriage, int8_t *arg_code)
 {
 	uint8_t		arg1;
@@ -158,7 +163,9 @@ void				op_sti(t_corewar *vm, t_carriage *carriage, int8_t *arg_code)
 		arg2 = carriage->registers[arg2];
 	if (arg_code[2] == 1)
 		arg3 = carriage->registers[arg3];
-	add_to_arena(vm, get_position(carriage->position, (int64_t)arg2 + (int64_t)arg3, true),
+	// add_to_arena(vm, get_position(carriage->position, (int64_t)arg2 + (int64_t)arg3, true),
+	// 	carriage->registers[arg1], carriage);
+	add_to_arena(vm, get_position(carriage->position, arg2 + arg3, true),
 		carriage->registers[arg1], carriage);
 }
 
@@ -173,8 +180,6 @@ void				op_ld(t_corewar *vm, t_carriage *carriage, int8_t *arg_code)
 	arg2 = return_arg(vm->arena, &position, arg_code[1], carriage->operation->t_dir_size);
 	if (arg_code[0] == 3)
 		arg1 = return_bytes(vm->arena, get_position(carriage->position, arg1, true), 4);
-	if (arg2 == 0 && arg1 == 852624)
-		ft_putstr("");
 	carriage->registers[arg2] = arg1;
 	carriage->carry = (arg1 == 0) ? true : false;
 }
@@ -190,9 +195,6 @@ void				op_lld(t_corewar *vm, t_carriage *carriage, int8_t *arg_code)
 	arg2 = return_arg(vm->arena, &position, arg_code[1], carriage->operation->t_dir_size);
 	if (arg_code[0] == 3)
 		arg1 = return_bytes(vm->arena, get_position(carriage->position, arg1, false), 4);
-	if (arg2 == 0 && arg1 == 852624)
-		ft_putstr("");
-	carriage->registers[arg2] = arg1;
 	carriage->carry = (arg1 == 0) ? true : false;
 }
 
@@ -215,8 +217,6 @@ void				op_ldi(t_corewar *vm, t_carriage *carriage, int8_t *arg_code)
 		arg2 = carriage->registers[arg2];
 	carriage->registers[arg3] = return_bytes(vm->arena,
 		get_position(carriage->position, (int64_t)arg1 + (int64_t)arg2, true), 4); // is it necessary? (int64_t)
-	if (arg3 == 0 && carriage->registers[arg3] == 852624)
-		ft_putstr("");
 }
 
 void				op_lldi(t_corewar *vm, t_carriage *carriage, int8_t *arg_code)
@@ -238,8 +238,6 @@ void				op_lldi(t_corewar *vm, t_carriage *carriage, int8_t *arg_code)
 		arg2 = carriage->registers[arg2];
 	carriage->registers[arg3] = return_bytes(vm->arena,
 		get_position(carriage->position, (int64_t)arg1 + (int64_t)arg2, false), 4); // is it necessary? (int64_t)
-	if (arg3 == 0 && carriage->registers[arg3] == 852624)
-		ft_putstr("");
 	carriage->carry = (arg1 == 0) ? true : false;
 }
 
@@ -255,8 +253,6 @@ void				op_add(t_corewar *vm, t_carriage *carriage, int8_t *arg_code)
 	reg2 = return_arg(vm->arena, &position, arg_code[1], carriage->operation->t_dir_size);
 	res_reg = return_arg(vm->arena, &position, arg_code[2], carriage->operation->t_dir_size);
 	carriage->registers[res_reg] = carriage->registers[reg1] + carriage->registers[reg2];
-	if (res_reg == 0 && carriage->registers[res_reg] == 852624)
-		ft_putstr("");
 	carriage->carry = (carriage->registers[res_reg] == 0) ? true : false;
 }
 
@@ -272,8 +268,6 @@ void				op_sub(t_corewar *vm, t_carriage *carriage, int8_t *arg_code)
 	reg2 = return_arg(vm->arena, &position, arg_code[1], carriage->operation->t_dir_size);
 	res_reg = return_arg(vm->arena, &position, arg_code[2], carriage->operation->t_dir_size);
 	carriage->registers[res_reg] = carriage->registers[reg1] - carriage->registers[reg2];
-	if (res_reg == 0 && carriage->registers[res_reg] == 852624)
-		ft_putstr("");
 	carriage->carry = (carriage->registers[res_reg] == 0) ? true : false;
 }
 
@@ -297,8 +291,6 @@ void				op_and(t_corewar *vm, t_carriage *carriage, int8_t *arg_code)
 	if (arg_code[1] == 1)
 		arg2 = carriage->registers[arg2];
 	carriage->registers[reg] = arg1 & arg2;
-	if (reg == 0 && carriage->registers[reg] == 852624)
-		ft_putstr("");
 	carriage->carry = (carriage->registers[reg] == 0) ? true : false;
 }
 
@@ -322,8 +314,6 @@ void				op_or(t_corewar *vm, t_carriage *carriage, int8_t *arg_code)
 	if (arg_code[1] == 1)
 		arg2 = carriage->registers[arg2];
 	carriage->registers[reg] = arg1 | arg2;
-	if (reg == 0 && carriage->registers[reg] == 852624)
-		ft_putstr("");
 	carriage->carry = (carriage->registers[reg] == 0) ? true : false;
 }
 
@@ -347,8 +337,6 @@ void				op_xor(t_corewar *vm, t_carriage *carriage, int8_t *arg_code)
 	if (arg_code[1] == 1)
 		arg2 = carriage->registers[arg2];
 	carriage->registers[reg] = arg1 ^ arg2;
-	if (reg == 0 && carriage->registers[reg] == 852624)
-		ft_putstr("");
 	carriage->carry = (carriage->registers[reg] == 0) ? true : false;
 }
 

@@ -6,7 +6,7 @@
 /*   By: hfrankly <hfrankly@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/09 15:37:50 by hfrankly          #+#    #+#             */
-/*   Updated: 2019/11/29 20:29:17 by hfrankly         ###   ########.fr       */
+/*   Updated: 2019/12/01 19:15:26 by hfrankly         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ static void		check_carriages(t_carriage *start_carriage, t_corewar *vm)
 	{
 		next_carriage = cur_carriage->next;
 		if (vm->cycles_to_die <= 0 ||
-	vm->total_cycles - cur_carriage->cycle_was_live >= vm->cycles_to_die)
+	vm->total_cycles - cur_carriage->cycle_was_live >= vm->cycles_to_die + CYCLE_DELTA)
 			kill_carriage(&vm, cur_carriage);
 		cur_carriage = next_carriage;
 	}
