@@ -6,7 +6,7 @@
 /*   By: vhazelnu <vhazelnu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/02 16:36:10 by vhazelnu          #+#    #+#             */
-/*   Updated: 2019/12/01 19:51:22 by vhazelnu         ###   ########.fr       */
+/*   Updated: 2019/12/02 09:45:10 by vhazelnu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,6 +84,12 @@ struct						s_vm
 int							live(t_vm *vm, t_carr *carr, t_player *player);
 int							ld(t_vm *vm, t_carr *carr, t_player *player);
 int							st(t_vm *vm, t_carr *carr, t_player *player);
+int							add(t_vm *vm, t_carr *carr, t_player *player);
+int							sub(t_vm *vm, t_carr *carr, t_player *player);
+int							and(t_vm *vm, t_carr *carr, t_player *player);
+int							or(t_vm *vm, t_carr *carr, t_player *player);
+int							xor(t_vm *vm, t_carr *carr, t_player *player);
+int							zjmp(t_vm *vm, t_carr *carr, t_player *player);
 
 typedef struct				s_op_funcs
 {
@@ -99,6 +105,24 @@ static t_op_funcs			g_op_funcs[OP_NUMBER] = {
 	},
 	{
 		.f = st
+	},
+	{
+		.f = add
+	},
+	{
+		.f = sub
+	},
+	{
+		.f = and
+	},
+	{
+		.f = or
+	},
+	{
+		.f = xor
+	},
+	{
+		.f = zjmp
 	}
 };
 

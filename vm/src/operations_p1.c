@@ -6,11 +6,24 @@
 /*   By: vhazelnu <vhazelnu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/29 21:43:01 by vhazelnu          #+#    #+#             */
-/*   Updated: 2019/12/01 20:07:52 by vhazelnu         ###   ########.fr       */
+/*   Updated: 2019/12/02 09:46:48 by vhazelnu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "vm.h"
+
+int		ldi(t_vm *vm, t_carr *carr, t_player *player)
+{
+
+}
+
+int		zjmp(t_vm *vm, t_carr *carr, t_player *player)
+{
+	player += 0;
+	if (carr->carry)
+		carr->pos = (carr->pos + vm->args[0]) % IDX_MOD;
+	return (0);
+}
 
 int		st(t_vm *vm, t_carr *carr, t_player *player)
 {
@@ -29,32 +42,13 @@ int		st(t_vm *vm, t_carr *carr, t_player *player)
 int		ld(t_vm *vm, t_carr *carr, t_player *player)
 {
 	int		i;
-	char	*address;
 
 	player += 0;
 	i = 0;
 	if (vm->args_type[0] == IND_CODE)
-	{
-		vm->args[0] %= IDX_MOD;
-		if (!(address = (char *)ft_memalloc(sizeof(char) * carr->op->t_dir_size + 1)))
-		{
-			ft_printf("%s\n", strerror(12));
-			exit(12);
-		}
-		while (i < carr->op->t_dir_size)
-		{
-			address[i] = vm->arena[(carr->pos + vm->args[0] + i) % MEM_SIZE];
-			++i;
-		}
-		address = rev_bytes(address, carr->op->t_dir_size);
-		i = 0;
-		while (!address[i])
-			++i;
-		vm->args[0] = *((int *)(address + i));
-		ft_strdel(&address);
-	}
+		vm->args[0] = get_ind_value(vm, carr, vm->args[0] % IDX_MOD, REG_SIZE);
 	carr->reg[vm->args[1] - 1] = vm->args[0];
-	carr->carry = vm->args[0] == 0 ? 1 : 0;
+	carr->carry = carr->reg[vm->args[1] - 1] == 0 ? 1 : 0;
 	return (0);
 }
 
