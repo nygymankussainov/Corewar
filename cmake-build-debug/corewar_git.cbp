@@ -446,6 +446,465 @@
 		<Unit filename="/Users/egiant/Desktop/corewar_git/virtual_machine/includes/operations.h">
 			<Option target="corewar_git"/>
 		</Unit>
+		<Unit filename="/Users/egiant/Desktop/corewar_git/virtual_machine/includes/sdl/SDL.h">
+			<Option target="corewar_git"/>
+		</Unit>
+		<Unit filename="/Users/egiant/Desktop/corewar_git/virtual_machine/includes/sdl/SDL2/SDL.h">
+			<Option target="corewar_git"/>
+		</Unit>
+		<Unit filename="/Users/egiant/Desktop/corewar_git/virtual_machine/includes/sdl/SDL2/SDL_assert.h">
+			<Option target="corewar_git"/>
+		</Unit>
+		<Unit filename="/Users/egiant/Desktop/corewar_git/virtual_machine/includes/sdl/SDL2/SDL_atomic.h">
+			<Option target="corewar_git"/>
+		</Unit>
+		<Unit filename="/Users/egiant/Desktop/corewar_git/virtual_machine/includes/sdl/SDL2/SDL_audio.h">
+			<Option target="corewar_git"/>
+		</Unit>
+		<Unit filename="/Users/egiant/Desktop/corewar_git/virtual_machine/includes/sdl/SDL2/SDL_bits.h">
+			<Option target="corewar_git"/>
+		</Unit>
+		<Unit filename="/Users/egiant/Desktop/corewar_git/virtual_machine/includes/sdl/SDL2/SDL_blendmode.h">
+			<Option target="corewar_git"/>
+		</Unit>
+		<Unit filename="/Users/egiant/Desktop/corewar_git/virtual_machine/includes/sdl/SDL2/SDL_clipboard.h">
+			<Option target="corewar_git"/>
+		</Unit>
+		<Unit filename="/Users/egiant/Desktop/corewar_git/virtual_machine/includes/sdl/SDL2/SDL_config.h">
+			<Option target="corewar_git"/>
+		</Unit>
+		<Unit filename="/Users/egiant/Desktop/corewar_git/virtual_machine/includes/sdl/SDL2/SDL_cpuinfo.h">
+			<Option target="corewar_git"/>
+		</Unit>
+		<Unit filename="/Users/egiant/Desktop/corewar_git/virtual_machine/includes/sdl/SDL2/SDL_egl.h">
+			<Option target="corewar_git"/>
+		</Unit>
+		<Unit filename="/Users/egiant/Desktop/corewar_git/virtual_machine/includes/sdl/SDL2/SDL_endian.h">
+			<Option target="corewar_git"/>
+		</Unit>
+		<Unit filename="/Users/egiant/Desktop/corewar_git/virtual_machine/includes/sdl/SDL2/SDL_error.h">
+			<Option target="corewar_git"/>
+		</Unit>
+		<Unit filename="/Users/egiant/Desktop/corewar_git/virtual_machine/includes/sdl/SDL2/SDL_events.h">
+			<Option target="corewar_git"/>
+		</Unit>
+		<Unit filename="/Users/egiant/Desktop/corewar_git/virtual_machine/includes/sdl/SDL2/SDL_filesystem.h">
+			<Option target="corewar_git"/>
+		</Unit>
+		<Unit filename="/Users/egiant/Desktop/corewar_git/virtual_machine/includes/sdl/SDL2/SDL_gamecontroller.h">
+			<Option target="corewar_git"/>
+		</Unit>
+		<Unit filename="/Users/egiant/Desktop/corewar_git/virtual_machine/includes/sdl/SDL2/SDL_gesture.h">
+			<Option target="corewar_git"/>
+		</Unit>
+		<Unit filename="/Users/egiant/Desktop/corewar_git/virtual_machine/includes/sdl/SDL2/SDL_haptic.h">
+			<Option target="corewar_git"/>
+		</Unit>
+		<Unit filename="/Users/egiant/Desktop/corewar_git/virtual_machine/includes/sdl/SDL2/SDL_hints.h">
+			<Option target="corewar_git"/>
+		</Unit>
+		<Unit filename="/Users/egiant/Desktop/corewar_git/virtual_machine/includes/sdl/SDL2/SDL_joystick.h">
+			<Option target="corewar_git"/>
+		</Unit>
+		<Unit filename="/Users/egiant/Desktop/corewar_git/virtual_machine/includes/sdl/SDL2/SDL_keyboard.h">
+			<Option target="corewar_git"/>
+		</Unit>
+		<Unit filename="/Users/egiant/Desktop/corewar_git/virtual_machine/includes/sdl/SDL2/SDL_keycode.h">
+			<Option target="corewar_git"/>
+		</Unit>
+		<Unit filename="/Users/egiant/Desktop/corewar_git/virtual_machine/includes/sdl/SDL2/SDL_loadso.h">
+			<Option target="corewar_git"/>
+		</Unit>
+		<Unit filename="/Users/egiant/Desktop/corewar_git/virtual_machine/includes/sdl/SDL2/SDL_log.h">
+			<Option target="corewar_git"/>
+		</Unit>
+		<Unit filename="/Users/egiant/Desktop/corewar_git/virtual_machine/includes/sdl/SDL2/SDL_main.h">
+			<Option target="corewar_git"/>
+		</Unit>
+		<Unit filename="/Users/egiant/Desktop/corewar_git/virtual_machine/includes/sdl/SDL2/SDL_messagebox.h">
+			<Option target="corewar_git"/>
+		</Unit>
+		<Unit filename="/Users/egiant/Desktop/corewar_git/virtual_machine/includes/sdl/SDL2/SDL_mouse.h">
+			<Option target="corewar_git"/>
+		</Unit>
+		<Unit filename="/Users/egiant/Desktop/corewar_git/virtual_machine/includes/sdl/SDL2/SDL_mutex.h">
+			<Option target="corewar_git"/>
+		</Unit>
+		<Unit filename="/Users/egiant/Desktop/corewar_git/virtual_machine/includes/sdl/SDL2/SDL_name.h">
+			<Option target="corewar_git"/>
+		</Unit>
+		<Unit filename="/Users/egiant/Desktop/corewar_git/virtual_machine/includes/sdl/SDL2/SDL_opengl.h">
+			<Option target="corewar_git"/>
+		</Unit>
+		<Unit filename="/Users/egiant/Desktop/corewar_git/virtual_machine/includes/sdl/SDL2/SDL_opengl_glext.h">
+			<Option target="corewar_git"/>
+		</Unit>
+		<Unit filename="/Users/egiant/Desktop/corewar_git/virtual_machine/includes/sdl/SDL2/SDL_opengles.h">
+			<Option target="corewar_git"/>
+		</Unit>
+		<Unit filename="/Users/egiant/Desktop/corewar_git/virtual_machine/includes/sdl/SDL2/SDL_opengles2.h">
+			<Option target="corewar_git"/>
+		</Unit>
+		<Unit filename="/Users/egiant/Desktop/corewar_git/virtual_machine/includes/sdl/SDL2/SDL_opengles2_gl2.h">
+			<Option target="corewar_git"/>
+		</Unit>
+		<Unit filename="/Users/egiant/Desktop/corewar_git/virtual_machine/includes/sdl/SDL2/SDL_opengles2_gl2ext.h">
+			<Option target="corewar_git"/>
+		</Unit>
+		<Unit filename="/Users/egiant/Desktop/corewar_git/virtual_machine/includes/sdl/SDL2/SDL_opengles2_gl2platform.h">
+			<Option target="corewar_git"/>
+		</Unit>
+		<Unit filename="/Users/egiant/Desktop/corewar_git/virtual_machine/includes/sdl/SDL2/SDL_opengles2_khrplatform.h">
+			<Option target="corewar_git"/>
+		</Unit>
+		<Unit filename="/Users/egiant/Desktop/corewar_git/virtual_machine/includes/sdl/SDL2/SDL_pixels.h">
+			<Option target="corewar_git"/>
+		</Unit>
+		<Unit filename="/Users/egiant/Desktop/corewar_git/virtual_machine/includes/sdl/SDL2/SDL_platform.h">
+			<Option target="corewar_git"/>
+		</Unit>
+		<Unit filename="/Users/egiant/Desktop/corewar_git/virtual_machine/includes/sdl/SDL2/SDL_power.h">
+			<Option target="corewar_git"/>
+		</Unit>
+		<Unit filename="/Users/egiant/Desktop/corewar_git/virtual_machine/includes/sdl/SDL2/SDL_quit.h">
+			<Option target="corewar_git"/>
+		</Unit>
+		<Unit filename="/Users/egiant/Desktop/corewar_git/virtual_machine/includes/sdl/SDL2/SDL_rect.h">
+			<Option target="corewar_git"/>
+		</Unit>
+		<Unit filename="/Users/egiant/Desktop/corewar_git/virtual_machine/includes/sdl/SDL2/SDL_render.h">
+			<Option target="corewar_git"/>
+		</Unit>
+		<Unit filename="/Users/egiant/Desktop/corewar_git/virtual_machine/includes/sdl/SDL2/SDL_revision.h">
+			<Option target="corewar_git"/>
+		</Unit>
+		<Unit filename="/Users/egiant/Desktop/corewar_git/virtual_machine/includes/sdl/SDL2/SDL_rwops.h">
+			<Option target="corewar_git"/>
+		</Unit>
+		<Unit filename="/Users/egiant/Desktop/corewar_git/virtual_machine/includes/sdl/SDL2/SDL_scancode.h">
+			<Option target="corewar_git"/>
+		</Unit>
+		<Unit filename="/Users/egiant/Desktop/corewar_git/virtual_machine/includes/sdl/SDL2/SDL_sensor.h">
+			<Option target="corewar_git"/>
+		</Unit>
+		<Unit filename="/Users/egiant/Desktop/corewar_git/virtual_machine/includes/sdl/SDL2/SDL_shape.h">
+			<Option target="corewar_git"/>
+		</Unit>
+		<Unit filename="/Users/egiant/Desktop/corewar_git/virtual_machine/includes/sdl/SDL2/SDL_stdinc.h">
+			<Option target="corewar_git"/>
+		</Unit>
+		<Unit filename="/Users/egiant/Desktop/corewar_git/virtual_machine/includes/sdl/SDL2/SDL_surface.h">
+			<Option target="corewar_git"/>
+		</Unit>
+		<Unit filename="/Users/egiant/Desktop/corewar_git/virtual_machine/includes/sdl/SDL2/SDL_system.h">
+			<Option target="corewar_git"/>
+		</Unit>
+		<Unit filename="/Users/egiant/Desktop/corewar_git/virtual_machine/includes/sdl/SDL2/SDL_syswm.h">
+			<Option target="corewar_git"/>
+		</Unit>
+		<Unit filename="/Users/egiant/Desktop/corewar_git/virtual_machine/includes/sdl/SDL2/SDL_test.h">
+			<Option target="corewar_git"/>
+		</Unit>
+		<Unit filename="/Users/egiant/Desktop/corewar_git/virtual_machine/includes/sdl/SDL2/SDL_test_assert.h">
+			<Option target="corewar_git"/>
+		</Unit>
+		<Unit filename="/Users/egiant/Desktop/corewar_git/virtual_machine/includes/sdl/SDL2/SDL_test_common.h">
+			<Option target="corewar_git"/>
+		</Unit>
+		<Unit filename="/Users/egiant/Desktop/corewar_git/virtual_machine/includes/sdl/SDL2/SDL_test_compare.h">
+			<Option target="corewar_git"/>
+		</Unit>
+		<Unit filename="/Users/egiant/Desktop/corewar_git/virtual_machine/includes/sdl/SDL2/SDL_test_crc32.h">
+			<Option target="corewar_git"/>
+		</Unit>
+		<Unit filename="/Users/egiant/Desktop/corewar_git/virtual_machine/includes/sdl/SDL2/SDL_test_font.h">
+			<Option target="corewar_git"/>
+		</Unit>
+		<Unit filename="/Users/egiant/Desktop/corewar_git/virtual_machine/includes/sdl/SDL2/SDL_test_fuzzer.h">
+			<Option target="corewar_git"/>
+		</Unit>
+		<Unit filename="/Users/egiant/Desktop/corewar_git/virtual_machine/includes/sdl/SDL2/SDL_test_harness.h">
+			<Option target="corewar_git"/>
+		</Unit>
+		<Unit filename="/Users/egiant/Desktop/corewar_git/virtual_machine/includes/sdl/SDL2/SDL_test_images.h">
+			<Option target="corewar_git"/>
+		</Unit>
+		<Unit filename="/Users/egiant/Desktop/corewar_git/virtual_machine/includes/sdl/SDL2/SDL_test_log.h">
+			<Option target="corewar_git"/>
+		</Unit>
+		<Unit filename="/Users/egiant/Desktop/corewar_git/virtual_machine/includes/sdl/SDL2/SDL_test_md5.h">
+			<Option target="corewar_git"/>
+		</Unit>
+		<Unit filename="/Users/egiant/Desktop/corewar_git/virtual_machine/includes/sdl/SDL2/SDL_test_memory.h">
+			<Option target="corewar_git"/>
+		</Unit>
+		<Unit filename="/Users/egiant/Desktop/corewar_git/virtual_machine/includes/sdl/SDL2/SDL_test_random.h">
+			<Option target="corewar_git"/>
+		</Unit>
+		<Unit filename="/Users/egiant/Desktop/corewar_git/virtual_machine/includes/sdl/SDL2/SDL_thread.h">
+			<Option target="corewar_git"/>
+		</Unit>
+		<Unit filename="/Users/egiant/Desktop/corewar_git/virtual_machine/includes/sdl/SDL2/SDL_timer.h">
+			<Option target="corewar_git"/>
+		</Unit>
+		<Unit filename="/Users/egiant/Desktop/corewar_git/virtual_machine/includes/sdl/SDL2/SDL_touch.h">
+			<Option target="corewar_git"/>
+		</Unit>
+		<Unit filename="/Users/egiant/Desktop/corewar_git/virtual_machine/includes/sdl/SDL2/SDL_types.h">
+			<Option target="corewar_git"/>
+		</Unit>
+		<Unit filename="/Users/egiant/Desktop/corewar_git/virtual_machine/includes/sdl/SDL2/SDL_version.h">
+			<Option target="corewar_git"/>
+		</Unit>
+		<Unit filename="/Users/egiant/Desktop/corewar_git/virtual_machine/includes/sdl/SDL2/SDL_video.h">
+			<Option target="corewar_git"/>
+		</Unit>
+		<Unit filename="/Users/egiant/Desktop/corewar_git/virtual_machine/includes/sdl/SDL2/SDL_vulkan.h">
+			<Option target="corewar_git"/>
+		</Unit>
+		<Unit filename="/Users/egiant/Desktop/corewar_git/virtual_machine/includes/sdl/SDL2/begin_code.h">
+			<Option target="corewar_git"/>
+		</Unit>
+		<Unit filename="/Users/egiant/Desktop/corewar_git/virtual_machine/includes/sdl/SDL2/close_code.h">
+			<Option target="corewar_git"/>
+		</Unit>
+		<Unit filename="/Users/egiant/Desktop/corewar_git/virtual_machine/includes/sdl/SDL2_GFX/SDL2_framerate.h">
+			<Option target="corewar_git"/>
+		</Unit>
+		<Unit filename="/Users/egiant/Desktop/corewar_git/virtual_machine/includes/sdl/SDL2_GFX/SDL2_gfxPrimitives.h">
+			<Option target="corewar_git"/>
+		</Unit>
+		<Unit filename="/Users/egiant/Desktop/corewar_git/virtual_machine/includes/sdl/SDL2_GFX/SDL2_imageFilter.h">
+			<Option target="corewar_git"/>
+		</Unit>
+		<Unit filename="/Users/egiant/Desktop/corewar_git/virtual_machine/includes/sdl/SDL2_GFX/SDL2_rotozoom.h">
+			<Option target="corewar_git"/>
+		</Unit>
+		<Unit filename="/Users/egiant/Desktop/corewar_git/virtual_machine/includes/sdl/SDL2_IMG/SDL_image.h">
+			<Option target="corewar_git"/>
+		</Unit>
+		<Unit filename="/Users/egiant/Desktop/corewar_git/virtual_machine/includes/sdl/SDL2_MIX/SDL_mixer.h">
+			<Option target="corewar_git"/>
+		</Unit>
+		<Unit filename="/Users/egiant/Desktop/corewar_git/virtual_machine/includes/sdl/SDL_assert.h">
+			<Option target="corewar_git"/>
+		</Unit>
+		<Unit filename="/Users/egiant/Desktop/corewar_git/virtual_machine/includes/sdl/SDL_atomic.h">
+			<Option target="corewar_git"/>
+		</Unit>
+		<Unit filename="/Users/egiant/Desktop/corewar_git/virtual_machine/includes/sdl/SDL_audio.h">
+			<Option target="corewar_git"/>
+		</Unit>
+		<Unit filename="/Users/egiant/Desktop/corewar_git/virtual_machine/includes/sdl/SDL_bits.h">
+			<Option target="corewar_git"/>
+		</Unit>
+		<Unit filename="/Users/egiant/Desktop/corewar_git/virtual_machine/includes/sdl/SDL_blendmode.h">
+			<Option target="corewar_git"/>
+		</Unit>
+		<Unit filename="/Users/egiant/Desktop/corewar_git/virtual_machine/includes/sdl/SDL_clipboard.h">
+			<Option target="corewar_git"/>
+		</Unit>
+		<Unit filename="/Users/egiant/Desktop/corewar_git/virtual_machine/includes/sdl/SDL_config.h">
+			<Option target="corewar_git"/>
+		</Unit>
+		<Unit filename="/Users/egiant/Desktop/corewar_git/virtual_machine/includes/sdl/SDL_cpuinfo.h">
+			<Option target="corewar_git"/>
+		</Unit>
+		<Unit filename="/Users/egiant/Desktop/corewar_git/virtual_machine/includes/sdl/SDL_egl.h">
+			<Option target="corewar_git"/>
+		</Unit>
+		<Unit filename="/Users/egiant/Desktop/corewar_git/virtual_machine/includes/sdl/SDL_endian.h">
+			<Option target="corewar_git"/>
+		</Unit>
+		<Unit filename="/Users/egiant/Desktop/corewar_git/virtual_machine/includes/sdl/SDL_error.h">
+			<Option target="corewar_git"/>
+		</Unit>
+		<Unit filename="/Users/egiant/Desktop/corewar_git/virtual_machine/includes/sdl/SDL_events.h">
+			<Option target="corewar_git"/>
+		</Unit>
+		<Unit filename="/Users/egiant/Desktop/corewar_git/virtual_machine/includes/sdl/SDL_filesystem.h">
+			<Option target="corewar_git"/>
+		</Unit>
+		<Unit filename="/Users/egiant/Desktop/corewar_git/virtual_machine/includes/sdl/SDL_gamecontroller.h">
+			<Option target="corewar_git"/>
+		</Unit>
+		<Unit filename="/Users/egiant/Desktop/corewar_git/virtual_machine/includes/sdl/SDL_gesture.h">
+			<Option target="corewar_git"/>
+		</Unit>
+		<Unit filename="/Users/egiant/Desktop/corewar_git/virtual_machine/includes/sdl/SDL_haptic.h">
+			<Option target="corewar_git"/>
+		</Unit>
+		<Unit filename="/Users/egiant/Desktop/corewar_git/virtual_machine/includes/sdl/SDL_hints.h">
+			<Option target="corewar_git"/>
+		</Unit>
+		<Unit filename="/Users/egiant/Desktop/corewar_git/virtual_machine/includes/sdl/SDL_joystick.h">
+			<Option target="corewar_git"/>
+		</Unit>
+		<Unit filename="/Users/egiant/Desktop/corewar_git/virtual_machine/includes/sdl/SDL_keyboard.h">
+			<Option target="corewar_git"/>
+		</Unit>
+		<Unit filename="/Users/egiant/Desktop/corewar_git/virtual_machine/includes/sdl/SDL_keycode.h">
+			<Option target="corewar_git"/>
+		</Unit>
+		<Unit filename="/Users/egiant/Desktop/corewar_git/virtual_machine/includes/sdl/SDL_loadso.h">
+			<Option target="corewar_git"/>
+		</Unit>
+		<Unit filename="/Users/egiant/Desktop/corewar_git/virtual_machine/includes/sdl/SDL_log.h">
+			<Option target="corewar_git"/>
+		</Unit>
+		<Unit filename="/Users/egiant/Desktop/corewar_git/virtual_machine/includes/sdl/SDL_main.h">
+			<Option target="corewar_git"/>
+		</Unit>
+		<Unit filename="/Users/egiant/Desktop/corewar_git/virtual_machine/includes/sdl/SDL_messagebox.h">
+			<Option target="corewar_git"/>
+		</Unit>
+		<Unit filename="/Users/egiant/Desktop/corewar_git/virtual_machine/includes/sdl/SDL_mouse.h">
+			<Option target="corewar_git"/>
+		</Unit>
+		<Unit filename="/Users/egiant/Desktop/corewar_git/virtual_machine/includes/sdl/SDL_mutex.h">
+			<Option target="corewar_git"/>
+		</Unit>
+		<Unit filename="/Users/egiant/Desktop/corewar_git/virtual_machine/includes/sdl/SDL_name.h">
+			<Option target="corewar_git"/>
+		</Unit>
+		<Unit filename="/Users/egiant/Desktop/corewar_git/virtual_machine/includes/sdl/SDL_opengl.h">
+			<Option target="corewar_git"/>
+		</Unit>
+		<Unit filename="/Users/egiant/Desktop/corewar_git/virtual_machine/includes/sdl/SDL_opengl_glext.h">
+			<Option target="corewar_git"/>
+		</Unit>
+		<Unit filename="/Users/egiant/Desktop/corewar_git/virtual_machine/includes/sdl/SDL_opengles.h">
+			<Option target="corewar_git"/>
+		</Unit>
+		<Unit filename="/Users/egiant/Desktop/corewar_git/virtual_machine/includes/sdl/SDL_opengles2.h">
+			<Option target="corewar_git"/>
+		</Unit>
+		<Unit filename="/Users/egiant/Desktop/corewar_git/virtual_machine/includes/sdl/SDL_opengles2_gl2.h">
+			<Option target="corewar_git"/>
+		</Unit>
+		<Unit filename="/Users/egiant/Desktop/corewar_git/virtual_machine/includes/sdl/SDL_opengles2_gl2ext.h">
+			<Option target="corewar_git"/>
+		</Unit>
+		<Unit filename="/Users/egiant/Desktop/corewar_git/virtual_machine/includes/sdl/SDL_opengles2_gl2platform.h">
+			<Option target="corewar_git"/>
+		</Unit>
+		<Unit filename="/Users/egiant/Desktop/corewar_git/virtual_machine/includes/sdl/SDL_opengles2_khrplatform.h">
+			<Option target="corewar_git"/>
+		</Unit>
+		<Unit filename="/Users/egiant/Desktop/corewar_git/virtual_machine/includes/sdl/SDL_pixels.h">
+			<Option target="corewar_git"/>
+		</Unit>
+		<Unit filename="/Users/egiant/Desktop/corewar_git/virtual_machine/includes/sdl/SDL_platform.h">
+			<Option target="corewar_git"/>
+		</Unit>
+		<Unit filename="/Users/egiant/Desktop/corewar_git/virtual_machine/includes/sdl/SDL_power.h">
+			<Option target="corewar_git"/>
+		</Unit>
+		<Unit filename="/Users/egiant/Desktop/corewar_git/virtual_machine/includes/sdl/SDL_quit.h">
+			<Option target="corewar_git"/>
+		</Unit>
+		<Unit filename="/Users/egiant/Desktop/corewar_git/virtual_machine/includes/sdl/SDL_rect.h">
+			<Option target="corewar_git"/>
+		</Unit>
+		<Unit filename="/Users/egiant/Desktop/corewar_git/virtual_machine/includes/sdl/SDL_render.h">
+			<Option target="corewar_git"/>
+		</Unit>
+		<Unit filename="/Users/egiant/Desktop/corewar_git/virtual_machine/includes/sdl/SDL_revision.h">
+			<Option target="corewar_git"/>
+		</Unit>
+		<Unit filename="/Users/egiant/Desktop/corewar_git/virtual_machine/includes/sdl/SDL_rwops.h">
+			<Option target="corewar_git"/>
+		</Unit>
+		<Unit filename="/Users/egiant/Desktop/corewar_git/virtual_machine/includes/sdl/SDL_scancode.h">
+			<Option target="corewar_git"/>
+		</Unit>
+		<Unit filename="/Users/egiant/Desktop/corewar_git/virtual_machine/includes/sdl/SDL_sensor.h">
+			<Option target="corewar_git"/>
+		</Unit>
+		<Unit filename="/Users/egiant/Desktop/corewar_git/virtual_machine/includes/sdl/SDL_shape.h">
+			<Option target="corewar_git"/>
+		</Unit>
+		<Unit filename="/Users/egiant/Desktop/corewar_git/virtual_machine/includes/sdl/SDL_stdinc.h">
+			<Option target="corewar_git"/>
+		</Unit>
+		<Unit filename="/Users/egiant/Desktop/corewar_git/virtual_machine/includes/sdl/SDL_surface.h">
+			<Option target="corewar_git"/>
+		</Unit>
+		<Unit filename="/Users/egiant/Desktop/corewar_git/virtual_machine/includes/sdl/SDL_system.h">
+			<Option target="corewar_git"/>
+		</Unit>
+		<Unit filename="/Users/egiant/Desktop/corewar_git/virtual_machine/includes/sdl/SDL_syswm.h">
+			<Option target="corewar_git"/>
+		</Unit>
+		<Unit filename="/Users/egiant/Desktop/corewar_git/virtual_machine/includes/sdl/SDL_test.h">
+			<Option target="corewar_git"/>
+		</Unit>
+		<Unit filename="/Users/egiant/Desktop/corewar_git/virtual_machine/includes/sdl/SDL_test_assert.h">
+			<Option target="corewar_git"/>
+		</Unit>
+		<Unit filename="/Users/egiant/Desktop/corewar_git/virtual_machine/includes/sdl/SDL_test_common.h">
+			<Option target="corewar_git"/>
+		</Unit>
+		<Unit filename="/Users/egiant/Desktop/corewar_git/virtual_machine/includes/sdl/SDL_test_compare.h">
+			<Option target="corewar_git"/>
+		</Unit>
+		<Unit filename="/Users/egiant/Desktop/corewar_git/virtual_machine/includes/sdl/SDL_test_crc32.h">
+			<Option target="corewar_git"/>
+		</Unit>
+		<Unit filename="/Users/egiant/Desktop/corewar_git/virtual_machine/includes/sdl/SDL_test_font.h">
+			<Option target="corewar_git"/>
+		</Unit>
+		<Unit filename="/Users/egiant/Desktop/corewar_git/virtual_machine/includes/sdl/SDL_test_fuzzer.h">
+			<Option target="corewar_git"/>
+		</Unit>
+		<Unit filename="/Users/egiant/Desktop/corewar_git/virtual_machine/includes/sdl/SDL_test_harness.h">
+			<Option target="corewar_git"/>
+		</Unit>
+		<Unit filename="/Users/egiant/Desktop/corewar_git/virtual_machine/includes/sdl/SDL_test_images.h">
+			<Option target="corewar_git"/>
+		</Unit>
+		<Unit filename="/Users/egiant/Desktop/corewar_git/virtual_machine/includes/sdl/SDL_test_log.h">
+			<Option target="corewar_git"/>
+		</Unit>
+		<Unit filename="/Users/egiant/Desktop/corewar_git/virtual_machine/includes/sdl/SDL_test_md5.h">
+			<Option target="corewar_git"/>
+		</Unit>
+		<Unit filename="/Users/egiant/Desktop/corewar_git/virtual_machine/includes/sdl/SDL_test_memory.h">
+			<Option target="corewar_git"/>
+		</Unit>
+		<Unit filename="/Users/egiant/Desktop/corewar_git/virtual_machine/includes/sdl/SDL_test_random.h">
+			<Option target="corewar_git"/>
+		</Unit>
+		<Unit filename="/Users/egiant/Desktop/corewar_git/virtual_machine/includes/sdl/SDL_thread.h">
+			<Option target="corewar_git"/>
+		</Unit>
+		<Unit filename="/Users/egiant/Desktop/corewar_git/virtual_machine/includes/sdl/SDL_timer.h">
+			<Option target="corewar_git"/>
+		</Unit>
+		<Unit filename="/Users/egiant/Desktop/corewar_git/virtual_machine/includes/sdl/SDL_touch.h">
+			<Option target="corewar_git"/>
+		</Unit>
+		<Unit filename="/Users/egiant/Desktop/corewar_git/virtual_machine/includes/sdl/SDL_types.h">
+			<Option target="corewar_git"/>
+		</Unit>
+		<Unit filename="/Users/egiant/Desktop/corewar_git/virtual_machine/includes/sdl/SDL_version.h">
+			<Option target="corewar_git"/>
+		</Unit>
+		<Unit filename="/Users/egiant/Desktop/corewar_git/virtual_machine/includes/sdl/SDL_video.h">
+			<Option target="corewar_git"/>
+		</Unit>
+		<Unit filename="/Users/egiant/Desktop/corewar_git/virtual_machine/includes/sdl/SDL_vulkan.h">
+			<Option target="corewar_git"/>
+		</Unit>
+		<Unit filename="/Users/egiant/Desktop/corewar_git/virtual_machine/includes/sdl/begin_code.h">
+			<Option target="corewar_git"/>
+		</Unit>
+		<Unit filename="/Users/egiant/Desktop/corewar_git/virtual_machine/includes/sdl/close_code.h">
+			<Option target="corewar_git"/>
+		</Unit>
+		<Unit filename="/Users/egiant/Desktop/corewar_git/virtual_machine/includes/sdl/visual.h">
+			<Option target="corewar_git"/>
+		</Unit>
 		<Unit filename="/Users/egiant/Desktop/corewar_git/virtual_machine/includes/virtual_machine.h">
 			<Option target="corewar_git"/>
 		</Unit>
@@ -474,6 +933,18 @@
 			<Option target="corewar_git"/>
 		</Unit>
 		<Unit filename="/Users/egiant/Desktop/corewar_git/virtual_machine/src/validation/read_byte_code.c">
+			<Option target="corewar_git"/>
+		</Unit>
+		<Unit filename="/Users/egiant/Desktop/corewar_git/virtual_machine/src/visual/display_data.c">
+			<Option target="corewar_git"/>
+		</Unit>
+		<Unit filename="/Users/egiant/Desktop/corewar_git/virtual_machine/src/visual/handle_key_press.c">
+			<Option target="corewar_git"/>
+		</Unit>
+		<Unit filename="/Users/egiant/Desktop/corewar_git/virtual_machine/src/visual/sdl_init.c">
+			<Option target="corewar_git"/>
+		</Unit>
+		<Unit filename="/Users/egiant/Desktop/corewar_git/virtual_machine/src/visual/vis_corewar.c">
 			<Option target="corewar_git"/>
 		</Unit>
 		<Unit filename="/Users/egiant/Desktop/corewar_git/virtual_machine/src/war/carriage_execution.c">

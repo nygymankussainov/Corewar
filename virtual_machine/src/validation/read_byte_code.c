@@ -6,7 +6,7 @@
 /*   By: egiant <egiant@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/31 18:20:43 by egiant            #+#    #+#             */
-/*   Updated: 2019/11/28 13:01:28 by egiant           ###   ########.fr       */
+/*   Updated: 2019/12/02 13:31:37 by egiant           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,6 +76,8 @@ void			read_exec_code_size(t_corewar *vm, t_core *core, int fd)
 	if (ret < 0)
 		terminate_with_error(vm);
 	core->exec_code_size = buff[3]|(buff[2] << 8)|(buff[1] << 16)|(buff[0] << 24);
+	if (core->exec_code_size > CHAMP_MAX_SIZE)
+		terminate_with_error(vm);
 }
 
 void			read_champion_comment(t_corewar *vm, t_core *core, int fd)
@@ -91,15 +93,22 @@ void			read_champion_comment(t_corewar *vm, t_core *core, int fd)
 
 void 			read_exec_code(t_corewar *vm, t_core *core, int fd)
 {
+	int			ret;
 	char		c;
 	uint16_t	i;
 
 	i = 0;
-	while (read(fd, &c, 1) && i < core->exec_code_size)
+	while (i < core->exec_code_size)
 	{
+		ret = read(fd, &c, 1);
+		if (ret <= 0)
+			terminate_with_error(vm);
 		core->exec_code[i] = c;
 		i++;
 	}
+	ret = read(fd, &c, 1);
+	if (ret != 0)
+		terminate_with_error(vm);
 }
 
 void check_cores(t_corewar *vm)
@@ -107,7 +116,7 @@ void check_cores(t_corewar *vm)
     int n;
 
     n = 0;
-    while (vm->cores[n])
+    while (vm->cores[n] && n < 4) //n < 4 added by screight
         ++n;
     if (n != vm->number_of_players)
         terminate_with_error(vm);
@@ -119,7 +128,7 @@ void			read_byte_code(t_corewar **vm)
 	int			fd;
 	char		*file_name;
 	t_core		*core_tmp;
-	int n;
+	int			n;
 
 	n = 0;
 	core_tmp = (*vm)->line_of_players;
@@ -134,7 +143,7 @@ void			read_byte_code(t_corewar **vm)
 		read_champion_comment((*vm), (*vm)->cores[id], fd);
 		read_null_octet((*vm), fd);
 		read_exec_code((*vm), (*vm)->cores[id], fd);
-		(*vm)->cores[id]->color = (n + 1) * 0xFFAAEE;
+		set_player_color((*vm), n);
 		free(file_name);
 		core_tmp = core_tmp->next;
 		++n;

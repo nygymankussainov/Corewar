@@ -6,7 +6,7 @@
 /*   By: egiant <egiant@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/30 13:41:08 by egiant            #+#    #+#             */
-/*   Updated: 2019/11/28 13:09:28 by egiant           ###   ########.fr       */
+/*   Updated: 2019/12/02 18:20:47 by egiant           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ t_carriage		*init_carriage(t_corewar *vm, t_core *player)
 	short		n;
 	t_carriage	*carriage;
 	
-	n = 15;
+	n = 0;
 	if (!(carriage = (t_carriage *)malloc(sizeof(t_carriage))))
 		termination_with_perror("Error", ENOMEM);
 	carriage->id = (vm->start_carriage) ? vm->start_carriage->id + 1 : 0;
@@ -25,12 +25,13 @@ t_carriage		*init_carriage(t_corewar *vm, t_core *player)
 	carriage->carry = false;
 	carriage->operation = NULL;
 	carriage->position = 0;
-	carriage->cycle_was_live = 0; //цикл, в котором в последний раз была выполнена операция live
-	carriage->cycles_before_operation = 0; //количество циклов, оставшиеся до исполнения операции, на которой стоит каретка
-	carriage->offset_next_operation = 0; // количество байт, которые нужно будет «перешагнуть», чтобы оказаться на следующей операции
+	carriage->cycle_was_live = 0;
+	carriage->cycles_before_operation = 0;
+	carriage->offset_next_operation = 0;
 	carriage->next = NULL;
-	while (n != 0)
-		carriage->registers[n--] = 0;
+	while (n < REG_NUMBER)
+		carriage->registers[n++] = 0;
+	n = 0;
 	carriage->registers[0] = -((int)(player->id));
 	carriage->player = player;
 	carriage->color = player->color;
@@ -49,8 +50,10 @@ void			init_arena(t_corewar *vm)
 	while (n >= 0)
 	{
 		vm->arena[n].value = 0;
-		vm->arena[n].color = 0;
-		n--;
+		//vm->arena[n].color = GREY;
+		vm->arena[n].out_col = BLACK;
+		vm->arena[n].live_count = 0;
+		vm->arena[n--].light_count = 0;
 	}
 	cur_position = 0;
 	position_step = MEM_SIZE / vm->number_of_players;
@@ -94,5 +97,7 @@ t_corewar		*init_vm(void)
 	vm->cycles_to_die = CYCLE_TO_DIE;
 	vm->check_count = 0;
 	vm->live_count = 0;
+	vm->flag_a = false;
+	vm->visual = false;
 	return(vm);
 }

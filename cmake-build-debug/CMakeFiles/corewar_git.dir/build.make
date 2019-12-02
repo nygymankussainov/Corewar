@@ -1565,9 +1565,61 @@ CMakeFiles/corewar_git.dir/virtual_machine/src/validation/read_byte_code.c.s: cm
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/corewar_git.dir/virtual_machine/src/validation/read_byte_code.c.s"
 	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /Users/egiant/Desktop/corewar_git/virtual_machine/src/validation/read_byte_code.c -o CMakeFiles/corewar_git.dir/virtual_machine/src/validation/read_byte_code.c.s
 
+CMakeFiles/corewar_git.dir/virtual_machine/src/visual/display_data.c.o: CMakeFiles/corewar_git.dir/flags.make
+CMakeFiles/corewar_git.dir/virtual_machine/src/visual/display_data.c.o: ../virtual_machine/src/visual/display_data.c
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/egiant/Desktop/corewar_git/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_117) "Building C object CMakeFiles/corewar_git.dir/virtual_machine/src/visual/display_data.c.o"
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/corewar_git.dir/virtual_machine/src/visual/display_data.c.o   -c /Users/egiant/Desktop/corewar_git/virtual_machine/src/visual/display_data.c
+
+CMakeFiles/corewar_git.dir/virtual_machine/src/visual/display_data.c.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/corewar_git.dir/virtual_machine/src/visual/display_data.c.i"
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /Users/egiant/Desktop/corewar_git/virtual_machine/src/visual/display_data.c > CMakeFiles/corewar_git.dir/virtual_machine/src/visual/display_data.c.i
+
+CMakeFiles/corewar_git.dir/virtual_machine/src/visual/display_data.c.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/corewar_git.dir/virtual_machine/src/visual/display_data.c.s"
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /Users/egiant/Desktop/corewar_git/virtual_machine/src/visual/display_data.c -o CMakeFiles/corewar_git.dir/virtual_machine/src/visual/display_data.c.s
+
+CMakeFiles/corewar_git.dir/virtual_machine/src/visual/handle_key_press.c.o: CMakeFiles/corewar_git.dir/flags.make
+CMakeFiles/corewar_git.dir/virtual_machine/src/visual/handle_key_press.c.o: ../virtual_machine/src/visual/handle_key_press.c
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/egiant/Desktop/corewar_git/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_118) "Building C object CMakeFiles/corewar_git.dir/virtual_machine/src/visual/handle_key_press.c.o"
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/corewar_git.dir/virtual_machine/src/visual/handle_key_press.c.o   -c /Users/egiant/Desktop/corewar_git/virtual_machine/src/visual/handle_key_press.c
+
+CMakeFiles/corewar_git.dir/virtual_machine/src/visual/handle_key_press.c.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/corewar_git.dir/virtual_machine/src/visual/handle_key_press.c.i"
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /Users/egiant/Desktop/corewar_git/virtual_machine/src/visual/handle_key_press.c > CMakeFiles/corewar_git.dir/virtual_machine/src/visual/handle_key_press.c.i
+
+CMakeFiles/corewar_git.dir/virtual_machine/src/visual/handle_key_press.c.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/corewar_git.dir/virtual_machine/src/visual/handle_key_press.c.s"
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /Users/egiant/Desktop/corewar_git/virtual_machine/src/visual/handle_key_press.c -o CMakeFiles/corewar_git.dir/virtual_machine/src/visual/handle_key_press.c.s
+
+CMakeFiles/corewar_git.dir/virtual_machine/src/visual/sdl_init.c.o: CMakeFiles/corewar_git.dir/flags.make
+CMakeFiles/corewar_git.dir/virtual_machine/src/visual/sdl_init.c.o: ../virtual_machine/src/visual/sdl_init.c
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/egiant/Desktop/corewar_git/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_119) "Building C object CMakeFiles/corewar_git.dir/virtual_machine/src/visual/sdl_init.c.o"
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/corewar_git.dir/virtual_machine/src/visual/sdl_init.c.o   -c /Users/egiant/Desktop/corewar_git/virtual_machine/src/visual/sdl_init.c
+
+CMakeFiles/corewar_git.dir/virtual_machine/src/visual/sdl_init.c.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/corewar_git.dir/virtual_machine/src/visual/sdl_init.c.i"
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /Users/egiant/Desktop/corewar_git/virtual_machine/src/visual/sdl_init.c > CMakeFiles/corewar_git.dir/virtual_machine/src/visual/sdl_init.c.i
+
+CMakeFiles/corewar_git.dir/virtual_machine/src/visual/sdl_init.c.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/corewar_git.dir/virtual_machine/src/visual/sdl_init.c.s"
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /Users/egiant/Desktop/corewar_git/virtual_machine/src/visual/sdl_init.c -o CMakeFiles/corewar_git.dir/virtual_machine/src/visual/sdl_init.c.s
+
+CMakeFiles/corewar_git.dir/virtual_machine/src/visual/vis_corewar.c.o: CMakeFiles/corewar_git.dir/flags.make
+CMakeFiles/corewar_git.dir/virtual_machine/src/visual/vis_corewar.c.o: ../virtual_machine/src/visual/vis_corewar.c
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/egiant/Desktop/corewar_git/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_120) "Building C object CMakeFiles/corewar_git.dir/virtual_machine/src/visual/vis_corewar.c.o"
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/corewar_git.dir/virtual_machine/src/visual/vis_corewar.c.o   -c /Users/egiant/Desktop/corewar_git/virtual_machine/src/visual/vis_corewar.c
+
+CMakeFiles/corewar_git.dir/virtual_machine/src/visual/vis_corewar.c.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/corewar_git.dir/virtual_machine/src/visual/vis_corewar.c.i"
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /Users/egiant/Desktop/corewar_git/virtual_machine/src/visual/vis_corewar.c > CMakeFiles/corewar_git.dir/virtual_machine/src/visual/vis_corewar.c.i
+
+CMakeFiles/corewar_git.dir/virtual_machine/src/visual/vis_corewar.c.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/corewar_git.dir/virtual_machine/src/visual/vis_corewar.c.s"
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /Users/egiant/Desktop/corewar_git/virtual_machine/src/visual/vis_corewar.c -o CMakeFiles/corewar_git.dir/virtual_machine/src/visual/vis_corewar.c.s
+
 CMakeFiles/corewar_git.dir/virtual_machine/src/war/carriage_execution.c.o: CMakeFiles/corewar_git.dir/flags.make
 CMakeFiles/corewar_git.dir/virtual_machine/src/war/carriage_execution.c.o: ../virtual_machine/src/war/carriage_execution.c
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/egiant/Desktop/corewar_git/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_117) "Building C object CMakeFiles/corewar_git.dir/virtual_machine/src/war/carriage_execution.c.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/egiant/Desktop/corewar_git/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_121) "Building C object CMakeFiles/corewar_git.dir/virtual_machine/src/war/carriage_execution.c.o"
 	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/corewar_git.dir/virtual_machine/src/war/carriage_execution.c.o   -c /Users/egiant/Desktop/corewar_git/virtual_machine/src/war/carriage_execution.c
 
 CMakeFiles/corewar_git.dir/virtual_machine/src/war/carriage_execution.c.i: cmake_force
@@ -1580,7 +1632,7 @@ CMakeFiles/corewar_git.dir/virtual_machine/src/war/carriage_execution.c.s: cmake
 
 CMakeFiles/corewar_git.dir/virtual_machine/src/war/carriage_interaction.c.o: CMakeFiles/corewar_git.dir/flags.make
 CMakeFiles/corewar_git.dir/virtual_machine/src/war/carriage_interaction.c.o: ../virtual_machine/src/war/carriage_interaction.c
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/egiant/Desktop/corewar_git/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_118) "Building C object CMakeFiles/corewar_git.dir/virtual_machine/src/war/carriage_interaction.c.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/egiant/Desktop/corewar_git/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_122) "Building C object CMakeFiles/corewar_git.dir/virtual_machine/src/war/carriage_interaction.c.o"
 	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/corewar_git.dir/virtual_machine/src/war/carriage_interaction.c.o   -c /Users/egiant/Desktop/corewar_git/virtual_machine/src/war/carriage_interaction.c
 
 CMakeFiles/corewar_git.dir/virtual_machine/src/war/carriage_interaction.c.i: cmake_force
@@ -1593,7 +1645,7 @@ CMakeFiles/corewar_git.dir/virtual_machine/src/war/carriage_interaction.c.s: cma
 
 CMakeFiles/corewar_git.dir/virtual_machine/src/war/check.c.o: CMakeFiles/corewar_git.dir/flags.make
 CMakeFiles/corewar_git.dir/virtual_machine/src/war/check.c.o: ../virtual_machine/src/war/check.c
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/egiant/Desktop/corewar_git/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_119) "Building C object CMakeFiles/corewar_git.dir/virtual_machine/src/war/check.c.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/egiant/Desktop/corewar_git/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_123) "Building C object CMakeFiles/corewar_git.dir/virtual_machine/src/war/check.c.o"
 	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/corewar_git.dir/virtual_machine/src/war/check.c.o   -c /Users/egiant/Desktop/corewar_git/virtual_machine/src/war/check.c
 
 CMakeFiles/corewar_git.dir/virtual_machine/src/war/check.c.i: cmake_force
@@ -1606,7 +1658,7 @@ CMakeFiles/corewar_git.dir/virtual_machine/src/war/check.c.s: cmake_force
 
 CMakeFiles/corewar_git.dir/virtual_machine/src/war/execute_op.c.o: CMakeFiles/corewar_git.dir/flags.make
 CMakeFiles/corewar_git.dir/virtual_machine/src/war/execute_op.c.o: ../virtual_machine/src/war/execute_op.c
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/egiant/Desktop/corewar_git/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_120) "Building C object CMakeFiles/corewar_git.dir/virtual_machine/src/war/execute_op.c.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/egiant/Desktop/corewar_git/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_124) "Building C object CMakeFiles/corewar_git.dir/virtual_machine/src/war/execute_op.c.o"
 	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/corewar_git.dir/virtual_machine/src/war/execute_op.c.o   -c /Users/egiant/Desktop/corewar_git/virtual_machine/src/war/execute_op.c
 
 CMakeFiles/corewar_git.dir/virtual_machine/src/war/execute_op.c.i: cmake_force
@@ -1619,7 +1671,7 @@ CMakeFiles/corewar_git.dir/virtual_machine/src/war/execute_op.c.s: cmake_force
 
 CMakeFiles/corewar_git.dir/virtual_machine/src/war/operations.c.o: CMakeFiles/corewar_git.dir/flags.make
 CMakeFiles/corewar_git.dir/virtual_machine/src/war/operations.c.o: ../virtual_machine/src/war/operations.c
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/egiant/Desktop/corewar_git/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_121) "Building C object CMakeFiles/corewar_git.dir/virtual_machine/src/war/operations.c.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/egiant/Desktop/corewar_git/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_125) "Building C object CMakeFiles/corewar_git.dir/virtual_machine/src/war/operations.c.o"
 	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/corewar_git.dir/virtual_machine/src/war/operations.c.o   -c /Users/egiant/Desktop/corewar_git/virtual_machine/src/war/operations.c
 
 CMakeFiles/corewar_git.dir/virtual_machine/src/war/operations.c.i: cmake_force
@@ -1632,7 +1684,7 @@ CMakeFiles/corewar_git.dir/virtual_machine/src/war/operations.c.s: cmake_force
 
 CMakeFiles/corewar_git.dir/virtual_machine/src/war/start_war.c.o: CMakeFiles/corewar_git.dir/flags.make
 CMakeFiles/corewar_git.dir/virtual_machine/src/war/start_war.c.o: ../virtual_machine/src/war/start_war.c
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/egiant/Desktop/corewar_git/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_122) "Building C object CMakeFiles/corewar_git.dir/virtual_machine/src/war/start_war.c.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/egiant/Desktop/corewar_git/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_126) "Building C object CMakeFiles/corewar_git.dir/virtual_machine/src/war/start_war.c.o"
 	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/corewar_git.dir/virtual_machine/src/war/start_war.c.o   -c /Users/egiant/Desktop/corewar_git/virtual_machine/src/war/start_war.c
 
 CMakeFiles/corewar_git.dir/virtual_machine/src/war/start_war.c.i: cmake_force
@@ -1645,7 +1697,7 @@ CMakeFiles/corewar_git.dir/virtual_machine/src/war/start_war.c.s: cmake_force
 
 CMakeFiles/corewar_git.dir/virtual_machine/src/exit.c.o: CMakeFiles/corewar_git.dir/flags.make
 CMakeFiles/corewar_git.dir/virtual_machine/src/exit.c.o: ../virtual_machine/src/exit.c
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/egiant/Desktop/corewar_git/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_123) "Building C object CMakeFiles/corewar_git.dir/virtual_machine/src/exit.c.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/egiant/Desktop/corewar_git/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_127) "Building C object CMakeFiles/corewar_git.dir/virtual_machine/src/exit.c.o"
 	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/corewar_git.dir/virtual_machine/src/exit.c.o   -c /Users/egiant/Desktop/corewar_git/virtual_machine/src/exit.c
 
 CMakeFiles/corewar_git.dir/virtual_machine/src/exit.c.i: cmake_force
@@ -1658,7 +1710,7 @@ CMakeFiles/corewar_git.dir/virtual_machine/src/exit.c.s: cmake_force
 
 CMakeFiles/corewar_git.dir/virtual_machine/src/main.c.o: CMakeFiles/corewar_git.dir/flags.make
 CMakeFiles/corewar_git.dir/virtual_machine/src/main.c.o: ../virtual_machine/src/main.c
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/egiant/Desktop/corewar_git/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_124) "Building C object CMakeFiles/corewar_git.dir/virtual_machine/src/main.c.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/egiant/Desktop/corewar_git/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_128) "Building C object CMakeFiles/corewar_git.dir/virtual_machine/src/main.c.o"
 	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/corewar_git.dir/virtual_machine/src/main.c.o   -c /Users/egiant/Desktop/corewar_git/virtual_machine/src/main.c
 
 CMakeFiles/corewar_git.dir/virtual_machine/src/main.c.i: cmake_force
@@ -1787,6 +1839,10 @@ corewar_git_OBJECTS = \
 "CMakeFiles/corewar_git.dir/virtual_machine/src/initialization/set_params.c.o" \
 "CMakeFiles/corewar_git.dir/virtual_machine/src/parsing/parse_arguments.c.o" \
 "CMakeFiles/corewar_git.dir/virtual_machine/src/validation/read_byte_code.c.o" \
+"CMakeFiles/corewar_git.dir/virtual_machine/src/visual/display_data.c.o" \
+"CMakeFiles/corewar_git.dir/virtual_machine/src/visual/handle_key_press.c.o" \
+"CMakeFiles/corewar_git.dir/virtual_machine/src/visual/sdl_init.c.o" \
+"CMakeFiles/corewar_git.dir/virtual_machine/src/visual/vis_corewar.c.o" \
 "CMakeFiles/corewar_git.dir/virtual_machine/src/war/carriage_execution.c.o" \
 "CMakeFiles/corewar_git.dir/virtual_machine/src/war/carriage_interaction.c.o" \
 "CMakeFiles/corewar_git.dir/virtual_machine/src/war/check.c.o" \
@@ -1915,6 +1971,10 @@ corewar_git: CMakeFiles/corewar_git.dir/virtual_machine/src/initialization/initi
 corewar_git: CMakeFiles/corewar_git.dir/virtual_machine/src/initialization/set_params.c.o
 corewar_git: CMakeFiles/corewar_git.dir/virtual_machine/src/parsing/parse_arguments.c.o
 corewar_git: CMakeFiles/corewar_git.dir/virtual_machine/src/validation/read_byte_code.c.o
+corewar_git: CMakeFiles/corewar_git.dir/virtual_machine/src/visual/display_data.c.o
+corewar_git: CMakeFiles/corewar_git.dir/virtual_machine/src/visual/handle_key_press.c.o
+corewar_git: CMakeFiles/corewar_git.dir/virtual_machine/src/visual/sdl_init.c.o
+corewar_git: CMakeFiles/corewar_git.dir/virtual_machine/src/visual/vis_corewar.c.o
 corewar_git: CMakeFiles/corewar_git.dir/virtual_machine/src/war/carriage_execution.c.o
 corewar_git: CMakeFiles/corewar_git.dir/virtual_machine/src/war/carriage_interaction.c.o
 corewar_git: CMakeFiles/corewar_git.dir/virtual_machine/src/war/check.c.o
@@ -1925,7 +1985,7 @@ corewar_git: CMakeFiles/corewar_git.dir/virtual_machine/src/exit.c.o
 corewar_git: CMakeFiles/corewar_git.dir/virtual_machine/src/main.c.o
 corewar_git: CMakeFiles/corewar_git.dir/build.make
 corewar_git: CMakeFiles/corewar_git.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/Users/egiant/Desktop/corewar_git/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_125) "Linking C executable corewar_git"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/Users/egiant/Desktop/corewar_git/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_129) "Linking C executable corewar_git"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/corewar_git.dir/link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.

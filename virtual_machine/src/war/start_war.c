@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   start_war.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hfrankly <hfrankly@student.42.fr>          +#+  +:+       +#+        */
+/*   By: screight <screight@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/02 14:50:41 by hfrankly          #+#    #+#             */
-/*   Updated: 2019/11/22 17:50:12 by hfrankly         ###   ########.fr       */
+/*   Updated: 2019/12/02 06:40:32 by screight         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,12 @@ void				start_war(t_corewar *vm)
 		else
 			execute_carriages(&vm);
 	}
-//	display_array(vm->arena, 64, 64);
+	if (vm->visual)
+	{
+		vis_corewar(vm);
+		stringColor(vm->sdl->ren, SZX - 270, SZY - 56, 
+										vm->winner->name, vm->winner->color);
+		SDL_RenderPresent(vm->sdl->ren);
+	}
 	ft_printf("Contestant %d, \"%s\", has won !\n", vm->winner->id, vm->winner->name, vm->total_cycles);
 }

@@ -3309,6 +3309,114 @@ virtual_machine/src/validation/read_byte_code.c.s:
 	$(MAKE) -f CMakeFiles/corewar_git.dir/build.make CMakeFiles/corewar_git.dir/virtual_machine/src/validation/read_byte_code.c.s
 .PHONY : virtual_machine/src/validation/read_byte_code.c.s
 
+virtual_machine/src/visual/display_data.o: virtual_machine/src/visual/display_data.c.o
+
+.PHONY : virtual_machine/src/visual/display_data.o
+
+# target to build an object file
+virtual_machine/src/visual/display_data.c.o:
+	$(MAKE) -f CMakeFiles/corewar_git.dir/build.make CMakeFiles/corewar_git.dir/virtual_machine/src/visual/display_data.c.o
+.PHONY : virtual_machine/src/visual/display_data.c.o
+
+virtual_machine/src/visual/display_data.i: virtual_machine/src/visual/display_data.c.i
+
+.PHONY : virtual_machine/src/visual/display_data.i
+
+# target to preprocess a source file
+virtual_machine/src/visual/display_data.c.i:
+	$(MAKE) -f CMakeFiles/corewar_git.dir/build.make CMakeFiles/corewar_git.dir/virtual_machine/src/visual/display_data.c.i
+.PHONY : virtual_machine/src/visual/display_data.c.i
+
+virtual_machine/src/visual/display_data.s: virtual_machine/src/visual/display_data.c.s
+
+.PHONY : virtual_machine/src/visual/display_data.s
+
+# target to generate assembly for a file
+virtual_machine/src/visual/display_data.c.s:
+	$(MAKE) -f CMakeFiles/corewar_git.dir/build.make CMakeFiles/corewar_git.dir/virtual_machine/src/visual/display_data.c.s
+.PHONY : virtual_machine/src/visual/display_data.c.s
+
+virtual_machine/src/visual/handle_key_press.o: virtual_machine/src/visual/handle_key_press.c.o
+
+.PHONY : virtual_machine/src/visual/handle_key_press.o
+
+# target to build an object file
+virtual_machine/src/visual/handle_key_press.c.o:
+	$(MAKE) -f CMakeFiles/corewar_git.dir/build.make CMakeFiles/corewar_git.dir/virtual_machine/src/visual/handle_key_press.c.o
+.PHONY : virtual_machine/src/visual/handle_key_press.c.o
+
+virtual_machine/src/visual/handle_key_press.i: virtual_machine/src/visual/handle_key_press.c.i
+
+.PHONY : virtual_machine/src/visual/handle_key_press.i
+
+# target to preprocess a source file
+virtual_machine/src/visual/handle_key_press.c.i:
+	$(MAKE) -f CMakeFiles/corewar_git.dir/build.make CMakeFiles/corewar_git.dir/virtual_machine/src/visual/handle_key_press.c.i
+.PHONY : virtual_machine/src/visual/handle_key_press.c.i
+
+virtual_machine/src/visual/handle_key_press.s: virtual_machine/src/visual/handle_key_press.c.s
+
+.PHONY : virtual_machine/src/visual/handle_key_press.s
+
+# target to generate assembly for a file
+virtual_machine/src/visual/handle_key_press.c.s:
+	$(MAKE) -f CMakeFiles/corewar_git.dir/build.make CMakeFiles/corewar_git.dir/virtual_machine/src/visual/handle_key_press.c.s
+.PHONY : virtual_machine/src/visual/handle_key_press.c.s
+
+virtual_machine/src/visual/sdl_init.o: virtual_machine/src/visual/sdl_init.c.o
+
+.PHONY : virtual_machine/src/visual/sdl_init.o
+
+# target to build an object file
+virtual_machine/src/visual/sdl_init.c.o:
+	$(MAKE) -f CMakeFiles/corewar_git.dir/build.make CMakeFiles/corewar_git.dir/virtual_machine/src/visual/sdl_init.c.o
+.PHONY : virtual_machine/src/visual/sdl_init.c.o
+
+virtual_machine/src/visual/sdl_init.i: virtual_machine/src/visual/sdl_init.c.i
+
+.PHONY : virtual_machine/src/visual/sdl_init.i
+
+# target to preprocess a source file
+virtual_machine/src/visual/sdl_init.c.i:
+	$(MAKE) -f CMakeFiles/corewar_git.dir/build.make CMakeFiles/corewar_git.dir/virtual_machine/src/visual/sdl_init.c.i
+.PHONY : virtual_machine/src/visual/sdl_init.c.i
+
+virtual_machine/src/visual/sdl_init.s: virtual_machine/src/visual/sdl_init.c.s
+
+.PHONY : virtual_machine/src/visual/sdl_init.s
+
+# target to generate assembly for a file
+virtual_machine/src/visual/sdl_init.c.s:
+	$(MAKE) -f CMakeFiles/corewar_git.dir/build.make CMakeFiles/corewar_git.dir/virtual_machine/src/visual/sdl_init.c.s
+.PHONY : virtual_machine/src/visual/sdl_init.c.s
+
+virtual_machine/src/visual/vis_corewar.o: virtual_machine/src/visual/vis_corewar.c.o
+
+.PHONY : virtual_machine/src/visual/vis_corewar.o
+
+# target to build an object file
+virtual_machine/src/visual/vis_corewar.c.o:
+	$(MAKE) -f CMakeFiles/corewar_git.dir/build.make CMakeFiles/corewar_git.dir/virtual_machine/src/visual/vis_corewar.c.o
+.PHONY : virtual_machine/src/visual/vis_corewar.c.o
+
+virtual_machine/src/visual/vis_corewar.i: virtual_machine/src/visual/vis_corewar.c.i
+
+.PHONY : virtual_machine/src/visual/vis_corewar.i
+
+# target to preprocess a source file
+virtual_machine/src/visual/vis_corewar.c.i:
+	$(MAKE) -f CMakeFiles/corewar_git.dir/build.make CMakeFiles/corewar_git.dir/virtual_machine/src/visual/vis_corewar.c.i
+.PHONY : virtual_machine/src/visual/vis_corewar.c.i
+
+virtual_machine/src/visual/vis_corewar.s: virtual_machine/src/visual/vis_corewar.c.s
+
+.PHONY : virtual_machine/src/visual/vis_corewar.s
+
+# target to generate assembly for a file
+virtual_machine/src/visual/vis_corewar.c.s:
+	$(MAKE) -f CMakeFiles/corewar_git.dir/build.make CMakeFiles/corewar_git.dir/virtual_machine/src/visual/vis_corewar.c.s
+.PHONY : virtual_machine/src/visual/vis_corewar.c.s
+
 virtual_machine/src/war/carriage_execution.o: virtual_machine/src/war/carriage_execution.c.o
 
 .PHONY : virtual_machine/src/war/carriage_execution.o
@@ -3834,6 +3942,18 @@ help:
 	@echo "... virtual_machine/src/validation/read_byte_code.o"
 	@echo "... virtual_machine/src/validation/read_byte_code.i"
 	@echo "... virtual_machine/src/validation/read_byte_code.s"
+	@echo "... virtual_machine/src/visual/display_data.o"
+	@echo "... virtual_machine/src/visual/display_data.i"
+	@echo "... virtual_machine/src/visual/display_data.s"
+	@echo "... virtual_machine/src/visual/handle_key_press.o"
+	@echo "... virtual_machine/src/visual/handle_key_press.i"
+	@echo "... virtual_machine/src/visual/handle_key_press.s"
+	@echo "... virtual_machine/src/visual/sdl_init.o"
+	@echo "... virtual_machine/src/visual/sdl_init.i"
+	@echo "... virtual_machine/src/visual/sdl_init.s"
+	@echo "... virtual_machine/src/visual/vis_corewar.o"
+	@echo "... virtual_machine/src/visual/vis_corewar.i"
+	@echo "... virtual_machine/src/visual/vis_corewar.s"
 	@echo "... virtual_machine/src/war/carriage_execution.o"
 	@echo "... virtual_machine/src/war/carriage_execution.i"
 	@echo "... virtual_machine/src/war/carriage_execution.s"

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   virtual_machine.h                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hfrankly <hfrankly@student.42.fr>          +#+  +:+       +#+        */
+/*   By: egiant <egiant@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/30 16:29:38 by hfrankly          #+#    #+#             */
-/*   Updated: 2019/11/22 16:57:32 by hfrankly         ###   ########.fr       */
+/*   Updated: 2019/12/02 18:25:31 by egiant           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@
 #include "libftprintf.h"
 #include "op.h"
 #include "operations.h"
+#include "visual.h"
 
 typedef struct s_core			t_core;
 typedef struct s_carriage		t_carriage;
@@ -29,11 +30,16 @@ typedef struct s_point			t_point;
 
 typedef struct 		s_point {
 	int32_t			color;
+	int32_t			out_col;
 	uint8_t			value;
+	short			live_count;
+	short			light_count;
+	bool			touch;
+
 }					t_point;
 
 typedef struct 		s_corewar {
-	//t_sdl			*sdl;
+	t_sdl			*sdl;
 	t_core			*cores[MAX_PLAYERS];
 	t_core			*line_of_players;
 	short			number_of_players;
@@ -46,6 +52,7 @@ typedef struct 		s_corewar {
 	uint32_t		current_cycles;
 	int32_t			cycles_to_die;
 	int32_t			dumps;
+	bool			flag_a;
 	uint32_t		live_count;
 	uint32_t		check_count;
 }					t_corewar;
@@ -59,11 +66,12 @@ typedef struct s_core {
 	uint8_t			exec_code[CHAMP_MAX_SIZE];
 	uint16_t		cycle_was_live; // added recently
 	int32_t			color; // init in read_byte_code
+	int32_t			lives_in_period;
 	struct s_core	*next;
 }					t_core;
 
 typedef struct 		s_carriage {
-	uint8_t			id;
+	uint32_t		id;
 	bool			carry;
 	t_operation		*operation;
 	t_core			*player;
@@ -75,11 +83,11 @@ typedef struct 		s_carriage {
 	t_carriage		*next;
 	uint16_t		last_operation[4];
 	int32_t			color;
-	uint8_t			*adress;
 }					t_carriage;
 
 
-void			display_array(t_point *array, uint16_t rows, uint16_t cols);
+void				display_array(t_point *array, uint16_t rows, uint16_t cols);
+void				introduce_players(t_corewar *vm);
 /*
 // initialization
 */
@@ -111,9 +119,9 @@ void				termination_with_perror(char *error_string, int code);
 void				start_war(t_corewar *vm);
 void				check(t_corewar **vm);
 void				execute_carriages(t_corewar **vm);
-void				set_arg_code(t_corewar *vm, t_carriage *carriage, int8_t **arg_code);
-bool				is_valid_format(t_corewar *vm, t_carriage *carriage, int8_t arg_code[4]);
-void				pass_args_bits(t_corewar *vm, t_carriage *carriage, int8_t arg_code[4]);
+void				set_arg_code(t_corewar *vm, t_carriage *carriage, uint8_t **arg_code);
+bool				is_valid_format(t_corewar *vm, t_carriage *carriage, uint8_t *arg_code);
+void				pass_args_bits(t_corewar *vm, t_carriage *carriage, uint8_t *arg_code);
 
 void				kill_carriage(t_corewar **vm, t_carriage *to_delete);
 t_carriage			*copy_carriage(t_corewar *vm, t_carriage *to_copy); // need to be done

@@ -6,7 +6,7 @@
 /*   By: egiant <egiant@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/09 15:37:50 by hfrankly          #+#    #+#             */
-/*   Updated: 2019/11/28 13:30:21 by egiant           ###   ########.fr       */
+/*   Updated: 2019/12/02 19:44:16 by egiant           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,14 +31,12 @@ void	set_carriage_op(t_corewar *vm, t_carriage *carriage)
 
 void	execute_carriage_op(t_corewar *vm, t_carriage *carriage)
 {
-	int8_t	*arg_code;
+	uint8_t	*arg_code;
 	
-	if (!(arg_code = (int8_t*)malloc(sizeof(int8_t) * 4)))
+	if (!(arg_code = (uint8_t*)malloc(sizeof(uint8_t) * 4)))
 		termination_with_perror("Error", ENOMEM);
 	if (carriage->operation != NULL)
 	{
-		if (vm->total_cycles + vm->current_cycles == 1649)
-			ft_printf("");
 		set_arg_code(vm, carriage, &arg_code);
 		if (is_valid_format(vm, carriage, arg_code))
 			carriage->operation->func(vm, carriage, arg_code);
@@ -55,7 +53,14 @@ void    execute_carriages(t_corewar **vm)
 
     while ((*vm)->current_cycles != (*vm)->cycles_to_die)
 	{
+		if ((*vm)->current_cycles + (*vm)->total_cycles == 4829)
+			printf("lldi");
 		carriage = (*vm)->start_carriage;
+		if ((*vm)->dumps == (*vm)->current_cycles + (*vm)->total_cycles)
+		{
+			display_array((*vm)->arena, 64, 64);
+			exit (0);
+		}
 		while (carriage)
 		{
 			if (carriage->cycles_before_operation == 0)
@@ -65,16 +70,14 @@ void    execute_carriages(t_corewar **vm)
 			if (carriage->cycles_before_operation == 0 && carriage->operation != NULL)
 				execute_carriage_op(*vm, carriage);
 			else if (carriage->cycles_before_operation == 0)
-				carriage->position = (carriage->position + 1) % MEM_SIZE;			
-			 //if (carriage->cycles_before_operation == 0 && (*vm)->visual == true)
-				//display_arena_state(*vm);
+				carriage->position = (carriage->position + 1) % MEM_SIZE;
+			if (carriage->cycles_before_operation == 0 && (*vm)->visual == true)
+			{
+				vis_corewar(*vm);
+				handle_key_press(*vm, NULL, false);
+			}
 			carriage = carriage->next;
 		}
 		(*vm)->current_cycles++;
-		if ((*vm)->dumps == (*vm)->current_cycles + (*vm)->total_cycles)
-		{
-			display_array((*vm)->arena, 64, 64);
-			exit (0);
-		}
 	}
 }

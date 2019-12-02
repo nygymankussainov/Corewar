@@ -14,7 +14,7 @@
 
 void	terminate_with_error(t_corewar *vm)
 {
-    free_corewar(vm);
+    //free_corewar(vm);
 	write(2, "Error\n", 6);
 	exit (0);
 }

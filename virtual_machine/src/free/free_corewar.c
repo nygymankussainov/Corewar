@@ -14,7 +14,6 @@ void    free_carriage(t_corewar *vm)
     {
         save_next = tmp->next;
         free(tmp->operation);
-        free(tmp->adress);
         free(tmp);
         tmp = save_next;
     }

@@ -3,20 +3,20 @@
 /*                                                        :::      ::::::::   */
 /*   execute_op.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hfrankly <hfrankly@student.42.fr>          +#+  +:+       +#+        */
+/*   By: egiant <egiant@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/12 14:38:51 by hfrankly          #+#    #+#             */
-/*   Updated: 2019/11/19 20:25:05 by hfrankly         ###   ########.fr       */
+/*   Updated: 2019/12/02 18:35:56 by egiant           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "virtual_machine.h"
 
 bool	is_valid_reg(t_corewar *vm, t_carriage *carriage,
-					int8_t arg_code[4], uint8_t index)
+					uint8_t *arg_code, uint8_t index)
 {
-	uint8_t		offset;
-	uint8_t		i;
+	int		offset;
+	int		i;
 
 	offset = 2;
 	i = 0;
@@ -26,8 +26,8 @@ bool	is_valid_reg(t_corewar *vm, t_carriage *carriage,
 			offset += carriage->operation->t_dir_size;
 		else if (arg_code[i] == 3)
 			offset += 2;
-		else
-			offset++;
+		else//
+			offset++;//
 		i++;
 	}
 	if (vm->arena[(carriage->position + offset) % MEM_SIZE].value < 1 ||
@@ -37,17 +37,16 @@ bool	is_valid_reg(t_corewar *vm, t_carriage *carriage,
 		return (true);
 }
 
-void	set_arg_code(t_corewar *vm, t_carriage *carriage, int8_t **arg_code)
+void	set_arg_code(t_corewar *vm, t_carriage *carriage, uint8_t **arg_code)
 {
-	uint8_t	i;
+	int	i;
 
 	if (carriage->operation->args_types_code)
 	{
 		i = 0;
 		while (i < 4)
 		{
-			(*arg_code)[i] = vm->arena[(carriage->position + 1) % MEM_SIZE].value
-			<< (2 * i) >> 6 & 3;
+			(*arg_code)[i] = vm->arena[(carriage->position + 1) % MEM_SIZE].value<< (2 * i) >> 6 & 3;
 			i++;
 		}
 	}
@@ -59,7 +58,7 @@ void	set_arg_code(t_corewar *vm, t_carriage *carriage, int8_t **arg_code)
 }
 
 bool	if_valid_format(t_corewar *vm, t_carriage *carriage,
-						int8_t *arg_code, uint8_t i)
+						uint8_t *arg_code, int i)
 {
 	if (i < carriage->operation->number_of_arguments && arg_code[i] == 1 &&
 		(arg_code[i] & carriage->operation->args_types[i]) == true)
@@ -73,9 +72,9 @@ bool	if_valid_format(t_corewar *vm, t_carriage *carriage,
 	return (true);
 }
 
-bool	is_valid_format(t_corewar *vm, t_carriage *carriage, int8_t *arg_code)
+bool	is_valid_format(t_corewar *vm, t_carriage *carriage, uint8_t *arg_code)
 {
-	uint8_t	i;
+	int	i;
 	
 	if (carriage->operation->args_types_code)
 	{
@@ -90,10 +89,10 @@ bool	is_valid_format(t_corewar *vm, t_carriage *carriage, int8_t *arg_code)
 	return (true);
 }
 
-void	pass_args_bits(t_corewar *vm, t_carriage *carriage, int8_t arg_code[4])
+void	pass_args_bits(t_corewar *vm, t_carriage *carriage, uint8_t *arg_code)
 {
-	uint8_t	bytes_count;
-	uint8_t	i;
+	int	bytes_count;
+	int	i;
 
 	if (carriage->operation->args_types_code)
 	{

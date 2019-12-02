@@ -6,7 +6,7 @@
 /*   By: egiant <egiant@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/09 15:37:50 by hfrankly          #+#    #+#             */
-/*   Updated: 2019/11/28 13:32:41 by egiant           ###   ########.fr       */
+/*   Updated: 2019/12/02 15:31:43 by egiant           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,11 +26,16 @@ static void		check_carriages(t_carriage *start_carriage, t_corewar *vm)
 	{
 		next_carriage = cur_carriage->next;
 		if (vm->cycles_to_die <= 0 ||
-	vm->total_cycles - cur_carriage->cycle_was_live >= vm->cycles_to_die)
+				vm->total_cycles - cur_carriage->cycle_was_live >= vm->cycles_to_die)
 			kill_carriage(&vm, cur_carriage);
 		cur_carriage = next_carriage;
 	}
 }
+
+/*
+Мертвой считается каретка, которая выполняла операцию live cycles_to_die циклов назад или более.
+*/
+
 
 /*
 ** if live_count more than NBR_LIVE and
@@ -52,6 +57,6 @@ void			check(t_corewar **vm)
 	(*vm)->total_cycles += (*vm)->current_cycles;
 	(*vm)->current_cycles = 0;
 	(*vm)->check_count++;
-    check_carriages((*vm)->start_carriage, (*vm));
 	check_cycle_to_die((*vm));
+    check_carriages((*vm)->start_carriage, (*vm));
 }

@@ -55,7 +55,7 @@ void			parse_player(t_corewar *vm, char *argv[], int *n, int player_id)
 
 void			parse_n_flag(t_corewar *vm, char *argv[], int *n)
 {
-	int player_id;
+	int			player_id;
 
 	*n += 1;
 	if (!argv[*n] || ft_atoi(argv[*n]) < 1 || ft_atoi(argv[*n]) > 4 || !argv[*n + 1])
@@ -63,6 +63,12 @@ void			parse_n_flag(t_corewar *vm, char *argv[], int *n)
 	player_id = ft_atoi(argv[*n]);
 	*n += 1;
 	parse_player(vm, argv, n, player_id);
+}
+
+void			parse_a_flag(t_corewar *vm, char *argv[], int *n)
+{
+	*n += 1;
+	vm->flag_a = true;
 }
 
 void			parse_arguments(t_corewar **vm, int argc, char *argv[])
@@ -74,6 +80,8 @@ void			parse_arguments(t_corewar **vm, int argc, char *argv[])
 	{
 		if (!(ft_strcmp(argv[n], "-dump")))
 			parse_dump_flag((*vm), argv, &n);
+		else if (!(ft_strcmp(argv[n], "-a")))
+			parse_a_flag((*vm), argv, &n);
 		else if (ft_strcmp(argv[n], "-v") == 0)
 		{
 			(*vm)->visual = true;

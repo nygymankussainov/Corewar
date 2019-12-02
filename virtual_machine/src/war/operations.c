@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   operations.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hfrankly <hfrankly@student.42.fr>          +#+  +:+       +#+        */
+/*   By: egiant <egiant@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/19 15:57:01 by hfrankly          #+#    #+#             */
-/*   Updated: 2019/11/22 17:29:49 by hfrankly         ###   ########.fr       */
+/*   Updated: 2019/12/02 19:45:34 by egiant           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ int32_t				return_bytes(t_point *arena, uint16_t position, uint8_t bytes_nbr)
 }
 
 int32_t				return_arg(t_point *arena, uint16_t *position,
-								int8_t arg_code, uint8_t t_dir_size)
+								uint8_t arg_code, uint8_t t_dir_size)
 {
 	int8_t		reg;
 	int16_t		ind;
@@ -90,27 +90,34 @@ uint16_t			get_position(uint16_t cur_pos, int64_t arg, bool idx) // check!
 	else
 		res = cur_pos + sign * arg;
 	if (res < 0)
-		res = MEM_SIZE + res;
+	{
+		res = -res;
+		res = MEM_SIZE - (res % MEM_SIZE);
+	}
 	return (res % MEM_SIZE);
 }
 
 void				add_to_arena(t_corewar *vm, uint16_t position, int32_t code, t_carriage *carriage) // was uint32_t code
 {
 	vm->arena[position].value = code >> 24;
-	vm->arena[position + 1].value = code >> 16 & 0x00FF;
-	vm->arena[position + 2].value = code >> 8 & 0x0000FF;
-	vm->arena[position + 3].value = code & 0x000000FF;
+	vm->arena[(position + 1) % MEM_SIZE].value = code >> 16 & 0x00FF;
+	vm->arena[(position + 2) % MEM_SIZE].value = code >> 8 & 0x0000FF;
+	vm->arena[(position + 3) % MEM_SIZE].value = code & 0x000000FF;
 	vm->arena[position].color = carriage->color;
-	vm->arena[position + 1].color = carriage->color;
-	vm->arena[position + 2].color = carriage->color;
-	vm->arena[position + 3].color = carriage->color;
+	vm->arena[(position + 1) % MEM_SIZE].color = carriage->color;
+	vm->arena[(position + 2) % MEM_SIZE].color = carriage->color;
+	vm->arena[(position + 3) % MEM_SIZE].color = carriage->color;
+	vm->arena[position].light_count = 51;
+	vm->arena[(position + 1) % MEM_SIZE].light_count = 51;
+	vm->arena[(position + 2) % MEM_SIZE].light_count = 51;
+	vm->arena[(position + 3) % MEM_SIZE].light_count = 51;
 	carriage->last_operation[0] = position;
-	carriage->last_operation[1] = position + 1;
-	carriage->last_operation[2] = position + 2;
-	carriage->last_operation[3] = position + 3;
+	carriage->last_operation[1] = (position + 1) % MEM_SIZE;
+	carriage->last_operation[2] = (position + 2) % MEM_SIZE;
+	carriage->last_operation[3] = (position + 3) % MEM_SIZE;
 }
 
-void				op_live(t_corewar *vm, t_carriage *carriage, int8_t *arg_code)
+void				op_live(t_corewar *vm, t_carriage *carriage, uint8_t *arg_code)
 {
 	t_core			*core;
 	int32_t			player_code;
@@ -118,15 +125,19 @@ void				op_live(t_corewar *vm, t_carriage *carriage, int8_t *arg_code)
 	vm->live_count++;
     carriage->cycle_was_live = vm->total_cycles + vm->current_cycles;
 	player_code = -return_bytes(vm->arena, carriage->position + 1, carriage->operation->t_dir_size);
+	vm->arena[carriage->position].live_count = 50;
 	if (player_code > 0 && player_code <= vm->number_of_players)
     {
+		vm->cores[player_code - 1]->cycle_was_live = vm->total_cycles + vm->current_cycles;
+		vm->cores[player_code - 1]->lives_in_period++;
 		vm->winner = vm->cores[player_code - 1];
 		vm->winner->cycle_was_live = vm->total_cycles + vm->current_cycles;
-		// ft_printf("Player %d (%s) is said to be alive\n", vm->winner->id, vm->winner->name);
 	}
+	if (vm->visual && vm->sdl->sound)
+		Mix_PlayChannel(-1, vm->sdl->live, 0);
 }
 
-void				op_st(t_corewar *vm, t_carriage *carriage, int8_t *arg_code)
+void				op_st(t_corewar *vm, t_carriage *carriage, uint8_t *arg_code)
 {
 	uint8_t		arg1;
 	int16_t		arg2;
@@ -142,7 +153,9 @@ void				op_st(t_corewar *vm, t_carriage *carriage, int8_t *arg_code)
 		carriage->registers[arg1], carriage);
 }
 
-void				op_sti(t_corewar *vm, t_carriage *carriage, int8_t *arg_code)
+// 0f 10
+// 4294967295
+void				op_sti(t_corewar *vm, t_carriage *carriage, uint8_t *arg_code)
 {
 	uint8_t		arg1;
 	int32_t		arg2;
@@ -159,11 +172,13 @@ void				op_sti(t_corewar *vm, t_carriage *carriage, int8_t *arg_code)
 		arg2 = carriage->registers[arg2];
 	if (arg_code[2] == 1)
 		arg3 = carriage->registers[arg3];
+	// add_to_arena(vm, get_position(carriage->position, (int64_t)arg2 + (int64_t)arg3, true),
+	// 	carriage->registers[arg1], carriage);
 	add_to_arena(vm, get_position(carriage->position, arg2 + arg3, true),
 		carriage->registers[arg1], carriage);
 }
 
-void				op_ld(t_corewar *vm, t_carriage *carriage, int8_t *arg_code)
+void				op_ld(t_corewar *vm, t_carriage *carriage, uint8_t *arg_code)
 {
 	int32_t		arg1;
 	uint8_t		arg2;
@@ -178,7 +193,7 @@ void				op_ld(t_corewar *vm, t_carriage *carriage, int8_t *arg_code)
 	carriage->carry = (arg1 == 0) ? true : false;
 }
 
-void				op_lld(t_corewar *vm, t_carriage *carriage, int8_t *arg_code)
+void				op_lld(t_corewar *vm, t_carriage *carriage, uint8_t *arg_code)
 {
 	int32_t		arg1;
 	uint8_t		arg2;
@@ -189,11 +204,10 @@ void				op_lld(t_corewar *vm, t_carriage *carriage, int8_t *arg_code)
 	arg2 = return_arg(vm->arena, &position, arg_code[1], carriage->operation->t_dir_size);
 	if (arg_code[0] == 3)
 		arg1 = return_bytes(vm->arena, get_position(carriage->position, arg1, false), 4);
-	carriage->registers[arg2] = arg1;
 	carriage->carry = (arg1 == 0) ? true : false;
 }
 
-void				op_ldi(t_corewar *vm, t_carriage *carriage, int8_t *arg_code)
+void				op_ldi(t_corewar *vm, t_carriage *carriage, uint8_t *arg_code)
 {
     int32_t		arg1;
 	int32_t		arg2;
@@ -212,16 +226,17 @@ void				op_ldi(t_corewar *vm, t_carriage *carriage, int8_t *arg_code)
 		arg2 = carriage->registers[arg2];
 	carriage->registers[arg3] = return_bytes(vm->arena,
 		get_position(carriage->position, (int64_t)arg1 + (int64_t)arg2, true), 4); // is it necessary? (int64_t)
-	carriage->carry = (arg1 == 0) ? true : false;
 }
 
-void				op_lldi(t_corewar *vm, t_carriage *carriage, int8_t *arg_code)
+void				op_lldi(t_corewar *vm, t_carriage *carriage, uint8_t *arg_code)
 {
     int32_t		arg1;
 	int32_t		arg2;
 	uint8_t		arg3;
 	uint16_t	position;
 
+	//if (vm->current_cycles + vm->total_cycles == 4829)
+	//	printf("lldi");
 	position = (carriage->position + 2) % MEM_SIZE;
 	arg1 = return_arg(vm->arena, &position, arg_code[0], carriage->operation->t_dir_size);
 	arg2 = return_arg(vm->arena, &position, arg_code[1], carriage->operation->t_dir_size);
@@ -237,7 +252,7 @@ void				op_lldi(t_corewar *vm, t_carriage *carriage, int8_t *arg_code)
 	carriage->carry = (arg1 == 0) ? true : false;
 }
 
-void				op_add(t_corewar *vm, t_carriage *carriage, int8_t *arg_code)
+void				op_add(t_corewar *vm, t_carriage *carriage, uint8_t *arg_code)
 {
 	int8_t		reg1;
 	int8_t		reg2;
@@ -252,7 +267,7 @@ void				op_add(t_corewar *vm, t_carriage *carriage, int8_t *arg_code)
 	carriage->carry = (carriage->registers[res_reg] == 0) ? true : false;
 }
 
-void				op_sub(t_corewar *vm, t_carriage *carriage, int8_t *arg_code)
+void				op_sub(t_corewar *vm, t_carriage *carriage, uint8_t *arg_code)
 {
 	uint8_t		reg1;
 	uint8_t		reg2;
@@ -267,7 +282,7 @@ void				op_sub(t_corewar *vm, t_carriage *carriage, int8_t *arg_code)
 	carriage->carry = (carriage->registers[res_reg] == 0) ? true : false;
 }
 
-void				op_and(t_corewar *vm, t_carriage *carriage, int8_t *arg_code)
+void				op_and(t_corewar *vm, t_carriage *carriage, uint8_t *arg_code)
 {
 	int32_t		arg1;
 	int32_t		arg2;
@@ -290,7 +305,7 @@ void				op_and(t_corewar *vm, t_carriage *carriage, int8_t *arg_code)
 	carriage->carry = (carriage->registers[reg] == 0) ? true : false;
 }
 
-void				op_or(t_corewar *vm, t_carriage *carriage, int8_t *arg_code)
+void				op_or(t_corewar *vm, t_carriage *carriage, uint8_t *arg_code)
 {
 	int32_t		arg1;
 	int32_t		arg2;
@@ -313,7 +328,7 @@ void				op_or(t_corewar *vm, t_carriage *carriage, int8_t *arg_code)
 	carriage->carry = (carriage->registers[reg] == 0) ? true : false;
 }
 
-void				op_xor(t_corewar *vm, t_carriage *carriage, int8_t *arg_code)
+void				op_xor(t_corewar *vm, t_carriage *carriage, uint8_t *arg_code)
 {
 	int32_t		arg1;
 	int32_t		arg2;
@@ -336,43 +351,48 @@ void				op_xor(t_corewar *vm, t_carriage *carriage, int8_t *arg_code)
 	carriage->carry = (carriage->registers[reg] == 0) ? true : false;
 }
 
-void				op_zjmp(t_corewar *vm, t_carriage *carriage, int8_t *arg_code)
+void				op_zjmp(t_corewar *vm, t_carriage *carriage, uint8_t *arg_code)
 {
 	int16_t 		distance;
 
-	distance = return_bytes(vm->arena, carriage->position + 1, carriage->operation->t_dir_size);
+	distance = return_bytes(vm->arena, (carriage->position + 1) % MEM_SIZE, carriage->operation->t_dir_size);
 	if (carriage->carry)
 		carriage->position = get_position(carriage->position, distance, true);
 	else
 		pass_args_bits(vm, carriage, arg_code);
 }
 
-void				op_fork(t_corewar *vm, t_carriage *carriage, int8_t *arg_code)
+void				op_fork(t_corewar *vm, t_carriage *carriage, uint8_t *arg_code)
 {
 	int16_t		distance;
 	t_carriage	*new_carriage;
 
- 	distance = return_bytes(vm->arena, carriage->position + 1, carriage->operation->t_dir_size);
+ 	distance = return_bytes(vm->arena, (carriage->position + 1) % MEM_SIZE, carriage->operation->t_dir_size);
 	new_carriage = copy_carriage(vm, carriage);
-	new_carriage->position = (carriage->position + distance % IDX_MOD);
+	new_carriage->position = get_position(carriage->position, distance, true);
+	if (vm->visual && vm->sdl->sound)
+		Mix_PlayChannel(-1, vm->sdl->copy_car, 0);
 }
 
-void				op_lfork(t_corewar *vm, t_carriage *carriage, int8_t *arg_code)
+void				op_lfork(t_corewar *vm, t_carriage *carriage, uint8_t *arg_code)
 {
 	int16_t		distance;
 	t_carriage	*new_carriage;
 
-	distance = return_bytes(vm->arena, carriage->position + 1, carriage->operation->t_dir_size);
+	distance = return_bytes(vm->arena, (carriage->position + 1) % MEM_SIZE, carriage->operation->t_dir_size);
 	new_carriage = copy_carriage(vm, carriage);
-	new_carriage->position = (carriage->position + distance) % MEM_SIZE;
+	new_carriage->position = get_position(carriage->position, distance, false);
+	if (vm->visual && vm->sdl->sound)
+		Mix_PlayChannel(-1, vm->sdl->copy_car, 0);
 }
 
-void				op_aff(t_corewar *vm, t_carriage *carriage, int8_t *arg_code)
+void				op_aff(t_corewar *vm, t_carriage *carriage, uint8_t *arg_code)
 {
 	char	output;
 	uint8_t	reg_nbr;
 
-	reg_nbr = vm->arena[(carriage->position + 2) % MEM_SIZE].value;
+	reg_nbr = vm->arena[(carriage->position + 2) % MEM_SIZE].value; //почему в этой операции есть код аргумеетов если аргумент всегда один?
 	output = carriage->registers[reg_nbr];
-	ft_putchar(output);
+	if (vm->flag_a)
+		ft_putchar(output);
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   set_params.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: egiant <egiant@student.42.fr>              +#+  +:+       +#+        */
+/*   By: screight <screight@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/06 13:44:29 by egiant            #+#    #+#             */
-/*   Updated: 2019/11/28 13:12:13 by egiant           ###   ########.fr       */
+/*   Updated: 2019/12/02 05:10:10 by screight         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ void		set_exec_code(t_point *arena, uint16_t position, t_core *core)
 	while (i < core->exec_code_size)
 	{
 		arena[position + i].value = core->exec_code[i];
-		arena[position + i].color = core->color;
+		arena[position + i].color = core->color - DIM;
 		i++;
 	}
 }
