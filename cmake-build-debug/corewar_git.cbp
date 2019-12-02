@@ -45,9 +45,14 @@
 				<Option compiler="gcc"/>
 				<Compiler>
 					<Add directory="/Users/egiant/Desktop/corewar_git/includes"/>
-					<Add directory="/Users/egiant/Desktop/corewar_git/libft"/>
-					<Add directory="/Users/egiant/Desktop/corewar_git/libft/ft_printf"/>
+					<Add directory="/Users/egiant/Desktop/corewar_git/libftprintf/headers"/>
+					<Add directory="/Users/egiant/Desktop/corewar_git/libftprintf/libft/headers"/>
 					<Add directory="/Users/egiant/Desktop/corewar_git/virtual_machine/includes"/>
+					<Add directory="/Users/egiant/Desktop/corewar_git/virtual_machine/includes/sdl"/>
+					<Add directory="/Users/egiant/Desktop/corewar_git/virtual_machine/includes/sdl/SDL2"/>
+					<Add directory="/Users/egiant/Desktop/corewar_git/virtual_machine/includes/sdl/SDL2_GFX"/>
+					<Add directory="/Users/egiant/Desktop/corewar_git/virtual_machine/includes/sdl/SDL2_IMG"/>
+					<Add directory="/Users/egiant/Desktop/corewar_git/virtual_machine/includes/sdl/SDL2_MIX"/>
 					<Add directory="/usr/local/include"/>
 					<Add directory="/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/9.0.0/include"/>
 					<Add directory="/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include"/>
@@ -70,9 +75,14 @@
 				<Option compiler="gcc"/>
 				<Compiler>
 					<Add directory="/Users/egiant/Desktop/corewar_git/includes"/>
-					<Add directory="/Users/egiant/Desktop/corewar_git/libft"/>
-					<Add directory="/Users/egiant/Desktop/corewar_git/libft/ft_printf"/>
+					<Add directory="/Users/egiant/Desktop/corewar_git/libftprintf/headers"/>
+					<Add directory="/Users/egiant/Desktop/corewar_git/libftprintf/libft/headers"/>
 					<Add directory="/Users/egiant/Desktop/corewar_git/virtual_machine/includes"/>
+					<Add directory="/Users/egiant/Desktop/corewar_git/virtual_machine/includes/sdl"/>
+					<Add directory="/Users/egiant/Desktop/corewar_git/virtual_machine/includes/sdl/SDL2"/>
+					<Add directory="/Users/egiant/Desktop/corewar_git/virtual_machine/includes/sdl/SDL2_GFX"/>
+					<Add directory="/Users/egiant/Desktop/corewar_git/virtual_machine/includes/sdl/SDL2_IMG"/>
+					<Add directory="/Users/egiant/Desktop/corewar_git/virtual_machine/includes/sdl/SDL2_MIX"/>
 					<Add directory="/usr/local/include"/>
 					<Add directory="/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/9.0.0/include"/>
 					<Add directory="/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include"/>
@@ -94,322 +104,343 @@
 		<Unit filename="/Users/egiant/Desktop/corewar_git/includes/op.h">
 			<Option target="corewar_git"/>
 		</Unit>
-		<Unit filename="/Users/egiant/Desktop/corewar_git/libft/ft_printf/calculate_decimal.c">
+		<Unit filename="/Users/egiant/Desktop/corewar_git/libftprintf/headers/libftprintf.h">
 			<Option target="corewar_git"/>
 		</Unit>
-		<Unit filename="/Users/egiant/Desktop/corewar_git/libft/ft_printf/decimal_part.c">
+		<Unit filename="/Users/egiant/Desktop/corewar_git/libftprintf/libft/headers/libft.h">
 			<Option target="corewar_git"/>
 		</Unit>
-		<Unit filename="/Users/egiant/Desktop/corewar_git/libft/ft_printf/find_conv_or_whitesp.c">
+		<Unit filename="/Users/egiant/Desktop/corewar_git/libftprintf/libft/sources/del_matrix.c">
 			<Option target="corewar_git"/>
 		</Unit>
-		<Unit filename="/Users/egiant/Desktop/corewar_git/libft/ft_printf/ft_conv_b.c">
+		<Unit filename="/Users/egiant/Desktop/corewar_git/libftprintf/libft/sources/ft_atoi.c">
 			<Option target="corewar_git"/>
 		</Unit>
-		<Unit filename="/Users/egiant/Desktop/corewar_git/libft/ft_printf/ft_conv_d.c">
+		<Unit filename="/Users/egiant/Desktop/corewar_git/libftprintf/libft/sources/ft_atoi_long.c">
 			<Option target="corewar_git"/>
 		</Unit>
-		<Unit filename="/Users/egiant/Desktop/corewar_git/libft/ft_printf/ft_conv_f.c">
+		<Unit filename="/Users/egiant/Desktop/corewar_git/libftprintf/libft/sources/ft_bit_count.c">
 			<Option target="corewar_git"/>
 		</Unit>
-		<Unit filename="/Users/egiant/Desktop/corewar_git/libft/ft_printf/ft_conv_o.c">
+		<Unit filename="/Users/egiant/Desktop/corewar_git/libftprintf/libft/sources/ft_bzero.c">
 			<Option target="corewar_git"/>
 		</Unit>
-		<Unit filename="/Users/egiant/Desktop/corewar_git/libft/ft_printf/ft_conv_p.c">
+		<Unit filename="/Users/egiant/Desktop/corewar_git/libftprintf/libft/sources/ft_change_system.c">
 			<Option target="corewar_git"/>
 		</Unit>
-		<Unit filename="/Users/egiant/Desktop/corewar_git/libft/ft_printf/ft_conv_u.c">
+		<Unit filename="/Users/egiant/Desktop/corewar_git/libftprintf/libft/sources/ft_change_system_over_ten.c">
 			<Option target="corewar_git"/>
 		</Unit>
-		<Unit filename="/Users/egiant/Desktop/corewar_git/libft/ft_printf/ft_conv_x.c">
+		<Unit filename="/Users/egiant/Desktop/corewar_git/libftprintf/libft/sources/ft_count_digits.c">
 			<Option target="corewar_git"/>
 		</Unit>
-		<Unit filename="/Users/egiant/Desktop/corewar_git/libft/ft_printf/ft_number.c">
+		<Unit filename="/Users/egiant/Desktop/corewar_git/libftprintf/libft/sources/ft_fill_zero.c">
 			<Option target="corewar_git"/>
 		</Unit>
-		<Unit filename="/Users/egiant/Desktop/corewar_git/libft/ft_printf/ft_printf.c">
+		<Unit filename="/Users/egiant/Desktop/corewar_git/libftprintf/libft/sources/ft_isalnum.c">
 			<Option target="corewar_git"/>
 		</Unit>
-		<Unit filename="/Users/egiant/Desktop/corewar_git/libft/ft_printf/ft_printf.h">
+		<Unit filename="/Users/egiant/Desktop/corewar_git/libftprintf/libft/sources/ft_isalpha.c">
 			<Option target="corewar_git"/>
 		</Unit>
-		<Unit filename="/Users/egiant/Desktop/corewar_git/libft/ft_printf/ft_symbol.c">
+		<Unit filename="/Users/egiant/Desktop/corewar_git/libftprintf/libft/sources/ft_isascii.c">
 			<Option target="corewar_git"/>
 		</Unit>
-		<Unit filename="/Users/egiant/Desktop/corewar_git/libft/ft_printf/integer_part.c">
+		<Unit filename="/Users/egiant/Desktop/corewar_git/libftprintf/libft/sources/ft_isdigit.c">
 			<Option target="corewar_git"/>
 		</Unit>
-		<Unit filename="/Users/egiant/Desktop/corewar_git/libft/ft_printf/longadd.c">
+		<Unit filename="/Users/egiant/Desktop/corewar_git/libftprintf/libft/sources/ft_isprint.c">
 			<Option target="corewar_git"/>
 		</Unit>
-		<Unit filename="/Users/egiant/Desktop/corewar_git/libft/ft_printf/longdiv.c">
+		<Unit filename="/Users/egiant/Desktop/corewar_git/libftprintf/libft/sources/ft_istrstr.c">
 			<Option target="corewar_git"/>
 		</Unit>
-		<Unit filename="/Users/egiant/Desktop/corewar_git/libft/ft_printf/longmulti.c">
+		<Unit filename="/Users/egiant/Desktop/corewar_git/libftprintf/libft/sources/ft_itoa.c">
 			<Option target="corewar_git"/>
 		</Unit>
-		<Unit filename="/Users/egiant/Desktop/corewar_git/libft/ft_printf/rounding_and_print.c">
+		<Unit filename="/Users/egiant/Desktop/corewar_git/libftprintf/libft/sources/ft_itoa_long.c">
 			<Option target="corewar_git"/>
 		</Unit>
-		<Unit filename="/Users/egiant/Desktop/corewar_git/libft/ft_printf/width.c">
+		<Unit filename="/Users/egiant/Desktop/corewar_git/libftprintf/libft/sources/ft_itoa_un_long.c">
 			<Option target="corewar_git"/>
 		</Unit>
-		<Unit filename="/Users/egiant/Desktop/corewar_git/libft/ft_printf/width_for_f.c">
+		<Unit filename="/Users/egiant/Desktop/corewar_git/libftprintf/libft/sources/ft_lstadd.c">
 			<Option target="corewar_git"/>
 		</Unit>
-		<Unit filename="/Users/egiant/Desktop/corewar_git/libft/libft.h">
+		<Unit filename="/Users/egiant/Desktop/corewar_git/libftprintf/libft/sources/ft_lstdel.c">
 			<Option target="corewar_git"/>
 		</Unit>
-		<Unit filename="/Users/egiant/Desktop/corewar_git/libft/src/ft_atoi.c">
+		<Unit filename="/Users/egiant/Desktop/corewar_git/libftprintf/libft/sources/ft_lstdelone.c">
 			<Option target="corewar_git"/>
 		</Unit>
-		<Unit filename="/Users/egiant/Desktop/corewar_git/libft/src/ft_atoi_base.c">
+		<Unit filename="/Users/egiant/Desktop/corewar_git/libftprintf/libft/sources/ft_lstiter.c">
 			<Option target="corewar_git"/>
 		</Unit>
-		<Unit filename="/Users/egiant/Desktop/corewar_git/libft/src/ft_bzero.c">
+		<Unit filename="/Users/egiant/Desktop/corewar_git/libftprintf/libft/sources/ft_lstmap.c">
 			<Option target="corewar_git"/>
 		</Unit>
-		<Unit filename="/Users/egiant/Desktop/corewar_git/libft/src/ft_bzero_null.c">
+		<Unit filename="/Users/egiant/Desktop/corewar_git/libftprintf/libft/sources/ft_lstnew.c">
 			<Option target="corewar_git"/>
 		</Unit>
-		<Unit filename="/Users/egiant/Desktop/corewar_git/libft/src/ft_change_system_over_ten.c">
+		<Unit filename="/Users/egiant/Desktop/corewar_git/libftprintf/libft/sources/ft_memalloc.c">
 			<Option target="corewar_git"/>
 		</Unit>
-		<Unit filename="/Users/egiant/Desktop/corewar_git/libft/src/ft_free_two_dim_arr.c">
+		<Unit filename="/Users/egiant/Desktop/corewar_git/libftprintf/libft/sources/ft_memccpy.c">
 			<Option target="corewar_git"/>
 		</Unit>
-		<Unit filename="/Users/egiant/Desktop/corewar_git/libft/src/ft_is_negative.c">
+		<Unit filename="/Users/egiant/Desktop/corewar_git/libftprintf/libft/sources/ft_memchr.c">
 			<Option target="corewar_git"/>
 		</Unit>
-		<Unit filename="/Users/egiant/Desktop/corewar_git/libft/src/ft_isalnum.c">
+		<Unit filename="/Users/egiant/Desktop/corewar_git/libftprintf/libft/sources/ft_memcmp.c">
 			<Option target="corewar_git"/>
 		</Unit>
-		<Unit filename="/Users/egiant/Desktop/corewar_git/libft/src/ft_isalpha.c">
+		<Unit filename="/Users/egiant/Desktop/corewar_git/libftprintf/libft/sources/ft_memcpy.c">
 			<Option target="corewar_git"/>
 		</Unit>
-		<Unit filename="/Users/egiant/Desktop/corewar_git/libft/src/ft_isascii.c">
+		<Unit filename="/Users/egiant/Desktop/corewar_git/libftprintf/libft/sources/ft_memdel.c">
 			<Option target="corewar_git"/>
 		</Unit>
-		<Unit filename="/Users/egiant/Desktop/corewar_git/libft/src/ft_isdigit.c">
+		<Unit filename="/Users/egiant/Desktop/corewar_git/libftprintf/libft/sources/ft_memmove.c">
 			<Option target="corewar_git"/>
 		</Unit>
-		<Unit filename="/Users/egiant/Desktop/corewar_git/libft/src/ft_islower.c">
+		<Unit filename="/Users/egiant/Desktop/corewar_git/libftprintf/libft/sources/ft_memset.c">
 			<Option target="corewar_git"/>
 		</Unit>
-		<Unit filename="/Users/egiant/Desktop/corewar_git/libft/src/ft_isprint.c">
+		<Unit filename="/Users/egiant/Desktop/corewar_git/libftprintf/libft/sources/ft_putchar.c">
 			<Option target="corewar_git"/>
 		</Unit>
-		<Unit filename="/Users/egiant/Desktop/corewar_git/libft/src/ft_istabspace_in_str.c">
+		<Unit filename="/Users/egiant/Desktop/corewar_git/libftprintf/libft/sources/ft_putchar_fd.c">
 			<Option target="corewar_git"/>
 		</Unit>
-		<Unit filename="/Users/egiant/Desktop/corewar_git/libft/src/ft_isupper.c">
+		<Unit filename="/Users/egiant/Desktop/corewar_git/libftprintf/libft/sources/ft_putendl.c">
 			<Option target="corewar_git"/>
 		</Unit>
-		<Unit filename="/Users/egiant/Desktop/corewar_git/libft/src/ft_iterative_factorial.c">
+		<Unit filename="/Users/egiant/Desktop/corewar_git/libftprintf/libft/sources/ft_putendl_fd.c">
 			<Option target="corewar_git"/>
 		</Unit>
-		<Unit filename="/Users/egiant/Desktop/corewar_git/libft/src/ft_iterative_power.c">
+		<Unit filename="/Users/egiant/Desktop/corewar_git/libftprintf/libft/sources/ft_putnbr.c">
 			<Option target="corewar_git"/>
 		</Unit>
-		<Unit filename="/Users/egiant/Desktop/corewar_git/libft/src/ft_itoa.c">
+		<Unit filename="/Users/egiant/Desktop/corewar_git/libftprintf/libft/sources/ft_putnbr_fd.c">
 			<Option target="corewar_git"/>
 		</Unit>
-		<Unit filename="/Users/egiant/Desktop/corewar_git/libft/src/ft_itoa_base.c">
+		<Unit filename="/Users/egiant/Desktop/corewar_git/libftprintf/libft/sources/ft_putstr.c">
 			<Option target="corewar_git"/>
 		</Unit>
-		<Unit filename="/Users/egiant/Desktop/corewar_git/libft/src/ft_itoa_ll.c">
+		<Unit filename="/Users/egiant/Desktop/corewar_git/libftprintf/libft/sources/ft_putstr_fd.c">
 			<Option target="corewar_git"/>
 		</Unit>
-		<Unit filename="/Users/egiant/Desktop/corewar_git/libft/src/ft_lstadd.c">
+		<Unit filename="/Users/egiant/Desktop/corewar_git/libftprintf/libft/sources/ft_sjoin_and_free.c">
 			<Option target="corewar_git"/>
 		</Unit>
-		<Unit filename="/Users/egiant/Desktop/corewar_git/libft/src/ft_lstdel.c">
+		<Unit filename="/Users/egiant/Desktop/corewar_git/libftprintf/libft/sources/ft_strcat.c">
 			<Option target="corewar_git"/>
 		</Unit>
-		<Unit filename="/Users/egiant/Desktop/corewar_git/libft/src/ft_lstdelone.c">
+		<Unit filename="/Users/egiant/Desktop/corewar_git/libftprintf/libft/sources/ft_strchr.c">
 			<Option target="corewar_git"/>
 		</Unit>
-		<Unit filename="/Users/egiant/Desktop/corewar_git/libft/src/ft_lstiter.c">
+		<Unit filename="/Users/egiant/Desktop/corewar_git/libftprintf/libft/sources/ft_strcjoin.c">
 			<Option target="corewar_git"/>
 		</Unit>
-		<Unit filename="/Users/egiant/Desktop/corewar_git/libft/src/ft_lstmap.c">
+		<Unit filename="/Users/egiant/Desktop/corewar_git/libftprintf/libft/sources/ft_strclr.c">
 			<Option target="corewar_git"/>
 		</Unit>
-		<Unit filename="/Users/egiant/Desktop/corewar_git/libft/src/ft_lstnew.c">
+		<Unit filename="/Users/egiant/Desktop/corewar_git/libftprintf/libft/sources/ft_strcmp.c">
 			<Option target="corewar_git"/>
 		</Unit>
-		<Unit filename="/Users/egiant/Desktop/corewar_git/libft/src/ft_memalloc.c">
+		<Unit filename="/Users/egiant/Desktop/corewar_git/libftprintf/libft/sources/ft_strcpy.c">
 			<Option target="corewar_git"/>
 		</Unit>
-		<Unit filename="/Users/egiant/Desktop/corewar_git/libft/src/ft_memccpy.c">
+		<Unit filename="/Users/egiant/Desktop/corewar_git/libftprintf/libft/sources/ft_strdel.c">
 			<Option target="corewar_git"/>
 		</Unit>
-		<Unit filename="/Users/egiant/Desktop/corewar_git/libft/src/ft_memchr.c">
+		<Unit filename="/Users/egiant/Desktop/corewar_git/libftprintf/libft/sources/ft_strdup.c">
 			<Option target="corewar_git"/>
 		</Unit>
-		<Unit filename="/Users/egiant/Desktop/corewar_git/libft/src/ft_memcmp.c">
+		<Unit filename="/Users/egiant/Desktop/corewar_git/libftprintf/libft/sources/ft_strequ.c">
 			<Option target="corewar_git"/>
 		</Unit>
-		<Unit filename="/Users/egiant/Desktop/corewar_git/libft/src/ft_memcpy.c">
+		<Unit filename="/Users/egiant/Desktop/corewar_git/libftprintf/libft/sources/ft_striter.c">
 			<Option target="corewar_git"/>
 		</Unit>
-		<Unit filename="/Users/egiant/Desktop/corewar_git/libft/src/ft_memdel.c">
+		<Unit filename="/Users/egiant/Desktop/corewar_git/libftprintf/libft/sources/ft_striteri.c">
 			<Option target="corewar_git"/>
 		</Unit>
-		<Unit filename="/Users/egiant/Desktop/corewar_git/libft/src/ft_memmove.c">
+		<Unit filename="/Users/egiant/Desktop/corewar_git/libftprintf/libft/sources/ft_strjoin.c">
 			<Option target="corewar_git"/>
 		</Unit>
-		<Unit filename="/Users/egiant/Desktop/corewar_git/libft/src/ft_memset.c">
+		<Unit filename="/Users/egiant/Desktop/corewar_git/libftprintf/libft/sources/ft_strlcat.c">
 			<Option target="corewar_git"/>
 		</Unit>
-		<Unit filename="/Users/egiant/Desktop/corewar_git/libft/src/ft_power.c">
+		<Unit filename="/Users/egiant/Desktop/corewar_git/libftprintf/libft/sources/ft_strlen.c">
 			<Option target="corewar_git"/>
 		</Unit>
-		<Unit filename="/Users/egiant/Desktop/corewar_git/libft/src/ft_power_db.c">
+		<Unit filename="/Users/egiant/Desktop/corewar_git/libftprintf/libft/sources/ft_strmap.c">
 			<Option target="corewar_git"/>
 		</Unit>
-		<Unit filename="/Users/egiant/Desktop/corewar_git/libft/src/ft_putchar.c">
+		<Unit filename="/Users/egiant/Desktop/corewar_git/libftprintf/libft/sources/ft_strmapi.c">
 			<Option target="corewar_git"/>
 		</Unit>
-		<Unit filename="/Users/egiant/Desktop/corewar_git/libft/src/ft_putchar_fd.c">
+		<Unit filename="/Users/egiant/Desktop/corewar_git/libftprintf/libft/sources/ft_strncat.c">
 			<Option target="corewar_git"/>
 		</Unit>
-		<Unit filename="/Users/egiant/Desktop/corewar_git/libft/src/ft_putendl.c">
+		<Unit filename="/Users/egiant/Desktop/corewar_git/libftprintf/libft/sources/ft_strncmp.c">
 			<Option target="corewar_git"/>
 		</Unit>
-		<Unit filename="/Users/egiant/Desktop/corewar_git/libft/src/ft_putendl_fd.c">
+		<Unit filename="/Users/egiant/Desktop/corewar_git/libftprintf/libft/sources/ft_strncpy.c">
 			<Option target="corewar_git"/>
 		</Unit>
-		<Unit filename="/Users/egiant/Desktop/corewar_git/libft/src/ft_putnbr.c">
+		<Unit filename="/Users/egiant/Desktop/corewar_git/libftprintf/libft/sources/ft_strnequ.c">
 			<Option target="corewar_git"/>
 		</Unit>
-		<Unit filename="/Users/egiant/Desktop/corewar_git/libft/src/ft_putnbr_fd.c">
+		<Unit filename="/Users/egiant/Desktop/corewar_git/libftprintf/libft/sources/ft_strnew.c">
 			<Option target="corewar_git"/>
 		</Unit>
-		<Unit filename="/Users/egiant/Desktop/corewar_git/libft/src/ft_putstr.c">
+		<Unit filename="/Users/egiant/Desktop/corewar_git/libftprintf/libft/sources/ft_strnstr.c">
 			<Option target="corewar_git"/>
 		</Unit>
-		<Unit filename="/Users/egiant/Desktop/corewar_git/libft/src/ft_putstr_fd.c">
+		<Unit filename="/Users/egiant/Desktop/corewar_git/libftprintf/libft/sources/ft_strrchr.c">
 			<Option target="corewar_git"/>
 		</Unit>
-		<Unit filename="/Users/egiant/Desktop/corewar_git/libft/src/ft_range.c">
+		<Unit filename="/Users/egiant/Desktop/corewar_git/libftprintf/libft/sources/ft_strsplit.c">
 			<Option target="corewar_git"/>
 		</Unit>
-		<Unit filename="/Users/egiant/Desktop/corewar_git/libft/src/ft_realloc.c">
+		<Unit filename="/Users/egiant/Desktop/corewar_git/libftprintf/libft/sources/ft_strstr.c">
 			<Option target="corewar_git"/>
 		</Unit>
-		<Unit filename="/Users/egiant/Desktop/corewar_git/libft/src/ft_revstr.c">
+		<Unit filename="/Users/egiant/Desktop/corewar_git/libftprintf/libft/sources/ft_strsub.c">
 			<Option target="corewar_git"/>
 		</Unit>
-		<Unit filename="/Users/egiant/Desktop/corewar_git/libft/src/ft_skip_whitesp.c">
+		<Unit filename="/Users/egiant/Desktop/corewar_git/libftprintf/libft/sources/ft_strtrim.c">
 			<Option target="corewar_git"/>
 		</Unit>
-		<Unit filename="/Users/egiant/Desktop/corewar_git/libft/src/ft_sqrt.c">
+		<Unit filename="/Users/egiant/Desktop/corewar_git/libftprintf/libft/sources/ft_tolower.c">
 			<Option target="corewar_git"/>
 		</Unit>
-		<Unit filename="/Users/egiant/Desktop/corewar_git/libft/src/ft_strcat.c">
+		<Unit filename="/Users/egiant/Desktop/corewar_git/libftprintf/libft/sources/ft_toupper.c">
 			<Option target="corewar_git"/>
 		</Unit>
-		<Unit filename="/Users/egiant/Desktop/corewar_git/libft/src/ft_strchr.c">
+		<Unit filename="/Users/egiant/Desktop/corewar_git/libftprintf/libft/sources/ft_wchar_len.c">
 			<Option target="corewar_git"/>
 		</Unit>
-		<Unit filename="/Users/egiant/Desktop/corewar_git/libft/src/ft_strclr.c">
+		<Unit filename="/Users/egiant/Desktop/corewar_git/libftprintf/libft/sources/ft_wordcount.c">
 			<Option target="corewar_git"/>
 		</Unit>
-		<Unit filename="/Users/egiant/Desktop/corewar_git/libft/src/ft_strcmp.c">
+		<Unit filename="/Users/egiant/Desktop/corewar_git/libftprintf/libft/sources/get_next_line.c">
 			<Option target="corewar_git"/>
 		</Unit>
-		<Unit filename="/Users/egiant/Desktop/corewar_git/libft/src/ft_strcpy.c">
+		<Unit filename="/Users/egiant/Desktop/corewar_git/libftprintf/sources/ft_bigc_width.c">
 			<Option target="corewar_git"/>
 		</Unit>
-		<Unit filename="/Users/egiant/Desktop/corewar_git/libft/src/ft_strdel.c">
+		<Unit filename="/Users/egiant/Desktop/corewar_git/libftprintf/sources/ft_count_valid.c">
 			<Option target="corewar_git"/>
 		</Unit>
-		<Unit filename="/Users/egiant/Desktop/corewar_git/libft/src/ft_strdup.c">
+		<Unit filename="/Users/egiant/Desktop/corewar_git/libftprintf/sources/ft_edit_flags.c">
 			<Option target="corewar_git"/>
 		</Unit>
-		<Unit filename="/Users/egiant/Desktop/corewar_git/libft/src/ft_strequ.c">
+		<Unit filename="/Users/egiant/Desktop/corewar_git/libftprintf/sources/ft_fract_to_dec_f.c">
 			<Option target="corewar_git"/>
 		</Unit>
-		<Unit filename="/Users/egiant/Desktop/corewar_git/libft/src/ft_striter.c">
+		<Unit filename="/Users/egiant/Desktop/corewar_git/libftprintf/sources/ft_get_binary.c">
 			<Option target="corewar_git"/>
 		</Unit>
-		<Unit filename="/Users/egiant/Desktop/corewar_git/libft/src/ft_striteri.c">
+		<Unit filename="/Users/egiant/Desktop/corewar_git/libftprintf/sources/ft_get_flags.c">
 			<Option target="corewar_git"/>
 		</Unit>
-		<Unit filename="/Users/egiant/Desktop/corewar_git/libft/src/ft_strjoin.c">
+		<Unit filename="/Users/egiant/Desktop/corewar_git/libftprintf/sources/ft_get_precision.c">
 			<Option target="corewar_git"/>
 		</Unit>
-		<Unit filename="/Users/egiant/Desktop/corewar_git/libft/src/ft_strlcat.c">
+		<Unit filename="/Users/egiant/Desktop/corewar_git/libftprintf/sources/ft_get_type.c">
 			<Option target="corewar_git"/>
 		</Unit>
-		<Unit filename="/Users/egiant/Desktop/corewar_git/libft/src/ft_strlen.c">
+		<Unit filename="/Users/egiant/Desktop/corewar_git/libftprintf/sources/ft_get_type_size.c">
 			<Option target="corewar_git"/>
 		</Unit>
-		<Unit filename="/Users/egiant/Desktop/corewar_git/libft/src/ft_strmap.c">
+		<Unit filename="/Users/egiant/Desktop/corewar_git/libftprintf/sources/ft_get_width.c">
 			<Option target="corewar_git"/>
 		</Unit>
-		<Unit filename="/Users/egiant/Desktop/corewar_git/libft/src/ft_strmapi.c">
+		<Unit filename="/Users/egiant/Desktop/corewar_git/libftprintf/sources/ft_handle_binary_f.c">
 			<Option target="corewar_git"/>
 		</Unit>
-		<Unit filename="/Users/egiant/Desktop/corewar_git/libft/src/ft_strncat.c">
+		<Unit filename="/Users/egiant/Desktop/corewar_git/libftprintf/sources/ft_handle_doubles.c">
 			<Option target="corewar_git"/>
 		</Unit>
-		<Unit filename="/Users/egiant/Desktop/corewar_git/libft/src/ft_strncmp.c">
+		<Unit filename="/Users/egiant/Desktop/corewar_git/libftprintf/sources/ft_handle_output_f.c">
 			<Option target="corewar_git"/>
 		</Unit>
-		<Unit filename="/Users/egiant/Desktop/corewar_git/libft/src/ft_strncpy.c">
+		<Unit filename="/Users/egiant/Desktop/corewar_git/libftprintf/sources/ft_handle_special_f.c">
 			<Option target="corewar_git"/>
 		</Unit>
-		<Unit filename="/Users/egiant/Desktop/corewar_git/libft/src/ft_strndup.c">
+		<Unit filename="/Users/egiant/Desktop/corewar_git/libftprintf/sources/ft_ignored_space.c">
 			<Option target="corewar_git"/>
 		</Unit>
-		<Unit filename="/Users/egiant/Desktop/corewar_git/libft/src/ft_strnequ.c">
+		<Unit filename="/Users/egiant/Desktop/corewar_git/libftprintf/sources/ft_ignored_zero.c">
 			<Option target="corewar_git"/>
 		</Unit>
-		<Unit filename="/Users/egiant/Desktop/corewar_git/libft/src/ft_strnew.c">
+		<Unit filename="/Users/egiant/Desktop/corewar_git/libftprintf/sources/ft_ints_to_dec_f.c">
 			<Option target="corewar_git"/>
 		</Unit>
-		<Unit filename="/Users/egiant/Desktop/corewar_git/libft/src/ft_strnlen.c">
+		<Unit filename="/Users/egiant/Desktop/corewar_git/libftprintf/sources/ft_printf.c">
 			<Option target="corewar_git"/>
 		</Unit>
-		<Unit filename="/Users/egiant/Desktop/corewar_git/libft/src/ft_strnstr.c">
+		<Unit filename="/Users/egiant/Desktop/corewar_git/libftprintf/sources/ft_solve_c.c">
 			<Option target="corewar_git"/>
 		</Unit>
-		<Unit filename="/Users/egiant/Desktop/corewar_git/libft/src/ft_strrchr.c">
+		<Unit filename="/Users/egiant/Desktop/corewar_git/libftprintf/sources/ft_solve_d.c">
 			<Option target="corewar_git"/>
 		</Unit>
-		<Unit filename="/Users/egiant/Desktop/corewar_git/libft/src/ft_strsplit.c">
+		<Unit filename="/Users/egiant/Desktop/corewar_git/libftprintf/sources/ft_solve_f.c">
 			<Option target="corewar_git"/>
 		</Unit>
-		<Unit filename="/Users/egiant/Desktop/corewar_git/libft/src/ft_strstr.c">
+		<Unit filename="/Users/egiant/Desktop/corewar_git/libftprintf/sources/ft_solve_ox.c">
 			<Option target="corewar_git"/>
 		</Unit>
-		<Unit filename="/Users/egiant/Desktop/corewar_git/libft/src/ft_strsub.c">
+		<Unit filename="/Users/egiant/Desktop/corewar_git/libftprintf/sources/ft_solve_p.c">
 			<Option target="corewar_git"/>
 		</Unit>
-		<Unit filename="/Users/egiant/Desktop/corewar_git/libft/src/ft_strtrim.c">
+		<Unit filename="/Users/egiant/Desktop/corewar_git/libftprintf/sources/ft_solve_percent.c">
 			<Option target="corewar_git"/>
 		</Unit>
-		<Unit filename="/Users/egiant/Desktop/corewar_git/libft/src/ft_swap.c">
+		<Unit filename="/Users/egiant/Desktop/corewar_git/libftprintf/sources/ft_solve_s.c">
 			<Option target="corewar_git"/>
 		</Unit>
-		<Unit filename="/Users/egiant/Desktop/corewar_git/libft/src/ft_swap_str.c">
+		<Unit filename="/Users/egiant/Desktop/corewar_git/libftprintf/sources/ft_solve_u.c">
 			<Option target="corewar_git"/>
 		</Unit>
-		<Unit filename="/Users/egiant/Desktop/corewar_git/libft/src/ft_tolower.c">
+		<Unit filename="/Users/egiant/Desktop/corewar_git/libftprintf/sources/ft_valid_flags.c">
 			<Option target="corewar_git"/>
 		</Unit>
-		<Unit filename="/Users/egiant/Desktop/corewar_git/libft/src/ft_toupper.c">
+		<Unit filename="/Users/egiant/Desktop/corewar_git/libftprintf/sources/ft_valid_flags_c_s_p.c">
 			<Option target="corewar_git"/>
 		</Unit>
-		<Unit filename="/Users/egiant/Desktop/corewar_git/libft/src/ft_uitoa_base.c">
+		<Unit filename="/Users/egiant/Desktop/corewar_git/libftprintf/sources/ft_write_d_case1.c">
 			<Option target="corewar_git"/>
 		</Unit>
-		<Unit filename="/Users/egiant/Desktop/corewar_git/libft/src/get_next_line.c">
+		<Unit filename="/Users/egiant/Desktop/corewar_git/libftprintf/sources/ft_write_d_case2.c">
 			<Option target="corewar_git"/>
 		</Unit>
-		<Unit filename="/Users/egiant/Desktop/corewar_git/libft/src/iswhitesp.c">
+		<Unit filename="/Users/egiant/Desktop/corewar_git/libftprintf/sources/ft_write_d_case3.c">
+			<Option target="corewar_git"/>
+		</Unit>
+		<Unit filename="/Users/egiant/Desktop/corewar_git/libftprintf/sources/ft_write_f.c">
+			<Option target="corewar_git"/>
+		</Unit>
+		<Unit filename="/Users/egiant/Desktop/corewar_git/libftprintf/sources/ft_write_ox_case1.c">
+			<Option target="corewar_git"/>
+		</Unit>
+		<Unit filename="/Users/egiant/Desktop/corewar_git/libftprintf/sources/ft_write_ox_case2.c">
+			<Option target="corewar_git"/>
+		</Unit>
+		<Unit filename="/Users/egiant/Desktop/corewar_git/libftprintf/sources/ft_write_ox_case3.c">
+			<Option target="corewar_git"/>
+		</Unit>
+		<Unit filename="/Users/egiant/Desktop/corewar_git/libftprintf/sources/ft_write_u_case1.c">
+			<Option target="corewar_git"/>
+		</Unit>
+		<Unit filename="/Users/egiant/Desktop/corewar_git/libftprintf/sources/ft_write_u_case2.c">
+			<Option target="corewar_git"/>
+		</Unit>
+		<Unit filename="/Users/egiant/Desktop/corewar_git/libftprintf/sources/ft_write_utf.c">
 			<Option target="corewar_git"/>
 		</Unit>
 		<Unit filename="/Users/egiant/Desktop/corewar_git/virtual_machine/includes/operations.h">

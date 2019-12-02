@@ -6,5 +6,5 @@ C_FLAGS = -g   -std=gnu11
 
 C_DEFINES = 
 
-C_INCLUDES = -I/Users/egiant/Desktop/corewar_git/includes -I/Users/egiant/Desktop/corewar_git/libft -I/Users/egiant/Desktop/corewar_git/libft/ft_printf -I/Users/egiant/Desktop/corewar_git/virtual_machine/includes 
+C_INCLUDES = -I/Users/egiant/Desktop/corewar_git/includes -I/Users/egiant/Desktop/corewar_git/libftprintf/headers -I/Users/egiant/Desktop/corewar_git/libftprintf/libft/headers -I/Users/egiant/Desktop/corewar_git/virtual_machine/includes -I/Users/egiant/Desktop/corewar_git/virtual_machine/includes/sdl -I/Users/egiant/Desktop/corewar_git/virtual_machine/includes/sdl/SDL2 -I/Users/egiant/Desktop/corewar_git/virtual_machine/includes/sdl/SDL2_GFX -I/Users/egiant/Desktop/corewar_git/virtual_machine/includes/sdl/SDL2_IMG -I/Users/egiant/Desktop/corewar_git/virtual_machine/includes/sdl/SDL2_MIX 
 
