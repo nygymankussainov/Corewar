@@ -6,7 +6,7 @@
 /*   By: vhazelnu <vhazelnu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/29 17:13:10 by vhazelnu          #+#    #+#             */
-/*   Updated: 2019/12/02 09:45:26 by vhazelnu         ###   ########.fr       */
+/*   Updated: 2019/12/02 10:31:12 by vhazelnu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ int		get_ind_value(t_vm *vm, t_carr *carr, int pos, int size)
 	}
 	address = rev_bytes(address, size);
 	i = 0;
-	while (!address[i])
+	while (!address[i] && i < size)
 		++i;
 	value = *((int *)(address + i));
 	ft_strdel(&address);

@@ -6,7 +6,7 @@
 /*   By: vhazelnu <vhazelnu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/29 21:43:01 by vhazelnu          #+#    #+#             */
-/*   Updated: 2019/12/02 09:46:48 by vhazelnu         ###   ########.fr       */
+/*   Updated: 2019/12/02 10:28:28 by vhazelnu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,26 @@
 
 int		ldi(t_vm *vm, t_carr *carr, t_player *player)
 {
+	int		value;
+	int		pos;
+	int		i;
 
+	i = 0;
+	pos = 0;
+	player += 0;
+	while (i < carr->op->args_number - 1)
+	{
+		if (vm->args_type[i] == REG_CODE)
+			pos += carr->reg[vm->args[i] - 1];
+		else if (vm->args_type[i] == DIR_CODE)
+			pos += vm->args[i];
+		else
+			pos += get_ind_value(vm, carr, vm->args[i] % IDX_MOD, REG_SIZE);
+		++i;
+	}
+	value = get_ind_value(vm, carr, pos % IDX_MOD, REG_SIZE);
+	carr->reg[vm->args[i] - 1] = value;
+	return (0);
 }
 
 int		zjmp(t_vm *vm, t_carr *carr, t_player *player)

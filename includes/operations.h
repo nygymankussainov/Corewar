@@ -6,7 +6,7 @@
 /*   By: vhazelnu <vhazelnu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/02 16:36:10 by vhazelnu          #+#    #+#             */
-/*   Updated: 2019/12/02 09:45:10 by vhazelnu         ###   ########.fr       */
+/*   Updated: 2019/12/02 10:18:43 by vhazelnu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,6 +90,7 @@ int							and(t_vm *vm, t_carr *carr, t_player *player);
 int							or(t_vm *vm, t_carr *carr, t_player *player);
 int							xor(t_vm *vm, t_carr *carr, t_player *player);
 int							zjmp(t_vm *vm, t_carr *carr, t_player *player);
+int							ldi(t_vm *vm, t_carr *carr, t_player *player);
 
 typedef struct				s_op_funcs
 {
@@ -123,6 +124,9 @@ static t_op_funcs			g_op_funcs[OP_NUMBER] = {
 	},
 	{
 		.f = zjmp
+	},
+	{
+		.f = ldi
 	}
 };
 
