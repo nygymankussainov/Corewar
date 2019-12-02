@@ -6,7 +6,7 @@
 /*   By: screight <screight@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/17 13:06:28 by hfrankly          #+#    #+#             */
-/*   Updated: 2019/12/02 06:15:19 by screight         ###   ########.fr       */
+/*   Updated: 2019/12/02 07:11:55 by screight         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,7 @@ t_sdl				*sdl_init(void);
 void				ft_close_sdl(t_sdl *sdl);
 void				vis_corewar(t_corewar *vm);
 void				set_player_color(t_corewar *vm, int i);
-void				handle_key_press(t_corewar *vm, bool *trig);
+bool				handle_key_press(t_corewar *vm, bool *trig, bool pause);
 void				display_winner_vis(t_corewar *vm);
 void				display_player_data(t_corewar *vm, short h, short i);
 void				display_vm_state_vis(t_corewar *vm);

@@ -6,7 +6,7 @@
 /*   By: screight <screight@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/18 20:46:08 by screight          #+#    #+#             */
-/*   Updated: 2019/12/02 05:49:39 by screight         ###   ########.fr       */
+/*   Updated: 2019/12/02 06:57:31 by screight         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,5 +101,5 @@ void	vis_corewar(t_corewar *vm)
 	display_arena_vis(vm, -1);
 	SDL_RenderPresent(vm->sdl->ren);
 	while (!start)
-		handle_key_press(vm, &start);
+		handle_key_press(vm, &start, true);
 }

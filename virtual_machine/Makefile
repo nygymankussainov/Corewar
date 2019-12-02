@@ -6,7 +6,7 @@
 #    By: screight <screight@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/10/30 17:56:58 by hfrankly          #+#    #+#              #
-#    Updated: 2019/12/02 06:14:45 by screight         ###   ########.fr        #
+#    Updated: 2019/12/02 07:12:18 by screight         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -66,7 +66,7 @@ all: cmpl $(NAME)
 
 $(NAME): $(MAIN_OBJS) $(FREE_OBJS) $(INIT_OBJS) $(PARSING_OBJS) $(VALID_OBJS) $(WAR_OBJS) $(VIS_OBJS)| mklibpr
 	@gcc $(FLAGS) $(MAIN_OBJS) $(FREE_OBJS) $(INIT_OBJS) $(PARSING_OBJS) $(VALID_OBJS) $(WAR_OBJS) $(VIS_OBJS) -L $(LIBPRDIR) -lftprintf $(HEADER) -o $(NAME) $(SDL)
-	@echo "$(LOG_GREEN)Corewar has been compiled successfully!$(LOG_NOCOLOR)"
+	@echo "$(LOG_GREEN)Corewar has been compiled!$(LOG_NOCOLOR)"
 		
 $(MAIN_OBJS) :	$(OBJ_DIR)%.o: $(SRC_DIR)%.c
 	@mkdir -p $(OBJ_DIR)

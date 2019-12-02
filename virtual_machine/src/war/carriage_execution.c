@@ -6,7 +6,7 @@
 /*   By: screight <screight@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/09 15:37:50 by hfrankly          #+#    #+#             */
-/*   Updated: 2019/12/02 04:41:06 by screight         ###   ########.fr       */
+/*   Updated: 2019/12/02 06:49:42 by screight         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,7 +67,7 @@ void    execute_carriages(t_corewar **vm)
 			if (carriage->cycles_before_operation == 0 && (*vm)->visual == true)
 			{
 				vis_corewar(*vm);
-				handle_key_press(*vm, NULL);
+				handle_key_press(*vm, NULL, false);
 			}
 			carriage = carriage->next;
 		}

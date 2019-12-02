@@ -6,7 +6,7 @@
 /*   By: screight <screight@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/01 23:55:03 by screight          #+#    #+#             */
-/*   Updated: 2019/12/02 04:29:54 by screight         ###   ########.fr       */
+/*   Updated: 2019/12/02 07:06:50 by screight         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,22 +54,22 @@ void    handle_music(t_corewar *vm)
     }
 }
 
-void    handle_pause(t_corewar *vm, bool pause)
+bool    handle_pause(t_corewar *vm, bool *trig, bool pause)
 {
-    stringColor(vm->sdl->ren, X, 650, "(SPACE)", SALM);
-	SDL_RenderPresent(vm->sdl->ren);
-	while (!pause)
+	if (!pause)
 	{
-		while (SDL_PollEvent(vm->sdl->e) != 0)
-		{
-			if (vm->sdl->e->type == SDL_KEYDOWN &&
-                                    vm->sdl->e->key.keysym.sym == SDLK_SPACE)
-				pause = true;
-		}
+		stringColor(vm->sdl->ren, X, 650, "(SPACE)", SALM);
+		SDL_RenderPresent(vm->sdl->ren);
+		pause = true;
+		while (pause)
+			pause = handle_key_press(vm, trig, pause);
 	}
+	else
+		pause = false;
+	return (pause);
 }
 
-void handle_key_press(t_corewar *vm, bool *trig)
+bool handle_key_press(t_corewar *vm, bool *trig, bool pause)
 {
 	while (SDL_PollEvent(vm->sdl->e) != 0)
 	{
@@ -83,15 +83,16 @@ void handle_key_press(t_corewar *vm, bool *trig)
 			*trig = true;
 		else if (vm->sdl->e->type == SDL_KEYDOWN &&
     	            vm->sdl->e->key.keysym.sym == SDLK_SPACE)
-			handle_pause(vm, false);
+			pause = handle_pause(vm, trig, pause);
 		else if (vm->sdl->e->type == SDL_KEYDOWN && 
-    	            (vm->sdl->e->key.keysym.sym == SDLK_9 || 
+    	            (vm->sdl->e->key.keysym.sym == SDLK_9 ||
     	                vm->sdl->e->key.keysym.sym == SDLK_m ||
     	                    vm->sdl->e->key.keysym.sym == SDLK_0))
 			handle_music(vm);
 		else if (vm->sdl->e->type == SDL_KEYDOWN && 
-    	    ((vm->sdl->e->key.keysym.sym == SDLK_DOWN && vm->sdl->delay <= 40) ||
-    	        (vm->sdl->e->key.keysym.sym == SDLK_UP && vm->sdl->delay >= 20)))
+    	((vm->sdl->e->key.keysym.sym == SDLK_DOWN && vm->sdl->delay <= 40) ||
+    		(vm->sdl->e->key.keysym.sym == SDLK_UP && vm->sdl->delay >= 20)))
     	    handle_speed(vm);
 	}
+	return (pause);
 }

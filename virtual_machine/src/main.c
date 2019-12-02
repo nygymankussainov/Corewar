@@ -6,7 +6,7 @@
 /*   By: screight <screight@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/30 13:41:19 by egiant            #+#    #+#             */
-/*   Updated: 2019/12/02 04:38:42 by screight         ###   ########.fr       */
+/*   Updated: 2019/12/02 06:54:57 by screight         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,7 +95,7 @@ int				main(int argc, char *argv[])
 	if (vm->visual)
 	{
 		while (!quit)
-			handle_key_press(vm, &quit);
+			handle_key_press(vm, &quit, true);
 		ft_close_sdl(vm->sdl);
 	}
 	return (0);
