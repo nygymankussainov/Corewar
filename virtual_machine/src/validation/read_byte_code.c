@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   read_byte_code.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: egiant <egiant@student.42.fr>              +#+  +:+       +#+        */
+/*   By: screight <screight@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/31 18:20:43 by egiant            #+#    #+#             */
-/*   Updated: 2019/11/28 13:01:28 by egiant           ###   ########.fr       */
+/*   Updated: 2019/12/02 05:31:58 by screight         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -116,7 +116,7 @@ void check_cores(t_corewar *vm)
     int n;
 
     n = 0;
-    while (vm->cores[n])
+    while (vm->cores[n] && n < 4) //n < 4 added by screight
         ++n;
     if (n != vm->number_of_players)
         terminate_with_error(vm);
@@ -143,7 +143,7 @@ void			read_byte_code(t_corewar **vm)
 		read_champion_comment((*vm), (*vm)->cores[id], fd);
 		read_null_octet((*vm), fd);
 		read_exec_code((*vm), (*vm)->cores[id], fd);
-		(*vm)->cores[id]->color = (n + 1) * 0xFFAAEE;
+		set_player_color((*vm), n);
 		free(file_name);
 		core_tmp = core_tmp->next;
 		++n;

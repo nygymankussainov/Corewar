@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   carriage_execution.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hfrankly <hfrankly@student.42.fr>          +#+  +:+       +#+        */
+/*   By: screight <screight@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/09 15:37:50 by hfrankly          #+#    #+#             */
-/*   Updated: 2019/12/01 20:54:55 by hfrankly         ###   ########.fr       */
+/*   Updated: 2019/12/02 04:41:06 by screight         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,8 +64,11 @@ void    execute_carriages(t_corewar **vm)
 				execute_carriage_op(*vm, carriage);
 			else if (carriage->cycles_before_operation == 0)
 				carriage->position = (carriage->position + 1) % MEM_SIZE;
-			 //if (carriage->cycles_before_operation == 0 && (*vm)->visual == true)
-				//display_arena_state(*vm);
+			if (carriage->cycles_before_operation == 0 && (*vm)->visual == true)
+			{
+				vis_corewar(*vm);
+				handle_key_press(*vm, NULL);
+			}
 			carriage = carriage->next;
 		}
 		(*vm)->current_cycles++;

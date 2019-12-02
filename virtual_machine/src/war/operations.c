@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   operations.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hfrankly <hfrankly@student.42.fr>          +#+  +:+       +#+        */
+/*   By: screight <screight@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/19 15:57:01 by hfrankly          #+#    #+#             */
-/*   Updated: 2019/12/01 20:56:16 by hfrankly         ###   ########.fr       */
+/*   Updated: 2019/12/02 05:16:23 by screight         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -107,6 +107,10 @@ void				add_to_arena(t_corewar *vm, uint16_t position, int32_t code, t_carriage 
 	vm->arena[(position + 1) % MEM_SIZE].color = carriage->color;
 	vm->arena[(position + 2) % MEM_SIZE].color = carriage->color;
 	vm->arena[(position + 3) % MEM_SIZE].color = carriage->color;
+	vm->arena[position].light_count = 51;
+	vm->arena[(position + 1) % MEM_SIZE].light_count = 51;
+	vm->arena[(position + 2) % MEM_SIZE].light_count = 51;
+	vm->arena[(position + 3) % MEM_SIZE].light_count = 51;
 	carriage->last_operation[0] = position;
 	carriage->last_operation[1] = (position + 1) % MEM_SIZE;
 	carriage->last_operation[2] = (position + 2) % MEM_SIZE;
@@ -121,11 +125,16 @@ void				op_live(t_corewar *vm, t_carriage *carriage, int8_t *arg_code)
 	vm->live_count++;
     carriage->cycle_was_live = vm->total_cycles + vm->current_cycles;
 	player_code = -return_bytes(vm->arena, carriage->position + 1, carriage->operation->t_dir_size);
+	vm->arena[carriage->position].live_count = 50;
 	if (player_code > 0 && player_code <= vm->number_of_players)
     {
+		vm->cores[player_code - 1]->cycle_was_live = vm->total_cycles + vm->current_cycles;
+		vm->cores[player_code - 1]->lives_in_period++;
 		vm->winner = vm->cores[player_code - 1];
 		vm->winner->cycle_was_live = vm->total_cycles + vm->current_cycles;
 	}
+	if (vm->visual && vm->sdl->sound)
+		Mix_PlayChannel(-1, vm->sdl->live, 0);
 }
 
 void				op_st(t_corewar *vm, t_carriage *carriage, int8_t *arg_code)
@@ -359,6 +368,8 @@ void				op_fork(t_corewar *vm, t_carriage *carriage, int8_t *arg_code)
  	distance = return_bytes(vm->arena, (carriage->position + 1) % MEM_SIZE, carriage->operation->t_dir_size);
 	new_carriage = copy_carriage(vm, carriage);
 	new_carriage->position = get_position(carriage->position, distance, true);
+	if (vm->visual && vm->sdl->sound)
+		Mix_PlayChannel(-1, vm->sdl->copy_car, 0);
 }
 
 void				op_lfork(t_corewar *vm, t_carriage *carriage, int8_t *arg_code)
@@ -369,6 +380,8 @@ void				op_lfork(t_corewar *vm, t_carriage *carriage, int8_t *arg_code)
 	distance = return_bytes(vm->arena, (carriage->position + 1) % MEM_SIZE, carriage->operation->t_dir_size);
 	new_carriage = copy_carriage(vm, carriage);
 	new_carriage->position = get_position(carriage->position, distance, false);
+	if (vm->visual && vm->sdl->sound)
+		Mix_PlayChannel(-1, vm->sdl->copy_car, 0);
 }
 
 void				op_aff(t_corewar *vm, t_carriage *carriage, int8_t *arg_code)

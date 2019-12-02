@@ -3,14 +3,17 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: egiant <egiant@student.42.fr>              +#+  +:+       +#+         #
+#    By: screight <screight@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/08/28 20:48:46 by screight          #+#    #+#              #
-#    Updated: 2019/10/25 18:35:12 by egiant           ###   ########.fr        #
+#    Updated: 2019/12/02 03:57:48 by screight         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 .PHONY: clean fclean re all
+
+LOG_NOCOLOR = \033[0m
+LOG_GREEN = \033[32m
 
 NAME= libft.a
 
@@ -48,6 +51,7 @@ all: 		$(NAME)
 $(NAME): 	$(OBJS)
 			@ar rc $(NAME) $(OBJS)
 			@ranlib $(NAME)
+			@echo "$(LOG_GREEN)Libft has been compiled.$(LOG_NOCOLOR)"
 
 $(OBJS): 	$(OBJDIR)%.o: $(SRCDIR)%.c
 			@mkdir -p $(OBJDIR)

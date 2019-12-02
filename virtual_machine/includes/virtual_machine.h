@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   virtual_machine.h                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hfrankly <hfrankly@student.42.fr>          +#+  +:+       +#+        */
+/*   By: screight <screight@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/30 16:29:38 by hfrankly          #+#    #+#             */
-/*   Updated: 2019/12/01 16:13:49 by hfrankly         ###   ########.fr       */
+/*   Updated: 2019/12/02 04:15:21 by screight         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@
 #include "libftprintf.h"
 #include "op.h"
 #include "operations.h"
+#include "visual.h"
 
 typedef struct s_core			t_core;
 typedef struct s_carriage		t_carriage;
@@ -29,11 +30,16 @@ typedef struct s_point			t_point;
 
 typedef struct 		s_point {
 	int32_t			color;
+	int32_t			out_col;
 	uint8_t			value;
+	short			live_count;
+	short			light_count;
+	bool			touch;
+
 }					t_point;
 
 typedef struct 		s_corewar {
-	//t_sdl			*sdl;
+	t_sdl			*sdl;
 	t_core			*cores[MAX_PLAYERS];
 	t_core			*line_of_players;
 	short			number_of_players;
@@ -59,6 +65,7 @@ typedef struct s_core {
 	uint8_t			exec_code[CHAMP_MAX_SIZE];
 	uint16_t		cycle_was_live; // added recently
 	int32_t			color; // init in read_byte_code
+	int32_t			lives_in_period;
 	struct s_core	*next;
 }					t_core;
 

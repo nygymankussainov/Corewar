@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hfrankly <hfrankly@student.42.fr>          +#+  +:+       +#+        */
+/*   By: screight <screight@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/30 13:41:19 by egiant            #+#    #+#             */
-/*   Updated: 2019/12/01 20:56:25 by hfrankly         ###   ########.fr       */
+/*   Updated: 2019/12/02 04:38:42 by screight         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,19 +86,17 @@ int				main(int argc, char *argv[])
 	quit = false;
 	vm = init_vm();
 	parse_arguments(&vm, argc, argv);
-	//if (vm->visual)
-	//	vm->sdl = sdl_init();
+	if (vm->visual)
+		vm->sdl = sdl_init();
 	read_byte_code(&vm);
 	init_arena(vm);
 	introduce_players(vm);
 	start_war(vm);
-	/*if (vm->visual)
+	if (vm->visual)
+	{
 		while (!quit)
-		{
-			while (SDL_PollEvent(vm->sdl->e) != 0)
-				if (vm->sdl->e->type == SDL_QUIT ||
-			(vm->sdl->e->type == SDL_KEYDOWN && vm->sdl->e->key.keysym.sym == SDLK_ESCAPE))
-					quit = 1;
-		}*/
+			handle_key_press(vm, &quit);
+		ft_close_sdl(vm->sdl);
+	}
 	return (0);
 }

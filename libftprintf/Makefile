@@ -6,11 +6,14 @@
 #    By: screight <screight@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/12/15 20:49:37 by screight          #+#    #+#              #
-#    Updated: 2019/10/17 14:26:16 by screight         ###   ########.fr        #
+#    Updated: 2019/12/02 03:58:11 by screight         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 .PHONY: clean fclean re all
+
+LOG_NOCOLOR = \033[0m
+LOG_GREEN = \033[32m
 
 NAME	= libftprintf.a
 
@@ -52,6 +55,7 @@ $(NAME): 	$(OBJS) | mklib
 			@mv $(LIBNAME) $(NAME)
 			@ar rc $(NAME) $(OBJS)
 			@ranlib $(NAME)
+			@echo "$(LOG_GREEN)Libftprinf has been compiled.$(LOG_NOCOLOR)"
 
 $(OBJS): 	$(OBJDIR)%.o: $(SRCDIR)%.c
 			@mkdir -p $(OBJDIR)

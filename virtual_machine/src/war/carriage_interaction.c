@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   carriage_interaction.c                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hfrankly <hfrankly@student.42.fr>          +#+  +:+       +#+        */
+/*   By: screight <screight@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/13 13:13:54 by hfrankly          #+#    #+#             */
-/*   Updated: 2019/12/01 17:21:18 by hfrankly         ###   ########.fr       */
+/*   Updated: 2019/12/02 05:52:54 by screight         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,8 @@ void		kill_carriage(t_corewar **vm, t_carriage *to_delete)
 	next_carriage = cur_carriage->next->next;
 	free(cur_carriage->next);
 	cur_carriage->next = next_carriage;
+	if ((*vm)->visual && (*vm)->sdl->sound)
+		Mix_PlayChannel(-1, (*vm)->sdl->dead_car, 0);
 }
 
 t_carriage		*copy_carriage(t_corewar *vm, t_carriage *to_copy)
@@ -45,6 +47,7 @@ t_carriage		*copy_carriage(t_corewar *vm, t_carriage *to_copy)
 	new_carriage->cycle_was_live = to_copy->cycle_was_live;
 	new_carriage->cycles_before_operation = 0; //
 	new_carriage->player = to_copy->player; //
+	new_carriage->color = to_copy->color;
 	while (i < REG_NUMBER)
 	{
 		new_carriage->registers[i] = to_copy->registers[i];
