@@ -6,7 +6,7 @@
 /*   By: egiant <egiant@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/09 15:37:50 by hfrankly          #+#    #+#             */
-/*   Updated: 2019/12/02 19:44:16 by egiant           ###   ########.fr       */
+/*   Updated: 2019/12/02 20:09:34 by egiant           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,8 +53,8 @@ void    execute_carriages(t_corewar **vm)
 
     while ((*vm)->current_cycles != (*vm)->cycles_to_die)
 	{
-		if ((*vm)->current_cycles + (*vm)->total_cycles == 4829)
-			printf("lldi");
+		if ((*vm)->current_cycles + (*vm)->total_cycles == 7103)
+			printf("Тут ломается Stargate0_1.cor");
 		carriage = (*vm)->start_carriage;
 		if ((*vm)->dumps == (*vm)->current_cycles + (*vm)->total_cycles)
 		{

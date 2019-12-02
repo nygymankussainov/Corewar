@@ -6,7 +6,7 @@
 /*   By: egiant <egiant@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/19 15:57:01 by hfrankly          #+#    #+#             */
-/*   Updated: 2019/12/02 19:45:34 by egiant           ###   ########.fr       */
+/*   Updated: 2019/12/02 19:53:30 by egiant           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -235,8 +235,6 @@ void				op_lldi(t_corewar *vm, t_carriage *carriage, uint8_t *arg_code)
 	uint8_t		arg3;
 	uint16_t	position;
 
-	//if (vm->current_cycles + vm->total_cycles == 4829)
-	//	printf("lldi");
 	position = (carriage->position + 2) % MEM_SIZE;
 	arg1 = return_arg(vm->arena, &position, arg_code[0], carriage->operation->t_dir_size);
 	arg2 = return_arg(vm->arena, &position, arg_code[1], carriage->operation->t_dir_size);
