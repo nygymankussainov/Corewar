@@ -6,7 +6,7 @@
 /*   By: screight <screight@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/17 13:06:28 by hfrankly          #+#    #+#             */
-/*   Updated: 2019/12/02 05:55:41 by screight         ###   ########.fr       */
+/*   Updated: 2019/12/02 06:15:19 by screight         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,12 +30,12 @@
 # define GCOL 0xff698234
 # define DIM 0x50000000
 # define SALM 0xff5867a6
-//#include "SDL.h"
-//#include "SDL2_gfxPrimitives.h"
-//#include "SDL_mixer.h"
-#include <SDL2/SDL.h>
-#include "SDL2/SDL2_gfxPrimitives.h"
-#include "SDL2/SDL_mixer.h"
+#include "SDL.h"
+#include "SDL2_gfxPrimitives.h"
+#include "SDL_mixer.h"
+//#include <SDL2/SDL.h>
+//#include "SDL2/SDL2_gfxPrimitives.h"
+//#include "SDL2/SDL_mixer.h"
 
 typedef struct s_sdl t_sdl;
 

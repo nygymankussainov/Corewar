@@ -6,7 +6,7 @@
 #    By: screight <screight@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/10/30 17:56:58 by hfrankly          #+#    #+#              #
-#    Updated: 2019/12/02 06:01:13 by screight         ###   ########.fr        #
+#    Updated: 2019/12/02 06:14:45 by screight         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,14 +18,14 @@ LOG_RED = \033[31m
 LOG_BLUE = \033[1;34m
 NAME = corewar
 
-#SDL = -L ~/.brew/Cellar/sdl2/2.0.10/lib -l SDL2-2.0.0 \
+SDL = -L ~/.brew/Cellar/sdl2/2.0.10/lib -l SDL2-2.0.0 \
 		`sdl2-config --libs` -lSDL2_gfx -lSDL2_mixer -lSDL2_ttf -lm
-SDL = -lSDL2_gfx -lSDL2_mixer -lSDL2_ttf -lSDL2
+#SDL = -lSDL2_gfx -lSDL2_mixer -lSDL2_ttf -lSDL2
 LIBPRDIR = ../libftprintf
 LIBDIR = ../libftprintf/libft
 FLAGS = -g
 HEADER = -I ../includes/ -I includes/ -I $(LIBPRDIR)/headers -I $(LIBDIR)/headers \
-#-I./includes/sdl/SDL2 -I./includes/sdl/SDL2_GFX -I./includes/sdl/SDL2_MIX `sdl2-config --cflags`
+-I./includes/sdl/SDL2 -I./includes/sdl/SDL2_GFX -I./includes/sdl/SDL2_MIX `sdl2-config --cflags`
 
 OBJ_DIR = obj/
 SRC_DIR = src/
