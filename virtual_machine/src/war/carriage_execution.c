@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   carriage_execution.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: egiant <egiant@student.42.fr>              +#+  +:+       +#+        */
+/*   By: hfrankly <hfrankly@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/09 15:37:50 by hfrankly          #+#    #+#             */
-/*   Updated: 2019/12/02 20:09:34 by egiant           ###   ########.fr       */
+/*   Updated: 2019/12/03 12:21:57 by hfrankly         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,9 +32,16 @@ void	set_carriage_op(t_corewar *vm, t_carriage *carriage)
 void	execute_carriage_op(t_corewar *vm, t_carriage *carriage)
 {
 	uint8_t	*arg_code;
+	uint8_t	i;
 	
 	if (!(arg_code = (uint8_t*)malloc(sizeof(uint8_t) * 4)))
 		termination_with_perror("Error", ENOMEM);
+	i = 0;
+	while (i < 4)
+	{
+		arg_code[i] = 0;
+		i++;
+	}
 	if (carriage->operation != NULL)
 	{
 		set_arg_code(vm, carriage, &arg_code);
@@ -53,12 +60,11 @@ void    execute_carriages(t_corewar **vm)
 
     while ((*vm)->current_cycles != (*vm)->cycles_to_die)
 	{
-		if ((*vm)->current_cycles + (*vm)->total_cycles == 7103)
-			printf("Тут ломается Stargate0_1.cor");
 		carriage = (*vm)->start_carriage;
 		if ((*vm)->dumps == (*vm)->current_cycles + (*vm)->total_cycles)
 		{
 			display_array((*vm)->arena, 64, 64);
+			ft_printf("\n%d\n", (*vm)->cycles_to_die);
 			exit (0);
 		}
 		while (carriage)

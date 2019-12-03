@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   carriage_interaction.c                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: egiant <egiant@student.42.fr>              +#+  +:+       +#+        */
+/*   By: hfrankly <hfrankly@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/13 13:13:54 by hfrankly          #+#    #+#             */
-/*   Updated: 2019/12/02 17:16:09 by egiant           ###   ########.fr       */
+/*   Updated: 2019/12/03 12:02:17 by hfrankly         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,12 +42,8 @@ t_carriage		*copy_carriage(t_corewar *vm, t_carriage *to_copy)
 
 	i = 0;
 	new_carriage = init_carriage(vm, to_copy->player);
-	//new_carriage->id = vm->carriage_count;
 	new_carriage->carry = to_copy->carry;
 	new_carriage->cycle_was_live = to_copy->cycle_was_live;
-	new_carriage->cycles_before_operation = 0; //
-	//new_carriage->player = to_copy->player; //
-	new_carriage->color = to_copy->color;
 	while (i < REG_NUMBER)
 	{
 		new_carriage->registers[i] = to_copy->registers[i];
