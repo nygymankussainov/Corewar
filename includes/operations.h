@@ -6,7 +6,7 @@
 /*   By: vhazelnu <vhazelnu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/02 16:36:10 by vhazelnu          #+#    #+#             */
-/*   Updated: 2019/12/02 10:18:43 by vhazelnu         ###   ########.fr       */
+/*   Updated: 2019/12/03 13:21:02 by vhazelnu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ typedef struct				s_ops
 	int						args_type_code;
 	int						t_dir_size;
 	int						cycles;
-	int						(*f)(t_vm *, t_carr *, t_player *);
+	void					(*f)(t_vm *, t_carr *);
 }							t_ops;
 
 struct						s_carr
@@ -70,6 +70,7 @@ struct						s_vm
 	int						dump;
 	char					arena[MEM_SIZE];
 	t_player				*lastlive;
+	t_player				*player;
 	int						cycles_from_start;
 	int						live_count;
 	int						cycles_to_die_curr;
@@ -79,22 +80,29 @@ struct						s_vm
 	int						args[3];
 	u_int8_t 				first_op;
 	u_int8_t 				last_op;
+	t_carr					*head;
 };
 
-int							live(t_vm *vm, t_carr *carr, t_player *player);
-int							ld(t_vm *vm, t_carr *carr, t_player *player);
-int							st(t_vm *vm, t_carr *carr, t_player *player);
-int							add(t_vm *vm, t_carr *carr, t_player *player);
-int							sub(t_vm *vm, t_carr *carr, t_player *player);
-int							and(t_vm *vm, t_carr *carr, t_player *player);
-int							or(t_vm *vm, t_carr *carr, t_player *player);
-int							xor(t_vm *vm, t_carr *carr, t_player *player);
-int							zjmp(t_vm *vm, t_carr *carr, t_player *player);
-int							ldi(t_vm *vm, t_carr *carr, t_player *player);
+void						live(t_vm *vm, t_carr *carr);
+void						ld(t_vm *vm, t_carr *carr);
+void						st(t_vm *vm, t_carr *carr);
+void						add(t_vm *vm, t_carr *carr);
+void						sub(t_vm *vm, t_carr *carr);
+void						and(t_vm *vm, t_carr *carr);
+void						or(t_vm *vm, t_carr *carr);
+void						xor(t_vm *vm, t_carr *carr);
+void						zjmp(t_vm *vm, t_carr *carr);
+void						ldi(t_vm *vm, t_carr *carr);
+void						sti(t_vm *vm, t_carr *carr);
+void						ffork(t_vm *vm, t_carr *carr);
+void						lld(t_vm *vm, t_carr *carr);
+void						lldi(t_vm *vm, t_carr *carr);
+void						lfork(t_vm *vm, t_carr *carr);
+void						aff(t_vm *vm, t_carr *carr);
 
 typedef struct				s_op_funcs
 {
-	int						(*f)(t_vm *, t_carr *, t_player *);	
+	void					(*f)(t_vm *, t_carr *);	
 }							t_op_funcs;
 
 static t_op_funcs			g_op_funcs[OP_NUMBER] = {
@@ -127,6 +135,24 @@ static t_op_funcs			g_op_funcs[OP_NUMBER] = {
 	},
 	{
 		.f = ldi
+	},
+	{
+		.f = sti
+	},
+	{
+		.f = ffork
+	},
+	{
+		.f = lld
+	},
+	{
+		.f = lldi
+	},
+	{
+		.f = lfork
+	},
+	{
+		.f = aff
 	}
 };
 

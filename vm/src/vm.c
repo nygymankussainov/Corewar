@@ -6,7 +6,7 @@
 /*   By: vhazelnu <vhazelnu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/27 14:26:22 by vhazelnu          #+#    #+#             */
-/*   Updated: 2019/12/01 18:12:49 by vhazelnu         ###   ########.fr       */
+/*   Updated: 2019/12/03 13:27:10 by vhazelnu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ void	get_arg_types(t_vm *vm, t_carr *carr)
 	vm->args_type[2] = (vm->arena[carr->pos] & 0b00001100) >> 2;
 }
 
-void	create_carriage(t_player *player, t_carr **carr, int pos)
+void	create_carriage(t_carr **carr)
 {
 	t_carr	*new;
 
@@ -63,12 +63,9 @@ void	create_carriage(t_player *player, t_carr **carr, int pos)
 		*carr = new;
 		(*carr)->id = (*carr)->next->id + 1;
 	}
-	(*carr)->player_id = player->id;
-	(*carr)->reg[0] = -player->id;
-	carr_move(*carr, pos);
 }
 
-t_carr	*vm_init(t_player *player, t_vm *vm)
+t_carr	*vm_init(t_vm *vm)
 {
 	int		i;
 	int		step;
@@ -79,21 +76,25 @@ t_carr	*vm_init(t_player *player, t_vm *vm)
 	carr = NULL;
 	while (i < vm->pl_nb)
 	{
-		ft_memcpy(vm->arena + (i * step), player[i].bytecode, \
-		player[i].code_size);
-		create_carriage(&player[i], &carr, i * step);		
+		ft_memcpy(vm->arena + (i * step), vm->player[i].bytecode, \
+		vm->player[i].code_size);
+		create_carriage(&carr);	
+		carr->player_id = vm->player[i].id;
+		carr->reg[0] = -vm->player[i].id;
+		carr_move(carr, i * step);
+		vm->head = carr;
 		++i;
 	}
 	return (carr);
 }
 
-void	virtual_machine(t_player *player, t_vm *vm)
+void	virtual_machine(t_vm *vm)
 {
 	t_carr	*carr;
 
-	carr = vm_init(player, vm);
-	announce_players(player, vm->pl_nb);
+	carr = vm_init(vm);
+	announce_players(vm->player, vm->pl_nb);
 	// int fd = open("test", O_CREAT | O_WRONLY, S_IRUSR | S_IWUSR);
 	// write(fd, vm->arena, MEM_SIZE);
-	battle(carr, player, vm);
+	battle(carr, vm);
 }

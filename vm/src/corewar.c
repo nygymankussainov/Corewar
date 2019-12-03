@@ -6,7 +6,7 @@
 /*   By: vhazelnu <vhazelnu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/26 13:03:34 by vhazelnu          #+#    #+#             */
-/*   Updated: 2019/12/01 14:24:24 by vhazelnu         ###   ########.fr       */
+/*   Updated: 2019/12/03 13:18:21 by vhazelnu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,6 +58,7 @@ t_vm	*init_vm(char **argv, int argc, int nb, t_player *player)
 	vm->cycles_to_die = CYCLE_TO_DIE;
 	vm->first_op = g_ops[0].opcode;
 	vm->last_op = g_ops[OP_NUMBER - 1].opcode;
+	vm->player = player;
 	while (argc--)
 	{
 		if (!ft_strcmp(argv[argc], "-dump"))
@@ -84,7 +85,7 @@ int		main(int argc, char **argv)
 	else if ((player = validation(argc, argv, nb)) != NULL)
 	{
 		vm = init_vm(argv, argc, nb, player);
-		virtual_machine(player, vm);
+		virtual_machine(vm);
 		delete_player(player, nb);
 		return (1);
 	}

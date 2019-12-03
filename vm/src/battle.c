@@ -6,7 +6,7 @@
 /*   By: vhazelnu <vhazelnu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/29 16:25:45 by vhazelnu          #+#    #+#             */
-/*   Updated: 2019/12/01 16:27:26 by vhazelnu         ###   ########.fr       */
+/*   Updated: 2019/12/03 13:19:49 by vhazelnu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ void	carr_move(t_carr *carr, int step)
 	carr->pos = (carr->pos + step) % MEM_SIZE;
 }
 
-void	review_carrs(t_vm *vm, t_carr *carr, t_player *player)
+void	review_carrs(t_vm *vm, t_carr *carr)
 {
 	while (carr)
 	{
@@ -45,20 +45,19 @@ void	review_carrs(t_vm *vm, t_carr *carr, t_player *player)
 		if (carr->cycles_to_exec > 0)
 			--carr->cycles_to_exec;
 		if (carr->cycles_to_exec == 0)
-			verify_operation(vm, carr, player);
+			verify_operation(vm, carr);
 		carr = carr->next;
 	}
 }
 
-void	battle(t_carr *carr, t_player *player, t_vm *vm)
+void	battle(t_carr *carr, t_vm *vm)
 {
-	player += 0;
 	while (vm->cycles_to_die > 0 && carr)
 	{
 		vm->cycles_to_die_curr = vm->cycles_to_die;
 		while (vm->cycles_to_die_curr-- > 0)
 		{
-			review_carrs(vm, carr, player);
+			review_carrs(vm, carr);
 			++vm->cycles_from_start;
 		}
 		++vm->check_count;
