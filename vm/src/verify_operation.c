@@ -6,11 +6,17 @@
 /*   By: vhazelnu <vhazelnu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/29 17:13:10 by vhazelnu          #+#    #+#             */
-/*   Updated: 2019/12/03 13:27:16 by vhazelnu         ###   ########.fr       */
+/*   Updated: 2019/12/03 15:23:36 by vhazelnu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "vm.h"
+
+int		neg_mod(int nb)
+{
+	nb = nb % MEM_SIZE + MEM_SIZE;
+	return (nb);
+}
 
 void	verify_operation(t_vm *vm, t_carr *carr)
 {

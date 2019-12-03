@@ -6,7 +6,7 @@
 /*   By: vhazelnu <vhazelnu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/26 13:01:09 by vhazelnu          #+#    #+#             */
-/*   Updated: 2019/12/03 13:21:50 by vhazelnu         ###   ########.fr       */
+/*   Updated: 2019/12/03 16:21:26 by vhazelnu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 
 # include "operations.h"
 # include "ft_printf.h"
+# include <limits.h>
 
 typedef enum		e_type
 {
@@ -48,7 +49,8 @@ int					get_arg_size(t_carr *carr, int i);
 int					check_arg(t_vm *vm, t_carr *carr, int i, int size);
 int					check_reg(t_vm *vm, t_carr *carr, int size);
 void				ft_itoh_vm(int32_t value, int size, t_vm *vm, int pos);
-int					get_ind_value(t_vm *vm, t_carr *carr, int pos, int size);
+int					get_ind_value(t_vm *vm, t_carr *carr, int pos, bool mod);
 void				create_carriage(t_carr **carr);
+int					neg_mod(int nb);
 
 #endif

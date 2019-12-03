@@ -6,7 +6,7 @@
 /*   By: vhazelnu <vhazelnu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/26 13:03:34 by vhazelnu          #+#    #+#             */
-/*   Updated: 2019/12/03 13:18:21 by vhazelnu         ###   ########.fr       */
+/*   Updated: 2019/12/03 16:52:35 by vhazelnu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,11 +53,9 @@ t_vm	*init_vm(char **argv, int argc, int nb, t_player *player)
 		ft_printf("%s\n", strerror(12));
 		exit(12);
 	}
+	vm->cycles_to_die = CYCLE_TO_DIE;
 	vm->pl_nb = nb;
 	vm->lastlive = &player[nb - 1];
-	vm->cycles_to_die = CYCLE_TO_DIE;
-	vm->first_op = g_ops[0].opcode;
-	vm->last_op = g_ops[OP_NUMBER - 1].opcode;
 	vm->player = player;
 	while (argc--)
 	{
@@ -67,6 +65,10 @@ t_vm	*init_vm(char **argv, int argc, int nb, t_player *player)
 			vm->dump = vm->dump < 0 ? 0 : vm->dump;
 			return (vm);
 		}
+		else if (!ft_strcmp(argv[argc], "-a"))
+			vm->aff = 1;
+		else if (!ft_strcmp(argv[argc], "-v"))
+			vm->visual = 1;
 	}
 	return (vm);
 }
@@ -85,6 +87,9 @@ int		main(int argc, char **argv)
 	else if ((player = validation(argc, argv, nb)) != NULL)
 	{
 		vm = init_vm(argv, argc, nb, player);
+		vm->first_op = g_ops[0].opcode;
+		vm->last_op = g_ops[OP_NUMBER - 1].opcode;
+		vm->aff = vm->visual ? 0 : vm->aff;
 		virtual_machine(vm);
 		delete_player(player, nb);
 		return (1);

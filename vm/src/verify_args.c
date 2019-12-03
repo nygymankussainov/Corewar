@@ -6,21 +6,11 @@
 /*   By: vhazelnu <vhazelnu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/29 17:13:10 by vhazelnu          #+#    #+#             */
-/*   Updated: 2019/12/01 18:30:02 by vhazelnu         ###   ########.fr       */
+/*   Updated: 2019/12/03 16:41:18 by vhazelnu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "vm.h"
-
-int		check_reg(t_vm *vm, t_carr *carr, int size)
-{
-	int32_t		reg;
-
-	reg = (int32_t)vm->arena[(carr->pos + size) % MEM_SIZE];
-	if (reg > 0 && reg <= OP_NUMBER)
-		return (1);
-	return (0);
-}
 
 int		skip_args(t_vm *vm, t_carr *carr, int arg_nb, bool del_arg)
 {
@@ -46,10 +36,22 @@ int		skip_args(t_vm *vm, t_carr *carr, int arg_nb, bool del_arg)
 	return (bytes);
 }
 
-int		get_args_type_code_size(t_vm *vm, t_carr *carr, int i, int size)
+int		check_reg(t_vm *vm, t_carr *carr, int arg_nb)
+{
+	int32_t		reg;
+	int			skip;
+
+	skip = arg_nb ? skip_args(vm, carr, arg_nb, 0) : 0;
+	reg = (int32_t)vm->arena[(carr->pos + skip) % MEM_SIZE];
+	if (reg > 0 && reg <= OP_NUMBER)
+		return (1);
+	return (0);
+}
+
+int		get_args_type_code_size(t_vm *vm, t_carr *carr, int i)
 {
 	if (((carr->op->args_type[i] & T_REG && vm->args_type[i] == REG_CODE)
-	&& check_reg(vm, carr, size)))
+	&& check_reg(vm, carr, i)))
 		return (1);
 	else if (carr->op->args_type[i] & T_DIR && vm->args_type[i] == DIR_CODE)
 		return (carr->op->t_dir_size);
@@ -78,7 +80,7 @@ int		verify_args(t_vm *vm, t_carr *carr)
 	{
 		if (carr->op->args_type_code)
 		{
-			size = get_args_type_code_size(vm, carr, i, size);
+			size = get_args_type_code_size(vm, carr, i);
 			if (!size)
 				return (0);
 		}

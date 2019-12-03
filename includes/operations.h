@@ -6,7 +6,7 @@
 /*   By: vhazelnu <vhazelnu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/02 16:36:10 by vhazelnu          #+#    #+#             */
-/*   Updated: 2019/12/03 13:21:02 by vhazelnu         ###   ########.fr       */
+/*   Updated: 2019/12/03 16:52:28 by vhazelnu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,6 +80,8 @@ struct						s_vm
 	int						args[3];
 	u_int8_t 				first_op;
 	u_int8_t 				last_op;
+	bool					aff;
+	bool					visual;
 	t_carr					*head;
 };
 
@@ -102,7 +104,7 @@ void						aff(t_vm *vm, t_carr *carr);
 
 typedef struct				s_op_funcs
 {
-	void					(*f)(t_vm *, t_carr *);	
+	void					(*f)(t_vm *, t_carr *);
 }							t_op_funcs;
 
 static t_op_funcs			g_op_funcs[OP_NUMBER] = {

@@ -6,7 +6,7 @@
 /*   By: vhazelnu <vhazelnu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/27 14:26:22 by vhazelnu          #+#    #+#             */
-/*   Updated: 2019/12/03 13:27:10 by vhazelnu         ###   ########.fr       */
+/*   Updated: 2019/12/03 18:00:42 by vhazelnu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,21 +18,26 @@ void	get_args_value(t_vm *vm, t_carr *carr, int arg_nb, int size)
 	char	*value;
 	int		skip;
 
-	i = 0;
 	skip = arg_nb ? skip_args(vm, carr, arg_nb, 0) : 0;
-	if (!(value = (char *)ft_memalloc(sizeof(char) * size + 1)))
+	if (size > 1)
 	{
-		ft_printf("%s\n", strerror(12));
-		exit(12);
+		if (!(value = (char *)ft_memalloc(sizeof(char) * size + 1)))
+		{
+			ft_printf("%s\n", strerror(12));
+			exit(12);
+		}
+		i = 0;
+		while (i < size)
+		{
+			value[i] = vm->arena[(carr->pos + i + skip) % MEM_SIZE];
+			++i;
+		}
+		value = rev_bytes(value, size);
+		vm->args[arg_nb] = *((int *)value);
+		ft_strdel(&value);
 	}
-	while (i < size)
-	{
-		value[i] = vm->arena[(carr->pos + i + skip) % MEM_SIZE];
-		++i;
-	}
-	value = size > 1 ? rev_bytes(value, size) : value;
-	vm->args[arg_nb] = *((int *)value);
-	ft_strdel(&value);
+	else
+		vm->args[arg_nb] = (int)vm->arena[(carr->pos + skip) % MEM_SIZE];
 }
 
 void	get_arg_types(t_vm *vm, t_carr *carr)
@@ -94,7 +99,7 @@ void	virtual_machine(t_vm *vm)
 
 	carr = vm_init(vm);
 	announce_players(vm->player, vm->pl_nb);
-	// int fd = open("test", O_CREAT | O_WRONLY, S_IRUSR | S_IWUSR);
-	// write(fd, vm->arena, MEM_SIZE);
 	battle(carr, vm);
+	int fd = open("test", O_CREAT | O_WRONLY, S_IRUSR | S_IWUSR);
+	write(fd, vm->arena, MEM_SIZE);
 }
