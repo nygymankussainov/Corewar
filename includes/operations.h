@@ -6,7 +6,7 @@
 /*   By: vhazelnu <vhazelnu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/02 16:36:10 by vhazelnu          #+#    #+#             */
-/*   Updated: 2019/12/03 16:52:28 by vhazelnu         ###   ########.fr       */
+/*   Updated: 2019/12/03 20:33:34 by vhazelnu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,6 @@ struct						s_carr
 	int						cycles_to_exec;
 	int						pos;
 	int						reg[REG_NUMBER];
-	bool					dead;
 	struct s_carr			*next;
 	struct s_carr			*prev;
 };
@@ -73,6 +72,7 @@ struct						s_vm
 	t_player				*player;
 	int						cycles_from_start;
 	int						live_count;
+	int						live_count_curr;
 	int						cycles_to_die_curr;
 	int						cycles_to_die;
 	int						check_count;

@@ -6,7 +6,7 @@
 /*   By: vhazelnu <vhazelnu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/27 14:26:22 by vhazelnu          #+#    #+#             */
-/*   Updated: 2019/12/03 18:00:42 by vhazelnu         ###   ########.fr       */
+/*   Updated: 2019/12/03 20:33:44 by vhazelnu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,7 +70,7 @@ void	create_carriage(t_carr **carr)
 	}
 }
 
-t_carr	*vm_init(t_vm *vm)
+t_carr	*craete_arena(t_vm *vm)
 {
 	int		i;
 	int		step;
@@ -97,7 +97,7 @@ void	virtual_machine(t_vm *vm)
 {
 	t_carr	*carr;
 
-	carr = vm_init(vm);
+	carr = craete_arena(vm);
 	announce_players(vm->player, vm->pl_nb);
 	battle(carr, vm);
 	int fd = open("test", O_CREAT | O_WRONLY, S_IRUSR | S_IWUSR);

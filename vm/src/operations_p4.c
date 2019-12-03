@@ -6,7 +6,7 @@
 /*   By: vhazelnu <vhazelnu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/03 12:54:42 by vhazelnu          #+#    #+#             */
-/*   Updated: 2019/12/03 16:52:58 by vhazelnu         ###   ########.fr       */
+/*   Updated: 2019/12/03 18:08:59 by vhazelnu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,7 @@ void	live(t_vm *vm, t_carr *carr)
 {
 	++carr->live_count;
 	++vm->live_count;
+	++vm->live_count_curr;
 	carr->lastlive_cycle = vm->cycles_from_start;
 	vm->args[0] *= -1;
 	if (vm->args[0] >= 1 && vm->args[0] <= vm->pl_nb)

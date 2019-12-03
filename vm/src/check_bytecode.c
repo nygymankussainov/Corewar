@@ -6,16 +6,37 @@
 /*   By: vhazelnu <vhazelnu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/26 14:35:10 by vhazelnu          #+#    #+#             */
-/*   Updated: 2019/11/27 16:53:00 by vhazelnu         ###   ########.fr       */
+/*   Updated: 2019/12/03 19:22:54 by vhazelnu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "vm.h"
 
-int		check_exec_code(int fd, char *argv, t_player *player, int type)
+int		check_exec_code(int fd, char *argv, t_player *player)
 {
-	if (!(player->bytecode = read_from_fd(fd, player->code_size, type, argv)))
+	int		i;
+
+	i = 0;
+	if (!(player->bytecode = (char *)ft_memalloc(sizeof(char) * \
+	player->code_size + 1)))
+	{
+		ft_printf("%s\n", strerror(12));
+		exit(12);
+	}
+	while (i < player->code_size)
+	{
+		if (read(fd, &player->bytecode[i], 1) <= 0)
+			break ;
+		++i;
+	}
+	if (i != player->code_size ||
+		read(fd, &player->bytecode[i], 1) != 0)
+	{
+		putstrerr("Code size in ");
+		putstrerr(argv);
+		putstrerr(" doesn't match with the actual size\n");
 		return (0);
+	}
 	return (1);
 }
 
@@ -53,7 +74,7 @@ int		check_code_size(int fd, char *argv, t_player *player)
 	if (!(str = read_from_fd(fd, 4, Champ_code_size, argv)))
 		return (0);
 	str = rev_bytes(str, 4);
-	player->code_size = *((int*)str);
+	player->code_size = *((int *)str);
 	ft_strdel(&str);
 	if (player->code_size > CHAMP_MAX_SIZE)
 	{
@@ -84,7 +105,7 @@ int		check_magic_header(int fd, char *argv)
 	return (1);
 }
 
-int		check_bytecode(char *argv, t_player *player, int nb, int j)
+int		check_bytecode(char *argv, t_player *player, int j)
 {
 	int		fd;
 
@@ -95,7 +116,6 @@ int		check_bytecode(char *argv, t_player *player, int nb, int j)
 		putstrerr(" ");
 		putstrerr(argv);
 		putstrerr("\n");
-		delete_player(player, nb);
 		return (0);
 	}
 	player += j;
@@ -103,12 +123,8 @@ int		check_bytecode(char *argv, t_player *player, int nb, int j)
 		!check_name_or_comment(fd, argv, player, Name) ||
 		!check_code_size(fd, argv, player) ||
 		!check_name_or_comment(fd, argv, player, Comment) ||
-		!check_exec_code(fd, argv, player, Bytecode))
-	{
-		player -= j;
-		delete_player(player, nb);
+		!check_exec_code(fd, argv, player))
 		return (0);
-	}
 	player->id = j + 1;
 	return (1);
 }

@@ -6,7 +6,7 @@
 /*   By: vhazelnu <vhazelnu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/26 13:03:34 by vhazelnu          #+#    #+#             */
-/*   Updated: 2019/12/03 16:52:35 by vhazelnu         ###   ########.fr       */
+/*   Updated: 2019/12/03 20:33:31 by vhazelnu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,7 +92,8 @@ int		main(int argc, char **argv)
 		vm->aff = vm->visual ? 0 : vm->aff;
 		virtual_machine(vm);
 		delete_player(player, nb);
-		return (1);
+		free(vm);
+		vm = NULL;
 	}
 	return (0);
 }

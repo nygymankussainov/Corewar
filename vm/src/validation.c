@@ -6,7 +6,7 @@
 /*   By: vhazelnu <vhazelnu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/26 13:08:05 by vhazelnu          #+#    #+#             */
-/*   Updated: 2019/11/30 13:56:13 by vhazelnu         ###   ########.fr       */
+/*   Updated: 2019/12/03 19:10:01 by vhazelnu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,18 +44,16 @@ int		check_flag_format(char **argv, int i)
 	return (1);
 }
 
-int		validate_players(int argc, char **argv, t_player *player, int nb)
+int		validate_players(int argc, char **argv, t_player *player, int j)
 {
 	int			i;
-	int			j;
 
 	i = 1;
-	j = 0;
 	while (i < argc)
 	{
 		if (isplayer(argv[i]))
 		{
-			if (!check_bytecode(argv[i], player, nb, j++))
+			if (!check_bytecode(argv[i], player, j++))
 				return (0);
 		}
 		else if (ft_strcmp(argv[i], "-n") && ft_strcmp(argv[i], "-dump"))
@@ -83,8 +81,11 @@ t_player	*validation(int argc, char **argv, int nb)
 		ft_printf("%s\n", strerror(12));
 		exit(12);
 	}
-	if (!validate_players(argc, argv, player, nb))
+	if (!validate_players(argc, argv, player, 0))
+	{
+		delete_player(player, nb);
 		return (0);
+	}
 	if (argc - 1 != nb)
 		modify_players_id(player, argv, argc, nb);
 	return (player);

@@ -6,7 +6,7 @@
 /*   By: vhazelnu <vhazelnu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/26 13:01:09 by vhazelnu          #+#    #+#             */
-/*   Updated: 2019/12/03 16:21:26 by vhazelnu         ###   ########.fr       */
+/*   Updated: 2019/12/03 20:10:38 by vhazelnu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,12 +24,11 @@ typedef enum		e_type
 	Champ_code_size,
 	Comment,
 	End,
-	Bytecode
 }					t_type;
 
 int					isplayer(char *str);
 t_player			*validation(int argc, char **argv, int nb);
-int					check_bytecode(char *argv, t_player *player, int nb, int j);
+int					check_bytecode(char *argv, t_player *player, int j);
 char				*rev_bytes(char *str, int size);
 char				*read_from_fd(int fd, int size, int type, char *argv);
 void				modify_players_id(t_player *player, char **argv, int argc, int nb);
@@ -52,5 +51,6 @@ void				ft_itoh_vm(int32_t value, int size, t_vm *vm, int pos);
 int					get_ind_value(t_vm *vm, t_carr *carr, int pos, bool mod);
 void				create_carriage(t_carr **carr);
 int					neg_mod(int nb);
+t_carr				*check_carrs(t_vm *vm, t_carr *carr);
 
 #endif

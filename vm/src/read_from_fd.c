@@ -6,7 +6,7 @@
 /*   By: vhazelnu <vhazelnu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/26 16:46:53 by vhazelnu          #+#    #+#             */
-/*   Updated: 2019/11/26 18:45:20 by vhazelnu         ###   ########.fr       */
+/*   Updated: 2019/12/03 19:16:14 by vhazelnu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,8 +22,6 @@ void	print_type(int type)
 		putstrerr("comment");
 	else if (type == Champ_code_size)
 		putstrerr("champion code size");
-	else if (type == Bytecode)
-		putstrerr("bytecode");
 	else
 		putstrerr("EOF");
 }
