@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   operations.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hfrankly <hfrankly@student.42.fr>          +#+  +:+       +#+        */
+/*   By: egiant <egiant@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/19 15:57:01 by hfrankly          #+#    #+#             */
-/*   Updated: 2019/12/03 11:34:18 by hfrankly         ###   ########.fr       */
+/*   Updated: 2019/12/03 18:49:10 by egiant           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -222,7 +222,7 @@ void				op_ldi(t_corewar *vm, t_carriage *carriage, uint8_t *arg_code)
 	if (arg_code[1] == 1)
 		arg2 = carriage->registers[arg2];
 	carriage->registers[arg3] = return_bytes(vm->arena,
-		get_position(carriage->position, (int64_t)arg1 + (int64_t)arg2, true), REG_SIZE);
+	get_position(carriage->position, (int64_t)arg1 + (int64_t)arg2, true), REG_SIZE);
 }
 
 void				op_lldi(t_corewar *vm, t_carriage *carriage, uint8_t *arg_code)
@@ -375,6 +375,8 @@ void				op_lfork(t_corewar *vm, t_carriage *carriage, uint8_t *arg_code)
 	t_carriage	*new_carriage;
 
 	distance = return_bytes(vm->arena, (carriage->position + 1) % MEM_SIZE, carriage->operation->t_dir_size);
+	//if (vm->total_cycles + vm->current_cycles > 15900 && carriage->position + distance >= 960)
+	//	printf("zj\n");
 	new_carriage = copy_carriage(vm, carriage);
 	new_carriage->position = get_position(carriage->position, distance, false);
 	if (vm->visual && vm->sdl->sound)

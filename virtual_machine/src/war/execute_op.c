@@ -6,7 +6,7 @@
 /*   By: egiant <egiant@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/12 14:38:51 by hfrankly          #+#    #+#             */
-/*   Updated: 2019/12/02 18:35:56 by egiant           ###   ########.fr       */
+/*   Updated: 2019/12/03 20:05:55 by egiant           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,8 +26,8 @@ bool	is_valid_reg(t_corewar *vm, t_carriage *carriage,
 			offset += carriage->operation->t_dir_size;
 		else if (arg_code[i] == 3)
 			offset += 2;
-		else//
-			offset++;//
+		else
+			offset++;
 		i++;
 	}
 	if (vm->arena[(carriage->position + offset) % MEM_SIZE].value < 1 ||
@@ -60,6 +60,8 @@ void	set_arg_code(t_corewar *vm, t_carriage *carriage, uint8_t **arg_code)
 bool	if_valid_format(t_corewar *vm, t_carriage *carriage,
 						uint8_t *arg_code, int i)
 {
+	if (arg_code[i] == 3)
+		arg_code[i] = 4;
 	if (i < carriage->operation->number_of_arguments && arg_code[i] == 1 &&
 		(arg_code[i] & carriage->operation->args_types[i]) == true)
 		return (is_valid_reg(vm, carriage, arg_code, i));
@@ -69,6 +71,8 @@ bool	if_valid_format(t_corewar *vm, t_carriage *carriage,
 	else if (i >= carriage->operation->number_of_arguments &&
         arg_code[i] != 0)
 		return (false);
+	if (arg_code[i] == 4)
+		arg_code[i] = 3;
 	return (true);
 }
 
@@ -79,7 +83,7 @@ bool	is_valid_format(t_corewar *vm, t_carriage *carriage, uint8_t *arg_code)
 	if (carriage->operation->args_types_code)
 	{
 		i = 0;
-		while (i < 4)
+		while (i < 3)
 		{
 			if (if_valid_format(vm, carriage, arg_code, i) == false)
 				return (false);

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   carriage_execution.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hfrankly <hfrankly@student.42.fr>          +#+  +:+       +#+        */
+/*   By: egiant <egiant@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/09 15:37:50 by hfrankly          #+#    #+#             */
-/*   Updated: 2019/12/03 12:21:57 by hfrankly         ###   ########.fr       */
+/*   Updated: 2019/12/03 20:50:38 by egiant           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,9 @@ void	execute_carriage_op(t_corewar *vm, t_carriage *carriage)
 	{
 		set_arg_code(vm, carriage, &arg_code);
 		if (is_valid_format(vm, carriage, arg_code))
+		{
 			carriage->operation->func(vm, carriage, arg_code);
+		}
 		if (carriage->operation->code != 0x09)
 			pass_args_bits(vm, carriage, arg_code);
 	}
@@ -60,13 +62,10 @@ void    execute_carriages(t_corewar **vm)
 
     while ((*vm)->current_cycles != (*vm)->cycles_to_die)
 	{
+		(*vm)->current_cycles++;
 		carriage = (*vm)->start_carriage;
-		if ((*vm)->dumps == (*vm)->current_cycles + (*vm)->total_cycles)
-		{
-			display_array((*vm)->arena, 64, 64);
-			ft_printf("\n%d\n", (*vm)->cycles_to_die);
-			exit (0);
-		}
+		if ((*vm)->current_cycles + (*vm)->total_cycles == 650)
+			ft_printf("");
 		while (carriage)
 		{
 			if (carriage->cycles_before_operation == 0)
@@ -74,7 +73,11 @@ void    execute_carriages(t_corewar **vm)
 			if (carriage->cycles_before_operation > 0)
 				carriage->cycles_before_operation--;
 			if (carriage->cycles_before_operation == 0 && carriage->operation != NULL)
+			{
+				if (carriage->id == 1)
+					ft_printf("");
 				execute_carriage_op(*vm, carriage);
+			}
 			else if (carriage->cycles_before_operation == 0)
 				carriage->position = (carriage->position + 1) % MEM_SIZE;
 			if (carriage->cycles_before_operation == 0 && (*vm)->visual == true)
@@ -84,6 +87,12 @@ void    execute_carriages(t_corewar **vm)
 			}
 			carriage = carriage->next;
 		}
-		(*vm)->current_cycles++;
+		//(*vm)->current_cycles++;
+		if ((*vm)->dumps != (*vm)->cycles_to_die && (*vm)->dumps == (*vm)->current_cycles + (*vm)->total_cycles)
+		{
+			display_array((*vm)->arena, 64, 64);
+			//ft_printf("\n%d\n", (*vm)->cycles_to_die);
+			exit (0);
+		}
 	}
 }
