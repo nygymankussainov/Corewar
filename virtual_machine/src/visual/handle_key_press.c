@@ -6,7 +6,7 @@
 /*   By: screight <screight@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/01 23:55:03 by screight          #+#    #+#             */
-/*   Updated: 2019/12/02 07:06:50 by screight         ###   ########.fr       */
+/*   Updated: 2019/12/03 03:37:06 by screight         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,15 +30,15 @@ void    handle_speed(t_corewar *vm)
 
 void    handle_music(t_corewar *vm)
 {
-    if (vm->sdl->e->key.keysym.sym == SDLK_9)
+    /*if (vm->sdl->e->key.keysym.sym == SDLK_9) //UNCOMMENT WHEN MP3 WORKS
     {
         if (Mix_PlayingMusic() == 0)
 	    	Mix_PlayMusic(vm->sdl->music, -1);
 	    else
 	    	Mix_PausedMusic() == 1 ? Mix_ResumeMusic() : Mix_PauseMusic(); 
 	    vm->sdl->mus = (vm->sdl->mus ? false : true);
-    }
-    else if (vm->sdl->e->key.keysym.sym == SDLK_0)
+    }*/
+    /*else*/ if (vm->sdl->e->key.keysym.sym == SDLK_0)
 		vm->sdl->sound = (vm->sdl->sound) ? false : true;
     else
     {

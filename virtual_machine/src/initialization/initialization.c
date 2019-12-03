@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   initialization.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: egiant <egiant@student.42.fr>              +#+  +:+       +#+        */
+/*   By: screight <screight@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/30 13:41:08 by egiant            #+#    #+#             */
-/*   Updated: 2019/12/02 18:20:47 by egiant           ###   ########.fr       */
+/*   Updated: 2019/12/03 02:55:27 by screight         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ void			init_arena(t_corewar *vm)
 	while (n >= 0)
 	{
 		vm->arena[n].value = 0;
-		//vm->arena[n].color = GREY;
+		vm->arena[n].color = GREY;
 		vm->arena[n].out_col = BLACK;
 		vm->arena[n].live_count = 0;
 		vm->arena[n--].light_count = 0;

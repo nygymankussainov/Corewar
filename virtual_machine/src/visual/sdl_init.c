@@ -6,17 +6,29 @@
 /*   By: screight <screight@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/18 20:48:27 by screight          #+#    #+#             */
-/*   Updated: 2019/12/02 05:29:54 by screight         ###   ########.fr       */
+/*   Updated: 2019/12/03 03:40:08 by screight         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "virtual_machine.h"
 
+void		init_and_load_audio(t_sdl *sdl)
+{
+/*	if (Mix_Init(MIX_INIT_MP3) != MIX_INIT_MP3)			//CAN THIS SOLVE THE PROBLEM?
+			termination_with_perror("Sdl init error", ENOMEM);*/
+		if (Mix_OpenAudio(44100, MIX_DEFAULT_FORMAT, 2, 2048 < 0))
+			termination_with_perror("SDL init error", ENOMEM);
+		if (/*!(sdl->music = Mix_LoadMUS("pacifica.mp3"))	//uncomment when mp3 works; currently doesn't work on MacOS
+				|| */!(sdl->live = Mix_LoadWAV("live.wav"))	
+					|| !(sdl->dead_car = Mix_LoadWAV("zoom.wav"))
+						|| !(sdl->copy_car = Mix_LoadWAV("jump.wav")))
+			ft_close_sdl(sdl);
+}
+
 void		load_font(t_sdl *sdl)
 {
 	char *myfont;
 	FILE *file;
-	int		bytes_read;
 
 	myfont = NULL;
 	if (!(myfont = (char *)malloc(sizeof(char) * 7680)))
@@ -26,8 +38,7 @@ void		load_font(t_sdl *sdl)
 		perror("Failed to open file");
 		ft_close_sdl(sdl);
 	}
-	bytes_read = fread(myfont, 7680, 1, file);
-//	printf("bytes read: %d\n", bytes_read);
+	fread(myfont, 7680, 1, file);
 	fclose(file);
 	gfxPrimitivesSetFont(myfont, 9, 15);
 }
@@ -60,18 +71,14 @@ t_sdl		*sdl_init(void)
 		termination_with_perror("Sdl init error", ENOMEM);
 	else
 	{
-		SDL_CreateWindowAndRenderer(SZX, SZY, 0, &sdl->win, &sdl->ren);
+		sdl->win = SDL_CreateWindow("CoreWar", SDL_WINDOWPOS_UNDEFINED, 
+					SDL_WINDOW_ALWAYS_ON_TOP, SZX, SZY, SDL_WINDOW_SHOWN);
+		sdl->ren = SDL_CreateRenderer(sdl->win, -1, SDL_RENDERER_ACCELERATED);
 		if (sdl->win == NULL || sdl->ren == NULL)
-			termination_with_perror("SDL init error", ENOMEM);
-		if (Mix_OpenAudio(44100, MIX_DEFAULT_FORMAT, 2, 2048 < 0))
-			termination_with_perror("SDL init error", ENOMEM);
-		if (!(sdl->music = Mix_LoadMUS("pacifica.mp3"))
-				|| !(sdl->live = Mix_LoadWAV("live.wav"))
-					|| !(sdl->dead_car = Mix_LoadWAV("zoom.wav"))
-						|| !(sdl->copy_car = Mix_LoadWAV("jump.wav")))
-			ft_close_sdl(sdl);
-		SDL_RenderClear(sdl->ren);
+				termination_with_perror("SDL init error", ENOMEM);
+		init_and_load_audio(sdl);
 		load_font(sdl);
+		SDL_RenderClear(sdl->ren);
 	}
 	return (sdl);
 }
