@@ -6,7 +6,7 @@
 /*   By: vhazelnu <vhazelnu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/29 21:43:01 by vhazelnu          #+#    #+#             */
-/*   Updated: 2019/12/03 21:17:56 by vhazelnu         ###   ########.fr       */
+/*   Updated: 2019/12/04 14:01:18 by vhazelnu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,10 @@ int		get_ind_value(t_vm *vm, t_carr *carr, int pos, bool mod)
 	int		value;
 
 	i = 0;
-	pos = pos < 0 ? neg_mod(pos) : pos;
-	pos = mod ? pos % IDX_MOD : pos;
+	if (pos < 0)
+		pos = neg_mod(pos);
+	if (mod)
+		pos = pos % IDX_MOD;
 	if (!(address = (char *)ft_memalloc(sizeof(char) * REG_SIZE + 1)))
 	{
 		ft_printf("%s\n", strerror(12));

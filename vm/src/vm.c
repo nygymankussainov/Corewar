@@ -6,7 +6,7 @@
 /*   By: vhazelnu <vhazelnu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/27 14:26:22 by vhazelnu          #+#    #+#             */
-/*   Updated: 2019/12/03 20:33:44 by vhazelnu         ###   ########.fr       */
+/*   Updated: 2019/12/04 13:55:53 by vhazelnu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ void	get_args_value(t_vm *vm, t_carr *carr, int arg_nb, int size)
 			++i;
 		}
 		value = rev_bytes(value, size);
-		vm->args[arg_nb] = *((int *)value);
+		vm->args[arg_nb] = (size == 2) ? *((short *)value) : *((int *)value);
 		ft_strdel(&value);
 	}
 	else

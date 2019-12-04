@@ -6,7 +6,7 @@
 /*   By: vhazelnu <vhazelnu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/03 18:03:56 by vhazelnu          #+#    #+#             */
-/*   Updated: 2019/12/03 20:18:29 by vhazelnu         ###   ########.fr       */
+/*   Updated: 2019/12/04 13:58:48 by vhazelnu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,8 +35,9 @@ t_carr	*check_carrs(t_vm *vm, t_carr *carr)
 {
 	while (carr)
 	{
-		if (vm->cycles_from_start - carr->lastlive_cycle >
-			vm->cycles_to_die || vm->cycles_to_die <= 0)
+		if (!carr->lastlive_cycle ||
+		vm->cycles_from_start - carr->lastlive_cycle >
+		vm->cycles_to_die || vm->cycles_to_die <= 0)
 			carr = remove_carr(vm, carr);
 		else
 			carr = carr->next;
