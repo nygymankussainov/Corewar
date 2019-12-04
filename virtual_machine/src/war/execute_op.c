@@ -6,7 +6,7 @@
 /*   By: egiant <egiant@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/12 14:38:51 by hfrankly          #+#    #+#             */
-/*   Updated: 2019/12/03 20:05:55 by egiant           ###   ########.fr       */
+/*   Updated: 2019/12/04 13:52:04 by egiant           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,10 +67,18 @@ bool	if_valid_format(t_corewar *vm, t_carriage *carriage,
 		return (is_valid_reg(vm, carriage, arg_code, i));
 	else if (i < carriage->operation->number_of_arguments &&
 		(arg_code[i] & carriage->operation->args_types[i]) == false)
+	{
+		if (arg_code[i] == 4)
+		arg_code[i] = 3;
 		return (false);
+	}
 	else if (i >= carriage->operation->number_of_arguments &&
         arg_code[i] != 0)
+	{
+		if (arg_code[i] == 4)
+		arg_code[i] = 3;
 		return (false);
+	}
 	if (arg_code[i] == 4)
 		arg_code[i] = 3;
 	return (true);

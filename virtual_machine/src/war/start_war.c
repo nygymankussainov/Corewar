@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   start_war.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: screight <screight@student.42.fr>          +#+  +:+       +#+        */
+/*   By: egiant <egiant@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/02 14:50:41 by hfrankly          #+#    #+#             */
-/*   Updated: 2019/12/02 06:40:32 by screight         ###   ########.fr       */
+/*   Updated: 2019/12/04 14:45:41 by egiant           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,11 +21,22 @@ void				start_war(t_corewar *vm)
 	tmp = vm->start_carriage;
 	while (vm->start_carriage)
 	{
-		if (vm->current_cycles == vm->cycles_to_die)
+		if (vm->dumps != vm->cycles_to_die && vm->dumps == vm->current_cycles + vm->total_cycles)
+		{
+			display_array(vm->arena, 64, 64);
+			exit (0);
+		}
+		execute_carriages(&vm);
+		if (vm->current_cycles == vm->cycles_to_die || vm->cycles_to_die <= 0)
 			check(&vm);
-		else
-			execute_carriages(&vm);
 	}
+	// while (vm->start_carriage)
+	// {
+	// 	if (vm->current_cycles == vm->cycles_to_die || vm->cycles_to_die <= 0)
+	// 		check(&vm);
+	// 	else
+	// 		execute_carriages(&vm);
+	// }
 	if (vm->visual)
 	{
 		vis_corewar(vm);

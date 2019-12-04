@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   check.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hfrankly <hfrankly@student.42.fr>          +#+  +:+       +#+        */
+/*   By: egiant <egiant@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/09 15:37:50 by hfrankly          #+#    #+#             */
-/*   Updated: 2019/12/03 11:26:07 by hfrankly         ###   ########.fr       */
+/*   Updated: 2019/12/04 14:23:56 by egiant           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ static void		check_carriages(t_carriage *start_carriage, t_corewar *vm)
 */
 static void		check_cycle_to_die(t_corewar *vm)
 {
-	if (vm->live_count > NBR_LIVE || vm->check_count > MAX_CHECKS)
+	if (vm->live_count >= NBR_LIVE || vm->check_count == MAX_CHECKS)
 	{
 		vm->cycles_to_die -= CYCLE_DELTA;
 		vm->check_count = 0;
