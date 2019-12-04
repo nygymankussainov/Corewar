@@ -6,7 +6,7 @@
 /*   By: screight <screight@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/18 20:48:27 by screight          #+#    #+#             */
-/*   Updated: 2019/12/03 03:40:08 by screight         ###   ########.fr       */
+/*   Updated: 2019/12/04 11:21:42 by screight         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,7 @@ void		load_font(t_sdl *sdl)
 	fread(myfont, 7680, 1, file);
 	fclose(file);
 	gfxPrimitivesSetFont(myfont, 9, 15);
+	sdl->myfont = myfont;
 }
 
 void		sdl_var_init(t_sdl *sdl)
