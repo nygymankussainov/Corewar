@@ -6,11 +6,43 @@
 /*   By: screight <screight@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/18 20:46:08 by screight          #+#    #+#             */
-/*   Updated: 2019/12/02 06:57:31 by screight         ###   ########.fr       */
+/*   Updated: 2019/12/04 12:22:56 by screight         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "virtual_machine.h"
+
+
+void				ft_forvis(unsigned short num, int registr, char *number)
+{
+	int				i;
+	int				n;
+	unsigned short	result;
+
+	result = num;
+	n = 1;
+	while (num / 16 > 0 && ++n)
+		num = num / 16;
+	number[n--] = '\0';
+	number[1] = '\0';
+	number[0] = '\0';
+	while (n >= 0)
+	{
+		i = result % 16;
+		if (i < 10)
+			number[n--] = i + '0';
+		else if (registr == 1)
+			number[n--] = 65 + i % 10;
+		else
+			number[n--] = 97 + i % 10;
+		result = result / 16;
+	}
+	if (!number[1])
+	{
+		number[1] = number[0];
+		number[0] = '0';
+	}
+}
 
 void set_player_color(t_corewar *vm, int i)
 {
@@ -41,6 +73,7 @@ void		set_carriages_vis(t_corewar *vm)
 
 void	set_arena_colors_vis(t_corewar *vm, int raw, int col, short i)
 {
+	char			number[3];
 	if (vm->arena[i].light_count > 0)
 	{
 		if (vm->arena[i].light_count == 1)
@@ -50,16 +83,19 @@ void	set_arena_colors_vis(t_corewar *vm, int raw, int col, short i)
 	if (!(vm->arena[i]).touch)
 		(vm->arena[i]).out_col = BLACK;
 	vm->arena[i].touch = false;
-	rectangleColor(vm->sdl->ren, col, raw, col + RX + 1, raw + RY + 1,
+	rectangleColor(vm->sdl->ren, col, raw, col + RX + 2, raw + RY + 1,
 														vm->arena[i].out_col);
-	rectangleColor(vm->sdl->ren, col + 1, raw + 1, col + RX, raw + RY,
+	rectangleColor(vm->sdl->ren, col + 1, raw + 1, col + RX + 1, raw + RY,
 														vm->arena[i].out_col);
-	boxColor(vm->sdl->ren, col + 2, raw + 2, col + RX - 2, raw + RY - 2,
+//	boxColor(vm->sdl->ren, col + 2, raw + 2, col + RX - 2, raw + RY - 2,
+//														vm->arena[i].color);
+	ft_forvis(vm->arena[i].value, 0, number);
+	stringColor(vm->sdl->ren, col + 3, raw + 3, number,
 														vm->arena[i].color);
 	if (vm->arena[i].live_count > 0)
 	{
-		boxColor(vm->sdl->ren, col + 3, raw + 3, col + RX - 3,
-														raw + RY - 3, WHITE);
+		boxColor(vm->sdl->ren, col + 2, raw + 1, col + RX - 1,
+														raw + RY - 2, WHITEL);
 		vm->arena[i].live_count--;
 	}
 }
@@ -72,6 +108,7 @@ void display_arena_vis(t_corewar *vm, short i)
 
 	raw = -2;
 	border = 0;
+	gfxPrimitivesSetFont(NULL, 8, 8);
 	while (++i < 4096)
 	{
 		if (i == border)
@@ -81,8 +118,9 @@ void display_arena_vis(t_corewar *vm, short i)
 			border += 64;
 		}
 		set_arena_colors_vis(vm, raw, col, i);
-		col += RX + 1;
+		col += RX + 2;
 	}
+	gfxPrimitivesSetFont(vm->sdl->myfont, 9, 15);
 }
 
 void	vis_corewar(t_corewar *vm)

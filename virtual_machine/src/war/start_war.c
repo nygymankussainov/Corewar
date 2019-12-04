@@ -6,7 +6,7 @@
 /*   By: egiant <egiant@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/02 14:50:41 by hfrankly          #+#    #+#             */
-/*   Updated: 2019/12/04 14:45:41 by egiant           ###   ########.fr       */
+/*   Updated: 2019/12/04 16:15:11 by egiant           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ void				start_war(t_corewar *vm)
 	if (vm->visual)
 	{
 		vis_corewar(vm);
-		stringColor(vm->sdl->ren, SZX - 270, SZY - 56, 
+		stringColor(vm->sdl->ren, SZX - 250, SZY - 56, 
 										vm->winner->name, vm->winner->color);
 		SDL_RenderPresent(vm->sdl->ren);
 	}

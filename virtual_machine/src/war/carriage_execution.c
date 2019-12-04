@@ -6,7 +6,7 @@
 /*   By: egiant <egiant@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/09 15:37:50 by hfrankly          #+#    #+#             */
-/*   Updated: 2019/12/04 14:46:01 by egiant           ###   ########.fr       */
+/*   Updated: 2019/12/04 16:13:00 by egiant           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,7 @@ void    execute_carriages(t_corewar **vm)
 	//{
 		(*vm)->current_cycles++;
 		carriage = (*vm)->start_carriage;
-		if ((*vm)->current_cycles + (*vm)->total_cycles == 30360)
+		if ((*vm)->current_cycles + (*vm)->total_cycles == 18115)
 		 	ft_printf("");
 		while (carriage)
 		{

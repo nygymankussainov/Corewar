@@ -6,20 +6,20 @@
 /*   By: screight <screight@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/17 13:06:28 by hfrankly          #+#    #+#             */
-/*   Updated: 2019/12/03 03:07:31 by screight         ###   ########.fr       */
+/*   Updated: 2019/12/04 12:33:13 by screight         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef VISUAL_H
 # define VISUAL_H
 
-# define SZX 1600
+# define SZX 1700
 # define SZY 920
 # define RX (SZX - 510) / 64
 # define RY (SZY - 20 - 64) / 64
-# define X 1200
+# define X 1320
 # define Y 110
-# define XT 1340
+# define XT 1480
 # define BLACK 0xff1c1c1c
 # define GREY 0xff424242
 # define RED 0xff5720b0
@@ -27,6 +27,7 @@
 # define GREEN 0xff6fb020
 # define YELLOW 0xff20aeb0
 # define WHITE 0x65ffffff
+# define WHITEL 0x45ffffff
 # define GCOL 0xff698234
 # define DIM 0x50000000
 # define SALM 0xff5867a6
@@ -52,6 +53,7 @@ struct s_sdl
 	bool		sound;
 	bool		mus;
 	short		delay;
+	char		*myfont;
 };
 
 /*
