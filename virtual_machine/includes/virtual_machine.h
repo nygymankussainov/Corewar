@@ -6,7 +6,7 @@
 /*   By: hfrankly <hfrankly@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/30 16:29:38 by hfrankly          #+#    #+#             */
-/*   Updated: 2019/12/04 18:40:01 by hfrankly         ###   ########.fr       */
+/*   Updated: 2019/12/04 18:46:24 by hfrankly         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,9 +85,9 @@ typedef struct 		s_carriage {
 	int32_t			color;
 }					t_carriage;
 
-
 void				display_array(t_point *array, uint16_t rows, uint16_t cols);
 void				introduce_players(t_corewar *vm);
+
 /*
 ** initialization
 */
@@ -103,12 +103,19 @@ void				set_carriages(t_corewar *vm, uint16_t position_step);
 ** parsing
 */
 void				parse_arguments(t_corewar **vm, int argc, char *argv[]);
+void				add_player_to_list(t_corewar *vm, t_core *new_player);
 
 /*
 ** validation
 */
 void				read_byte_code(t_corewar **vm);
+void				check_cores(t_corewar *vm);
+void				read_magic_header(t_corewar *vm, int fd);
+void				read_null_octet(t_corewar *vm, int fd);
 
+/*
+// error management
+*/
 void				terminate_with_error(t_corewar *vm);
 void				termination_with_error(char *error_string);
 void				termination_with_perror(char *error_string, int code);
@@ -118,6 +125,7 @@ void				termination_with_perror(char *error_string, int code);
 */
 void				start_war(t_corewar *vm);
 void				check(t_corewar **vm);
+int					is_name(t_corewar *vm, char *str);
 void				execute_carriages(t_corewar **vm);
 void				set_arg_code(t_corewar *vm, t_carriage *carriage, uint8_t **arg_code);
 bool				is_valid_format(t_corewar *vm, t_carriage *carriage, uint8_t *arg_code);
@@ -138,7 +146,6 @@ void				add_to_arena(t_corewar *vm, uint16_t position, int32_t code, t_carriage 
 /*
  *  free
  */
-void    free_corewar(t_corewar *vm);
+void    			free_corewar(t_corewar *vm);
 
 #endif
-

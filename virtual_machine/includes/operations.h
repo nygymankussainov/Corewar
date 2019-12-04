@@ -6,7 +6,7 @@
 /*   By: egiant <egiant@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/13 13:17:43 by hfrankly          #+#    #+#             */
-/*   Updated: 2019/12/02 18:22:20 by egiant           ###   ########.fr       */
+/*   Updated: 2019/12/04 17:51:42 by egiant           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ typedef struct		s_operation
 	uint8_t			number_of_arguments;
 	bool			args_types_code;
 	uint8_t			args_types[3];
-	uint8_t			changes_carry; //1 или 0
+	uint8_t			changes_carry;
 	uint8_t			t_dir_size;
 	uint16_t		cycles_to_execution;
 	void			(*func)(t_corewar *vm, t_carriage *carriage, uint8_t *arg_code);

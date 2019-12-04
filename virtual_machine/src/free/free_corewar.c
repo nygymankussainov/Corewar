@@ -1,32 +1,35 @@
-//
-// Created by Endon Giant on 28/11/2019.
-//
-
-// carriages
-// vm
-// cores (read_champ_name, parse_player)
-// arg
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   free_corewar.c                                     :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: hfrankly <hfrankly@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2019/12/04 19:14:05 by hfrankly          #+#    #+#             */
+/*   Updated: 2019/12/04 19:15:36 by hfrankly         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
 #include "virtual_machine.h"
 
-void    free_carriage(t_corewar *vm)
+void	free_carriage(t_corewar *vm)
 {
-    t_carriage *tmp;
-    t_carriage *save_next;
+	t_carriage	*tmp;
+	t_carriage	*save_next;
 
-    tmp = vm->start_carriage;
-    while(tmp)
-    {
-        save_next = tmp->next;
-        free(tmp);
-        tmp = save_next;
-    }
-    vm->start_carriage = NULL;
+	tmp = vm->start_carriage;
+	while (tmp)
+	{
+		save_next = tmp->next;
+		free(tmp);
+		tmp = save_next;
+	}
+	vm->start_carriage = NULL;
 }
 
 void	free_corewar(t_corewar *vm)
 {
-    int 	n;
+	int		n;
 	t_core	*tmp;
 
 	n = 0;

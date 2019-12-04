@@ -1,8 +1,20 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   parse_arguments.c                                  :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: hfrankly <hfrankly@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2019/12/04 17:42:02 by egiant            #+#    #+#             */
+/*   Updated: 2019/12/04 18:47:08 by hfrankly         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "virtual_machine.h"
 
-void 			parse_dump_flag(t_corewar *vm, char *argv[], int *n)
+void			parse_dump_flag(t_corewar *vm, char *argv[], int *n)
 {
-	int d;
+	int			d;
 
 	if (argv[*n + 1])
 		d = ft_atoi(argv[*n + 1]);
@@ -10,15 +22,6 @@ void 			parse_dump_flag(t_corewar *vm, char *argv[], int *n)
 		terminate_with_error(vm);
 	vm->dumps = d;
 	*n += 2;
-}
-
-int 			is_name(t_corewar *vm, char *str)
-{
-	char 		*ptr;
-
-	if (!(ptr = ft_strstr(str, ".cor")))
-		terminate_with_error(vm);
-	return (1);
 }
 
 void			parse_player(t_corewar *vm, char *argv[], int *n, int player_id)
@@ -34,20 +37,7 @@ void			parse_player(t_corewar *vm, char *argv[], int *n, int player_id)
 	if (!vm->line_of_players)
 		vm->line_of_players = new_player;
 	else
-	{
-		if (new_player->id == 0)
-		{
-			core_tmp = vm->line_of_players;
-			while (core_tmp->next)
-				core_tmp = core_tmp->next;
-			core_tmp->next = new_player;
-		}
-		else
-		{
-			new_player->next = vm->line_of_players;
-			vm->line_of_players = new_player;
-		}
-	}
+		add_player_to_list(vm, new_player);
 	*n += 1;
 	vm->number_of_players++;
 }
@@ -57,7 +47,8 @@ void			parse_n_flag(t_corewar *vm, char *argv[], int *n)
 	int			player_id;
 
 	*n += 1;
-	if (!argv[*n] || ft_atoi(argv[*n]) < 1 || ft_atoi(argv[*n]) > 4 || !argv[*n + 1])
+	if (!argv[*n] || ft_atoi(argv[*n]) < 1 || ft_atoi(argv[*n]) > 4
+			|| !argv[*n + 1])
 		terminate_with_error(vm);
 	player_id = ft_atoi(argv[*n]);
 	*n += 1;
@@ -72,7 +63,7 @@ void			parse_a_flag(t_corewar *vm, char *argv[], int *n)
 
 void			parse_arguments(t_corewar **vm, int argc, char *argv[])
 {
-	int 		n;
+	int			n;
 
 	n = 1;
 	while (n < argc)

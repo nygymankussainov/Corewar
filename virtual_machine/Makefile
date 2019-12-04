@@ -6,7 +6,7 @@
 #    By: hfrankly <hfrankly@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/10/30 17:56:58 by hfrankly          #+#    #+#              #
-#    Updated: 2019/12/04 18:43:51 by hfrankly         ###   ########.fr        #
+#    Updated: 2019/12/04 18:52:31 by hfrankly         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -38,13 +38,16 @@ VIS_DIR = src/visual/
 
 SRC =	    main.c \
 			exit.c
-FREE_SRC = free_corewar.c
-INIT_SRC = initialization.c \
+FREE_SRC = 	free_corewar.c
+INIT_SRC = 	initialization.c \
             set_params.c
-PARSING_SRC = parse_arguments.c
-VALID_SRC = read_byte_code.c
+PARSING_SRC = parse_arguments.c \
+			add_player_to_list.c
+VALID_SRC = read_byte_code.c \
+			check_magic_header_and_null_octet.c \
+			check_cores.c \
+			is_name.c
 WAR_SRC = 	start_war.c \
-          	operations.c \
           	check.c \
           	carriage_execution.c \
           	carriage_interaction.c \
@@ -53,6 +56,10 @@ VIS_SRC	=	vis_corewar.c \
 			display_data.c \
 			sdl_init.c \
 			handle_key_press.c
+OPER_SRC =	op_other.c \
+			op_five.c \
+			op_ten.c \
+			work_with_operations.c
 
 MAIN_OBJS 	= $(addprefix $(OBJ_DIR), $(SRC:.c=.o))
 FREE_OBJS 	= $(addprefix $(OBJ_DIR), $(FREE_SRC:.c=.o))
@@ -61,11 +68,12 @@ PARSING_OBJS = $(addprefix $(OBJ_DIR), $(PARSING_SRC:.c=.o))
 VALID_OBJS 	= $(addprefix $(OBJ_DIR), $(VALID_SRC:.c=.o))
 WAR_OBJS 	= $(addprefix $(OBJ_DIR), $(WAR_SRC:.c=.o))
 VIS_OBJS	= $(addprefix $(OBJ_DIR), $(VIS_SRC:.c=.o))
+OPER_OBJS	= $(addprefix $(OBJ_DIR), $(OPER_SRC:.c=.o))
 
 all: cmpl $(NAME)
 
-$(NAME): $(MAIN_OBJS) $(FREE_OBJS) $(INIT_OBJS) $(PARSING_OBJS) $(VALID_OBJS) $(WAR_OBJS) $(VIS_OBJS)| mklibpr
-	@gcc $(FLAGS) $(MAIN_OBJS) $(FREE_OBJS) $(INIT_OBJS) $(PARSING_OBJS) $(VALID_OBJS) $(WAR_OBJS) $(VIS_OBJS) -L $(LIBPRDIR) -lftprintf $(HEADER) -o $(NAME) $(SDL)
+$(NAME): $(MAIN_OBJS) $(FREE_OBJS) $(INIT_OBJS) $(PARSING_OBJS) $(VALID_OBJS) $(WAR_OBJS) $(VIS_OBJS) $(OPER_OBJS)| mklibpr
+	@gcc $(FLAGS) $(MAIN_OBJS) $(FREE_OBJS) $(INIT_OBJS) $(PARSING_OBJS) $(VALID_OBJS) $(WAR_OBJS) $(VIS_OBJS) $(OPER_OBJS) -L $(LIBPRDIR) -lftprintf $(HEADER) -o $(NAME) $(SDL)
 	@echo "$(LOG_GREEN)Corewar has been compiled!$(LOG_NOCOLOR)"
 		
 $(MAIN_OBJS) :	$(OBJ_DIR)%.o: $(SRC_DIR)%.c
@@ -93,6 +101,10 @@ $(WAR_OBJS) :	$(OBJ_DIR)%.o: $(WAR_DIR)%.c
 	@gcc $(FLAGS) -c $< -o $@ $(HEADER)
 
 $(VIS_OBJS) :	$(OBJ_DIR)%.o: $(VIS_DIR)%.c
+	@mkdir -p $(OBJ_DIR)
+	@gcc $(FLAGS) -c $< -o $@ $(HEADER)
+
+$(OPER_OBJS) :	$(OBJ_DIR)%.o: $(OPER_DIR)%.c
 	@mkdir -p $(OBJ_DIR)
 	@gcc $(FLAGS) -c $< -o $@ $(HEADER)
 

@@ -6,13 +6,13 @@
 /*   By: hfrankly <hfrankly@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/04 18:37:50 by hfrankly          #+#    #+#             */
-/*   Updated: 2019/12/04 18:39:49 by hfrankly         ###   ########.fr       */
+/*   Updated: 2019/12/04 19:18:26 by hfrankly         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "virtual_machine.h"
 
-int32_t				return_bytes(t_point *arena, uint16_t position, uint8_t bytes_nbr)
+int32_t		return_bytes(t_point *arena, uint16_t position, uint8_t bytes_nbr)
 {
 	int32_t			res;
 
@@ -22,51 +22,44 @@ int32_t				return_bytes(t_point *arena, uint16_t position, uint8_t bytes_nbr)
 	else if (bytes_nbr == 2)
 		res = arena[position % MEM_SIZE].value << 8 |
 				arena[(position + 1) % MEM_SIZE].value;
-	else if	(bytes_nbr == 4)
+	else if (bytes_nbr == 4)
 		res = arena[position % MEM_SIZE].value << 24 |
 			arena[(position + 1) % MEM_SIZE].value << 16 |
 			arena[(position + 2) % MEM_SIZE].value << 8 |
 			arena[(position + 3) % MEM_SIZE].value;
 	else
 		ft_printf("Wrong bytes_nbr");
-	return(res);
+	return (res);
 }
 
-int32_t				return_arg(t_point *arena, uint16_t *position,
+int32_t		return_arg(t_point *arena, uint16_t *position,
 								uint8_t arg_code, uint8_t t_dir_size)
 {
-	int8_t		reg;
-	int16_t		ind;
-	int16_t		dir16;
-	int32_t		dir32;
-	
+	int8_t		one_byte;
+	int16_t		two_byte;
+	int32_t		four_byte;
+
 	if (arg_code == 1)
 	{
-		reg = return_bytes(arena, *position, 1) - 1;
+		one_byte = return_bytes(arena, *position, 1) - 1;
 		*position = (*position + 1) % MEM_SIZE;
-		return (reg);
+		return (one_byte);
 	}
-	else if (arg_code == 3)
+	else if (arg_code == 3 || t_dir_size == 2)
 	{
-		ind = return_bytes(arena, *position, 2);
+		two_byte = return_bytes(arena, *position, 2);
 		*position = (*position + 2) % MEM_SIZE;
-		return (ind);
-	}
-	else if (t_dir_size == 2)
-	{
-		dir16 = return_bytes(arena, *position, 2);
-		*position = (*position + 2) % MEM_SIZE;
-		return (dir16);
+		return (two_byte);
 	}
 	else
 	{
-		dir32 = return_bytes(arena, *position, 4);
+		four_byte = return_bytes(arena, *position, 4);
 		*position = (*position + 4) % MEM_SIZE;
-		return (dir32);
+		return (four_byte);
 	}
 }
 
-uint16_t			get_position(uint16_t cur_pos, int64_t arg, bool idx)
+uint16_t	get_position(uint16_t cur_pos, int64_t arg, bool idx)
 {
 	int8_t	sign;
 	int32_t	res;
@@ -90,7 +83,8 @@ uint16_t			get_position(uint16_t cur_pos, int64_t arg, bool idx)
 	return (res % MEM_SIZE);
 }
 
-void				add_to_arena(t_corewar *vm, uint16_t position, int32_t code, t_carriage *carriage)
+void		add_to_arena(t_corewar *vm, uint16_t position,
+						int32_t code, t_carriage *carriage)
 {
 	vm->arena[position].value = code >> 24;
 	vm->arena[(position + 1) % MEM_SIZE].value = code >> 16 & 0x00FF;
@@ -108,4 +102,27 @@ void				add_to_arena(t_corewar *vm, uint16_t position, int32_t code, t_carriage 
 	carriage->last_operation[1] = (position + 1) % MEM_SIZE;
 	carriage->last_operation[2] = (position + 2) % MEM_SIZE;
 	carriage->last_operation[3] = (position + 3) % MEM_SIZE;
+}
+
+void		op_live(t_corewar *vm, t_carriage *carriage, uint8_t *arg_code)
+{
+	t_core			*core;
+	int32_t			player_code;
+
+	vm->live_count++;
+	carriage->cycle_was_live = vm->total_cycles + vm->current_cycles;
+	player_code = -return_bytes(vm->arena, carriage->position + 1,
+								carriage->operation->t_dir_size);
+	vm->arena[carriage->position].live_count = 50;
+	if (player_code > 0 && player_code <= vm->number_of_players)
+	{
+		vm->cores[player_code - 1]->cycle_was_live =
+									vm->total_cycles + vm->current_cycles;
+		vm->cores[player_code - 1]->lives_in_period++;
+		vm->winner = vm->cores[player_code - 1];
+		vm->winner->cycle_was_live =
+									vm->total_cycles + vm->current_cycles;
+	}
+	if (vm->visual && vm->sdl->sound)
+		Mix_PlayChannel(-1, vm->sdl->live, 0);
 }
