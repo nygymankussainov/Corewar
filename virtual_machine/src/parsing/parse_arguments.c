@@ -39,7 +39,6 @@ void			parse_player(t_corewar *vm, char *argv[], int *n, int player_id)
 		{
 			core_tmp = vm->line_of_players;
 			while (core_tmp->next)
-
 				core_tmp = core_tmp->next;
 			core_tmp->next = new_player;
 		}

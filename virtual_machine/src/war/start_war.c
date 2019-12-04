@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   start_war.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: egiant <egiant@student.42.fr>              +#+  +:+       +#+        */
+/*   By: hfrankly <hfrankly@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/02 14:50:41 by hfrankly          #+#    #+#             */
-/*   Updated: 2019/12/04 16:15:11 by egiant           ###   ########.fr       */
+/*   Updated: 2019/12/04 16:28:12 by hfrankly         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,19 +24,13 @@ void				start_war(t_corewar *vm)
 		if (vm->dumps != vm->cycles_to_die && vm->dumps == vm->current_cycles + vm->total_cycles)
 		{
 			display_array(vm->arena, 64, 64);
+			free_corewar(vm);
 			exit (0);
 		}
 		execute_carriages(&vm);
 		if (vm->current_cycles == vm->cycles_to_die || vm->cycles_to_die <= 0)
 			check(&vm);
 	}
-	// while (vm->start_carriage)
-	// {
-	// 	if (vm->current_cycles == vm->cycles_to_die || vm->cycles_to_die <= 0)
-	// 		check(&vm);
-	// 	else
-	// 		execute_carriages(&vm);
-	// }
 	if (vm->visual)
 	{
 		vis_corewar(vm);

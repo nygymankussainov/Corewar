@@ -6,7 +6,7 @@
 /*   By: hfrankly <hfrankly@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/30 13:41:08 by egiant            #+#    #+#             */
-/*   Updated: 2019/12/03 12:01:22 by hfrankly         ###   ########.fr       */
+/*   Updated: 2019/12/04 16:43:20 by hfrankly         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,5 +99,6 @@ t_corewar		*init_vm(void)
 	vm->live_count = 0;
 	vm->flag_a = false;
 	vm->visual = false;
+	vm->sdl = NULL;
 	return(vm);
 }

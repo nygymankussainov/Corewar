@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   virtual_machine.h                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: egiant <egiant@student.42.fr>              +#+  +:+       +#+        */
+/*   By: hfrankly <hfrankly@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/30 16:29:38 by hfrankly          #+#    #+#             */
-/*   Updated: 2019/12/03 17:42:40 by egiant           ###   ########.fr       */
+/*   Updated: 2019/12/04 18:40:01 by hfrankly         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,9 +39,9 @@ typedef struct 		s_point {
 }					t_point;
 
 typedef struct 		s_corewar {
-	t_sdl			*sdl;
-	t_core			*cores[MAX_PLAYERS];
-	t_core			*line_of_players;
+	t_sdl			*sdl; //
+	t_core			*cores[MAX_PLAYERS]; //
+	t_core			*line_of_players; // 
 	short			number_of_players;
 	t_point			arena[MEM_SIZE];
 	t_carriage		*start_carriage;
@@ -89,7 +89,7 @@ typedef struct 		s_carriage {
 void				display_array(t_point *array, uint16_t rows, uint16_t cols);
 void				introduce_players(t_corewar *vm);
 /*
-// initialization
+** initialization
 */
 t_corewar			*init_vm(void);
 void				init_arena(t_corewar *vm);
@@ -100,12 +100,12 @@ void				set_exec_code(t_point *arena, uint16_t position, t_core *core);
 void				set_carriages(t_corewar *vm, uint16_t position_step);
 
 /*
-// parsing
+** parsing
 */
 void				parse_arguments(t_corewar **vm, int argc, char *argv[]);
 
 /*
-// validation
+** validation
 */
 void				read_byte_code(t_corewar **vm);
 
@@ -114,7 +114,7 @@ void				termination_with_error(char *error_string);
 void				termination_with_perror(char *error_string, int code);
 
 /*
-// war
+** war
 */
 void				start_war(t_corewar *vm);
 void				check(t_corewar **vm);
@@ -124,7 +124,16 @@ bool				is_valid_format(t_corewar *vm, t_carriage *carriage, uint8_t *arg_code);
 void				pass_args_bits(t_corewar *vm, t_carriage *carriage, uint8_t *arg_code);
 
 void				kill_carriage(t_corewar **vm, t_carriage *to_delete);
-t_carriage			*copy_carriage(t_corewar *vm, t_carriage *to_copy); // need to be done
+t_carriage			*copy_carriage(t_corewar *vm, t_carriage *to_copy);
+
+/*
+** operations
+*/
+int32_t				return_bytes(t_point *arena, uint16_t position, uint8_t bytes_nbr);
+int32_t				return_arg(t_point *arena, uint16_t *position,
+								uint8_t arg_code, uint8_t t_dir_size);
+uint16_t			get_position(uint16_t cur_pos, int64_t arg, bool idx);
+void				add_to_arena(t_corewar *vm, uint16_t position, int32_t code, t_carriage *carriage);
 
 /*
  *  free

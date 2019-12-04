@@ -2,6 +2,11 @@
 // Created by Endon Giant on 28/11/2019.
 //
 
+// carriages
+// vm
+// cores (read_champ_name, parse_player)
+// arg
+
 #include "virtual_machine.h"
 
 void    free_carriage(t_corewar *vm)
@@ -13,28 +18,30 @@ void    free_carriage(t_corewar *vm)
     while(tmp)
     {
         save_next = tmp->next;
-        free(tmp->operation);
         free(tmp);
         tmp = save_next;
     }
     vm->start_carriage = NULL;
 }
 
-void    free_corewar(t_corewar *vm)
+void	free_corewar(t_corewar *vm)
 {
-    int n;
+    int 	n;
+	t_core	*tmp;
 
-    n = 0;
-    if (vm->cores)
-    {
-        while (vm->cores[n])
-        {
-            free(vm->cores[n]->executable_file_name);
-            free(vm->cores[n++]);
-        }
-        free(vm->cores);
-    }
-    if (vm->start_carriage)
-        free_carriage(vm);
-    // winner ссылается на структуру в cores?
+	n = 0;
+	while (n < vm->number_of_players)
+	{
+		free(vm->cores[n]->executable_file_name);
+		free(vm->cores[n]);
+		tmp = vm->line_of_players->next;
+		free(vm->line_of_players);
+		vm->line_of_players = tmp;
+		n++;
+	}
+	if (vm->start_carriage)
+		free_carriage(vm);
+	if (vm->sdl)
+		ft_close_sdl(vm->sdl);
+	free(vm);
 }

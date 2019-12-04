@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: egiant <egiant@student.42.fr>              +#+  +:+       +#+        */
+/*   By: hfrankly <hfrankly@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/30 13:41:19 by egiant            #+#    #+#             */
-/*   Updated: 2019/12/03 20:00:14 by egiant           ###   ########.fr       */
+/*   Updated: 2019/12/04 17:25:05 by hfrankly         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,27 +40,6 @@ void			display_array(t_point *array, uint16_t rows, uint16_t cols)
 		i++;
 	}
 }
-
-// void			display_array(t_point *array, uint16_t rows, uint16_t cols)
-// {
-// 	uint16_t	j;
-// 	uint16_t	i;
-// 	uint16_t	offset;
-
-// 	i = 0;
-// 	while (i < rows)
-// 	{
-// 		j = 0;
-// 		offset = i * cols;
-// 		while (j < cols)
-// 		{
-// 			ft_printf("%02x ", array[offset + j].value);
-// 			j++;
-// 		}
-// 		ft_putchar('\n');
-// 		i++;
-// 	}
-// }
 
 void			introduce_players(t_corewar *vm)
 {
@@ -98,5 +77,6 @@ int				main(int argc, char *argv[])
 			handle_key_press(vm, &quit, true);
 		ft_close_sdl(vm->sdl);
 	}
+	free_corewar(vm);
 	return (0);
 }

@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: screight <screight@student.42.fr>          +#+  +:+       +#+         #
+#    By: hfrankly <hfrankly@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/10/30 17:56:58 by hfrankly          #+#    #+#              #
-#    Updated: 2019/12/04 12:33:31 by screight         ###   ########.fr        #
+#    Updated: 2019/12/04 18:43:51 by hfrankly         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -20,7 +20,6 @@ NAME = corewar
 
 SDL = -L ~/.brew/Cellar/sdl2/2.0.10/lib -l SDL2-2.0.0 \
 		`sdl2-config --libs` -lSDL2_gfx -lSDL2_mixer -lSDL2_ttf -lm
-#SDL = -lSDL2_gfx -lSDL2_mixer -lSDL2_ttf -lSDL2
 LIBPRDIR = ../libftprintf
 LIBDIR = ../libftprintf/libft
 FLAGS = -g
@@ -33,6 +32,7 @@ FREE_DIR = src/free/
 INIT_DIR = src/initialization/
 PARSING_DIR = src/parsing/
 VALID_DIR = src/validation/
+OPER_DIR = src/operations/
 WAR_DIR = src/war/
 VIS_DIR = src/visual/
 
