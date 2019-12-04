@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   initialization.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hfrankly <hfrankly@student.42.fr>          +#+  +:+       +#+        */
+/*   By: egiant <egiant@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/30 13:41:08 by egiant            #+#    #+#             */
-/*   Updated: 2019/12/03 12:01:22 by hfrankly         ###   ########.fr       */
+/*   Updated: 2019/12/04 17:49:05 by egiant           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ t_carriage		*init_carriage(t_corewar *vm, t_core *player)
 {
 	short		n;
 	t_carriage	*carriage;
-	
+
 	n = 0;
 	if (!(carriage = (t_carriage *)malloc(sizeof(t_carriage))))
 		termination_with_perror("Error", ENOMEM);
@@ -40,10 +40,10 @@ t_carriage		*init_carriage(t_corewar *vm, t_core *player)
 
 void			init_arena(t_corewar *vm)
 {
+	int			n;
 	uint8_t		i;
 	uint16_t	cur_position;
 	uint16_t	position_step;
-	int 		n;
 
 	i = 0;
 	n = MEM_SIZE - 1;
@@ -99,5 +99,5 @@ t_corewar		*init_vm(void)
 	vm->live_count = 0;
 	vm->flag_a = false;
 	vm->visual = false;
-	return(vm);
+	return (vm);
 }

@@ -6,13 +6,13 @@
 /*   By: egiant <egiant@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/12 14:38:51 by hfrankly          #+#    #+#             */
-/*   Updated: 2019/12/04 13:52:04 by egiant           ###   ########.fr       */
+/*   Updated: 2019/12/04 18:36:56 by egiant           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "virtual_machine.h"
 
-bool	is_valid_reg(t_corewar *vm, t_carriage *carriage,
+bool		is_valid_reg(t_corewar *vm, t_carriage *carriage,
 					uint8_t *arg_code, uint8_t index)
 {
 	int		offset;
@@ -31,22 +31,25 @@ bool	is_valid_reg(t_corewar *vm, t_carriage *carriage,
 		i++;
 	}
 	if (vm->arena[(carriage->position + offset) % MEM_SIZE].value < 1 ||
-			vm->arena[(carriage->position + offset) % MEM_SIZE].value > REG_NUMBER)
+			vm->arena[(carriage->position + offset) % MEM_SIZE].value >
+															REG_NUMBER)
 		return (false);
 	else
 		return (true);
 }
 
-void	set_arg_code(t_corewar *vm, t_carriage *carriage, uint8_t **arg_code)
+void		set_arg_code(t_corewar *vm, t_carriage *carriage,
+												uint8_t **arg_code)
 {
-	int	i;
+	int		i;
 
 	if (carriage->operation->args_types_code)
 	{
 		i = 0;
 		while (i < 4)
 		{
-			(*arg_code)[i] = vm->arena[(carriage->position + 1) % MEM_SIZE].value<< (2 * i) >> 6 & 3;
+			(*arg_code)[i] = vm->arena[(carriage->position + 1)
+				% MEM_SIZE].value << (2 * i) >> 6 & 3;
 			i++;
 		}
 	}
@@ -57,7 +60,7 @@ void	set_arg_code(t_corewar *vm, t_carriage *carriage, uint8_t **arg_code)
 	}
 }
 
-bool	if_valid_format(t_corewar *vm, t_carriage *carriage,
+bool		if_valid_format(t_corewar *vm, t_carriage *carriage,
 						uint8_t *arg_code, int i)
 {
 	if (arg_code[i] == 3)
@@ -69,14 +72,7 @@ bool	if_valid_format(t_corewar *vm, t_carriage *carriage,
 		(arg_code[i] & carriage->operation->args_types[i]) == false)
 	{
 		if (arg_code[i] == 4)
-		arg_code[i] = 3;
-		return (false);
-	}
-	else if (i >= carriage->operation->number_of_arguments &&
-        arg_code[i] != 0)
-	{
-		if (arg_code[i] == 4)
-		arg_code[i] = 3;
+			arg_code[i] = 3;
 		return (false);
 	}
 	if (arg_code[i] == 4)
@@ -84,10 +80,11 @@ bool	if_valid_format(t_corewar *vm, t_carriage *carriage,
 	return (true);
 }
 
-bool	is_valid_format(t_corewar *vm, t_carriage *carriage, uint8_t *arg_code)
+bool		is_valid_format(t_corewar *vm, t_carriage *carriage,
+														uint8_t *arg_code)
 {
-	int	i;
-	
+	int		i;
+
 	if (carriage->operation->args_types_code)
 	{
 		i = 0;
@@ -101,10 +98,11 @@ bool	is_valid_format(t_corewar *vm, t_carriage *carriage, uint8_t *arg_code)
 	return (true);
 }
 
-void	pass_args_bits(t_corewar *vm, t_carriage *carriage, uint8_t *arg_code)
+void		pass_args_bits(t_corewar *vm, t_carriage *carriage,
+														uint8_t *arg_code)
 {
-	int	bytes_count;
-	int	i;
+	int		bytes_count;
+	int		i;
 
 	if (carriage->operation->args_types_code)
 	{

@@ -3,20 +3,20 @@
 /*                                                        :::      ::::::::   */
 /*   carriage_interaction.c                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hfrankly <hfrankly@student.42.fr>          +#+  +:+       +#+        */
+/*   By: egiant <egiant@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/13 13:13:54 by hfrankly          #+#    #+#             */
-/*   Updated: 2019/12/03 12:02:17 by hfrankly         ###   ########.fr       */
+/*   Updated: 2019/12/04 18:32:47 by egiant           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "virtual_machine.h"
 
-void		kill_carriage(t_corewar **vm, t_carriage *to_delete)
+void			kill_carriage(t_corewar **vm, t_carriage *to_delete)
 {
 	t_carriage	*cur_carriage;
 	t_carriage	*next_carriage;
-	
+
 	(*vm)->carriage_count--;
 	cur_carriage = (*vm)->start_carriage;
 	if ((*vm)->start_carriage == to_delete)
@@ -52,9 +52,4 @@ t_carriage		*copy_carriage(t_corewar *vm, t_carriage *to_copy)
 	new_carriage->next = vm->start_carriage;
 	vm->start_carriage = new_carriage;
 	return (new_carriage);
-}
-
-t_carriage	*find_carriage(t_corewar *vm, uint8_t id)
-{
-	return(NULL);
 }

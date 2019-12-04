@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: screight <screight@student.42.fr>          +#+  +:+       +#+         #
+#    By: egiant <egiant@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/10/30 17:56:58 by hfrankly          #+#    #+#              #
-#    Updated: 2019/12/04 12:33:31 by screight         ###   ########.fr        #
+#    Updated: 2019/12/04 18:21:18 by egiant           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -38,11 +38,15 @@ VIS_DIR = src/visual/
 
 SRC =	    main.c \
 			exit.c
-FREE_SRC = free_corewar.c
-INIT_SRC = initialization.c \
+FREE_SRC = 	free_corewar.c
+INIT_SRC = 	initialization.c \
             set_params.c
-PARSING_SRC = parse_arguments.c
-VALID_SRC = read_byte_code.c
+PARSING_SRC = parse_arguments.c \
+			add_player_to_list.c
+VALID_SRC = read_byte_code.c \
+			check_magic_header_and_null_octet.c \
+			check_cores.c \
+			is_name.c
 WAR_SRC = 	start_war.c \
           	operations.c \
           	check.c \
