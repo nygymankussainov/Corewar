@@ -6,7 +6,7 @@
 /*   By: vhazelnu <vhazelnu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/03 12:54:42 by vhazelnu          #+#    #+#             */
-/*   Updated: 2019/12/03 18:08:59 by vhazelnu         ###   ########.fr       */
+/*   Updated: 2019/12/04 20:35:38 by vhazelnu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,11 +15,17 @@
 void	zjmp(t_vm *vm, t_carr *carr)
 {
 	int		pos;
+	int		skip;
 
-	pos = vm->args[0] < 0 ? neg_mod(vm->args[0]) % IDX_MOD : \
-	vm->args[0] % IDX_MOD;
+	pos = vm->args[0] % IDX_MOD;
+	pos = get_pos(carr->pos - carr->skip + pos);
 	if (carr->carry)
-		carr->pos = (carr->pos + pos) % MEM_SIZE;
+		carr->pos = pos;
+	else
+	{
+		skip = skip_args(vm, carr, carr->op->args_number, 1);
+		carr_move(carr, skip);
+	}
 }
 
 void	live(t_vm *vm, t_carr *carr)

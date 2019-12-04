@@ -6,7 +6,7 @@
 /*   By: vhazelnu <vhazelnu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/02 16:36:10 by vhazelnu          #+#    #+#             */
-/*   Updated: 2019/12/03 21:47:41 by vhazelnu         ###   ########.fr       */
+/*   Updated: 2019/12/04 16:32:55 by vhazelnu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,6 +49,7 @@ struct						s_carr
 	int						cycles_to_exec;
 	int						pos;
 	int						reg[REG_NUMBER];
+	int						skip;
 	struct s_carr			*next;
 	struct s_carr			*prev;
 };

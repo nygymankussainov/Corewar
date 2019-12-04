@@ -6,7 +6,7 @@
 /*   By: vhazelnu <vhazelnu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/03 18:03:56 by vhazelnu          #+#    #+#             */
-/*   Updated: 2019/12/04 13:58:48 by vhazelnu         ###   ########.fr       */
+/*   Updated: 2019/12/04 22:23:37 by vhazelnu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,7 @@ t_carr	*remove_carr(t_vm *vm, t_carr *carr)
 
 t_carr	*check_carrs(t_vm *vm, t_carr *carr)
 {
+	++vm->check_count;
 	while (carr)
 	{
 		if (!carr->lastlive_cycle ||

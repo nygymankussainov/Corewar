@@ -6,7 +6,7 @@
 /*   By: vhazelnu <vhazelnu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/03 12:16:18 by vhazelnu          #+#    #+#             */
-/*   Updated: 2019/12/03 16:58:32 by vhazelnu         ###   ########.fr       */
+/*   Updated: 2019/12/04 20:54:29 by vhazelnu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,8 +32,7 @@ void	lfork(t_vm *vm, t_carr *carr)
 	int		pos;
 
 	copy_carr(vm, carr);
-	pos = vm->args[0] < 0 ? neg_mod(vm->args[0]) % MEM_SIZE : \
-	vm->args[0] % MEM_SIZE;
+	pos = get_pos(carr->pos - carr->skip + vm->args[0]);
 	vm->head->pos = pos;
 }
 
@@ -75,7 +74,7 @@ void	ffork(t_vm *vm, t_carr *carr)
 	int		pos;
 	
 	copy_carr(vm, carr);
-	pos = vm->args[0] < 0 ? neg_mod(vm->args[0]) % IDX_MOD : \
-	vm->args[0] % IDX_MOD;
+	pos = vm->args[0] % IDX_MOD;
+	pos = get_pos(carr->pos - carr->skip + pos);
 	vm->head->pos = pos;
 }

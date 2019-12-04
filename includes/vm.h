@@ -6,7 +6,7 @@
 /*   By: vhazelnu <vhazelnu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/26 13:01:09 by vhazelnu          #+#    #+#             */
-/*   Updated: 2019/12/03 20:10:38 by vhazelnu         ###   ########.fr       */
+/*   Updated: 2019/12/04 21:59:34 by vhazelnu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ void				battle(t_carr *carr, t_vm *vm);
 void				set_opcode(t_vm *vm, t_carr *carr);
 void				set_opcode(t_vm *vm, t_carr *carr);
 void				verify_operation(t_vm *vm, t_carr *carr);
-void				carr_move(t_carr *carr, int step);
+int					carr_move(t_carr *carr, int step);
 int					skip_args(t_vm *vm, t_carr *carr, int arg_nb, bool del_arg);
 void				get_arg_types(t_vm *vm, t_carr *carr);
 void				get_args_value(t_vm *vm, t_carr *carr, int i, int size);
@@ -50,7 +50,9 @@ int					check_reg(t_vm *vm, t_carr *carr, int size);
 void				ft_itoh_vm(int32_t value, int size, t_vm *vm, int pos);
 int					get_ind_value(t_vm *vm, t_carr *carr, int pos, bool mod);
 void				create_carriage(t_carr **carr);
-int					neg_mod(int nb);
+int					get_pos(int pos);
 t_carr				*check_carrs(t_vm *vm, t_carr *carr);
+void				print_dump(char *arena);
+t_carr				*remove_carr(t_vm *vm, t_carr *carr);
 
 #endif

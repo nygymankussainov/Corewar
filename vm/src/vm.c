@@ -6,7 +6,7 @@
 /*   By: vhazelnu <vhazelnu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/27 14:26:22 by vhazelnu          #+#    #+#             */
-/*   Updated: 2019/12/04 13:55:53 by vhazelnu         ###   ########.fr       */
+/*   Updated: 2019/12/04 21:12:32 by vhazelnu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,9 +42,9 @@ void	get_args_value(t_vm *vm, t_carr *carr, int arg_nb, int size)
 
 void	get_arg_types(t_vm *vm, t_carr *carr)
 {
-	vm->args_type[0] = (vm->arena[carr->pos] & 0b11000000) >> 6;
-	vm->args_type[1] = (vm->arena[carr->pos] & 0b00110000) >> 4;
-	vm->args_type[2] = (vm->arena[carr->pos] & 0b00001100) >> 2;
+	vm->args_type[0] = (vm->arena[carr->pos % MEM_SIZE] & 0b11000000) >> 6;
+	vm->args_type[1] = (vm->arena[carr->pos % MEM_SIZE] & 0b00110000) >> 4;
+	vm->args_type[2] = (vm->arena[carr->pos % MEM_SIZE] & 0b00001100) >> 2;
 }
 
 void	create_carriage(t_carr **carr)
@@ -70,7 +70,7 @@ void	create_carriage(t_carr **carr)
 	}
 }
 
-t_carr	*craete_arena(t_vm *vm)
+t_carr	*place_players_on_arena(t_vm *vm)
 {
 	int		i;
 	int		step;
@@ -97,9 +97,9 @@ void	virtual_machine(t_vm *vm)
 {
 	t_carr	*carr;
 
-	carr = craete_arena(vm);
+	carr = place_players_on_arena(vm);
 	announce_players(vm->player, vm->pl_nb);
 	battle(carr, vm);
-	int fd = open("test", O_CREAT | O_WRONLY, S_IRUSR | S_IWUSR);
-	write(fd, vm->arena, MEM_SIZE);
+	// int fd = open("test", O_CREAT | O_WRONLY, S_IRUSR | S_IWUSR);
+	// write(fd, vm->arena, MEM_SIZE);
 }

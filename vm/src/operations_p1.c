@@ -6,7 +6,7 @@
 /*   By: vhazelnu <vhazelnu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/29 21:43:01 by vhazelnu          #+#    #+#             */
-/*   Updated: 2019/12/04 14:01:18 by vhazelnu         ###   ########.fr       */
+/*   Updated: 2019/12/04 18:48:58 by vhazelnu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,6 @@ int		get_ind_value(t_vm *vm, t_carr *carr, int pos, bool mod)
 	int		value;
 
 	i = 0;
-	if (pos < 0)
-		pos = neg_mod(pos);
 	if (mod)
 		pos = pos % IDX_MOD;
 	if (!(address = (char *)ft_memalloc(sizeof(char) * REG_SIZE + 1)))
@@ -30,7 +28,7 @@ int		get_ind_value(t_vm *vm, t_carr *carr, int pos, bool mod)
 	}
 	while (i < REG_SIZE)
 	{
-		address[i] = vm->arena[(carr->pos + pos + i) % MEM_SIZE];
+		address[i] = vm->arena[get_pos(carr->pos - carr->skip + pos + i)];
 		++i;
 	}
 	address = rev_bytes(address, REG_SIZE);
@@ -56,8 +54,8 @@ void	sti(t_vm *vm, t_carr *carr)
 			pos += get_ind_value(vm, carr, vm->args[i], 1);
 		++i;
 	}
-	pos = pos < 0 ? neg_mod(pos) % IDX_MOD : pos % IDX_MOD;
-	vm->arena[(carr->pos + pos) % MEM_SIZE] = carr->reg[vm->args[0] - 1];
+	pos %= IDX_MOD;
+	ft_itoh_vm(carr->reg[vm->args[0] - 1], REG_SIZE, vm, carr->pos - carr->skip + pos);
 }
 
 void	ldi(t_vm *vm, t_carr *carr)
@@ -90,9 +88,8 @@ void	st(t_vm *vm, t_carr *carr)
 		carr->reg[vm->args[1] - 1] = carr->reg[vm->args[0] - 1];
 	else
 	{
-		pos = vm->args[1] < 0 ? neg_mod(vm->args[1]) % IDX_MOD : \
-		vm->args[1] % IDX_MOD;
-		vm->arena[(carr->pos + pos) % MEM_SIZE] = carr->reg[vm->args[0] - 1];
+		pos = vm->args[1] % IDX_MOD;
+		ft_itoh_vm(carr->reg[vm->args[0] - 1], REG_SIZE, vm, carr->pos - carr->skip + pos);
 	}
 }
 

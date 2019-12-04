@@ -1,10 +1,10 @@
 test()
 {
 	echo $2 '  ' $3 '  ' $4 '  ' $5
-	for ((i=$1; i < 100000; i++))
+	for ((i=1; i < 100000; i++))
 	do
-		./corewar_original -d $i $2 $3 $4 $5 | tail -64  | cut -c10- > output_original
-		./corewar -dump $i $2 $3 $4 $5 | tail -65 | head -n 64 > output
+		./corewar_original -d $i $2 $3 $4 $5 ./ch/Asombra.cor | tail -64  | cut -c10- > output_original
+		./corewar -dump $i $2 $3 $4 $5 ./ch/Asombra.cor | tail -65 | head -n 64 > output
 		DIFF=$(diff output output_original)
 		if [ "$DIFF" ]
 		then

@@ -6,36 +6,46 @@
 /*   By: vhazelnu <vhazelnu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/29 17:13:10 by vhazelnu          #+#    #+#             */
-/*   Updated: 2019/12/03 20:21:55 by vhazelnu         ###   ########.fr       */
+/*   Updated: 2019/12/04 21:08:41 by vhazelnu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "vm.h"
 
-int		neg_mod(int nb)
+int		get_pos(int pos)
 {
-	nb = nb % MEM_SIZE + MEM_SIZE;
-	return (nb);
+	pos = pos % MEM_SIZE;
+	if (pos < 0)
+		pos += MEM_SIZE;
+	return (pos);
 }
 
 void	verify_operation(t_vm *vm, t_carr *carr)
 {
-	carr_move(carr, 1);
+	int		skip;
+	int		verification;
+
+	carr->skip = carr_move(carr, 1);
 	if (carr->opcode >= vm->first_op &&
 		carr->opcode <= vm->last_op)
 	{
 		if (carr->op->args_type_code)
 		{
 			get_arg_types(vm, carr);
-			carr_move(carr, 1);
+			carr->skip += carr_move(carr, 1);
 		}
-		if (verify_args(vm, carr))
+		verification = verify_args(vm, carr);
+		if (verification)
 		{
-			if (!carr->op->f)
-				carr->op->f = g_op_funcs[(int)carr->opcode - 1].f;
 			carr->op->f(vm, carr);
+			// ft_printf("%d %s ", vm->cycles_from_start, carr->op->name);
+			// ft_printf("[%d][%d][%d]\n", vm->args[0], vm->args[1], vm->args[2]);
 		}
-		if (carr->op->f != zjmp)
-			carr_move(carr, skip_args(vm, carr, carr->op->args_number, 1));
+		if (!verification || carr->op->f != zjmp)
+		{
+			skip = skip_args(vm, carr, carr->op->args_number, 1);
+			carr_move(carr, skip);
+		}
+		// ft_printf("%d\n", carr->pos);
 	}
 }
