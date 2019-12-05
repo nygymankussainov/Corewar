@@ -6,7 +6,7 @@
 /*   By: screight <screight@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/17 13:06:28 by hfrankly          #+#    #+#             */
-/*   Updated: 2019/12/04 12:33:13 by screight         ###   ########.fr       */
+/*   Updated: 2019/12/05 16:13:33 by screight         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,8 +59,9 @@ struct s_sdl
 /*
 ** sdl_init
 */
-t_sdl				*sdl_init(void);
-void				ft_close_sdl(t_sdl *sdl);
+t_sdl				*sdl_init(t_corewar *vm);
+void				free_sdl(t_sdl *sdl);
+void				close_vis(t_corewar *vm, char *err, int code, bool mix);
 void				vis_corewar(t_corewar *vm);
 void				set_player_color(t_corewar *vm, int i);
 bool				handle_key_press(t_corewar *vm, bool *trig, bool pause);
