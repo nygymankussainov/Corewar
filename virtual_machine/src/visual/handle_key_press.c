@@ -6,7 +6,7 @@
 /*   By: screight <screight@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/01 23:55:03 by screight          #+#    #+#             */
-/*   Updated: 2019/12/05 14:02:19 by screight         ###   ########.fr       */
+/*   Updated: 2019/12/05 16:15:15 by screight         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,7 +76,7 @@ bool handle_key_press(t_corewar *vm, bool *trig, bool pause)
 		if (vm->sdl->e->type == SDL_QUIT ||
 			(vm->sdl->e->type == SDL_KEYDOWN &&
     	        vm->sdl->e->key.keysym.sym == SDLK_ESCAPE))
-			ft_close_sdl(vm->sdl);
+			close_vis(vm, NULL, -1, false);
 		else if (vm->sdl->e->type == SDL_KEYDOWN && 
     	            (vm->sdl->e->key.keysym.sym == SDLK_RETURN ||
 						vm->sdl->e->key.keysym.sym == SDLK_KP_ENTER) && trig)

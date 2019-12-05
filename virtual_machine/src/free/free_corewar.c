@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   free_corewar.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: egiant <egiant@student.42.fr>              +#+  +:+       +#+        */
+/*   By: screight <screight@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/04 19:14:05 by hfrankly          #+#    #+#             */
-/*   Updated: 2019/12/05 14:34:38 by egiant           ###   ########.fr       */
+/*   Updated: 2019/12/05 16:02:57 by screight         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,6 @@ void			free_corewar(t_corewar *vm)
 	if (vm->start_carriage)
 		free_carriage(vm);
 	if (vm->sdl)
-		ft_close_sdl(vm->sdl);
+		free_sdl(vm->sdl);
 	free(vm);
 }

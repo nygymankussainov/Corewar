@@ -6,7 +6,7 @@
 /*   By: screight <screight@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/02 14:50:41 by hfrankly          #+#    #+#             */
-/*   Updated: 2019/12/05 14:09:12 by screight         ###   ########.fr       */
+/*   Updated: 2019/12/05 16:16:58 by screight         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,13 +23,6 @@ void				start_war(t_corewar *vm)
 	t_carriage		*tmp;
 
 	tmp = vm->start_carriage;
-	if (vm->visual)
-	{
-		vis_corewar(vm);
-		stringColor(vm->sdl->ren, SZX - 250, SZY - 56,
-										vm->winner->name, vm->winner->color);
-		SDL_RenderPresent(vm->sdl->ren);
-	}
 	while (vm->start_carriage)
 	{
 		if (vm->dumps == (int32_t)(vm->current_cycles + vm->total_cycles))
