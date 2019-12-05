@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   display_data.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: egiant <egiant@student.42.fr>              +#+  +:+       +#+        */
+/*   By: screight <screight@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/02 00:53:14 by screight          #+#    #+#             */
-/*   Updated: 2019/12/05 13:31:23 by egiant           ###   ########.fr       */
+/*   Updated: 2019/12/05 14:06:11 by screight         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,14 +78,12 @@ void	display_vm_state_vis(t_corewar *vm)
 
 void display_war_state(t_corewar *vm)
 {
-	stringColor(vm->sdl->ren, X, Y, "total cycles:", WHITE);
-	stringColor(vm->sdl->ren, X, Y + 25, "current cycle:", WHITE);
+	stringColor(vm->sdl->ren, X, Y + 25, "total cycles:", WHITE);
 	stringColor(vm->sdl->ren, X, Y + 50, "cycles to die:", WHITE);
 	stringColor(vm->sdl->ren, X, Y + 75, "cycle delta:", WHITE);
 	stringColor(vm->sdl->ren, X, Y + 100, "live number:", WHITE);
 	stringColor(vm->sdl->ren, X, Y + 125, "check number:", WHITE);
-	stringColor(vm->sdl->ren, XT, Y, ft_itoa(vm->total_cycles), SALM);
-	stringColor(vm->sdl->ren, XT, Y + 25, ft_itoa(vm->current_cycles), SALM);
+	stringColor(vm->sdl->ren, XT, Y + 25, ft_itoa(vm->total_cycles + vm->current_cycles), SALM);
 	stringColor(vm->sdl->ren, XT, Y + 50, ft_itoa(vm->cycles_to_die), SALM);
 	stringColor(vm->sdl->ren, XT, Y + 75, "50", SALM);
 	stringColor(vm->sdl->ren, SZX - 120, Y + 100, "/ 21", SALM);

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   sdl_init.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hfrankly <hfrankly@student.42.fr>          +#+  +:+       +#+        */
+/*   By: screight <screight@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/18 20:48:27 by screight          #+#    #+#             */
-/*   Updated: 2019/12/04 16:42:35 by hfrankly         ###   ########.fr       */
+/*   Updated: 2019/12/05 14:14:42 by screight         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,12 +14,10 @@
 
 void		init_and_load_audio(t_sdl *sdl)
 {
-/*	if (Mix_Init(MIX_INIT_MP3) != MIX_INIT_MP3)			//CAN THIS SOLVE THE PROBLEM?
-			termination_with_perror("Sdl init error", ENOMEM);*/
-		if (Mix_OpenAudio(44100, MIX_DEFAULT_FORMAT, 2, 2048 < 0))
-			termination_with_perror("SDL init error", ENOMEM);
-		if (/*!(sdl->music = Mix_LoadMUS("pacifica.mp3"))	//uncomment when mp3 works; currently doesn't work on MacOS
-				|| */!(sdl->live = Mix_LoadWAV("live.wav"))	
+		if (Mix_OpenAudio(44100, MIX_DEFAULT_FORMAT, 2, 2048) < 0)
+			ft_printf("Mix_OpenAudio: %s\n", Mix_GetError());
+		if (!(sdl->music = Mix_LoadMUS("pacifica.ogg"))
+				|| !(sdl->live = Mix_LoadWAV("live.wav"))	
 					|| !(sdl->dead_car = Mix_LoadWAV("zoom.wav"))
 						|| !(sdl->copy_car = Mix_LoadWAV("jump.wav")))
 			ft_close_sdl(sdl);
