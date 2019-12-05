@@ -6,7 +6,7 @@
 /*   By: hfrankly <hfrankly@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/02 14:50:41 by hfrankly          #+#    #+#             */
-/*   Updated: 2019/12/05 18:14:19 by hfrankly         ###   ########.fr       */
+/*   Updated: 2019/12/05 18:21:16 by hfrankly         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,4 +37,6 @@ void				start_war(t_corewar *vm)
 			check(&vm);
 	}
 	announce_winner(vm);
+	if (vm->visual)
+		annonce_winner_vis(vm);
 }
