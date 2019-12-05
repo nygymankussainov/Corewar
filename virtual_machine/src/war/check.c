@@ -6,7 +6,7 @@
 /*   By: egiant <egiant@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/09 15:37:50 by hfrankly          #+#    #+#             */
-/*   Updated: 2019/12/04 18:34:09 by egiant           ###   ########.fr       */
+/*   Updated: 2019/12/05 13:29:27 by egiant           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ static void		check_carriages(t_carriage *start_carriage, t_corewar *vm)
 	{
 		next_carriage = cur_carriage->next;
 		if (vm->cycles_to_die <= 0 ||
-				vm->total_cycles - cur_carriage->cycle_was_live >=
+				(int32_t)(vm->total_cycles - cur_carriage->cycle_was_live) >=
 														vm->cycles_to_die)
 			kill_carriage(&vm, cur_carriage);
 		cur_carriage = next_carriage;

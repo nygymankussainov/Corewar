@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   virtual_machine.h                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hfrankly <hfrankly@student.42.fr>          +#+  +:+       +#+        */
+/*   By: egiant <egiant@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/30 16:29:38 by hfrankly          #+#    #+#             */
-/*   Updated: 2019/12/04 18:46:24 by hfrankly         ###   ########.fr       */
+/*   Updated: 2019/12/05 13:44:14 by egiant           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,9 +39,9 @@ typedef struct 		s_point {
 }					t_point;
 
 typedef struct 		s_corewar {
-	t_sdl			*sdl; //
-	t_core			*cores[MAX_PLAYERS]; //
-	t_core			*line_of_players; // 
+	t_sdl			*sdl;
+	t_core			*cores[MAX_PLAYERS + 1];
+	t_core			*line_of_players;
 	short			number_of_players;
 	t_point			arena[MEM_SIZE];
 	t_carriage		*start_carriage;
@@ -110,26 +110,27 @@ void				add_player_to_list(t_corewar *vm, t_core *new_player);
 */
 void				read_byte_code(t_corewar **vm);
 void				check_cores(t_corewar *vm);
-void				read_magic_header(t_corewar *vm, int fd);
-void				read_null_octet(t_corewar *vm, int fd);
+void				read_magic_header(int fd);
+void				read_null_octet(int fd);
+int					is_name(char *str);
 
 /*
 // error management
 */
-void				terminate_with_error(t_corewar *vm);
+void				terminate_with_error(void);
 void				termination_with_error(char *error_string);
 void				termination_with_perror(char *error_string, int code);
+void				print_usage_and_exit(void);
 
 /*
 ** war
 */
 void				start_war(t_corewar *vm);
 void				check(t_corewar **vm);
-int					is_name(t_corewar *vm, char *str);
 void				execute_carriages(t_corewar **vm);
 void				set_arg_code(t_corewar *vm, t_carriage *carriage, uint8_t **arg_code);
 bool				is_valid_format(t_corewar *vm, t_carriage *carriage, uint8_t *arg_code);
-void				pass_args_bits(t_corewar *vm, t_carriage *carriage, uint8_t *arg_code);
+void				pass_args_bits(t_carriage *carriage, uint8_t *arg_code);
 
 void				kill_carriage(t_corewar **vm, t_carriage *to_delete);
 t_carriage			*copy_carriage(t_corewar *vm, t_carriage *to_copy);

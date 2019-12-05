@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   carriage_execution.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hfrankly <hfrankly@student.42.fr>          +#+  +:+       +#+        */
+/*   By: egiant <egiant@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/09 15:37:50 by hfrankly          #+#    #+#             */
-/*   Updated: 2019/12/04 18:47:58 by hfrankly         ###   ########.fr       */
+/*   Updated: 2019/12/05 13:30:12 by egiant           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ void			execute_carriage_op(t_corewar *vm, t_carriage *carriage)
 		if (is_valid_format(vm, carriage, arg_code))
 			carriage->operation->func(vm, carriage, arg_code);
 		if (carriage->operation->code != 0x09)
-			pass_args_bits(vm, carriage, arg_code);
+			pass_args_bits(carriage, arg_code);
 	}
 	if (arg_code)
 		free(arg_code);

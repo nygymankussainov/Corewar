@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   initialization.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hfrankly <hfrankly@student.42.fr>          +#+  +:+       +#+        */
+/*   By: egiant <egiant@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/30 13:41:08 by egiant            #+#    #+#             */
-/*   Updated: 2019/12/04 19:17:42 by hfrankly         ###   ########.fr       */
+/*   Updated: 2019/12/05 13:43:43 by egiant           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,11 +81,12 @@ t_corewar		*init_vm(void)
 	int			n;
 	t_corewar	*vm;
 
-	n = MAX_PLAYERS;
+	n = 0;
 	if (!(vm = (t_corewar *)malloc(sizeof(t_corewar))))
 		termination_with_perror("Error", ENOMEM);
-	while (--n > -1)
-		vm->cores[n] = NULL;
+	while (n < 4)
+		vm->cores[n++] = NULL;
+	vm->cores[4] = NULL;
 	vm->line_of_players = NULL;
 	vm->number_of_players = 0;
 	vm->start_carriage = NULL;

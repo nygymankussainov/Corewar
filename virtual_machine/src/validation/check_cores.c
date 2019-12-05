@@ -6,7 +6,7 @@
 /*   By: egiant <egiant@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/04 17:56:40 by egiant            #+#    #+#             */
-/*   Updated: 2019/12/04 18:08:44 by egiant           ###   ########.fr       */
+/*   Updated: 2019/12/05 13:45:23 by egiant           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,5 +20,5 @@ void		check_cores(t_corewar *vm)
 	while (vm->cores[n])
 		++n;
 	if (n != vm->number_of_players)
-		terminate_with_error(vm);
+		terminate_with_error();
 }

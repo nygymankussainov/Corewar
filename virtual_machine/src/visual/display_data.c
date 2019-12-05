@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   display_data.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: screight <screight@student.42.fr>          +#+  +:+       +#+        */
+/*   By: egiant <egiant@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/02 00:53:14 by screight          #+#    #+#             */
-/*   Updated: 2019/12/04 12:31:48 by screight         ###   ########.fr       */
+/*   Updated: 2019/12/05 13:31:23 by egiant           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,6 @@ void	display_header(t_corewar *vm, bool start)
 
 void display_player_data(t_corewar *vm, short h, short i)
 {
-	int	n;
 	t_carriage *tmp;
 	
 	while (++i < vm->number_of_players)

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse_arguments.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hfrankly <hfrankly@student.42.fr>          +#+  +:+       +#+        */
+/*   By: egiant <egiant@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/04 17:42:02 by egiant            #+#    #+#             */
-/*   Updated: 2019/12/04 18:47:08 by hfrankly         ###   ########.fr       */
+/*   Updated: 2019/12/05 13:22:50 by egiant           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,10 +16,11 @@ void			parse_dump_flag(t_corewar *vm, char *argv[], int *n)
 {
 	int			d;
 
+	d = -1;
 	if (argv[*n + 1])
 		d = ft_atoi(argv[*n + 1]);
 	else
-		terminate_with_error(vm);
+		terminate_with_error();
 	vm->dumps = d;
 	*n += 2;
 }
@@ -27,7 +28,6 @@ void			parse_dump_flag(t_corewar *vm, char *argv[], int *n)
 void			parse_player(t_corewar *vm, char *argv[], int *n, int player_id)
 {
 	t_core		*new_player;
-	t_core		*core_tmp;
 
 	if (!(new_player = (t_core*)malloc(sizeof(t_core))))
 		termination_with_perror("Parse player error", ENOMEM);
@@ -49,13 +49,13 @@ void			parse_n_flag(t_corewar *vm, char *argv[], int *n)
 	*n += 1;
 	if (!argv[*n] || ft_atoi(argv[*n]) < 1 || ft_atoi(argv[*n]) > 4
 			|| !argv[*n + 1])
-		terminate_with_error(vm);
+		terminate_with_error();
 	player_id = ft_atoi(argv[*n]);
 	*n += 1;
 	parse_player(vm, argv, n, player_id);
 }
 
-void			parse_a_flag(t_corewar *vm, char *argv[], int *n)
+void			parse_a_flag(t_corewar *vm, int *n)
 {
 	*n += 1;
 	vm->flag_a = true;
@@ -66,12 +66,14 @@ void			parse_arguments(t_corewar **vm, int argc, char *argv[])
 	int			n;
 
 	n = 1;
+	if (n == argc)
+		print_usage_and_exit();
 	while (n < argc)
 	{
 		if (!(ft_strcmp(argv[n], "-dump")))
 			parse_dump_flag((*vm), argv, &n);
 		else if (!(ft_strcmp(argv[n], "-a")))
-			parse_a_flag((*vm), argv, &n);
+			parse_a_flag((*vm), &n);
 		else if (ft_strcmp(argv[n], "-v") == 0)
 		{
 			(*vm)->visual = true;
@@ -79,11 +81,11 @@ void			parse_arguments(t_corewar **vm, int argc, char *argv[])
 		}
 		else if (!(ft_strcmp(argv[n], "-n")))
 			parse_n_flag(*vm, argv, &n);
-		else if (is_name(*vm, argv[n]))
+		else if (is_name(argv[n]))
 			parse_player(*vm, argv, &n, 0);
 		else
-			terminate_with_error((*vm));
+			terminate_with_error();
 	}
 	if ((*vm)->number_of_players < 1 || (*vm)->number_of_players > 4)
-		terminate_with_error((*vm));
+		terminate_with_error();
 }

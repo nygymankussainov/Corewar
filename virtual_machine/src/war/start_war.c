@@ -6,7 +6,7 @@
 /*   By: egiant <egiant@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/02 14:50:41 by hfrankly          #+#    #+#             */
-/*   Updated: 2019/12/05 12:51:22 by egiant           ###   ########.fr       */
+/*   Updated: 2019/12/05 13:27:53 by egiant           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,20 +21,18 @@ void				announce_winner(t_corewar *vm)
 void				start_war(t_corewar *vm)
 {
 	t_carriage		*tmp;
-	uint8_t			byte_with_command;
-	t_operation		op;
 
 	tmp = vm->start_carriage;
 	while (vm->start_carriage)
 	{
-		if (vm->dumps == vm->current_cycles + vm->total_cycles)
+		if (vm->dumps == (int32_t)(vm->current_cycles + vm->total_cycles))
 		{
 			display_array(vm->arena, 64, 64);
 			free_corewar(vm);
 			exit(0);
 		}
 		execute_carriages(&vm);
-		if (vm->current_cycles == vm->cycles_to_die || vm->cycles_to_die <= 0)
+		if ((int32_t)(vm->current_cycles) == vm->cycles_to_die || vm->cycles_to_die <= 0)
 			check(&vm);
 	}
 	if (vm->visual)
