@@ -6,7 +6,7 @@
 /*   By: hfrankly <hfrankly@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/09 15:37:50 by hfrankly          #+#    #+#             */
-/*   Updated: 2019/12/05 16:45:54 by hfrankly         ###   ########.fr       */
+/*   Updated: 2019/12/05 17:27:12 by hfrankly         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,8 +35,7 @@ void			execute_carriage_op(t_corewar *vm, t_carriage *carriage)
 	uint8_t		i;
 
 	i = 0;
-	if (!(arg_code = (uint8_t*)malloc(sizeof(uint8_t) * 4)))
-		termination_with_perror("Error", ENOMEM);
+	arg_code = vm->arg_code;
 	while (i < 4)
 		arg_code[i++] = 0;
 	if (carriage->operation != NULL)
@@ -47,8 +46,6 @@ void			execute_carriage_op(t_corewar *vm, t_carriage *carriage)
 		if (carriage->operation->code != 0x09)
 			pass_args_bits(carriage, arg_code);
 	}
-	if (arg_code)
-		free(arg_code);
 }
 
 void			execute_carriages(t_corewar **vm)

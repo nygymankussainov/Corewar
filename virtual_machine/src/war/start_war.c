@@ -6,7 +6,7 @@
 /*   By: screight <screight@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/02 14:50:41 by hfrankly          #+#    #+#             */
-/*   Updated: 2019/12/05 17:28:41 by screight         ###   ########.fr       */
+/*   Updated: 2019/12/05 17:44:46 by screight         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ void				start_war(t_corewar *vm)
 	{
 		if (vm->dumps == (int32_t)(vm->current_cycles + vm->total_cycles))
 		{
-			display_array(vm->arena, 64, 64);
+			display_array(vm->arena, 128, 32);
 			free_corewar(vm);
 			exit(0);
 		}

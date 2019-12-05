@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   execute_op.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: egiant <egiant@student.42.fr>              +#+  +:+       +#+        */
+/*   By: hfrankly <hfrankly@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/12 14:38:51 by hfrankly          #+#    #+#             */
-/*   Updated: 2019/12/05 13:30:04 by egiant           ###   ########.fr       */
+/*   Updated: 2019/12/05 16:51:59 by hfrankly         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,10 +54,7 @@ void		set_arg_code(t_corewar *vm, t_carriage *carriage,
 		}
 	}
 	else
-	{
-		free(*arg_code);
-		*arg_code = NULL;
-	}
+		**arg_code = 0;
 }
 
 bool		if_valid_format(t_corewar *vm, t_carriage *carriage,
