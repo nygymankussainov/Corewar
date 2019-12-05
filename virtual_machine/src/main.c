@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hfrankly <hfrankly@student.42.fr>          +#+  +:+       +#+        */
+/*   By: egiant <egiant@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/30 13:41:19 by egiant            #+#    #+#             */
-/*   Updated: 2019/12/05 16:46:03 by hfrankly         ###   ########.fr       */
+/*   Updated: 2019/12/05 18:46:19 by egiant           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,6 +64,8 @@ int				main(int argc, char *argv[])
 	quit = false;
 	vm = init_vm();
 	parse_arguments(&vm, argc, argv);
+	if (vm->visual && vm->flag_a)
+		vm->flag_a = false;
 	if (vm->visual)
 		vm->sdl = sdl_init(vm);
 	read_byte_code(&vm);

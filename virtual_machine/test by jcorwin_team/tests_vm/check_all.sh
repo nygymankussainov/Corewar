@@ -4,10 +4,6 @@ do
 	./corewar_original -d $1 $CHAMP > output_original
 	./corewar -dump $1 $CHAMP > output
 	DIFF=$(diff -a output output_original)
-	# if [ "$CHAMP" = "ch/doge.cor" ]
-	# then
-	# 	exit;
-	# fi;
 	if [ "$DIFF" ]
 	then
 		printf "\e[1;31mKO\e[0m "

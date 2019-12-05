@@ -6,34 +6,34 @@
 /*   By: egiant <egiant@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/04 18:13:36 by egiant            #+#    #+#             */
-/*   Updated: 2019/12/05 13:20:29 by egiant           ###   ########.fr       */
+/*   Updated: 2019/12/05 18:21:26 by egiant           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "virtual_machine.h"
 
-void			read_magic_header(int fd)
+void			read_magic_header(char *name, int fd)
 {
 	uint8_t		buff[4];
 	uint32_t	header;
 	int			ret;
 
 	ret = read(fd, &buff, 4);
-	if (ret < 0)
-		terminate_with_error();
+	if (ret <= 0)
+		termination_with_error("Error\n");
 	header = buff[3] | (buff[2] << 8) | (buff[1] << 16) | (buff[0] << 24);
 	if (header != COREWAR_EXEC_MAGIC)
-		terminate_with_error();
+		error_with_file_name(name, Magic_header);
 }
 
-void			read_null_octet(int fd)
+void			read_null_octet(char *name, int fd)
 {
 	uint32_t	buff;
 	int			ret;
 
 	ret = read(fd, &buff, 4);
-	if (ret < 0)
-		terminate_with_error();
+	if (ret <= 0)
+		termination_with_error("Error\n");
 	if (buff != 0)
-		terminate_with_error();
+		error_with_file_name(name, Null_octet);
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   read_byte_code.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hfrankly <hfrankly@student.42.fr>          +#+  +:+       +#+        */
+/*   By: egiant <egiant@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/31 18:20:43 by egiant            #+#    #+#             */
-/*   Updated: 2019/12/05 17:36:04 by hfrankly         ###   ########.fr       */
+/*   Updated: 2019/12/05 18:46:07 by egiant           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,8 +21,8 @@ int				read_champion_name(t_corewar *vm, t_core *player, int fd)
 
 	number = 0;
 	ret = read(fd, &buff, PROG_NAME_LENGTH);
-	if (ret < 0)
-		terminate_with_error();
+	if (ret <= 0)
+		termination_with_error("Error\n");
 	if (player->id != 0)
 		number = player->id - 1;
 	else
@@ -31,7 +31,7 @@ int				read_champion_name(t_corewar *vm, t_core *player, int fd)
 			number++;
 	}
 	if (vm->cores[number] || number > 3)
-		terminate_with_error();
+		termination_with_error("Error\n");
 	if (!(vm->cores[number] = (t_core*)malloc(sizeof(t_core))))
 		termination_with_perror("Core malloc error", ENOMEM);
 	core = vm->cores[number];
@@ -41,18 +41,18 @@ int				read_champion_name(t_corewar *vm, t_core *player, int fd)
 	return (number);
 }
 
-void			read_exec_code_size(t_core *core, int fd)
+void			read_exec_code_size(t_core *core, char *file_name, int fd)
 {
 	uint8_t		buff[4];
 	int64_t		code_size;
 	int			ret;
 
 	ret = read(fd, &buff, 4);
-	if (ret < 0)
-		terminate_with_error();
-	code_size = buff[3] | (buff[2] << 8) | (buff[1] << 16) | (buff[0] << 24);
+	if (ret <= 0)
+		termination_with_error("Error\n");
+	code_size  = buff[3] | (buff[2] << 8) | (buff[1] << 16) | (buff[0] << 24);
 	if (code_size <= 0 || code_size > CHAMP_MAX_SIZE)
-		terminate_with_error();
+		error_with_file_name(file_name, Code_size);
 	core->exec_code_size = (uint16_t)code_size;
 }
 
@@ -62,12 +62,12 @@ void			read_champion_comment(t_core *core, int fd)
 	int			ret;
 
 	ret = read(fd, &buff, COMMENT_LENGTH);
-	if (ret < 0)
-		terminate_with_error();
+	if (ret <= 0)
+		termination_with_error("Error\n");
 	ft_strcpy(core->comment, buff);
 }
 
-void			read_exec_code(t_core *core, int fd)
+void			read_exec_code(t_core *core, char *file_name, int fd)
 {
 	int			ret;
 	char		c;
@@ -78,13 +78,13 @@ void			read_exec_code(t_core *core, int fd)
 	{
 		ret = read(fd, &c, 1);
 		if (ret <= 0)
-			terminate_with_error();
+			error_with_file_name(file_name, Champ_code_size);
 		core->exec_code[i] = c;
 		i++;
 	}
 	ret = read(fd, &c, 1);
 	if (ret != 0)
-		terminate_with_error();
+		error_with_file_name(file_name, Champ_code_size);
 }
 
 void			read_byte_code(t_corewar **vm)
@@ -99,13 +99,15 @@ void			read_byte_code(t_corewar **vm)
 	{
 		file_name = core_tmp->executable_file_name;
 		fd = open(file_name, O_RDONLY);
-		read_magic_header(fd);
+		if (fd < 0)
+			invalid_file_name(core_tmp->executable_file_name);
+		read_magic_header(file_name, fd);
 		id = read_champion_name((*vm), core_tmp, fd);
-		read_null_octet(fd);
-		read_exec_code_size((*vm)->cores[id], fd);
+		read_null_octet(file_name, fd);
+		read_exec_code_size((*vm)->cores[id], file_name, fd);
 		read_champion_comment((*vm)->cores[id], fd);
-		read_null_octet(fd);
-		read_exec_code((*vm)->cores[id], fd);
+		read_null_octet(file_name, fd);
+		read_exec_code((*vm)->cores[id], file_name, fd);
 		set_player_color((*vm), id);
 		free(file_name);
 		core_tmp = core_tmp->next;

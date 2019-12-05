@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   virtual_machine.h                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hfrankly <hfrankly@student.42.fr>          +#+  +:+       +#+        */
+/*   By: egiant <egiant@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/30 16:29:38 by hfrankly          #+#    #+#             */
-/*   Updated: 2019/12/05 16:50:04 by hfrankly         ###   ########.fr       */
+/*   Updated: 2019/12/05 18:46:49 by egiant           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,14 @@
 # include "op.h"
 # include "operations.h"
 # include "visual.h"
+
+typedef enum        e_type
+{
+    Magic_header = 1,
+    Champ_code_size,
+	Null_octet,
+	Code_size,
+}                   t_type;
 
 typedef struct s_core			t_core;
 typedef struct s_carriage		t_carriage;
@@ -111,17 +119,18 @@ void				add_player_to_list(t_corewar *vm, t_core *new_player);
 */
 void				read_byte_code(t_corewar **vm);
 void				check_cores(t_corewar *vm);
-void				read_magic_header(int fd);
-void				read_null_octet(int fd);
+void				read_magic_header(char *name, int fd);
+void				read_null_octet(char *name, int fd);
 int					is_name(char *str);
 
 /*
 ** error management
 */
-void				terminate_with_error(void);
 void				termination_with_error(char *error_string);
 void				termination_with_perror(char *error_string, int code);
 void				print_usage_and_exit(void);
+void				invalid_file_name(char *name);
+void				error_with_file_name(char *name, int code);
 
 /*
 ** war
