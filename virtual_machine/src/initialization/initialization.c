@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   initialization.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: egiant <egiant@student.42.fr>              +#+  +:+       +#+        */
+/*   By: hfrankly <hfrankly@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/30 13:41:08 by egiant            #+#    #+#             */
-/*   Updated: 2019/12/05 13:43:43 by egiant           ###   ########.fr       */
+/*   Updated: 2019/12/05 17:43:11 by hfrankly         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,7 +82,9 @@ t_corewar		*init_vm(void)
 	t_corewar	*vm;
 
 	n = 0;
-	if (!(vm = (t_corewar *)malloc(sizeof(t_corewar))))
+	if (!(vm = (t_corewar *)ft_memalloc(sizeof(t_corewar))))
+		termination_with_perror("Error", ENOMEM);
+	if (!(vm->arg_code = (uint8_t*)ft_memalloc(sizeof(uint8_t) * 4)))
 		termination_with_perror("Error", ENOMEM);
 	while (n < 4)
 		vm->cores[n++] = NULL;
@@ -98,8 +100,6 @@ t_corewar		*init_vm(void)
 	vm->cycles_to_die = CYCLE_TO_DIE;
 	vm->check_count = 0;
 	vm->live_count = 0;
-	vm->flag_a = false;
-	vm->visual = false;
 	vm->sdl = NULL;
 	return (vm);
 }

@@ -6,7 +6,7 @@
 /*   By: screight <screight@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/02 00:53:14 by screight          #+#    #+#             */
-/*   Updated: 2019/12/05 14:06:11 by screight         ###   ########.fr       */
+/*   Updated: 2019/12/05 17:32:25 by screight         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,20 +15,17 @@
 
 void	display_header(t_corewar *vm, bool start)
 {
-	boxColor(vm->sdl->ren, 10, 10, SZX - 405, SZY - 11, BLACK);
+	boxColor(vm->sdl->ren, 10, 10, SZX - 408, SZY - 11, BLACK);
 	boxColor(vm->sdl->ren, X, 20, SZX - 40, 80, GCOL);
 	boxColor(vm->sdl->ren, X + 2, 22, SZX - 42, 78, GREY);
 	stringColor(vm->sdl->ren, SZX - 260, 44, "*#CORE_WAR#*", SALM);
 	if (!start)
-		stringColor(vm->sdl->ren, SZX - 310, SZY - 56, 
+		stringColor(vm->sdl->ren, SZX - 310, 100, 
 											"Press <ENTER> to start", SALM);
-	else
-	{
-		boxColor(vm->sdl->ren, X, SZY - 80, SZX - 40, SZY - 20, GCOL);
-		boxColor(vm->sdl->ren, X + 2, SZY - 78, SZX - 268, SZY - 22, GREY);
-		boxColor(vm->sdl->ren, SZX - 265, SZY - 78, SZX - 42, SZY - 22, GREY);
-		stringColor(vm->sdl->ren, X + 11, SZY - 56, "THE WINNER", SALM);
-	}
+	boxColor(vm->sdl->ren, X, SZY - 80, SZX - 40, SZY - 20, GCOL);
+	boxColor(vm->sdl->ren, X + 2, SZY - 78, SZX - 268, SZY - 22, GREY);
+	boxColor(vm->sdl->ren, SZX - 265, SZY - 78, SZX - 42, SZY - 22, GREY);
+	stringColor(vm->sdl->ren, X + 11, SZY - 56, "THE WINNER", SALM);
 }
 
 void display_player_data(t_corewar *vm, short h, short i)

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   free_corewar.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: egiant <egiant@student.42.fr>              +#+  +:+       +#+        */
+/*   By: screight <screight@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/04 19:14:05 by hfrankly          #+#    #+#             */
-/*   Updated: 2019/12/05 16:33:34 by egiant           ###   ########.fr       */
+/*   Updated: 2019/12/05 17:53:35 by screight         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ void			free_corewar(t_corewar *vm)
 	n = 0;
 	while (n < vm->number_of_players)
 	{
-		if (vm->cores[n]->executable_file_name)
+		if (vm->cores[n] && vm->cores[n]->executable_file_name)
 			free(vm->cores[n]->executable_file_name);
 		if (vm->cores[n])
 			free(vm->cores[n]);
@@ -49,5 +49,6 @@ void			free_corewar(t_corewar *vm)
 		free_carriage(vm);
 	if (vm->sdl)
 		free_sdl(vm->sdl);
+	free(vm->arg_code);
 	free(vm);
 }

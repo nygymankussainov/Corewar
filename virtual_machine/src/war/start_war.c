@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   start_war.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: screight <screight@student.42.fr>          +#+  +:+       +#+        */
+/*   By: hfrankly <hfrankly@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/02 14:50:41 by hfrankly          #+#    #+#             */
-/*   Updated: 2019/12/05 16:16:58 by screight         ###   ########.fr       */
+/*   Updated: 2019/12/05 18:21:16 by hfrankly         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ void				start_war(t_corewar *vm)
 	{
 		if (vm->dumps == (int32_t)(vm->current_cycles + vm->total_cycles))
 		{
-			display_array(vm->arena, 64, 64);
+			display_array(vm->arena, 128, 32);
 			free_corewar(vm);
 			exit(0);
 		}
@@ -37,4 +37,6 @@ void				start_war(t_corewar *vm)
 			check(&vm);
 	}
 	announce_winner(vm);
+	if (vm->visual)
+		annonce_winner_vis(vm);
 }

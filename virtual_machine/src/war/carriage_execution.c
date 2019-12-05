@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   carriage_execution.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: screight <screight@student.42.fr>          +#+  +:+       +#+        */
+/*   By: hfrankly <hfrankly@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/09 15:37:50 by hfrankly          #+#    #+#             */
-/*   Updated: 2019/12/05 16:07:40 by screight         ###   ########.fr       */
+/*   Updated: 2019/12/05 17:27:12 by hfrankly         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ void			set_carriage_op(t_corewar *vm, t_carriage *carriage)
 			&& vm->arena[carriage->position].value < 17)
 	{
 		carriage->operation =
-							&op_array[vm->arena[carriage->position].value - 1];
+							&g_op_array[vm->arena[carriage->position].value - 1];
 		carriage->cycles_before_operation =
 									carriage->operation->cycles_to_execution;
 	}
@@ -35,22 +35,17 @@ void			execute_carriage_op(t_corewar *vm, t_carriage *carriage)
 	uint8_t		i;
 
 	i = 0;
-	if (!(arg_code = (uint8_t*)malloc(sizeof(uint8_t) * 4)))
-		termination_with_perror("Error", ENOMEM);
+	arg_code = vm->arg_code;
 	while (i < 4)
 		arg_code[i++] = 0;
 	if (carriage->operation != NULL)
 	{
-		if (carriage->position == 586)
-			ft_printf("");
 		set_arg_code(vm, carriage, &arg_code);
 		if (is_valid_format(vm, carriage, arg_code))
 			carriage->operation->func(vm, carriage, arg_code);
 		if (carriage->operation->code != 0x09)
 			pass_args_bits(carriage, arg_code);
 	}
-	if (arg_code)
-		free(arg_code);
 }
 
 void			execute_carriages(t_corewar **vm)
