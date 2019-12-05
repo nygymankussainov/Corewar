@@ -1,0 +1,17 @@
+**.swp
+**.o
+**.a
+**.DS_Store
+**.idea
+**.dSYM
+.vscode
+**.gch
+a.out
+obj
+vm_champs
+champs
+**.cor
+asm
+corewar
+scripts
+42-corewar
