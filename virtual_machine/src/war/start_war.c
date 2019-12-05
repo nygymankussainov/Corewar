@@ -6,7 +6,7 @@
 /*   By: egiant <egiant@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/02 14:50:41 by hfrankly          #+#    #+#             */
-/*   Updated: 2019/12/05 13:27:53 by egiant           ###   ########.fr       */
+/*   Updated: 2019/12/05 13:56:40 by egiant           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,8 @@ void				start_war(t_corewar *vm)
 			exit(0);
 		}
 		execute_carriages(&vm);
-		if ((int32_t)(vm->current_cycles) == vm->cycles_to_die || vm->cycles_to_die <= 0)
+		if ((int32_t)(vm->current_cycles) == vm->cycles_to_die
+					|| vm->cycles_to_die <= 0)
 			check(&vm);
 	}
 	if (vm->visual)

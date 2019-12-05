@@ -3,18 +3,19 @@
 /*                                                        :::      ::::::::   */
 /*   work_with_operations.c                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hfrankly <hfrankly@student.42.fr>          +#+  +:+       +#+        */
+/*   By: egiant <egiant@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/04 18:37:50 by hfrankly          #+#    #+#             */
-/*   Updated: 2019/12/04 19:18:26 by hfrankly         ###   ########.fr       */
+/*   Updated: 2019/12/05 13:53:39 by egiant           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "virtual_machine.h"
 
-int32_t		return_bytes(t_point *arena, uint16_t position, uint8_t bytes_nbr)
+int32_t			return_bytes(t_point *arena, uint16_t position,
+								uint8_t bytes_nbr)
 {
-	int32_t			res;
+	int32_t		res;
 
 	res = 0;
 	if (bytes_nbr == 1)
@@ -32,7 +33,7 @@ int32_t		return_bytes(t_point *arena, uint16_t position, uint8_t bytes_nbr)
 	return (res);
 }
 
-int32_t		return_arg(t_point *arena, uint16_t *position,
+int32_t			return_arg(t_point *arena, uint16_t *position,
 								uint8_t arg_code, uint8_t t_dir_size)
 {
 	int8_t		one_byte;
@@ -59,10 +60,10 @@ int32_t		return_arg(t_point *arena, uint16_t *position,
 	}
 }
 
-uint16_t	get_position(uint16_t cur_pos, int64_t arg, bool idx)
+uint16_t		get_position(uint16_t cur_pos, int64_t arg, bool idx)
 {
-	int8_t	sign;
-	int32_t	res;
+	int8_t		sign;
+	int32_t		res;
 
 	if (arg < 0)
 	{
@@ -83,7 +84,7 @@ uint16_t	get_position(uint16_t cur_pos, int64_t arg, bool idx)
 	return (res % MEM_SIZE);
 }
 
-void		add_to_arena(t_corewar *vm, uint16_t position,
+void			add_to_arena(t_corewar *vm, uint16_t position,
 						int32_t code, t_carriage *carriage)
 {
 	vm->arena[position].value = code >> 24;
@@ -104,11 +105,12 @@ void		add_to_arena(t_corewar *vm, uint16_t position,
 	carriage->last_operation[3] = (position + 3) % MEM_SIZE;
 }
 
-void		op_live(t_corewar *vm, t_carriage *carriage, uint8_t *arg_code)
+void			op_live(t_corewar *vm, t_carriage *carriage, uint8_t *arg_code)
 {
-	t_core			*core;
-	int32_t			player_code;
+	uint8_t		*helper;
+	int32_t		player_code;
 
+	helper = arg_code;
 	vm->live_count++;
 	carriage->cycle_was_live = vm->total_cycles + vm->current_cycles;
 	player_code = -return_bytes(vm->arena, carriage->position + 1,
