@@ -6,7 +6,7 @@
 /*   By: screight <screight@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/18 20:48:27 by screight          #+#    #+#             */
-/*   Updated: 2019/12/05 17:58:29 by screight         ###   ########.fr       */
+/*   Updated: 2019/12/05 18:03:49 by screight         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,7 +77,7 @@ t_sdl		*sdl_init(t_corewar *vm)
 		if (!load_audio(sdl))
 			close_vis(vm, NULL, -1, true);
 		if (!load_font(sdl))
-			close_vis(vm, "Bad font file", -1, false);
+			close_vis(vm, "Error: Bad font file\n", -1, false);
 		SDL_RenderClear(sdl->ren);
 	}
 	return (sdl);
@@ -92,7 +92,7 @@ void	close_vis(t_corewar *vm, char *err, int code, bool mix)
 	}
 	else if (mix)
 	{
-		write(2, "Audio loading error: %s", 11);
+		write(2, "Audio loading error: %s", 21);
 		write(2, Mix_GetError(), 29);
 		write(2, "\n", 1);
 	}
