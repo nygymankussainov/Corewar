@@ -6,7 +6,7 @@
 /*   By: egiant <egiant@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/04 19:14:05 by hfrankly          #+#    #+#             */
-/*   Updated: 2019/12/05 14:34:38 by egiant           ###   ########.fr       */
+/*   Updated: 2019/12/05 16:29:46 by egiant           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,10 +35,13 @@ void			free_corewar(t_corewar *vm)
 	n = 0;
 	while (n < vm->number_of_players)
 	{
-		free(vm->cores[n]->executable_file_name);
-		free(vm->cores[n]);
+		if (vm->cores[n]->executable_file_name)
+			free(vm->cores[n]->executable_file_name);
+		if (vm->cores[n])
+			free(vm->cores[n]);
 		tmp = vm->line_of_players->next;
-		free(vm->line_of_players);
+		if (vm->line_of_players)
+			free(vm->line_of_players);
 		vm->line_of_players = tmp;
 		n++;
 	}

@@ -6,7 +6,7 @@
 /*   By: egiant <egiant@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/31 18:20:43 by egiant            #+#    #+#             */
-/*   Updated: 2019/12/05 13:21:13 by egiant           ###   ########.fr       */
+/*   Updated: 2019/12/05 15:50:03 by egiant           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,15 +44,16 @@ int				read_champion_name(t_corewar *vm, t_core *player, int fd)
 void			read_exec_code_size(t_core *core, int fd)
 {
 	uint8_t		buff[4];
+	int64_t		code_size;
 	int			ret;
 
 	ret = read(fd, &buff, 4);
 	if (ret < 0)
 		terminate_with_error();
-	core->exec_code_size = buff[3] | (buff[2] << 8)
-								| (buff[1] << 16) | (buff[0] << 24);
-	if (core->exec_code_size > CHAMP_MAX_SIZE)
+	code_size  = buff[3] | (buff[2] << 8) | (buff[1] << 16) | (buff[0] << 24);
+	if (code_size <= 0 || code_size > CHAMP_MAX_SIZE)
 		terminate_with_error();
+	core->exec_code_size = (uint16_t)code_size;
 }
 
 void			read_champion_comment(t_core *core, int fd)
