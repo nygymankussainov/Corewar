@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   start_war.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hfrankly <hfrankly@student.42.fr>          +#+  +:+       +#+        */
+/*   By: screight <screight@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/02 14:50:41 by hfrankly          #+#    #+#             */
-/*   Updated: 2019/12/05 16:46:15 by hfrankly         ###   ########.fr       */
+/*   Updated: 2019/12/05 17:28:41 by screight         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,4 +37,6 @@ void				start_war(t_corewar *vm)
 			check(&vm);
 	}
 	announce_winner(vm);
+	if (vm->visual)
+		annonce_winner_vis(vm);
 }
