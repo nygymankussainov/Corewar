@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   start_war.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hfrankly <hfrankly@student.42.fr>          +#+  +:+       +#+        */
+/*   By: egiant <egiant@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/02 14:50:41 by hfrankly          #+#    #+#             */
-/*   Updated: 2019/12/04 18:48:38 by hfrankly         ###   ########.fr       */
+/*   Updated: 2019/12/05 12:51:22 by egiant           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,12 +27,11 @@ void				start_war(t_corewar *vm)
 	tmp = vm->start_carriage;
 	while (vm->start_carriage)
 	{
-		if (vm->dumps != vm->cycles_to_die
-				&& vm->dumps == vm->current_cycles + vm->total_cycles)
+		if (vm->dumps == vm->current_cycles + vm->total_cycles)
 		{
 			display_array(vm->arena, 64, 64);
 			free_corewar(vm);
-			exit (0);
+			exit(0);
 		}
 		execute_carriages(&vm);
 		if (vm->current_cycles == vm->cycles_to_die || vm->cycles_to_die <= 0)
