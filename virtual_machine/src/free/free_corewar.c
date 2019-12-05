@@ -6,7 +6,7 @@
 /*   By: hfrankly <hfrankly@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/04 19:14:05 by hfrankly          #+#    #+#             */
-/*   Updated: 2019/12/05 16:46:09 by hfrankly         ###   ########.fr       */
+/*   Updated: 2019/12/05 16:51:16 by hfrankly         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,5 +49,6 @@ void			free_corewar(t_corewar *vm)
 		free_carriage(vm);
 	if (vm->sdl)
 		free_sdl(vm->sdl);
+	free(vm->arg_code);
 	free(vm);
 }

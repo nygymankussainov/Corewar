@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   sdl_init.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: screight <screight@student.42.fr>          +#+  +:+       +#+        */
+/*   By: hfrankly <hfrankly@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/18 20:48:27 by screight          #+#    #+#             */
-/*   Updated: 2019/12/05 16:31:19 by screight         ###   ########.fr       */
+/*   Updated: 2019/12/05 17:12:21 by hfrankly         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,7 +71,7 @@ t_sdl		*sdl_init(t_corewar *vm)
 	{
 		sdl->win = SDL_CreateWindow("CoreWar", SDL_WINDOWPOS_CENTERED, 
 					SDL_WINDOW_ALWAYS_ON_TOP, SZX, SZY, SDL_WINDOW_SHOWN);
-		sdl->ren = SDL_CreateRenderer(sdl->win, -1, SDL_RENDERER_ACCELERATED);
+		sdl->ren = SDL_CreateRenderer(sdl->win, -1, SDL_RENDERER_SOFTWARE);
 		if (sdl->win == NULL || sdl->ren == NULL)
 			close_vis(vm, NULL, ENOMEM, false);
 		if (!load_audio(sdl))

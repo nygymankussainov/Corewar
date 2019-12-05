@@ -6,7 +6,7 @@
 /*   By: hfrankly <hfrankly@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/30 16:29:38 by hfrankly          #+#    #+#             */
-/*   Updated: 2019/12/05 16:46:03 by hfrankly         ###   ########.fr       */
+/*   Updated: 2019/12/05 16:50:04 by hfrankly         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,6 +54,7 @@ struct				s_corewar {
 	bool			flag_a;
 	uint32_t		live_count;
 	uint32_t		check_count;
+	uint8_t			*arg_code;
 };
 
 struct				s_core {
