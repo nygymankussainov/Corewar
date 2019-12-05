@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   op_five.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hfrankly <hfrankly@student.42.fr>          +#+  +:+       +#+        */
+/*   By: egiant <egiant@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/04 18:40:16 by hfrankly          #+#    #+#             */
-/*   Updated: 2019/12/04 19:17:58 by hfrankly         ###   ########.fr       */
+/*   Updated: 2019/12/05 14:36:08 by egiant           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "virtual_machine.h"
 
-void	op_st(t_corewar *vm, t_carriage *carriage, uint8_t *arg_code)
+void			op_st(t_corewar *vm, t_carriage *carriage, uint8_t *arg_code)
 {
 	uint8_t		arg1;
 	int16_t		arg2;
@@ -30,7 +30,7 @@ void	op_st(t_corewar *vm, t_carriage *carriage, uint8_t *arg_code)
 		carriage->registers[arg1], carriage);
 }
 
-void	op_sti(t_corewar *vm, t_carriage *carriage, uint8_t *arg_code)
+void			op_sti(t_corewar *vm, t_carriage *carriage, uint8_t *arg_code)
 {
 	uint8_t		arg1;
 	int32_t		arg2;
@@ -56,7 +56,7 @@ void	op_sti(t_corewar *vm, t_carriage *carriage, uint8_t *arg_code)
 		carriage->registers[arg1], carriage);
 }
 
-void	op_ld(t_corewar *vm, t_carriage *carriage, uint8_t *arg_code)
+void			op_ld(t_corewar *vm, t_carriage *carriage, uint8_t *arg_code)
 {
 	int32_t		arg1;
 	uint8_t		arg2;
@@ -74,7 +74,7 @@ void	op_ld(t_corewar *vm, t_carriage *carriage, uint8_t *arg_code)
 	carriage->carry = (arg1 == 0) ? true : false;
 }
 
-void	op_lld(t_corewar *vm, t_carriage *carriage, uint8_t *arg_code)
+void			op_lld(t_corewar *vm, t_carriage *carriage, uint8_t *arg_code)
 {
 	int32_t		arg1;
 	uint8_t		arg2;
@@ -92,7 +92,7 @@ void	op_lld(t_corewar *vm, t_carriage *carriage, uint8_t *arg_code)
 	carriage->carry = (arg1 == 0) ? true : false;
 }
 
-void	op_ldi(t_corewar *vm, t_carriage *carriage, uint8_t *arg_code)
+void			op_ldi(t_corewar *vm, t_carriage *carriage, uint8_t *arg_code)
 {
 	int32_t		arg1;
 	int32_t		arg2;

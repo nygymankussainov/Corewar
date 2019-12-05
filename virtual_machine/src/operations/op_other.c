@@ -6,7 +6,7 @@
 /*   By: egiant <egiant@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/04 18:41:56 by hfrankly          #+#    #+#             */
-/*   Updated: 2019/12/05 13:53:27 by egiant           ###   ########.fr       */
+/*   Updated: 2019/12/05 15:09:36 by egiant           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,7 +90,11 @@ void			op_aff(t_corewar *vm, t_carriage *carriage, uint8_t *arg_code)
 
 	helper = arg_code;
 	reg_nbr = vm->arena[(carriage->position + 2) % MEM_SIZE].value;
-	output = carriage->registers[reg_nbr];
+	output = carriage->registers[reg_nbr - 1];
 	if (vm->flag_a)
+	{
+		ft_putstr("Aff: ");
 		ft_putchar(output);
+		ft_putchar('\n');
+	}
 }

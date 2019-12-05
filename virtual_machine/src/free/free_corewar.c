@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   free_corewar.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hfrankly <hfrankly@student.42.fr>          +#+  +:+       +#+        */
+/*   By: egiant <egiant@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/04 19:14:05 by hfrankly          #+#    #+#             */
-/*   Updated: 2019/12/04 19:15:36 by hfrankly         ###   ########.fr       */
+/*   Updated: 2019/12/05 14:34:38 by egiant           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "virtual_machine.h"
 
-void	free_carriage(t_corewar *vm)
+void			free_carriage(t_corewar *vm)
 {
 	t_carriage	*tmp;
 	t_carriage	*save_next;
@@ -27,10 +27,10 @@ void	free_carriage(t_corewar *vm)
 	vm->start_carriage = NULL;
 }
 
-void	free_corewar(t_corewar *vm)
+void			free_corewar(t_corewar *vm)
 {
-	int		n;
-	t_core	*tmp;
+	int			n;
+	t_core		*tmp;
 
 	n = 0;
 	while (n < vm->number_of_players)
