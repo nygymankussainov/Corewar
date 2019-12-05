@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   carriage_execution.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hfrankly <hfrankly@student.42.fr>          +#+  +:+       +#+        */
+/*   By: screight <screight@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/09 15:37:50 by hfrankly          #+#    #+#             */
-/*   Updated: 2019/12/05 17:27:12 by hfrankly         ###   ########.fr       */
+/*   Updated: 2019/12/05 19:01:12 by screight         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ void			set_carriage_op(t_corewar *vm, t_carriage *carriage)
 			&& vm->arena[carriage->position].value < 17)
 	{
 		carriage->operation =
-							&g_op_array[vm->arena[carriage->position].value - 1];
+						&g_op_array[vm->arena[carriage->position].value - 1];
 		carriage->cycles_before_operation =
 									carriage->operation->cycles_to_execution;
 	}

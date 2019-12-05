@@ -6,7 +6,7 @@
 /*   By: screight <screight@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/17 13:06:28 by hfrankly          #+#    #+#             */
-/*   Updated: 2019/12/05 17:30:40 by screight         ###   ########.fr       */
+/*   Updated: 2019/12/05 19:00:43 by screight         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,31 +34,26 @@
 #include "SDL.h"
 #include "SDL2_gfxPrimitives.h"
 #include "SDL_mixer.h"
-//#include <SDL2/SDL.h>
-//#include "SDL2/SDL2_gfxPrimitives.h"
-//#include "SDL2/SDL_mixer.h"
 
 typedef struct s_sdl t_sdl;
 
 struct s_sdl
 {
-	SDL_Window *win;
-	SDL_Surface *sfc;
-	SDL_Renderer *ren;
-	SDL_Event *e;
-	Mix_Music *music;
-	Mix_Chunk *live;
-	Mix_Chunk *dead_car;
-	Mix_Chunk *copy_car;
-	bool		sound;
-	bool		mus;
-	short		delay;
-	char		*myfont;
+	char			s[7];
+	SDL_Window		*win;
+	SDL_Surface		*sfc;
+	SDL_Renderer	*ren;
+	SDL_Event		*e;
+	Mix_Music		*music;
+	Mix_Chunk		*live;
+	Mix_Chunk		*dead_car;
+	Mix_Chunk		*copy_car;
+	bool			sound;
+	bool			mus;
+	short			delay;
+	char			*myfont;
 };
 
-/*
-** sdl_init
-*/
 t_sdl				*sdl_init(t_corewar *vm);
 void				free_sdl(t_sdl *sdl);
 void				close_vis(t_corewar *vm, char *err, int code, bool mix);
@@ -71,5 +66,6 @@ void				display_vm_state_vis(t_corewar *vm);
 void				display_war_state(t_corewar *vm);
 void				display_header(t_corewar *vm, bool start);
 void				annonce_winner_vis(t_corewar *vm);
+void				v_itoa(int n, char *str);
 
 #endif

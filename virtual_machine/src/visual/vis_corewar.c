@@ -6,13 +6,13 @@
 /*   By: screight <screight@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/18 20:46:08 by screight          #+#    #+#             */
-/*   Updated: 2019/12/05 17:31:31 by screight         ###   ########.fr       */
+/*   Updated: 2019/12/05 18:59:05 by screight         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "virtual_machine.h"
 
-void set_player_color(t_corewar *vm, int i)
+void			set_player_color(t_corewar *vm, int i)
 {
 	if (i == 0)
 		vm->cores[i]->color = RED;
@@ -26,17 +26,9 @@ void set_player_color(t_corewar *vm, int i)
 	vm->cores[i]->lives_in_period = 0;
 }
 
-void		annonce_winner_vis(t_corewar *vm)
+void			set_carriages_vis(t_corewar *vm)
 {
-	vis_corewar(vm);
-	stringColor(vm->sdl->ren, SZX - 270, SZY - 56,
-									vm->winner->name, vm->winner->color);
-	SDL_RenderPresent(vm->sdl->ren);
-}
-
-void		set_carriages_vis(t_corewar *vm)
-{
-	t_carriage *tmp;
+	t_carriage	*tmp;
 
 	tmp = vm->start_carriage;
 	while (tmp)
@@ -47,7 +39,7 @@ void		set_carriages_vis(t_corewar *vm)
 	}
 }
 
-void	set_arena_colors_vis(t_corewar *vm, int raw, int col, short i)
+void			set_arena_colors_vis(t_corewar *vm, int raw, int col, short i)
 {
 	if (vm->arena[i].light_count > 0)
 	{
@@ -72,11 +64,11 @@ void	set_arena_colors_vis(t_corewar *vm, int raw, int col, short i)
 	}
 }
 
-void display_arena_vis(t_corewar *vm, short i)
+void			display_arena_vis(t_corewar *vm, short i)
 {
-	short col;
-	short raw;
-	short border;
+	short		col;
+	short		raw;
+	short		border;
 
 	raw = -2;
 	border = 0;
@@ -95,9 +87,9 @@ void display_arena_vis(t_corewar *vm, short i)
 	gfxPrimitivesSetFont(vm->sdl->myfont, 9, 15);
 }
 
-void	vis_corewar(t_corewar *vm)
+void			vis_corewar(t_corewar *vm)
 {
-	static bool start = false;
+	static bool	start = false;
 
 	if (vm->sdl->delay)
 		SDL_Delay(vm->sdl->delay);

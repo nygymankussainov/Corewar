@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: hfrankly <hfrankly@student.42.fr>          +#+  +:+       +#+         #
+#    By: screight <screight@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/10/30 17:56:58 by hfrankly          #+#    #+#              #
-#    Updated: 2019/12/05 16:41:51 by hfrankly         ###   ########.fr        #
+#    Updated: 2019/12/05 19:03:29 by screight         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -55,7 +55,9 @@ WAR_SRC = 	start_war.c \
 VIS_SRC	=	vis_corewar.c \
 			display_data.c \
 			sdl_init.c \
-			handle_key_press.c
+			handle_key_press.c \
+			free_sdl.c \
+			v_itoa.c
 OPER_SRC =	op_other.c \
 			op_five.c \
 			op_ten.c \

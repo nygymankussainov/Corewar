@@ -6,28 +6,28 @@
 /*   By: screight <screight@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/18 20:48:27 by screight          #+#    #+#             */
-/*   Updated: 2019/12/05 18:03:49 by screight         ###   ########.fr       */
+/*   Updated: 2019/12/05 18:53:20 by screight         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "virtual_machine.h"
 
-int		load_audio(t_sdl *sdl)
+int			load_audio(t_sdl *sdl)
 {
 	if (Mix_OpenAudio(44100, MIX_DEFAULT_FORMAT, 2, 2048) < 0)
 		return (0);
 	if (!(sdl->music = Mix_LoadMUS("pacifica.ogg"))
-			|| !(sdl->live = Mix_LoadWAV("live.wav"))	
+			|| !(sdl->live = Mix_LoadWAV("live.wav"))
 				|| !(sdl->dead_car = Mix_LoadWAV("zoom.wav"))
 					|| !(sdl->copy_car = Mix_LoadWAV("jump.wav")))
-		return(0);
+		return (0);
 	return (1);
 }
 
-int		load_font(t_sdl *sdl)
+int			load_font(t_sdl *sdl)
 {
-	char *myfont;
-	FILE *file;
+	char	*myfont;
+	FILE	*file;
 
 	myfont = NULL;
 	if (!(myfont = (char *)malloc(sizeof(char) * 7680)))
@@ -69,7 +69,7 @@ t_sdl		*sdl_init(t_corewar *vm)
 		close_vis(vm, NULL, ENOMEM, false);
 	else
 	{
-		sdl->win = SDL_CreateWindow("CoreWar", SDL_WINDOWPOS_CENTERED, 
+		sdl->win = SDL_CreateWindow("CoreWar", SDL_WINDOWPOS_CENTERED,
 					SDL_WINDOW_ALWAYS_ON_TOP, SZX, SZY, SDL_WINDOW_SHOWN);
 		sdl->ren = SDL_CreateRenderer(sdl->win, -1, SDL_RENDERER_SOFTWARE);
 		if (sdl->win == NULL || sdl->ren == NULL)
@@ -83,7 +83,7 @@ t_sdl		*sdl_init(t_corewar *vm)
 	return (sdl);
 }
 
-void	close_vis(t_corewar *vm, char *err, int code, bool mix)
+void		close_vis(t_corewar *vm, char *err, int code, bool mix)
 {
 	if (code >= 0)
 	{
@@ -100,27 +100,4 @@ void	close_vis(t_corewar *vm, char *err, int code, bool mix)
 		write(2, err, ft_strlen(err));
 	free_corewar(vm);
 	exit(0);
-}
-
-void	free_sdl(t_sdl *sdl)
-{
-	if (sdl)
-	{
-		if (sdl->e)
-			free(sdl->e);
-		if (sdl->music)
-			Mix_FreeMusic(sdl->music);
-		if (sdl->live)
-			Mix_FreeChunk(sdl->live);
-		if (sdl->dead_car)
-			Mix_FreeChunk(sdl->dead_car);
-		if (sdl->copy_car)
-			Mix_FreeChunk(sdl->copy_car);
-		SDL_DestroyWindow(sdl->win);
-		SDL_DestroyRenderer(sdl->ren);
-		Mix_CloseAudio();
-		Mix_Quit();
-		SDL_Quit();
-		free(sdl);
-	}
 }
