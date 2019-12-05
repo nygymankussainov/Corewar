@@ -6,7 +6,7 @@
 /*   By: screight <screight@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/18 20:48:27 by screight          #+#    #+#             */
-/*   Updated: 2019/12/05 17:44:49 by screight         ###   ########.fr       */
+/*   Updated: 2019/12/05 17:58:29 by screight         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,8 +92,9 @@ void	close_vis(t_corewar *vm, char *err, int code, bool mix)
 	}
 	else if (mix)
 	{
-		write(2, "Mix_Audio: %s\n", 11);
-		write(2, Mix_GetError(), 20);
+		write(2, "Audio loading error: %s", 11);
+		write(2, Mix_GetError(), 29);
+		write(2, "\n", 1);
 	}
 	else if (err)
 		write(2, err, ft_strlen(err));
