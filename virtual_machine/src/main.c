@@ -6,7 +6,7 @@
 /*   By: egiant <egiant@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/30 13:41:19 by egiant            #+#    #+#             */
-/*   Updated: 2019/12/05 18:46:19 by egiant           ###   ########.fr       */
+/*   Updated: 2019/12/05 19:43:18 by egiant           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,8 +64,11 @@ int				main(int argc, char *argv[])
 	quit = false;
 	vm = init_vm();
 	parse_arguments(&vm, argc, argv);
-	if (vm->visual && vm->flag_a)
+	if (vm->visual)
+	{
 		vm->flag_a = false;
+		vm->flag_l = false;
+	}
 	if (vm->visual)
 		vm->sdl = sdl_init(vm);
 	read_byte_code(&vm);

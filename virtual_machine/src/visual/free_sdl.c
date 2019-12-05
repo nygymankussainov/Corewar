@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   free_sdl.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: screight <screight@student.42.fr>          +#+  +:+       +#+        */
+/*   By: egiant <egiant@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/05 18:52:06 by screight          #+#    #+#             */
-/*   Updated: 2019/12/05 18:59:15 by screight         ###   ########.fr       */
+/*   Updated: 2019/12/05 20:21:55 by egiant           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 void	annonce_winner_vis(t_corewar *vm)
 {
 	vis_corewar(vm);
-	stringColor(vm->sdl->ren, SZX - 270, SZY - 56,
+	stringColor(vm->sdl->ren, SZX - 250, SZY - 56,
 									vm->winner->name, vm->winner->color);
 	SDL_RenderPresent(vm->sdl->ren);
 }

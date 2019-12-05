@@ -6,7 +6,7 @@
 /*   By: egiant <egiant@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/31 17:09:10 by egiant            #+#    #+#             */
-/*   Updated: 2019/12/05 18:33:38 by egiant           ###   ########.fr       */
+/*   Updated: 2019/12/05 19:47:21 by egiant           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,8 @@ void	error_with_file_name(char *name, int code)
 	if (code == 1)
 		write(2, " has an invalid header\n", 23);
 	if (code == 2)
-		write(2, " has a code size that differ from what its header says\n", 55);
+		write(2, " has a code size that differ from what its header says\n",
+					55);
 	if (code == 3)
 		write(2, " has no null octet\n", 19);
 	if (code == 4)
@@ -32,7 +33,7 @@ void	invalid_file_name(char *name)
 	write(2, "Can't read source file ", 23);
 	write(2, name, ft_strlen(name));
 	ft_putchar('\n');
-	exit(0); 
+	exit(0);
 }
 
 void	print_usage_and_exit(void)

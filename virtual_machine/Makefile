@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: screight <screight@student.42.fr>          +#+  +:+       +#+         #
+#    By: egiant <egiant@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/10/30 17:56:58 by hfrankly          #+#    #+#              #
-#    Updated: 2019/12/05 19:03:29 by screight         ###   ########.fr        #
+#    Updated: 2019/12/05 20:38:18 by egiant           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -22,7 +22,7 @@ SDL = -L ~/.brew/Cellar/sdl2/2.0.10/lib -l SDL2-2.0.0 \
 		`sdl2-config --libs` -lSDL2_gfx -lSDL2_mixer -lSDL2_ttf -lm
 LIBPRDIR = ../libftprintf
 LIBDIR = ../libftprintf/libft
-FLAGS = -g -Wall -Wextra -Werror -O3
+FLAGS = -Wall -Wextra -Werror -O3
 HEADER = -I ../includes/ -I includes/ -I $(LIBPRDIR)/headers -I $(LIBDIR)/headers \
 -I./includes/sdl/SDL2 -I./includes/sdl/SDL2_GFX -I./includes/sdl/SDL2_MIX `sdl2-config --cflags`
 

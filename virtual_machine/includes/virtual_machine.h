@@ -6,7 +6,7 @@
 /*   By: egiant <egiant@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/30 16:29:38 by hfrankly          #+#    #+#             */
-/*   Updated: 2019/12/05 18:46:49 by egiant           ###   ########.fr       */
+/*   Updated: 2019/12/05 19:49:16 by egiant           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,13 +23,13 @@
 # include "operations.h"
 # include "visual.h"
 
-typedef enum        e_type
+typedef enum		e_type
 {
-    Magic_header = 1,
-    Champ_code_size,
+	Magic_header = 1,
+	Champ_code_size,
 	Null_octet,
 	Code_size,
-}                   t_type;
+}					t_type;
 
 typedef struct s_core			t_core;
 typedef struct s_carriage		t_carriage;
@@ -60,6 +60,7 @@ struct				s_corewar {
 	int32_t			cycles_to_die;
 	int32_t			dumps;
 	bool			flag_a;
+	bool			flag_l;
 	uint32_t		live_count;
 	uint32_t		check_count;
 	uint8_t			*arg_code;

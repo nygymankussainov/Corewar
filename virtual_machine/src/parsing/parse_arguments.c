@@ -6,7 +6,7 @@
 /*   By: egiant <egiant@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/04 17:42:02 by egiant            #+#    #+#             */
-/*   Updated: 2019/12/05 17:41:35 by egiant           ###   ########.fr       */
+/*   Updated: 2019/12/05 19:43:25 by egiant           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,10 +56,13 @@ void			parse_n_flag(t_corewar *vm, char *argv[], int *n)
 	parse_player(vm, argv, n, player_id);
 }
 
-void			parse_a_flag(t_corewar *vm, char *argv[], int *n)
+void			parse_a_l_flag(t_corewar *vm, char *argv[], int *n)
 {
+	if (!(ft_strcmp(argv[*n], "-a")))
+		vm->flag_a = true;
+	else
+		vm->flag_l = true;
 	*n += 1;
-	vm->flag_a = true;
 	if (!argv[*n])
 		print_usage_and_exit();
 }
@@ -75,8 +78,8 @@ void			parse_arguments(t_corewar **vm, int argc, char *argv[])
 	{
 		if (!(ft_strcmp(argv[n], "-dump")))
 			parse_dump_flag((*vm), argv, &n);
-		else if (!(ft_strcmp(argv[n], "-a")))
-			parse_a_flag((*vm), argv, &n);
+		else if (!(ft_strcmp(argv[n], "-a")) || !(ft_strcmp(argv[n], "-l")))
+			parse_a_l_flag((*vm), argv, &n);
 		else if (ft_strcmp(argv[n], "-v") == 0)
 		{
 			(*vm)->visual = true;

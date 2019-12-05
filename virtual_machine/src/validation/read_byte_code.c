@@ -6,7 +6,7 @@
 /*   By: egiant <egiant@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/31 18:20:43 by egiant            #+#    #+#             */
-/*   Updated: 2019/12/05 18:46:07 by egiant           ###   ########.fr       */
+/*   Updated: 2019/12/05 20:31:48 by egiant           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,8 +30,8 @@ int				read_champion_name(t_corewar *vm, t_core *player, int fd)
 		while (vm->cores[number])
 			number++;
 	}
-	if (vm->cores[number] || number > 3)
-		termination_with_error("Error\n");
+	if (vm->cores[number])
+		termination_with_error("Duplicate player number\n");
 	if (!(vm->cores[number] = (t_core*)malloc(sizeof(t_core))))
 		termination_with_perror("Core malloc error", ENOMEM);
 	core = vm->cores[number];
@@ -50,7 +50,7 @@ void			read_exec_code_size(t_core *core, char *file_name, int fd)
 	ret = read(fd, &buff, 4);
 	if (ret <= 0)
 		termination_with_error("Error\n");
-	code_size  = buff[3] | (buff[2] << 8) | (buff[1] << 16) | (buff[0] << 24);
+	code_size = buff[3] | (buff[2] << 8) | (buff[1] << 16) | (buff[0] << 24);
 	if (code_size <= 0 || code_size > CHAMP_MAX_SIZE)
 		error_with_file_name(file_name, Code_size);
 	core->exec_code_size = (uint16_t)code_size;

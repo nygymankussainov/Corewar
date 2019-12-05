@@ -6,7 +6,7 @@
 /*   By: egiant <egiant@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/04 18:37:50 by hfrankly          #+#    #+#             */
-/*   Updated: 2019/12/05 13:53:39 by egiant           ###   ########.fr       */
+/*   Updated: 2019/12/05 19:47:46 by egiant           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -124,6 +124,9 @@ void			op_live(t_corewar *vm, t_carriage *carriage, uint8_t *arg_code)
 		vm->winner = vm->cores[player_code - 1];
 		vm->winner->cycle_was_live =
 									vm->total_cycles + vm->current_cycles;
+		if (vm->flag_l)
+			ft_printf("A process shows that player %d %s is alive\n",
+			vm->cores[player_code - 1]->id, vm->cores[player_code - 1]->name);
 	}
 	if (vm->visual && vm->sdl->sound)
 		Mix_PlayChannel(-1, vm->sdl->live, 0);
