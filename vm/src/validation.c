@@ -6,7 +6,7 @@
 /*   By: vhazelnu <vhazelnu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/26 13:08:05 by vhazelnu          #+#    #+#             */
-/*   Updated: 2019/12/03 19:10:01 by vhazelnu         ###   ########.fr       */
+/*   Updated: 2019/12/05 14:50:17 by vhazelnu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,8 @@ int		validate_players(int argc, char **argv, t_player *player, int j)
 			if (!check_bytecode(argv[i], player, j++))
 				return (0);
 		}
-		else if (ft_strcmp(argv[i], "-n") && ft_strcmp(argv[i], "-dump"))
+		else if (ft_strcmp(argv[i], "-n") && ft_strcmp(argv[i], "-dump") &&
+		ft_strcmp(argv[i], "-a") && ft_strcmp(argv[i], "-v"))
 		{
 			if (!check_flag_format(argv, i))
 				return (0);
@@ -87,6 +88,12 @@ t_player	*validation(int argc, char **argv, int nb)
 		return (0);
 	}
 	if (argc - 1 != nb)
-		modify_players_id(player, argv, argc, nb);
+	{
+		if (!modify_players_id(player, argv, argc, nb))
+		{
+			delete_player(player, nb);
+			return (NULL);
+		}
+	}
 	return (player);
 }

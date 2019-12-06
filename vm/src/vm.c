@@ -6,7 +6,7 @@
 /*   By: vhazelnu <vhazelnu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/27 14:26:22 by vhazelnu          #+#    #+#             */
-/*   Updated: 2019/12/04 21:12:32 by vhazelnu         ###   ########.fr       */
+/*   Updated: 2019/12/05 16:54:35 by vhazelnu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ void	get_args_value(t_vm *vm, t_carr *carr, int arg_nb, int size)
 			++i;
 		}
 		value = rev_bytes(value, size);
-		vm->args[arg_nb] = (size == 2) ? *((short *)value) : *((int *)value);
+		vm->args[arg_nb] = (size == 2) ? *((int16_t *)value) : *((int32_t *)value);
 		ft_strdel(&value);
 	}
 	else
@@ -84,6 +84,7 @@ t_carr	*place_players_on_arena(t_vm *vm)
 		ft_memcpy(vm->arena + (i * step), vm->player[i].bytecode, \
 		vm->player[i].code_size);
 		create_carriage(&carr);	
+		++vm->carr_count;
 		carr->player_id = vm->player[i].id;
 		carr->reg[0] = -vm->player[i].id;
 		carr_move(carr, i * step);
@@ -100,6 +101,4 @@ void	virtual_machine(t_vm *vm)
 	carr = place_players_on_arena(vm);
 	announce_players(vm->player, vm->pl_nb);
 	battle(carr, vm);
-	// int fd = open("test", O_CREAT | O_WRONLY, S_IRUSR | S_IWUSR);
-	// write(fd, vm->arena, MEM_SIZE);
 }

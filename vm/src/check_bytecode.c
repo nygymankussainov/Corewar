@@ -6,7 +6,7 @@
 /*   By: vhazelnu <vhazelnu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/26 14:35:10 by vhazelnu          #+#    #+#             */
-/*   Updated: 2019/12/03 19:22:54 by vhazelnu         ###   ########.fr       */
+/*   Updated: 2019/12/05 15:42:29 by vhazelnu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,11 +74,14 @@ int		check_code_size(int fd, char *argv, t_player *player)
 	if (!(str = read_from_fd(fd, 4, Champ_code_size, argv)))
 		return (0);
 	str = rev_bytes(str, 4);
-	player->code_size = *((int *)str);
+	player->code_size = *((int64_t *)str);
 	ft_strdel(&str);
 	if (player->code_size > CHAMP_MAX_SIZE)
 	{
+		putstrerr(player->name);
+		putstrerr(" in (");
 		putstrerr(argv);
+		putstrerr(")");
 		putstrerr(" is overweighted!\n");
 		return (0);
 	}

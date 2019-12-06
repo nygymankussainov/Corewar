@@ -6,7 +6,7 @@
 /*   By: vhazelnu <vhazelnu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/02 15:36:41 by vhazelnu          #+#    #+#             */
-/*   Updated: 2019/11/10 18:06:00 by vhazelnu         ###   ########.fr       */
+/*   Updated: 2019/12/06 14:14:18 by vhazelnu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,11 +20,11 @@ void	get_another_line(char **line, t_major *major)
 	ROW++;
 }
 
-void	write_name_or_comment(char **line, t_major *major, int col)
+void	write_name_or_comment(char **line, t_major *major, int col, int i)
 {
-	int		i;
-
-	i = 0;
+	col == 5 ? ++major->name_count : ++major->comment_count;
+	if (major->name_count > 1 || major->comment_count > 1)
+		print_error(line, 0, "Second name or comment at ", major);
 	while ((*line)[COL] && (*line)[COL] != '"')
 		COL++;
 	COL++;
@@ -53,14 +53,14 @@ t_token	*tokenization(char **line, t_major *major)
 
 	ROW = 1;
 	token = NULL;
-	while (get_next_line(major->fd, line, 0))
+	while (get_next_line(major->fd, line, 0) > 0)
 	{
 		COL = ft_skip_whitesp(*line, 0);
 		if (line && *line && (!ft_strncmp(*line + COL, ".name", 5) ||
 			!ft_strncmp(*line + COL, ".comment", 8)))
 		{
 			COL = !ft_strncmp(*line + COL, ".name", 5) ? 5 + COL : 8 + COL;
-			write_name_or_comment(line, major, COL);
+			write_name_or_comment(line, major, COL, 0);
 		}
 		else if (line && *line && **line != '\n')
 			check_line(line, major, &token);

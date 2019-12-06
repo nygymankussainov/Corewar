@@ -6,7 +6,7 @@
 /*   By: vhazelnu <vhazelnu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/29 17:13:10 by vhazelnu          #+#    #+#             */
-/*   Updated: 2019/12/03 16:41:18 by vhazelnu         ###   ########.fr       */
+/*   Updated: 2019/12/05 20:18:08 by vhazelnu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ int		check_reg(t_vm *vm, t_carr *carr, int arg_nb)
 	int			skip;
 
 	skip = arg_nb ? skip_args(vm, carr, arg_nb, 0) : 0;
-	reg = (int32_t)vm->arena[(carr->pos + skip) % MEM_SIZE];
+	reg = (int32_t)vm->arena[get_pos(carr->pos + skip)];
 	if (reg > 0 && reg <= OP_NUMBER)
 		return (1);
 	return (0);

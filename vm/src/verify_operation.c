@@ -6,7 +6,7 @@
 /*   By: vhazelnu <vhazelnu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/29 17:13:10 by vhazelnu          #+#    #+#             */
-/*   Updated: 2019/12/04 21:08:41 by vhazelnu         ###   ########.fr       */
+/*   Updated: 2019/12/05 18:41:44 by vhazelnu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,16 +36,11 @@ void	verify_operation(t_vm *vm, t_carr *carr)
 		}
 		verification = verify_args(vm, carr);
 		if (verification)
-		{
 			carr->op->f(vm, carr);
-			// ft_printf("%d %s ", vm->cycles_from_start, carr->op->name);
-			// ft_printf("[%d][%d][%d]\n", vm->args[0], vm->args[1], vm->args[2]);
-		}
 		if (!verification || carr->op->f != zjmp)
 		{
 			skip = skip_args(vm, carr, carr->op->args_number, 1);
 			carr_move(carr, skip);
 		}
-		// ft_printf("%d\n", carr->pos);
 	}
 }

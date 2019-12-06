@@ -6,7 +6,7 @@
 /*   By: vhazelnu <vhazelnu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/03 12:16:18 by vhazelnu          #+#    #+#             */
-/*   Updated: 2019/12/04 20:54:29 by vhazelnu         ###   ########.fr       */
+/*   Updated: 2019/12/05 16:55:18 by vhazelnu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@ void	copy_carr(t_vm *vm, t_carr *curr)
 
 	i = 0;
 	create_carriage(&vm->head);
+	++vm->carr_count;
 	while (i < REG_NUMBER)
 	{
 		vm->head->reg[i] = curr->reg[i];

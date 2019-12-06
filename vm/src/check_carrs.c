@@ -6,7 +6,7 @@
 /*   By: vhazelnu <vhazelnu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/03 18:03:56 by vhazelnu          #+#    #+#             */
-/*   Updated: 2019/12/04 22:23:37 by vhazelnu         ###   ########.fr       */
+/*   Updated: 2019/12/05 18:41:36 by vhazelnu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,7 @@ t_carr	*remove_carr(t_vm *vm, t_carr *carr)
 		free(carr);
 		carr = NULL;
 	}
+	--vm->carr_count;
 	return (res);
 }
 

@@ -6,7 +6,7 @@
 /*   By: vhazelnu <vhazelnu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/29 16:25:45 by vhazelnu          #+#    #+#             */
-/*   Updated: 2019/12/04 22:23:32 by vhazelnu         ###   ########.fr       */
+/*   Updated: 2019/12/05 20:20:44 by vhazelnu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,11 @@ void	battle(t_carr *carr, t_vm *vm)
 		vm->cycles_to_die_curr = vm->cycles_to_die;
 		while (vm->cycles_to_die_curr-- > 0)
 		{
+			if (vm->cycles_from_start == 1711)
+				vm->carr_count+=0;
 			++vm->cycles_from_start;
+			review_carrs(vm, carr);
+			carr = vm->head;
 			if (vm->dump && vm->cycles_from_start == vm->dump)
 			{
 				print_dump(vm->arena);
@@ -68,12 +72,13 @@ void	battle(t_carr *carr, t_vm *vm)
 					carr = remove_carr(vm, vm->head);
 				return ;
 			}
-			review_carrs(vm, carr);
-			carr = vm->head;
 		}
 		carr = check_carrs(vm, carr);
 	}
+	++vm->cycles_from_start;
+	review_carrs(vm, carr);
 	carr = check_carrs(vm, carr);
 	ft_printf("Contestant %d, \"%s\", has won !\n", \
 	vm->lastlive->id, vm->lastlive->name);
+	ft_printf("%d\n", vm->live_count);
 }

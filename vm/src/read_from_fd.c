@@ -6,7 +6,7 @@
 /*   By: vhazelnu <vhazelnu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/26 16:46:53 by vhazelnu          #+#    #+#             */
-/*   Updated: 2019/12/03 19:16:14 by vhazelnu         ###   ########.fr       */
+/*   Updated: 2019/12/05 15:46:16 by vhazelnu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,11 +30,15 @@ char	*read_from_fd(int fd, int size, int type, char *argv)
 {
 	char	*str;
 
+	if (type == Champ_code_size)
+		size += 4;
 	if (!(str = (char *)ft_memalloc(sizeof(char) * size + 1)))
 	{
 		ft_printf("%s\n", strerror(12));
 		exit(12);
 	}
+	if (type == Champ_code_size)
+		size -= 4;
 	if (read(fd, str, size) <= 0)
 	{
 		putstrerr("Couldn't read ");

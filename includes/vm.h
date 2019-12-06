@@ -6,7 +6,7 @@
 /*   By: vhazelnu <vhazelnu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/26 13:01:09 by vhazelnu          #+#    #+#             */
-/*   Updated: 2019/12/04 21:59:34 by vhazelnu         ###   ########.fr       */
+/*   Updated: 2019/12/05 14:49:11 by vhazelnu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ t_player			*validation(int argc, char **argv, int nb);
 int					check_bytecode(char *argv, t_player *player, int j);
 char				*rev_bytes(char *str, int size);
 char				*read_from_fd(int fd, int size, int type, char *argv);
-void				modify_players_id(t_player *player, char **argv, int argc, int nb);
+int					modify_players_id(t_player *player, char **argv, int argc, int nb);
 void				delete_player(t_player *player, int nb);
 void				virtual_machine(t_vm *vm);
 void				announce_players(t_player *player, int nb);

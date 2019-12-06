@@ -6,7 +6,7 @@
 /*   By: vhazelnu <vhazelnu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/26 18:29:45 by vhazelnu          #+#    #+#             */
-/*   Updated: 2019/11/27 15:00:08 by vhazelnu         ###   ########.fr       */
+/*   Updated: 2019/12/05 15:25:30 by vhazelnu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,7 +80,7 @@ int		find_player(t_player *player, int reserve, int nb)
 	return (i);
 }
 
-void	modify_players_id(t_player *player, char **argv, int argc, int nb)
+int		modify_players_id(t_player *player, char **argv, int argc, int nb)
 {
 	int		i;
 	int		j;
@@ -97,7 +97,7 @@ void	modify_players_id(t_player *player, char **argv, int argc, int nb)
 		{
 			reserve = ft_atoi(argv[i + 1]);
 			if (reserve <= 0 || reserve > nb)
-				return ;
+				return (0);
 			tmp = find_player(player, reserve, nb);
 			ft_swap(&player[j].id, &player[tmp].id);
 			sort_players_id(player, nb, reserve);
@@ -105,4 +105,5 @@ void	modify_players_id(t_player *player, char **argv, int argc, int nb)
 		i++;
 	}
 	sort_players(player, nb);
+	return (1);
 }

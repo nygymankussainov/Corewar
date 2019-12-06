@@ -6,7 +6,7 @@
 /*   By: vhazelnu <vhazelnu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/11 17:48:18 by vhazelnu          #+#    #+#             */
-/*   Updated: 2019/11/11 17:48:23 by vhazelnu         ###   ########.fr       */
+/*   Updated: 2019/12/06 14:10:55 by vhazelnu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ void	find_label(t_token *token, t_label *label, t_major *major)
 
 	while (label)
 	{
-		if (!ft_strcmp(token->name, label->name))
+		if (label->name && token->name && !ft_strcmp(token->name, label->name))
 		{
 			tmp = token;
 			while (tmp && tmp->type != Operation)

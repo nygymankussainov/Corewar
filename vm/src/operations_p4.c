@@ -6,7 +6,7 @@
 /*   By: vhazelnu <vhazelnu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/03 12:54:42 by vhazelnu          #+#    #+#             */
-/*   Updated: 2019/12/04 20:35:38 by vhazelnu         ###   ########.fr       */
+/*   Updated: 2019/12/05 19:40:02 by vhazelnu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,11 @@ void	live(t_vm *vm, t_carr *carr)
 	{
 		vm->lastlive = &vm->player[vm->args[0] - 1];
 		++vm->player[vm->args[0] - 1].live_count;
+		if (vm->l)
+		{
+			ft_printf("A process shows that player %d (%s) is alive\n", \
+			vm->player[vm->args[0] - 1].id, vm->player[vm->args[0] - 1].name);
+		}
 	}
 }
 
@@ -49,5 +54,5 @@ void	aff(t_vm *vm, t_carr *carr)
 	if (!vm->aff)
 		return ;
 	symbol = (char)carr->reg[vm->args[0] - 1];
-	write(1, &symbol, 1);
+	ft_printf("Aff: %c\n", symbol);
 }

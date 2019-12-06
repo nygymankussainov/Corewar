@@ -6,7 +6,7 @@
 /*   By: vhazelnu <vhazelnu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/02 16:36:10 by vhazelnu          #+#    #+#             */
-/*   Updated: 2019/12/04 16:32:55 by vhazelnu         ###   ########.fr       */
+/*   Updated: 2019/12/05 19:40:12 by vhazelnu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,7 @@ struct						s_player
 	int						id;
 	char					*name;
 	char					*comment;
-	int						code_size;
+	int64_t					code_size;
 	char					*bytecode;
 	int						live_count;
 };
@@ -79,9 +79,11 @@ struct						s_vm
 	int						check_count;
 	char					args_type[3];
 	int						args[3];
+	int						carr_count;
 	u_int8_t 				first_op;
 	u_int8_t 				last_op;
 	bool					aff;
+	bool					l;
 	bool					visual;
 	t_carr					*head;
 };
