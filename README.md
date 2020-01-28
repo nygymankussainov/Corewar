@@ -12,18 +12,18 @@ The game ends when all the processes are dead. The winner is the last player rep
 
 # Usage
 
-	`make`
+`make`
 
-	`asm`
-	`Usage: ./asm <your_champion.s>`
+`asm`
+`Usage: ./asm <your_champion.s>`
 
-	`corewar`
-	`Usage: ./corewar [-a] [-v] [-l] [-dump <num> -n <num>] <champion.cor> <...>
-    -a          : Print output from "aff" (Default is off)
-    -dump <num> : Dump memory (32 octets per line) after <num> cycles and exit
-    -v          : Run visualizer
-    -n    <num> : Set <num> of the next player
-    -l          : Print alive when live executed (Default is off)`
+`corewar`
+`Usage: ./corewar [-a] [-v] [-l] [-dump <num> -n <num>] <champion.cor> <...>
+-a          : Print output from "aff" (Default is off)
+-dump <num> : Dump memory (32 octets per line) after <num> cycles and exit
+-v          : Run visualizer
+-n    <num> : Set <num> of the next player
+-l          : Print alive when live executed (Default is off)`
 
 You can find champion files in champs folder.
 
