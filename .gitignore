@@ -9,9 +9,6 @@
 a.out
 obj
 vm_champs
-champs
-**.s
-**.cor
 asm
 scripts
 42-corewar
