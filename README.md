@@ -14,13 +14,13 @@ The game ends when all the processes are dead. The winner is the last player rep
 
 `make`
 
-`asm`
+`asm
 
-`Usage: ./asm <your_champion.s>`
+Usage: ./asm <your_champion.s>`
 
-`corewar`
+`corewar
 
-`Usage: ./corewar [-a] [-v] [-l] [-dump <num> -n <num>] <champion.cor> <...>
+Usage: ./corewar [-a] [-v] [-l] [-dump <num> -n <num>] <champion.cor> <...>
 -a          : Print output from "aff" (Default is off)
 -dump <num> : Dump memory (32 octets per line) after <num> cycles and exit
 -v          : Run visualizer
